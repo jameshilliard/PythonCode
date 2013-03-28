@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding/drawPicture.py=utf-8
+encoding/parseLog.py=utf-8
+encoding/telnetDUT.py=utf-8
+encoding/writeExcel.py=utf-8
