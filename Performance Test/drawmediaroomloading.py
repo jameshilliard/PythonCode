@@ -21,7 +21,7 @@ mysql_db = 'python'
 
 
 def getValue(idex, values, Theoretical_Values, dates):
-    con = MySQLdb.Connection(host=mysql_url, user=mysql_user, passwd=mysql_passwd, db=mysql_db);
+    con = MySQLdb.Connection(host=mysql_url, user=mysql_user, passwd=mysql_passwd, db=mysql_db)
 
     with con:
         cur = con.cursor()
@@ -41,7 +41,8 @@ def getValue(idex, values, Theoretical_Values, dates):
 
             Theoretical_Values.append(row[2])
 
-            values.append(row[3])
+            #values.append(row[3])
+            values.append(100 - float(row[3]))
 
     print idex
 
@@ -55,29 +56,19 @@ def getValue(idex, values, Theoretical_Values, dates):
 
 
 def drawPicture(idex, Theoretical_Values, values):  # draw a Picture from by the data from the Excel
-    fig = plt.figure(figsize=(9.5, 3.5))
-    #color = range(1, 5)
+    #fig = plt.figure(figsize=(9.5, 3.5))
     plt.subplots_adjust(bottom=0.4)
     plt.xticks(rotation=90)
-    #plt.yticks(rotation=45)
-    #ax = plt.gca()
-    #xfmt = md.DateFormatter('%Y-%m-%d %H:%M:%S')
-    #ax.xaxis.set_major_formatter(xfmt)
     plt.legend(loc="upper right")
-    plt.title("CPU Useage Idle")
+    plt.title("CPU Usage")
     plt.xlabel("Idex")
-    plt.ylabel("CPU Idle")
+    plt.ylabel("CPU Usage")
     plt.ylim(0, 120)
-    #plt.plot(idex, values, '.', color='red', markersize=1.5)
-    #plt.plot(idex, Theoretical_Values, 'c')
     plt.plot(idex, values, '-', label='values', color='red', markersize=2)
     plt.plot(idex, Theoretical_Values, 'c', label='Theoretical_Values')
     plt.legend()# show lengend
-    #plt.xticks(range(len(dates)),dates)#通过不同的方法设置刻度
     plt.show()
     plt.grid(True)  # show grid
-    #fig.autofmt_xdate()
-    # plt.savefig("/home/actiontec/workspace/t1200h/idlecpu0415.png")
 
 
 def main():

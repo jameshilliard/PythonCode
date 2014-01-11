@@ -1,33 +1,15 @@
 __author__ = 'royxu'
 
+import os
 from selenium import webdriver
 
-from selenium.common.exceptions import TimeoutException
+chromedriver = "/Users/royxu/homebrew/Cellar/chromedriver/2.6/bin/chromedriver"
 
-from selenium.webdriver.support.ui import WebDriverWait
+os.environ["webdriver.chrome.driver"] = chromedriver
 
-from selenium.webdriver.support import expected_conditions as EC
+browser = webdriver.Chrome(chromedriver)
 
-driver = webdriver.Firefox()
-
-driver.get("http://www.google.com.hk")
-
-inputElement = driver.find_element_by_name("q")
-
-inputElement.send_keys("Cheese!")
-
-
-inputElement.submit()
-
-print driver.title
-
-try:
-    WebDriverWait(driver, 10).until(EC.title_contains("cheese!"))
-
-    print driver.title
-
-
-finally:
-
-    driver.quit()
-
+browser.get("http://www.baidu.com")
+browser.find_element_by_id("kw").send_keys("selenium")
+browser.find_element_by_id("su").click()
+browser.quit()
