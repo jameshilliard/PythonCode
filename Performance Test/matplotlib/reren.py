@@ -116,7 +116,7 @@ def draw_graph(username, password, filename='graph.txt', label_flag=True, remove
         with open(filename, 'w') as f:
             p.dump(G, f)
             #nx.draw(G)
-        # Judge whether remove the isolated point from graph
+            # Judge whether remove the isolated point from graph
     if remove_isolated is True:
         H = nx.empty_graph()
         for SG in nx.connected_component_subgraphs(G):

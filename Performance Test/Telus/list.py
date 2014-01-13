@@ -44,7 +44,7 @@ try:
             if Search_casename is not None:
                 casenum_temp = Search_casename.group().split("\"")[1]
                 list_number_temp.append(int(str.strip(casenum_temp)))
-            #        print "\'%s\'"%x
+                #        print "\'%s\'"%x
 
         temp_file_path = temp_dir + casenum_temp
         f.close()

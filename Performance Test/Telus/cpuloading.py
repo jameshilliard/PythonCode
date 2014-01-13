@@ -249,7 +249,7 @@ def collect_cpu(ip_addr, dut_num, dut_usr, dut_passwd):
     cur.execute("use elen_test")
     print "INSERT INTO `cpu_loading` (`TIME`, `T_VALUE`, `VALUE`) VALUES ('%s','%s','%s') " % (timestamp, 100, cpu_idle)
     cur.execute("INSERT INTO `cpu_loading` (`TIME`, `T_VALUE`, `VALUE`) VALUES ('%s','%s','%s') " % (
-    str(timestamp), 100, cpu_idle))
+        str(timestamp), 100, cpu_idle))
 
     con.commit()
 
