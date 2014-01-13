@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>firewall (Firewall)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File Firewall/Firewall.rb, line 16</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">firewall</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
+    
+    <span class="ruby-comment cmt">#execute super.firewall(rule_name, info) to go to firewall Page</span>
+    <span class="ruby-keyword kw">super</span>
+    
+    <span class="ruby-comment cmt"># settings and testing on the firewall page</span>
+    <span class="ruby-comment cmt"># plsease add your code here...</span>
+    
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-value str">'layout'</span>)
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'layout'</span>]
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'General'</span>
+        <span class="ruby-constant">General</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Access Control'</span>
+        <span class="ruby-constant">AccessControl</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Port Forwarding'</span>
+        <span class="ruby-constant">PortForwarding</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'DMZ Host'</span>
+        <span class="ruby-constant">DMZHost</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Port Triggering'</span>
+        <span class="ruby-constant">PortTriggering</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Remote Administration'</span>
+        <span class="ruby-constant">RemoteAdministration</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Static NAT'</span>
+        <span class="ruby-constant">StaticNAT</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Advanced Filtering'</span>
+        <span class="ruby-constant">AdvancedFiltering</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Security Log'</span>
+        <span class="ruby-constant">SecurityLog</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:error</span>, <span class="ruby-value str">''</span>, <span class="ruby-value str">'layout undefined'</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:error</span>, <span class="ruby-value str">''</span>, <span class="ruby-value str">'No layout key found'</span>)
+    <span class="ruby-keyword kw">end</span>
+  
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

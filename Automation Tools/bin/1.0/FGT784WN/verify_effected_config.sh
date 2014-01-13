@@ -1,0 +1,1 @@
+../SV1KH/verify_effected_config.sh

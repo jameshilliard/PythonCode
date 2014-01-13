@@ -1,0 +1,24 @@
+source 'http://rubygems.org'
+gem 'rails', '>= 3.0.3'
+gem 'mysql2', '>= 0.2.6'
+gem 'delayed_job', '>= 2.1.1'
+gem 'simple_form'
+gem 'show_for'
+gem 'whenever', :require => false
+gem 'screwcap', '>= 0.6.1'
+gem 'meta_where'
+gem 'meta_search'
+gem 'haml'
+gem 'kaminari'
+group :development, :test do
+  gem 'webrat', '>= 0.7.2'
+end
+
+group :development do
+  gem "rspec-rails", ">= 2.1.0"
+  gem "annotate-models"
+end
+
+group :test do
+  gem "rspec", ">= 2.1.0"
+end

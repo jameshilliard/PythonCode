@@ -1,0 +1,1 @@
+../TV2KH/get_dut_log.sh

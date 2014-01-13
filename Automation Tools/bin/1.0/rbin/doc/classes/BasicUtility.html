@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: BasicUtility</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">BasicUtility</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/BasicUtility_rb.html">
+                BasicUtility.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+    <div id="diagram">
+      <map id="map" name="map">
+  <area shape="rect" coords="5,102,91,150"      href="BasicUtility.html" alt="BasicUtility" />
+  <area shape="rect" coords="12,6,84,54"      href="FireWatir.html" alt="FireWatir" />
+</map>
+<img src="../dot/f_9.png" usemap="#map" border="0" alt="dot/f_9.png">
+    </div>
+
+    <div id="description">
+      <p>
+BasicUtility.rb Author: RuBingSheng Date: since 2009.02.16 Contact:
+Bru@actiontec.com Discription: Basic Utility Class of using Ruby in Web
+application test Input: it depends Output: the result of operation
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000160">advanced</a>&nbsp;&nbsp;
+      <a href="#M000148">close</a>&nbsp;&nbsp;
+      <a href="#M000150">command</a>&nbsp;&nbsp;
+      <a href="#M000166">do</a>&nbsp;&nbsp;
+      <a href="#M000158">firewall</a>&nbsp;&nbsp;
+      <a href="#M000165">firmware</a>&nbsp;&nbsp;
+      <a href="#M000164">info</a>&nbsp;&nbsp;
+      <a href="#M000163">logout</a>&nbsp;&nbsp;
+      <a href="#M000149">logs</a>&nbsp;&nbsp;
+      <a href="#M000154">main</a>&nbsp;&nbsp;
+      <a href="#M000155">mainpage</a>&nbsp;&nbsp;
+      <a href="#M000151">msg</a>&nbsp;&nbsp;
+      <a href="#M000157">mynetwork</a>&nbsp;&nbsp;
+      <a href="#M000147">new</a>&nbsp;&nbsp;
+      <a href="#M000152">output</a>&nbsp;&nbsp;
+      <a href="#M000159">parentalcontrol</a>&nbsp;&nbsp;
+      <a href="#M000162">reboot</a>&nbsp;&nbsp;
+      <a href="#M000153">saveoutput</a>&nbsp;&nbsp;
+      <a href="#M000161">sysmon</a>&nbsp;&nbsp;
+      <a href="#M000156">wireless</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name">FireWatir</span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000147" class="method-detail">
+        <a name="M000147"></a>
+
+        <div class="method-heading">
+          <a href="BasicUtility.src/M000147.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicUtility.src/M000147.html');return false;">
+          <span class="method-name">new</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+not much to initialize, just create a <a
+href="BasicUtility.html#M000147">new</a> browser window and the <a
+href="BasicUtility.html#M000152">output</a> hash.
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000160" class="method-detail">
+        <a name="M000160"></a>
+
+        <div class="method-heading">
+          <a href="BasicUtility.src/M000160.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicUtility.src/M000160.html');return false;">
+          <span class="method-name">advanced</span><span class="method-args">(rule_name, info)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+jump to the <a href="BasicUtility.html#M000160">advanced</a> options page
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000148" class="method-detail">
+        <a name="M000148"></a>
+
+        <div class="method-heading">
+          <a href="BasicUtility.src/M000148.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicUtility.src/M000148.html');return false;">
+          <span class="method-name">close</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="BasicUtility.html#M000148">close</a> the browser window
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000150" class="method-detail">
+        <a name="M000150"></a>
+
+        <div class="method-heading">
+          <a href="BasicUtility.src/M000150.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicUtility.src/M000150.html');return false;">
+          <span class="method-name">command</span><span class="method-args">(rule_name, what)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+run the passed in <a href="BasicUtility.html#M000150">command</a>,
+returning the return code and a pointer to the <a
+href="BasicUtility.html#M000152">output</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000166" class="method-detail">
+        <a name="M000166"></a>
+
+        <div class="method-heading">
+          <a href="BasicUtility.src/M000166.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicUtility.src/M000166.html');return false;">
+          <span class="method-name">do</span><span class="method-args">(rule_name, info)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+jump off point to the rest of the functions
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000158" class="method-detail">
+        <a name="M000158"></a>
+
+        <div class="method-heading">
+          <a href="BasicUtility.src/M000158.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicUtility.src/M000158.html');return false;">
+          <span class="method-name">firewall</span><span class="method-args">(rule_name, info)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="BasicUtility.html#M000158">firewall</a> functions page
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000165" class="method-detail">
+        <a name="M000165"></a>
+
+        <div class="method-heading">
+          <a href="BasicUtility.src/M000165.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicUtility.src/M000165.html');return false;">
+          <span class="method-name">firmware</span><span class="method-args">(rule_name, info)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="BasicUtility.html#M000165">firmware</a> upgrades
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000164" class="method-detail">
+        <a name="M000164"></a>
+
+        <div class="method-heading">
+          <a href="BasicUtility.src/M000164.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicUtility.src/M000164.html');return false;">
+          <span class="method-name">info</span><span class="method-args">(rule_name, info)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+get the system <a href="BasicUtility.html#M000164">info</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000163" class="method-detail">
+        <a name="M000163"></a>
+
+        <div class="method-heading">
+          <a href="BasicUtility.src/M000163.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicUtility.src/M000163.html');return false;">
+          <span class="method-name">logout</span><span class="method-args">(rule_name, info)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="BasicUtility.html#M000163">logout</a> of the device
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000149" class="method-detail">
+        <a name="M000149"></a>
+
+        <div class="method-heading">
+          <a href="BasicUtility.src/M000149.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicUtility.src/M000149.html');return false;">
+          <span class="method-name">logs</span><span class="method-args">(where)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+remember where to store any <a href="BasicUtility.html#M000149">logs</a>.
+allow timestamps and create the directory if necessary
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000154" class="method-detail">
+        <a name="M000154"></a>
+
+        <div class="method-heading">
+          <a href="BasicUtility.src/M000154.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicUtility.src/M000154.html');return false;">
+          <span class="method-name">main</span><span class="method-args">(rule_name, info)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+jump to the <a href="BasicUtility.html#M000154">main</a> page. log into the
+device if necessary
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000155" class="method-detail">
+        <a name="M000155"></a>
+
+        <div class="method-heading">
+          <a href="BasicUtility.src/M000155.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicUtility.src/M000155.html');return false;">
+          <span class="method-name">mainpage</span><span class="method-args">(rule_name, info)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="BasicUtility.html#M000154">main</a> functions page
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000151" class="method-detail">
+        <a name="M000151"></a>
+
+        <div class="method-heading">
+          <a href="BasicUtility.src/M000151.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicUtility.src/M000151.html');return false;">
+          <span class="method-name">msg</span><span class="method-args">(rule, level, section, msg)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="BasicUtility.html#M000152">output</a> message handler level - <a
+href="BasicUtility.html#M000164">info</a>, warning or error
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000157" class="method-detail">
+        <a name="M000157"></a>
+
+        <div class="method-heading">
+          <a href="BasicUtility.src/M000157.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicUtility.src/M000157.html');return false;">
+          <span class="method-name">mynetwork</span><span class="method-args">(rule_name, info)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+my network functions page
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000152" class="method-detail">
+        <a name="M000152"></a>
+
+        <div class="method-heading">
+          <a href="BasicUtility.src/M000152.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicUtility.src/M000152.html');return false;">
+          <span class="method-name">output</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+return the log of what has happened so far
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000159" class="method-detail">
+        <a name="M000159"></a>
+
+        <div class="method-heading">
+          <a href="BasicUtility.src/M000159.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicUtility.src/M000159.html');return false;">
+          <span class="method-name">parentalcontrol</span><span class="method-args">(rule_name, info)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+parental control functions page
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000162" class="method-detail">
+        <a name="M000162"></a>
+
+        <div class="method-heading">
+          <a href="BasicUtility.src/M000162.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicUtility.src/M000162.html');return false;">
+          <span class="method-name">reboot</span><span class="method-args">(rule_name, info)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="BasicUtility.html#M000162">reboot</a> the router
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000153" class="method-detail">
+        <a name="M000153"></a>
+
+        <div class="method-heading">
+          <a href="BasicUtility.src/M000153.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicUtility.src/M000153.html');return false;">
+          <span class="method-name">saveoutput</span><span class="method-args">(resultjsonfile_path_name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+save the <a href="BasicUtility.html#M000152">output</a> json file
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000161" class="method-detail">
+        <a name="M000161"></a>
+
+        <div class="method-heading">
+          <a href="BasicUtility.src/M000161.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicUtility.src/M000161.html');return false;">
+          <span class="method-name">sysmon</span><span class="method-args">(rule_name, info)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+jump to the system monitoring page
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000156" class="method-detail">
+        <a name="M000156"></a>
+
+        <div class="method-heading">
+          <a href="BasicUtility.src/M000156.html" target="Code" class="method-signature"
+            onclick="popupCode('BasicUtility.src/M000156.html');return false;">
+          <span class="method-name">wireless</span><span class="method-args">(rule_name, info)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="BasicUtility.html#M000156">wireless</a> functions page
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

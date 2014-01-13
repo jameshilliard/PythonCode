@@ -1,0 +1,185 @@
+WLAN controller: 3Com WXR100 (same HW as Trapeze MXR-2)
+3Com AP2750 thin AP clients
+
+log in on serial port using 9600-8-1-None
+
+Username: walter
+Password: foo
+wx1200-xxxxx: <c/r>
+wx1200-xxxxx: enable
+Enter Password: lab
+
+
+or
+
+Username: admin
+Password: optional
+wx1200-xxxxx: enable
+Enter Password: optional
+
+
+The default IP address of a new WXR100 is 192.168.10.100
+To set the IP address of the WXR100 use a set cmd
+or the quickstart program (see below):
+
+WXR100# set system ip-address 10.10.250.12
+WXR100# set ip route default 10.10.251.1 1
+WXR100# set interface 1 ip 10.10.250.12 255.255.255.0
+
+
+  -or-
+
+WXR100# quickstart
+        IP addr: 192.168.1.101 255.255.255.0 gw 192.168.1.1
+
+Username: admin
+Password: <none>
+Enable password: <none>
+
+clear SSID: Trapeze
+
+WXR100# save config
+
+#
+# To add a user to the local database
+#
+set user <username> password <password>
+save config
+
+
+###
+### CLI shortcuts - uses emacs-style cmd-line editing
+###
+
+tab completion of cmds
+
+63-cmd history buffer
+
+###
+### Configuring a Distributed MAP or "dap" in the CLI:
+###
+
+set dap <dap#> serial-id <id> model ap2750 [ radiotype { 11a | 11b | 11g } ]
+
+for WXR100, dap is 1 to 8
+for WX1200, dap is 1 to 30
+for WX2200, dap is 1 to 300
+for WX4400, dap is 1 to 300
+
+note, we probably should not validate dap# parameters (so we allow
+people to test feeding bogus dap#'s to the WLC to see what it does)
+
+serial-id is the serial ID listed on the MAP case.  To see the serial ID
+using the CLI, use
+
+display version details
+
+----
+
+Valid AP model numbers:
+
+	ap2750
+	ap3750
+	ap7250
+	ap8250
+	ap8750
+	mp-52
+	mp-241
+	mp-252
+	mp-262
+	mp-341
+	mp-352
+	mp-372
+	mp-372-CN
+	mp-372-JP
+	mp620
+
+Valid radio types:	11a	11b	11g
+
+
+###
+### Configuring a Distributed MAP or "dap" in the CLI:
+###
+
+set dap <dap#> serial-id <id> model ap2750 [ radiotype { 11a | 11b | 11g } ]
+
+for WXR100, dap is 1 to 8
+for WX1200, dap is 1 to 30
+for WX2200, dap is 1 to 300
+for WX4400, dap is 1 to 300
+
+note, we probably should not validate dap# parameters (so we allow
+people to test feeding bogus dap#'s to the WLC to see what it does)
+
+serial-id is the serial ID listed on the MAP case.  To see the serial ID
+using the CLI, use
+
+display version details
+
+
+To configure Distributed MAP connection 1 for MAP model AP2750 with serial-ID M9DE48B123400 use this:
+
+set dap 1 serial-id M9DE48B123400 model ap2750
+success: change accepted
+
+"set dap" has the same syntax as the "set port type ap" command, except
+that "set dap" does not allow you to specify the poe parameter
+
+
+-----
+To configure a user in the local password database on the WX switch:
+
+	set user <username> password <password>
+
+to give that user the ability to enter enable mode:
+
+	set user <username> attr service-type 6
+
+If the service-type is not set to 6 (Administrative)
+then the user will not be able to enter enable-mode commands.
+
+-----
+To set the enable password
+
+	set enablepass
+
+the system then prompts you for old and new passwords
+-----
+
+to get rid of ports, you clear them
+If the port is a MAP access port, clearing the port disables PoE and 802.1X auth
+If the port is a wired auth port, clearing the port disables 802.1X auth
+If the port is a network port, the port must first be removed from all VLAN's,
+which removes the port from all spanning trees, load sharing port groups, etc.
+
+clear port type port-list
+ie.,
+	clear port type 5
+
+clearing a Distributed MAP:
+
+	clear dap dap-num
+
+setting a port name:
+
+	set port <port> name <name>
+
+	ex: set port 2 name adminpool
+
+removing a port name
+
+	clear port <port-list> <name>
+
+configuring port parameters:
+
+	10/100 ports - autonegotiation and port speed
+
+		set port speed <port-list> {10 | 100 | auto}
+
+		ex: set port speed 1,3-5 10
+
+turning ports on/off
+
+	set port {enable | disable} <port-list>
+
+

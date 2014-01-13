@@ -1,0 +1,36 @@
+jacs - Jungo's ACS emulator
+
+
+This is a tool run on HOST PC as an ACS server. It is only for developing purpose, and need you write scripts for the test cases. There are some example scripts, and you may need change the IP and username/password to be the one of your CPE if CONNECTION REQUEST is needed. 
+
+You can get the detail usage from "help all" command of jacs.
+
+Simple Usage:
+Server side (HOST PC):
+1. ./jacs
+2. "listen 1234"
+3. Change the connection request settings in your SCRIPT, including CPE's IP, PORT, CONN_REQ_USERNAME, CONN_REQ_PASSWORD
+   For example: "connect http://192.168.10.14:4567 001F906F70D7 newVOLUser1 NONE"
+4. Setup CPE side settings follow the steps below
+5. "source <SCRIPT FILE>"
+
+CPE side:
+You need change the ACS URL to point the PC running jacs. You can change it from GUI or CLI. Below is the way to change from CLI on different platform:
+BHR:
+conf set cwmp/acs_url http://192.168.10.161:1234/acs
+conf reconf 1
+system reboot
+
+BCM:
+1. tftp -p -f defcfg <TFTP Server IP>, upload the configure file to the host which running the TFTP server
+2. modify the defcfg file, change the ACS URL, "ManagementServer.URL", to be "http://HOST_IP:PORT/acs". HOST_IP is the ip address of the host which running the "jacs", PORT is the listening port of jacs.
+3. tftp -g -t c -f defcfg <TFTP Server IP>, download the modified file to CPE, and CPE will reboot and contact with jacs.
+
+
+Notes:
+1. jacs.old is the old one which doesn't support CONNECTION REQUEST.
+2. To issue the CONNECTION REQUEST:
+    connect <conn_req_url> <username> <password> <proxy_url>
+
+Examples:
+LTE: username: 001F906F70D7 password: newVOLUser1

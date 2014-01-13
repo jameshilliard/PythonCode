@@ -1,0 +1,1 @@
+../common/DUT_ipv6_Setup.py

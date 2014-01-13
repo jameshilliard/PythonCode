@@ -1,0 +1,768 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>do_setup_security_log_settings (Firewall)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File Firewall/Firewall.rb, line 2458</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">do_setup_security_log_settings</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">info</span>)
+    
+    <span class="ruby-comment cmt"># Now, Firefox should under &quot;Log Settings&quot; default page.</span>
+    <span class="ruby-comment cmt"># Check the page.</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">include?</span><span class="ruby-value str">'Log Settings'</span>
+      <span class="ruby-comment cmt"># Wrong here.</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings()'</span>,<span class="ruby-value str">'Not reach the page.'</span>)
+      <span class="ruby-keyword kw">return</span>
+    <span class="ruby-keyword kw">end</span>   
+    
+    <span class="ruby-comment cmt"># Parse the json file. </span>
+
+    <span class="ruby-comment cmt"># ------------ Begin ---------------</span>
+    <span class="ruby-comment cmt"># &quot;Accepted Incoming Connections&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Accepted Incoming Connections'</span>)
+
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Accepted Incoming Connections'</span>]
+        
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>        
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Set the check box &quot;Accepted Incoming Connections&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_conn_acc_in'</span>).<span class="ruby-identifier">set</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Accepted Incoming Connections'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Accepted Incoming Connections'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'Accepted Incoming Connections\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin</span>
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Clear the check box &quot;Accepted Incoming Connections&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_conn_acc_in'</span>).<span class="ruby-identifier">clear</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Accepted Incoming Connections'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Accepted Incoming Connections'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'Accepted Incoming Connections\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin   </span>
+
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'No such value in\'Accepted Incoming Connections\'. '</span>)
+        <span class="ruby-keyword kw">return</span>
+      
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+        
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if</span>
+    <span class="ruby-comment cmt"># ------------ End ---------------      </span>
+
+    <span class="ruby-comment cmt"># ------------ Begin ---------------</span>
+    <span class="ruby-comment cmt"># &quot;Accepted Outgoing Connections&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Accepted Outgoing Connections'</span>)
+
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Accepted Outgoing Connections'</span>]
+        
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>        
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Set the check box &quot;Accepted Outgoing Connections&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_conn_acc_out'</span>).<span class="ruby-identifier">set</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Accepted Outgoing Connections'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Accepted Outgoing Connections'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'Accepted Outgoing Connections\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin</span>
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Clear the check box &quot;Accepted Outgoing Connections&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_conn_acc_out'</span>).<span class="ruby-identifier">clear</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Accepted Outgoing Connections'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Accepted Outgoing Connections'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'Accepted Outgoing Connections\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin   </span>
+
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'No such value in\'Accepted Outgoing Connections\'. '</span>)
+        <span class="ruby-keyword kw">return</span>
+      
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+        
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if</span>
+    <span class="ruby-comment cmt"># ------------ End --------------- </span>
+
+    <span class="ruby-comment cmt"># ------------ Begin ---------------</span>
+    <span class="ruby-comment cmt"># &quot;All Blocked Connection Attempts&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'All Blocked Connection Attempts'</span>)
+
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'All Blocked Connection Attempts'</span>]
+        
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>        
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Set the check box &quot;All Blocked Connection Attempts&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_conn_blk'</span>).<span class="ruby-identifier">set</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'All Blocked Connection Attempts'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'All Blocked Connection Attempts'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'All Blocked Connection Attempts\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin</span>
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Clear the check box &quot;All Blocked Connection Attempts&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_conn_blk'</span>).<span class="ruby-identifier">clear</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'All Blocked Connection Attempts'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'All Blocked Connection Attempts'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'All Blocked Connection Attempts\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin   </span>
+
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'No such value in\'All Blocked Connection Attempts\'. '</span>)
+        <span class="ruby-keyword kw">return</span>
+      
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+        
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if</span>
+    <span class="ruby-comment cmt"># ------------ End --------------- </span>
+
+    <span class="ruby-comment cmt"># ------------ Begin ---------------</span>
+    <span class="ruby-comment cmt"># &quot;Winnuke&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Winnuke'</span>)
+
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Winnuke'</span>]
+        
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>        
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Set the check box &quot;Winnuke&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_winnuke'</span>).<span class="ruby-identifier">set</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Winnuke'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Winnuke'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'Winnuke\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin</span>
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Clear the check box &quot;Winnuke&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_winnuke'</span>).<span class="ruby-identifier">clear</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Winnuke'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Winnuke'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'Winnuke\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin   </span>
+
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'No such value in\'Winnuke\'. '</span>)
+        <span class="ruby-keyword kw">return</span>
+      
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+        
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if</span>
+    <span class="ruby-comment cmt"># ------------ End --------------- </span>
+
+    <span class="ruby-comment cmt"># ------------ Begin ---------------</span>
+    <span class="ruby-comment cmt"># &quot;Multicast/Broadcast&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Multicast/Broadcast'</span>)
+
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Multicast/Broadcast'</span>]
+        
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>        
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Set the check box &quot;Multicast/Broadcast&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_broadcast'</span>).<span class="ruby-identifier">set</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Multicast/Broadcast'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Multicast/Broadcast'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'Multicast/Broadcast\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin</span>
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Clear the check box &quot;Multicast/Broadcast&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_broadcast'</span>).<span class="ruby-identifier">clear</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Multicast/Broadcast'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Multicast/Broadcast'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'Multicast/Broadcast\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin   </span>
+
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'No such value in\'Multicast/Broadcast\'. '</span>)
+        <span class="ruby-keyword kw">return</span>
+      
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+        
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if</span>
+    <span class="ruby-comment cmt"># ------------ End --------------- </span>
+
+    <span class="ruby-comment cmt"># ------------ Begin ---------------</span>
+    <span class="ruby-comment cmt"># &quot;Defragmentation Error&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Defragmentation Error'</span>)
+
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Defragmentation Error'</span>]
+        
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>        
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Set the check box &quot;Defragmentation Error&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_badfrag'</span>).<span class="ruby-identifier">set</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Defragmentation Error'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Defragmentation Error'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'Defragmentation Error\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin</span>
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Clear the check box &quot;Defragmentation Error&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_badfrag'</span>).<span class="ruby-identifier">clear</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Defragmentation Error'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Defragmentation Error'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'Defragmentation Error\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin   </span>
+
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'No such value in\'Defragmentation Error\'. '</span>)
+        <span class="ruby-keyword kw">return</span>
+      
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+        
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if</span>
+    <span class="ruby-comment cmt"># ------------ End --------------- </span>
+
+    <span class="ruby-comment cmt"># ------------ Begin ---------------</span>
+    <span class="ruby-comment cmt"># &quot;Spoofed Connection&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Spoofed Connection'</span>)
+
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Spoofed Connection'</span>]
+        
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>        
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Set the check box &quot;Spoofed Connection&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_spoofed'</span>).<span class="ruby-identifier">set</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Spoofed Connection'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Spoofed Connection'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'Spoofed Connection\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin</span>
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Clear the check box &quot;Spoofed Connection&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_spoofed'</span>).<span class="ruby-identifier">clear</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Spoofed Connection'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Spoofed Connection'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'Spoofed Connection\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin   </span>
+
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'No such value in\'Spoofed Connection\'. '</span>)
+        <span class="ruby-keyword kw">return</span>
+      
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+        
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if</span>
+    <span class="ruby-comment cmt"># ------------ End --------------- </span>
+
+    <span class="ruby-comment cmt"># ------------ Begin ---------------</span>
+    <span class="ruby-comment cmt"># &quot;Blocked Fragments&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Blocked Fragments'</span>)
+
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Blocked Fragments'</span>]
+        
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>        
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Set the check box &quot;Blocked Fragments&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_frag'</span>).<span class="ruby-identifier">set</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Blocked Fragments'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Blocked Fragments'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'Blocked Fragments\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin</span>
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Clear the check box &quot;Blocked Fragments&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_frag'</span>).<span class="ruby-identifier">clear</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Blocked Fragments'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Blocked Fragments'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'Blocked Fragments\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin   </span>
+
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'No such value in\'Blocked Fragments\'. '</span>)
+        <span class="ruby-keyword kw">return</span>
+      
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+        
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if</span>
+    <span class="ruby-comment cmt"># ------------ End --------------- </span>
+
+    <span class="ruby-comment cmt"># ------------ Begin ---------------</span>
+    <span class="ruby-comment cmt"># &quot;Packet Ilegal Options&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Packet Ilegal Options'</span>)
+
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Packet Ilegal Options'</span>]
+        
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>        
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Set the check box &quot;Packet Ilegal Options&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_illegal_ops'</span>).<span class="ruby-identifier">set</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Packet Ilegal Options'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Packet Ilegal Options'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'Packet Ilegal Options\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin</span>
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Clear the check box &quot;Packet Ilegal Options&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_illegal_ops'</span>).<span class="ruby-identifier">clear</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Packet Ilegal Options'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Packet Ilegal Options'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'Packet Ilegal Options\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin   </span>
+
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'No such value in\'Packet Ilegal Options\'. '</span>)
+        <span class="ruby-keyword kw">return</span>
+      
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+        
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if</span>
+    <span class="ruby-comment cmt"># ------------ End --------------- </span>
+
+    <span class="ruby-comment cmt"># ------------ Begin ---------------</span>
+    <span class="ruby-comment cmt"># &quot;Syn Flood&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Syn Flood'</span>)
+
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Syn Flood'</span>]
+        
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>        
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Set the check box &quot;Syn Flood&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_synflood'</span>).<span class="ruby-identifier">set</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Syn Flood'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Syn Flood'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'Syn Flood\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin</span>
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Clear the check box &quot;Syn Flood&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_synflood'</span>).<span class="ruby-identifier">clear</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Syn Flood'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Syn Flood'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'Syn Flood\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin   </span>
+
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'No such value in\'Syn Flood\'. '</span>)
+        <span class="ruby-keyword kw">return</span>
+      
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+        
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if</span>
+    <span class="ruby-comment cmt"># ------------ End --------------- </span>
+
+    <span class="ruby-comment cmt"># ------------ Begin ---------------</span>
+    <span class="ruby-comment cmt"># &quot;UDP Flood&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'UDP Flood'</span>)
+
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'UDP Flood'</span>]
+        
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>        
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Set the check box &quot;UDP Flood&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_udpflood'</span>).<span class="ruby-identifier">set</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'UDP Flood'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'UDP Flood'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'UDP Flood\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin</span>
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Clear the check box &quot;UDP Flood&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_udpflood'</span>).<span class="ruby-identifier">clear</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'UDP Flood'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'UDP Flood'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'UDP Flood\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin   </span>
+
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'No such value in\'UDP Flood\'. '</span>)
+        <span class="ruby-keyword kw">return</span>
+      
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+        
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if</span>
+    <span class="ruby-comment cmt"># ------------ End --------------- </span>
+
+    <span class="ruby-comment cmt"># ------------ Begin ---------------</span>
+    <span class="ruby-comment cmt"># &quot;Echo Chargen&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Echo Chargen'</span>)
+
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Echo Chargen'</span>]
+        
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>        
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Set the check box &quot;Echo Chargen&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_echo_chargen'</span>).<span class="ruby-identifier">set</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Echo Chargen'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Echo Chargen'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'Echo Chargen\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin</span>
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Clear the check box &quot;Echo Chargen&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_echo_chargen'</span>).<span class="ruby-identifier">clear</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Echo Chargen'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Echo Chargen'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'Echo Chargen\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin   </span>
+
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'No such value in\'Echo Chargen\'. '</span>)
+        <span class="ruby-keyword kw">return</span>
+      
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+        
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if</span>
+    <span class="ruby-comment cmt"># ------------ End --------------- </span>
+
+    <span class="ruby-comment cmt"># ------------ Begin ---------------</span>
+    <span class="ruby-comment cmt"># &quot;ICMP Replay&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'ICMP Replay'</span>)
+
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'ICMP Replay'</span>]
+        
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>        
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Set the check box &quot;ICMP Replay&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_icmpreplay'</span>).<span class="ruby-identifier">set</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'ICMP Replay'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'ICMP Replay'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'ICMP Replay\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin</span>
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Clear the check box &quot;ICMP Replay&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_icmpreplay'</span>).<span class="ruby-identifier">clear</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'ICMP Replay'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'ICMP Replay'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'ICMP Replay\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin   </span>
+
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'No such value in\'ICMP Replay\'. '</span>)
+        <span class="ruby-keyword kw">return</span>
+      
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+        
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if</span>
+    <span class="ruby-comment cmt"># ------------ End --------------- </span>
+
+    <span class="ruby-comment cmt"># ------------ Begin ---------------</span>
+    <span class="ruby-comment cmt"># &quot;ICMP Redirect&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'ICMP Redirect'</span>)
+
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'ICMP Redirect'</span>]
+        
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>        
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Set the check box &quot;ICMP Redirect&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_icmp_redirect'</span>).<span class="ruby-identifier">set</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'ICMP Redirect'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'ICMP Redirect'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'ICMP Redirect\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin</span>
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Clear the check box &quot;ICMP Redirect&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_icmp_redirect'</span>).<span class="ruby-identifier">clear</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'ICMP Redirect'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'ICMP Redirect'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'ICMP Redirect\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin   </span>
+
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'No such value in\'ICMP Redirect\'. '</span>)
+        <span class="ruby-keyword kw">return</span>
+      
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+        
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if</span>
+    <span class="ruby-comment cmt"># ------------ End --------------- </span>
+
+    <span class="ruby-comment cmt"># ------------ Begin ---------------</span>
+    <span class="ruby-comment cmt"># &quot;ICMP Multicast&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'ICMP Multicast'</span>)
+
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'ICMP Multicast'</span>]
+        
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>        
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Set the check box &quot;ICMP Multicast&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_icmp_multicast'</span>).<span class="ruby-identifier">set</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'ICMP Multicast'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'ICMP Multicast'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'ICMP Multicast\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin</span>
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Clear the check box &quot;ICMP Multicast&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_icmp_multicast'</span>).<span class="ruby-identifier">clear</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'ICMP Multicast'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'ICMP Multicast'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'ICMP Multicast\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin   </span>
+
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'No such value in\'ICMP Multicast\'. '</span>)
+        <span class="ruby-keyword kw">return</span>
+      
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+        
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if</span>
+    <span class="ruby-comment cmt"># ------------ End --------------- </span>
+
+    <span class="ruby-comment cmt"># ------------ Begin ---------------</span>
+    <span class="ruby-comment cmt"># &quot;ICMP Flood&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'ICMP Flood'</span>)
+
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'ICMP Flood'</span>]
+        
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>        
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Set the check box &quot;ICMP Flood&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_icmpflood'</span>).<span class="ruby-identifier">set</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'ICMP Flood'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'ICMP Flood'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'ICMP Flood\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin</span>
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Clear the check box &quot;ICMP Flood&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_icmpflood'</span>).<span class="ruby-identifier">clear</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'ICMP Flood'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'ICMP Flood'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'ICMP Flood\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin   </span>
+
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'No such value in\'ICMP Flood\'. '</span>)
+        <span class="ruby-keyword kw">return</span>
+      
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+        
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if</span>
+    <span class="ruby-comment cmt"># ------------ End --------------- </span>
+
+    <span class="ruby-comment cmt"># ------------ Begin ---------------</span>
+    <span class="ruby-comment cmt"># &quot;Remote Administration Attempts&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Remote Administration Attempts'</span>)
+
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Remote Administration Attempts'</span>]
+        
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>        
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Set the check box &quot;Remote Administration Attempts&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_remote_admin'</span>).<span class="ruby-identifier">set</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Remote Administration Attempts'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Remote Administration Attempts'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'Remote Administration Attempts\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin</span>
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Clear the check box &quot;Remote Administration Attempts&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_remote_admin'</span>).<span class="ruby-identifier">clear</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Remote Administration Attempts'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Remote Administration Attempts'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'Remote Administration Attempts\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin   </span>
+
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'No such value in\'Remote Administration Attempts\'. '</span>)
+        <span class="ruby-keyword kw">return</span>
+      
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+        
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if</span>
+    <span class="ruby-comment cmt"># ------------ End --------------- </span>
+
+    <span class="ruby-comment cmt"># ------------ Begin ---------------</span>
+    <span class="ruby-comment cmt"># &quot;Connection States&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Connection States'</span>)
+
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Connection States'</span>]
+        
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>        
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Set the check box &quot;Connection States&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_conn_state'</span>).<span class="ruby-identifier">set</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Connection States'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Connection States'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'Connection States\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin</span>
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Clear the check box &quot;Connection States&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_conn_state'</span>).<span class="ruby-identifier">clear</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Connection States'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Connection States'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'Connection States\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin   </span>
+
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'No such value in\'Connection States\'. '</span>)
+        <span class="ruby-keyword kw">return</span>
+      
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+        
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if</span>
+    <span class="ruby-comment cmt"># ------------ End --------------- </span>
+
+    <span class="ruby-comment cmt"># ------------ Begin ---------------</span>
+    <span class="ruby-comment cmt"># &quot;Prevent Log Overrun&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Prevent Log Overrun'</span>)
+
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Prevent Log Overrun'</span>]
+        
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>        
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Set the check box &quot;Prevent Log Overrun&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_no_overrun'</span>).<span class="ruby-identifier">set</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Prevent Log Overrun'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Prevent Log Overrun'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'Prevent Log Overrun\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin</span>
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-comment cmt"># Clear the check box &quot;Prevent Log Overrun&quot;        </span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'log_no_overrun'</span>).<span class="ruby-identifier">clear</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Prevent Log Overrun'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Prevent Log Overrun'</span>])
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'Error in \'Prevent Log Overrun\'.'</span>)
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of begin   </span>
+
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'do_setup_security_log_settings'</span>,<span class="ruby-value str">'No such value in\'Prevent Log Overrun\'. '</span>)
+        <span class="ruby-keyword kw">return</span>
+      
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+        
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if</span>
+    <span class="ruby-comment cmt"># ------------ End --------------- </span>
+       
+    <span class="ruby-comment cmt"># Apply for the change.</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">include?</span><span class="ruby-value str">'Apply'</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>,<span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>
+    <span class="ruby-keyword kw">end</span>        
+
+    <span class="ruby-comment cmt"># Output the result.</span>
+
+    <span class="ruby-comment cmt"># Find the table.</span>
+    <span class="ruby-identifier">sTable</span> = <span class="ruby-keyword kw">false</span>
+    <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">tables</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">t</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value str">'Time'</span> <span class="ruby-keyword kw">and</span> 
+           <span class="ruby-identifier">t</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value str">'Event'</span> <span class="ruby-keyword kw">and</span>
+           ( <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value str">'Press the Refresh button to update the data'</span>) <span class="ruby-keyword kw">and</span>
+           <span class="ruby-identifier">t</span>.<span class="ruby-identifier">row_count</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">1</span> )<span class="ruby-keyword kw">then</span>
+        <span class="ruby-identifier">sTable</span> = <span class="ruby-identifier">t</span>
+        <span class="ruby-keyword kw">break</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sTable</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">false</span>
+      <span class="ruby-comment cmt"># Wrong here</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Security Log Settings'</span>,<span class="ruby-value str">'Did NOT find the target table.'</span>)
+      <span class="ruby-keyword kw">return</span>
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-identifier">iFlag</span> = <span class="ruby-value">0</span>
+    <span class="ruby-identifier">strEntry</span> = <span class="ruby-value str">&quot;&quot;</span>
+    
+    <span class="ruby-comment cmt"># Find the row</span>
+    <span class="ruby-identifier">sTable</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">row</span><span class="ruby-operator">|</span>
+      
+      <span class="ruby-identifier">iFlag</span> = <span class="ruby-identifier">iFlag</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+      
+      <span class="ruby-comment cmt"># not for first line</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">iFlag</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+        <span class="ruby-keyword kw">next</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">strEntry</span> = <span class="ruby-value str">&quot;Log&quot;</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">iFlag</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>).<span class="ruby-identifier">to_s</span>
+      
+      <span class="ruby-comment cmt"># Output in to the result.</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">strEntry</span>,<span class="ruby-value str">'Time'</span>,<span class="ruby-identifier">row</span>[<span class="ruby-value">1</span>])
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">strEntry</span>,<span class="ruby-value str">'Event'</span>,<span class="ruby-identifier">row</span>[<span class="ruby-value">2</span>])
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">strEntry</span>,<span class="ruby-value str">'Event-Type'</span>,<span class="ruby-identifier">row</span>[<span class="ruby-value">3</span>])
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">strEntry</span>,<span class="ruby-value str">'Details'</span>,<span class="ruby-identifier">row</span>[<span class="ruby-value">4</span>])
+      
+    <span class="ruby-keyword kw">end</span>     
+    
+    <span class="ruby-comment cmt"># Close the window</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">include?</span><span class="ruby-value str">'Close'</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>,<span class="ruby-value str">'Close'</span>).<span class="ruby-identifier">click</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># Output the result</span>
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:Result_Info</span>,<span class="ruby-value str">'Security Log Settings'</span>,<span class="ruby-value str">'SUCCESS'</span>)      
+    
+    
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

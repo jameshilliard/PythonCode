@@ -1,0 +1,1 @@
+../SV1KH/verify_sbl_http.sh

@@ -1,0 +1,1 @@
+../Q2K/wireless_connect_DUT_SCAN.sh

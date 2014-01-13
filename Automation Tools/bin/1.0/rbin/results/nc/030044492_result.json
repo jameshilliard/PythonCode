@@ -1,0 +1,28 @@
+{
+  "9999_logout": {
+    "Info": {
+      "logout": "success",
+      "main": "Reached main page"
+    }
+  },
+  "0000_login": {
+    "Info": {
+      "main": "Successfully logged in"
+    }
+  },
+  "4492_NC": {
+    "Info": {
+      "DoSetup_Coax()->Password": "Password = 99999999988888888",
+      "DoSetup_Coax()->CM Ratio": "No CM Ratio key found",
+      "DoSetup_Coax()->Channel": "Channel = 2 - 1200MHz",
+      "DoSetup_Coax()->MTU": "MTU = Manual",
+      "DoSetup_Coax()->Network": "Network = Network (Home\/Office)",
+      "DoSetup_Coax()->Privacy": "Privacy=on",
+      "DoSetup_Coax()->MTU Value": "MTU Value= 1500",
+      "main": "Reached main page"
+    },
+    "result_info": {
+      "DoSetup_Coax()->Apply": "Coax Properties setup sucessful"
+    }
+  }
+}

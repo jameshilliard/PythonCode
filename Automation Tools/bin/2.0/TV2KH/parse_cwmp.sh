@@ -1,0 +1,1 @@
+../common/parse_cwmp.sh

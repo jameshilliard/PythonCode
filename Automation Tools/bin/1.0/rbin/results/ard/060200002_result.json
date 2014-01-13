@@ -1,0 +1,21 @@
+{
+  "9999_logout": {
+    "Info": {
+      "main": "Reached main page"
+    },
+    "Error": {
+      "logout": "failed"
+    }
+  },
+  "0000_login": {
+    "Info": {
+      "main": "Successfully logged in"
+    }
+  },
+  "0002_ARD": {
+    "Info": {
+      "Restore Defaults": "Done",
+      "Goto Advanced": "Reached the main 'Advanced' page"
+    }
+  }
+}

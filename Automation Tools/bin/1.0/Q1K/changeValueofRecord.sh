@@ -1,0 +1,1 @@
+../vz_bin/changeValueofRecord.sh

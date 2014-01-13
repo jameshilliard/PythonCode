@@ -1,0 +1,1 @@
+../common/wifi_wireless_configure_dut.sh

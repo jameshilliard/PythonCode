@@ -1,0 +1,131 @@
+-v G_USER=jnguyen
+-v G_CONFIG=1.0
+-v G_TST_TITLE="My Network Network Home Office Ethernet"
+-v G_TBTYPE=arc
+-v G_PROD_TYPE=esx
+-v G_HTTP_DIR=test/
+-v G_FTP_DIR=/log/autotest	
+-v G_TESTBED=tb1
+-v G_FROMRCPT=qaman
+-v G_FTPUSR=root
+-v G_FTPPWD=@ctiontec123
+-v U_USER=admin
+-v U_PWD=admin1
+-v G_LIBVERSION=1.0
+-v G_LOG=$SQAROOT/automation/logs
+-v U_COMMONLIB=$SQAROOT/lib/$G_LIBVERSION/common
+-v U_COMMONBIN=$SQAROOT/bin/$G_LIBVERSION/common
+-v U_TBCFG=$SQAROOT/config/$G_LIBVERSION/testbed
+-v U_TBPROF=$SQAROOT/config/$G_LIBVERSION/common
+-v U_VERIWAVE=$SQAROOT/bin/1.0/veriwave/
+-v U_MI424=$SQAROOT/bin/1.0/mi424wr/
+-v U_TESTPATH=$SQAROOT/platform/1.0/verizon/testcases/nhoe/json
+#this value used to setup dut configuration
+-v U_DEBUG=3
+-v U_DUT=192.168.1.1
+-v U_RUBYBIN=$SQAROOT/bin/$G_LIBVERSION/rbin
+-v U_VZBIN=$SQAROOT/bin/$G_LIBVERSION/vz_bin
+-v U_COMMONJSON=$SQAROOT/platform/1.0/verizon2/testcases/common/json
+-v U_COAX=1
+#$G_PFVERSION=1.0
+#------------------------------
+# Set up the test environment.
+#------------------------------
+-nc $SQAROOT/config/$G_CONFIG/common/testbedcfg.xml;
+-nc $SQAROOT/platform/1.0/verizon2/testcases/common/tcases/login_logout.xml
+-nc $SQAROOT/platform/1.0/verizon2/testcases/common/tcases/fw_upgrage_image.xml;pass=init
+-nc $SQAROOT/platform/1.0/verizon2/testcases/common/tcases/fw_upgrage_image.xml;pass=init
+-nc $SQAROOT/platform/1.0/verizon2/testcases/common/tcases/fw_upgrage_image.xml;fail=finish
+-label init
+-nc $SQAROOT/platform/1.0/verizon2/testcases/common/tcases/reset_dut_to_default.xml
+-nc $SQAROOT/platform/1.0/verizon2/testcases/common/tcases/tc_init_dut.xml;pass=next
+-nc $SQAROOT/platform/1.0/verizon2/testcases/common/tcases/tc_init_dut.xml;pass=next
+-nc $SQAROOT/platform/1.0/verizon2/testcases/common/tcases/tc_init_dut.xml;fail=finish
+-label next
+-nc $SQAROOT/platform/1.0/verizon2/testcases/common/tcases/tc_init_ping.xml;fail=finish
+-nc $SQAROOT/platform/1.0/verizon2/testcases/common/tcases/enable_tnet.xml
+#------------------------------
+# Test cases 
+#------------------------------
+-tc $SQAROOT/platform/1.0/verizon2/testcases/common/tcases/set_default_time.xml
+
+#-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_dhcplaneth_leasetime.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_dhcp_03001000867.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_dhcp_03001000868.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_dhcp_03001000869.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_dhcp_03001000870.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_dhcp_03001000871.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_dhcp_03001000872.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_dhcp_03001000873.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_dhcp_03001000874.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_dhcp_03001000875.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_dhcp_03001000876.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_dhcp_03001000877.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_dhcp_03001000878.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_dhcp_03001000879.xml
+#-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_dhcpclient_03001000908.xml
+#-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_dhcpclient_03001000909.xml
+#-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_dhcpclient_03001000910.xml
+#-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_dhcpclient_03001000911.xml
+#-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_dnsserver_03001000906.xml
+#-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_dnsserver_03001000907.xml
+#-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_dnsserver_03001000912.xml
+#-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_dnsserver_03001000913.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_hostname_03001000880.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_hostname_03001000881.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_hostname_03001000882.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_hostname_03001000883.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_hostname_03001000884.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_hostname_03001000885.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_hostname_03001000886.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_hostname_03001000887.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_hostname_03001000888.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_hostname_03001000889.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_hostname_03001000890.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_hostname_03001000891.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_hostname_03001000892.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_hostname_03001000893.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_hostname_03001000894.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_hostname_03001000895.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_hostname_03001000896.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_hostname_03001000897.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001000.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001001.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001002.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001006.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001007.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001008.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001009.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001010.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001011.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001012.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001013.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001014.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001015.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001016.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001017.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001018.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001019.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001020.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001021.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001022.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001023.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001024.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001025.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001026.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001027.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001028.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001029.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001030.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001031.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001032.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001033.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001034.xml
+-tc $SQAROOT/platform/1.0/verizon/testcases/nhoe/tcases/tc_mtu_03001001035.xml
+##------------------------------
+## Checkout 
+##------------------------------
+-label finish
+-nc $SQAROOT/config/$G_CONFIG/common/finalresult.xml
+-nc $SQAROOT/config/$G_CONFIG/common/uploadlog.xml
+-nc $SQAROOT/config/$G_CONFIG/common/email.xml

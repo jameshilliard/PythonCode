@@ -1,0 +1,1 @@
+../q2000/checkTelnetPort_V1k.tcl

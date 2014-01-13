@@ -1,0 +1,1 @@
+../common/checkbug_14606.sh

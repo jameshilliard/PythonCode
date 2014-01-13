@@ -1,0 +1,27 @@
+Product after check Feasibility:
+Q1000
+Q2000
+BHR2
+V1000
+PK5000
+RaLink
+
+
+Get start :
+python run.py
+
+
+2011-04-27
+Q2000, parse waiting page to sleep for a while
+
+2011-04-29
+Support ingore waiting page(default) :
+python -u run.py Q2000 tc_file
+
+If you need process waiting page, add a parameter such as :
+python -u run.py Q2000 tc_file "info={'do_waiting_page' : 1}"
+
+NOTE: python parameter '-u' is required to output stdout string immediately without buffer.
+
+2011-05-05
+Support Wireshark

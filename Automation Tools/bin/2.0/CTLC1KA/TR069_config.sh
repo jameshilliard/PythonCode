@@ -1,0 +1,1 @@
+../Q2KH/TR069_config.sh

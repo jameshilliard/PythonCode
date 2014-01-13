@@ -1,0 +1,1 @@
+../TV2KH/switch_dfl_rt.sh

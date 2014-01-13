@@ -1,0 +1,1 @@
+../TV2KH/check_net_area.sh

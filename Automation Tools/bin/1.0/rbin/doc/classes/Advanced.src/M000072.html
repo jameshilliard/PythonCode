@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>date_and_time (Advanced)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File Advanced/Advanced.rb, line 5652</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">date_and_time</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
+
+    <span class="ruby-comment cmt"># Get to the advanced page.</span>
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">goto_advanced</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
+    
+    <span class="ruby-comment cmt"># Get to the &quot;Date and Time&quot; page.</span>
+    <span class="ruby-keyword kw">begin</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'Date and Time'</span>).<span class="ruby-identifier">click</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'Date and Time'</span>, <span class="ruby-value str">'Reached page \'Date and Time\'.'</span>)
+    <span class="ruby-keyword kw">rescue</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:error</span>, <span class="ruby-value str">'Date and Time'</span>, <span class="ruby-value str">'Did not reach \'Date and Time\' page'</span>)
+      <span class="ruby-keyword kw">return</span>
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># Check the key.</span>
+    <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'section'</span>) <span class="ruby-operator">&amp;&amp;</span>
+         <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'subsection'</span>) ) <span class="ruby-keyword kw">then</span>
+      <span class="ruby-comment cmt"># Right,go on.</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'date_and_time'</span>,<span class="ruby-value str">'Some key NOT found.'</span>)
+      <span class="ruby-keyword kw">return</span>
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># Parse the json file.</span>
+    
+    <span class="ruby-comment cmt"># &quot;Time Zone&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Time Zone'</span>)
+      
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Time Zone'</span>]
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Other'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Other&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'time_zone'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Time Zone'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Time Zone'</span>])
+ 
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Alaska_Time'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Alaska_Time&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'time_zone'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;Alaska_Time&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Time Zone'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Time Zone'</span>])
+        
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Central_Time'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Central_Time&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'time_zone'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;Central_Time&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Time Zone'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Time Zone'</span>])   
+        
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Eastern_Time'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Eastern_Time&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'time_zone'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;Eastern_Time&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Time Zone'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Time Zone'</span>])         
+ 
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Greenwich_Mean_Time'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Greenwich_Mean_Time&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'time_zone'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;Greenwich_Mean_Time&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Time Zone'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Time Zone'</span>])  
+        
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Hawaii_Time'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Hawaii_Time&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'time_zone'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;Hawaii_Time&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Time Zone'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Time Zone'</span>])         
+ 
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Mountain_Time'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Mountain_Time&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'time_zone'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;Mountain_Time&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Time Zone'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Time Zone'</span>])  
+ 
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Pacific_Time'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Pacific_Time&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'time_zone'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;Pacific_Time&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Time Zone'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Time Zone'</span>])  
+ 
+      <span class="ruby-keyword kw">else</span>
+        
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Date and Time'</span>,<span class="ruby-value str">'Did NOT find the value in \'Time Zone\'.'</span>)
+        <span class="ruby-keyword kw">return</span>
+        
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+      
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if </span>
+    
+    <span class="ruby-comment cmt"># &quot;GMT Offset&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'GMT Offset'</span>)
+      
+      <span class="ruby-comment cmt"># Is there?</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">include?</span><span class="ruby-value str">'GMT Offset'</span>
+        <span class="ruby-comment cmt"># Error here.</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Date and Time'</span>,<span class="ruby-value str">'No option \'GMT Offset\'.'</span>)
+        <span class="ruby-keyword kw">return</span>
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-comment cmt"># Set &quot;GMT Offset&quot;</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'gmt_offset'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">info</span>[<span class="ruby-value str">'GMT Offset'</span>])
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'GMT Offset'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'GMT Offset'</span>])
+      
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># &quot;Daylight Enable&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Daylight Enable'</span>)
+      
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Daylight Enable'</span>]
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Daylight Enable&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'is_dl_sav'</span>).<span class="ruby-identifier">set</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Daylight Enable'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Daylight Enable'</span>])
+ 
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        
+        <span class="ruby-comment cmt"># Clear &quot;Daylight Enable&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'is_dl_sav'</span>).<span class="ruby-identifier">clear</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Daylight Enable'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Daylight Enable'</span>])
+        
+      <span class="ruby-keyword kw">else</span>
+        
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'date_and_time'</span>,<span class="ruby-value str">'Did NOT find the value in \'Daylight Enable\'.'</span>)
+        <span class="ruby-keyword kw">return</span>
+        
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+      
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if </span>
+
+    <span class="ruby-comment cmt"># &quot;Start Month&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Start Month'</span>)
+      
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Start Month'</span>]
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Jan'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Start Month&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_mon_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;0&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Start Month'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Start Month'</span>])
+ 
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Feb'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Start Month&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_mon_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;1&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Start Month'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Start Month'</span>])
+ 
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Mar'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Start Month&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_mon_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;2&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Start Month'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Start Month'</span>])
+ 
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Apr'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Start Month&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_mon_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;3&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Start Month'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Start Month'</span>])
+   
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'May'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Start Month&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_mon_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;4&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Start Month'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Start Month'</span>])
+         
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Jun'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Start Month&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_mon_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;5&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Start Month'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Start Month'</span>])
+       
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Jul'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Start Month&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_mon_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;6&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Start Month'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Start Month'</span>])
+        
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Aug'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Start Month&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_mon_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;7&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Start Month'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Start Month'</span>])
+         
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Sep'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Start Month&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_mon_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;8&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Start Month'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Start Month'</span>])
+        
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Oct'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Start Month&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_mon_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;9&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Start Month'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Start Month'</span>])
+          
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Nov'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Start Month&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_mon_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;10&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Start Month'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Start Month'</span>])
+    
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Dec'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Start Month&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_mon_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;11&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Start Month'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Start Month'</span>])         
+        
+      <span class="ruby-keyword kw">else</span>
+        
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">''</span>,<span class="ruby-value str">'Did NOT find the value in \'Start Month\'.'</span>)
+        <span class="ruby-keyword kw">return</span>
+        
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+      
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if   </span>
+
+    <span class="ruby-comment cmt"># &quot;Start Date&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Start Date'</span>)
+      
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Start Date'</span>]
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'1'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;1&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'2'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;2&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'3'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;3&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'4'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;4&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'5'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;5&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'6'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;6&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'7'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;7&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'8'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;8&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'9'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;9&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'10'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;10&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'11'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;11&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'12'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;12&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'13'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;13&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'14'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;14&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'15'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;15&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'16'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;16&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'17'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;17&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'18'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;18&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'19'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;19&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'20'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;20&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'21'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;21&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'22'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;22&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'23'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;23&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'24'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;24&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'25'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;25&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'26'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;26&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'27'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;27&quot;</span>)  
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'28'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;28&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'29'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;29&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'30'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;30&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'31'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_start'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;31&quot;</span>)        
+        
+      <span class="ruby-keyword kw">else</span>
+        
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">''</span>,<span class="ruby-value str">'Did NOT find the value in \'Start Date\'.'</span>)
+        <span class="ruby-keyword kw">return</span>
+        
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+      
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Start Date'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Start Date'</span>])
+      
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if  </span>
+
+    <span class="ruby-comment cmt"># &quot;Start Hour&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Start Hour'</span>)
+      
+      <span class="ruby-comment cmt"># Set</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_hour_start'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Start Hour'</span>])
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Start Hour'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Start Hour'</span>])
+      
+    <span class="ruby-keyword kw">end</span> 
+    
+    <span class="ruby-comment cmt"># &quot;Start Minute&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Start Minute'</span>)
+      
+      <span class="ruby-comment cmt"># Set</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_min_start'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Start Minute'</span>])
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Start Minute'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Start Minute'</span>])
+      
+    <span class="ruby-keyword kw">end</span>    
+    
+    <span class="ruby-comment cmt"># &quot;End Month&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'End Month'</span>)
+      
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'End Month'</span>]
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Jan'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;End Month&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_mon_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;0&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'End Month'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'End Month'</span>])
+ 
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Feb'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;End Month&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_mon_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;1&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'End Month'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'End Month'</span>])
+ 
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Mar'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;End Month&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_mon_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;2&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'End Month'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'End Month'</span>])
+ 
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Apr'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;End Month&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_mon_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;3&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'End Month'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'End Month'</span>])
+   
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'May'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;End Month&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_mon_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;4&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'End Month'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'End Month'</span>])
+         
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Jun'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;End Month&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_mon_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;5&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'End Month'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'End Month'</span>])
+       
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Jul'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;End Month&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_mon_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;6&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'End Month'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'End Month'</span>])
+        
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Aug'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;End Month&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_mon_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;7&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'End Month'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'End Month'</span>])
+         
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Sep'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;End Month&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_mon_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;8&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'End Month'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'End Month'</span>])
+        
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Oct'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;End Month&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_mon_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;9&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'End Month'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'End Month'</span>])
+          
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Nov'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;End Month&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_mon_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;10&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'End Month'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'End Month'</span>])
+    
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Dec'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;End Month&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_mon_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;11&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'End Month'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'End Month'</span>])         
+        
+      <span class="ruby-keyword kw">else</span>
+        
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">''</span>,<span class="ruby-value str">'Did NOT find the value in \'End Month\'.'</span>)
+        <span class="ruby-keyword kw">return</span>
+        
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+      
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if   </span>
+
+    <span class="ruby-comment cmt"># &quot;End Date&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'End Date'</span>)
+      
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'End Date'</span>]
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'1'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;1&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'2'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;2&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'3'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;3&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'4'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;4&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'5'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;5&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'6'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;6&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'7'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;7&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'8'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;8&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'9'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;9&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'10'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;10&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'11'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;11&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'12'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;12&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'13'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;13&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'14'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;14&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'15'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;15&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'16'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;16&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'17'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;17&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'18'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;18&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'19'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;19&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'20'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;20&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'21'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;21&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'22'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;22&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'23'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;23&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'24'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;24&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'25'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;25&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'26'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;26&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'27'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;27&quot;</span>)  
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'28'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;28&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'29'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;29&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'30'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;30&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'31'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_day_end'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;31&quot;</span>)        
+        
+      <span class="ruby-keyword kw">else</span>
+        
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">''</span>,<span class="ruby-value str">'Did NOT find the value in \'End Date\'.'</span>)
+        <span class="ruby-keyword kw">return</span>
+        
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+      
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'End Date'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'End Date'</span>])
+      
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if  </span>
+
+    <span class="ruby-comment cmt"># &quot;End Hour&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'End Hour'</span>)
+      
+      <span class="ruby-comment cmt"># Set</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_hour_end'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">info</span>[<span class="ruby-value str">'End Hour'</span>])
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'End Hour'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'End Hour'</span>])
+      
+    <span class="ruby-keyword kw">end</span> 
+    
+    <span class="ruby-comment cmt"># &quot;End Minute&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'End Minute'</span>)
+      
+      <span class="ruby-comment cmt"># Set</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_min_end'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">info</span>[<span class="ruby-value str">'End Minute'</span>])
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'End Minute'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'End Minute'</span>])
+      
+    <span class="ruby-keyword kw">end</span> 
+    
+    <span class="ruby-comment cmt"># &quot;Offset&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Offset'</span>)
+      
+      <span class="ruby-comment cmt"># Set</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dst_offset'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Offset'</span>])
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Offset'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Offset'</span>])
+      
+    <span class="ruby-keyword kw">end</span> 
+    
+    <span class="ruby-comment cmt"># &quot;Automatic Enabled&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Automatic Enabled'</span>)
+      
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Automatic Enabled'</span>]
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Automatic Enabled&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'is_tod_enabled'</span>).<span class="ruby-identifier">set</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Automatic Enabled'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Automatic Enabled'</span>])
+ 
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        
+        <span class="ruby-comment cmt"># Clear &quot;Automatic Enabled&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'is_tod_enabled'</span>).<span class="ruby-identifier">clear</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Automatic Enabled'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Automatic Enabled'</span>])
+        
+      <span class="ruby-keyword kw">else</span>
+        
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Date and Time'</span>,<span class="ruby-value str">'Did NOT find the value in \'Automatic Enabled\'.'</span>)
+        <span class="ruby-keyword kw">return</span>
+        
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+      
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if  </span>
+
+    <span class="ruby-comment cmt"># &quot;Time Of Day&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Time Of Day'</span>)
+      
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Time Of Day'</span>]
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Time Of Day&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">radio</span>(<span class="ruby-identifier">:id</span>,<span class="ruby-value str">'tod_prot_type_1'</span>).<span class="ruby-identifier">set</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Time Of Day'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Time Of Day'</span>])
+ 
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        
+        <span class="ruby-comment cmt"># Clear &quot;Time Of Day&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">radio</span>(<span class="ruby-identifier">:id</span>,<span class="ruby-value str">'tod_prot_type_1'</span>).<span class="ruby-identifier">clear</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Time Of Day'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Time Of Day'</span>])
+        
+      <span class="ruby-keyword kw">else</span>
+        
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Date and Time'</span>,<span class="ruby-value str">'Did NOT find the value in \'Time Of Day\'.'</span>)
+        <span class="ruby-keyword kw">return</span>
+        
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+      
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if    </span>
+    
+    <span class="ruby-comment cmt"># &quot;Network Time Protocol&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Network Time Protocol'</span>)
+      
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Network Time Protocol'</span>]
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Network Time Protocol&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">radio</span>(<span class="ruby-identifier">:id</span>,<span class="ruby-value str">'tod_prot_type_2'</span>).<span class="ruby-identifier">set</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Network Time Protocol'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Network Time Protocol'</span>])
+ 
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        
+        <span class="ruby-comment cmt"># Clear &quot;Network Time Protocol&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">radio</span>(<span class="ruby-identifier">:id</span>,<span class="ruby-value str">'tod_prot_type_2'</span>).<span class="ruby-identifier">clear</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Network Time Protocol'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Network Time Protocol'</span>])
+        
+      <span class="ruby-keyword kw">else</span>
+        
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Date and Time'</span>,<span class="ruby-value str">'Did NOT find the value in \'Network Time Protocol\'.'</span>)
+        <span class="ruby-keyword kw">return</span>
+        
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+      
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if   </span>
+
+    <span class="ruby-comment cmt"># &quot;Update Every&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Update Every'</span>)
+      
+      <span class="ruby-comment cmt">#</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'tod_update_period'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Update Every'</span>])
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Update Every'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Update Every'</span>])
+      
+    <span class="ruby-keyword kw">end</span>  
+    
+    <span class="ruby-comment cmt"># &quot;Sync Now&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Sync Now'</span>)
+      
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Sync Now'</span>]
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Sync Now&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>,<span class="ruby-value str">'Sync Now'</span>).<span class="ruby-identifier">click</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">wait</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Sync Now'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Sync Now'</span>])
+ 
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        
+        <span class="ruby-comment cmt"># Clear &quot;Sync Now&quot;</span>
+        <span class="ruby-comment cmt"># Do nothing here.</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Sync Now'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Sync Now'</span>])
+        
+      <span class="ruby-keyword kw">else</span>
+        
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Date and Time'</span>,<span class="ruby-value str">'Did NOT find the value in \'Sync Now\'.'</span>)
+        <span class="ruby-keyword kw">return</span>
+        
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+      
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if        </span>
+    
+    <span class="ruby-comment cmt"># Apply for the change</span>
+    <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>,<span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>
+    
+    <span class="ruby-comment cmt"># Output the result</span>
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Date and Time'</span>,<span class="ruby-value str">'SUCCESS'</span>)
+    
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

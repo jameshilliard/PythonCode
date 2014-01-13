@@ -1,0 +1,1 @@
+../common/get_dhcp_IP.sh

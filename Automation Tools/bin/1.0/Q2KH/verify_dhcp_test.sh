@@ -1,0 +1,1 @@
+../Q2K/verify_dhcp_test.sh
