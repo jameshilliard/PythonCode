@@ -6,7 +6,7 @@ from selenium import webdriver
 #from selenium.webdriver.support.ui import WebDriverWait
 #from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
-import unittest, time, re
+import unittest, time
 import login
 import quit
 

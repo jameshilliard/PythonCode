@@ -2,7 +2,6 @@
 
 import StringIO
 import sys
-import unittest
 
 import HTMLTestRunner
 
