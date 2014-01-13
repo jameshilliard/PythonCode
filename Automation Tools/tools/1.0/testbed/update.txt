@@ -1,0 +1,7 @@
+cd $SQAROOT
+#svn co svn://svn/swdepot/automation
+#echo "10.1.10.11 svn" >> /etc/hosts
+#cd ~/actiontec
+#svn switch --relocate svn://64.193.227.60/swdepot/automation svn://svn/swdepot/automation automation
+#cd ~/actiontec/automation/
+svn update

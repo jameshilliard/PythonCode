@@ -1,0 +1,15 @@
+cd $SQAROOT/tools/1.0/tbsetup
+tar -zxvf STAF323-linux.tar.gz
+cd staf
+./STAFInst -acceptlicense
+cd ../
+unalias cp
+#cp -f STAF.cfg /usr/local/staf/bin/.
+killall STAFProc
+mkdir /var/staf
+echo "nohup /usr/local/staf/bin/STAFProc > /var/staf/stafproc.out &" >> /etc/rc.local
+echo "sleep 2" >> /etc/rc.local
+#nohup /usr/local/staf/bin/STAFProc > /var/staf/stafproc.out &
+bash /etc/rc.local
+staf localhost ping ping
+

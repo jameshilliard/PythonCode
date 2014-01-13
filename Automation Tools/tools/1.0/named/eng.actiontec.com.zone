@@ -1,0 +1,76 @@
+$TTL 86400
+@       IN      SOA     @ root (
+                        128 ; serial
+                        28800 ; refresh (8 hours)
+                        7200 ; retry (2 hours)
+                        604800 ; retire (1 week)
+                        86400 ; ttl (1 day)
+                        )
+eng.actiontec.com. IN	NS     auto-server.eng.actiontec.com.
+logserver1 	   IN 	NS     automationsvn.eng.actiontec.com.	
+
+
+wiki		IN	CNAME	wiki.eng.actiontec.com.
+
+actiontec.com	IN	A	198.66.208.93
+actiontec	IN	A	198.66.208.93
+
+automationsvn	IN      A       10.1.10.11
+logserver2      IN      A       10.1.10.21   
+
+gw1		IN      A       10.1.10.1
+dellsw1         IN      A       10.1.10.5
+dellsw2         IN      A       10.1.10.6
+dellsw3         IN      A       10.1.10.7
+samsung         IN      A       10.1.10.10
+auto-server		IN      A       10.1.10.18
+
+esxd001         IN  A    10.1.10.12
+esxd002         IN  A    10.1.10.13                  
+esxd003         IN  A    10.1.10.14
+Linuxvw         IN  A    10.1.10.19
+PPTP            IN  A    10.1.10.15
+
+
+esxd001-pc1		IN      A       10.1.10.31
+esxd001-pc2		IN      A       10.1.10.32
+esxd001-pc3		IN      A       10.1.10.33
+esxd001-pc4		IN      A       10.1.10.34
+esxd001-pc5		IN      A       10.1.10.35
+esxd001-pc6		IN      A       10.1.10.36
+esxd001-pc7		IN      A       10.1.10.37
+esxd001-pc8		IN      A       10.1.10.38
+esxd001-pc9		IN      A       10.1.10.39
+esxd001-pc10		IN      A       10.1.10.40
+
+esxd002-pc1		IN      A       10.1.10.51
+esxd002-pc2		IN      A       10.1.10.52
+esxd002-pc3		IN      A       10.1.10.53
+esxd002-pc4		IN      A       10.1.10.54
+esxd002-pc5		IN      A       10.1.10.55
+esxd002-pc6		IN      A       10.1.10.56
+esxd002-pc7		IN      A       10.1.10.57
+esxd002-pc8		IN      A       10.1.10.58
+esxd002-pc9		IN      A       10.1.10.59
+esxd002-pc10		IN      A       10.1.10.60
+
+esxd003-pc1		IN      A       10.1.10.61
+esxd003-pc2		IN      A       10.1.10.62
+esxd003-pc3		IN      A       10.1.10.63
+esxd003-pc4		IN      A       10.1.10.64
+esxd003-pc5		IN      A       10.1.10.65
+esxd003-pc6		IN      A       10.1.10.66
+esxd003-pc7		IN      A       10.1.10.67
+esxd003-pc8		IN      A       10.1.10.68
+esxd003-pc9		IN      A       10.1.10.69
+esxd003-pc10		IN      A       10.1.10.70
+esxd003-pc11		IN      A       10.1.10.71
+esxd003-pc12		IN      A       10.1.10.72
+
+esxd001-vw1  		IN      A       10.1.10.41
+esxd001-cyg1		IN      A       10.1.10.42
+esxd002-vw1		IN      A       10.1.10.43
+esxd003-vw1		IN      A       10.1.10.44
+esxd003-cyg1		IN      A       10.1.10.45
+
+

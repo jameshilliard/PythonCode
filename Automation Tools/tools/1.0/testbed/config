@@ -1,0 +1,4 @@
+chkconfig --level 345 telnet on
+chkconfig --level 345 vsftpd on
+chkconfig --level 345 sendmail on
+chkconfig --level 2345 iptables off

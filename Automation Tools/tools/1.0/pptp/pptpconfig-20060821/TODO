@@ -1,0 +1,102 @@
+origin: Michael D. Adams, 20th March 2006, and Samuel Audet, 12th October 2005.
+bug report: if the server has multiple IP addresses, one IP may be used for the
+tunnel connection and another IP for the routing changes.
+workaround: use IP address only.
+
+origin: James Cameron, 2nd September 2004, if password contains spaces, and is
+changed, the old password is not removed from the secrets file.
+
+use the interface name option to name the interface pptp0
+
+probe the options that pppd accepts, remember the md5sum of pppd, and don't
+probe again unless the md5sum changed.  support jan's mppc pppd, and 2.4.1, and
+2.4.2.  add passprompt support.
+
+make php-pcntl-devel debian package
+(currently the php-pcntl package contains all necessary development files)
+
+origin: chris wilson, 13th april 2004, check that there isn't a route
+to the tunnel's peer via the tunnel device, using the iproute commands
+chris wilson found, detect and prevent.
+
+e.g. 
+ip route add `ip route get 1.2.3.4 | head -1`
+ip route del `ip route get 1.2.3.4 | head -1`
+
+origin: jba and textastwister in irc, 11th march 2004
+change the state of the item in the list view, or blink the update 
+button, to indicate unsaved changes.  maybe even warn on start of 
+unsaved tunnel.  or autoupdate on change, but cache the change and
+flush it before a start/stop/quit/delete-window.
+
+origin: Joona I Palaste <palaste@cc.helsinki.fi> 24th september 2003
+bug report: if updetach is replaced with nodetach, and the tunnel
+subsequently terminates, it may remain in initialising state and not
+be restartable.
+
+origin: jbwiv_home <jbwiv@devsea.com> 8th october 2003
+feature request: move tunnels file into plain text and use one file per
+tunnel.  support old tunnels file format.
+
+origin: Han Pilmeyer, per 05 may added checking code yet to test.
+
+origin: Doug Langille <doug.langille@nscc.ca> 29th May 2003
+feature request: detect situation where a network route added covers
+the remote ip address assigned by pppd to the tunnel.  pathological
+situation that leads to a routing loop.
+
+origin: james cameron 6th may 2003
+feature request: support on demand tunnels intrinsically ... add
+checkbox for option, and add routes as soon as the ppp interface is
+created rather than after pppd exits.
+
+origin: james cameron
+problem: provide buttons or widgets for certain pptp command line,
+e.g. --phone, --quirks, --timeout.
+
+origin: james cameron
+problem: program needs to be run as root (for access to
+/etc/pptp-php-gtk, /etc/ppp/peers, /etc/ppp/chap-secrets, /var/run,
+and pppd).  justify, or find alternative solutions.
+
+origin: james cameron
+feature request: if a tunnel is asked to be started, but another
+tunnel is already running to the same ip address or server name, then
+question or refuse the request (because we know it won't work).
+
+origin: james cameron
+problem: users may change form data then start
+solution: prohibit start once data begins to be different?
+
+origin: james cameron
+problem: app does not detect a tunnel that is stopped by remote end,
+gre ping loss, or failure to negotiate after pppd returns
+success.
+(find the pppd pid, periodically check it is present)
+
+origin: james cameron
+feature request: display gre stats from pptp gre stats mod by chris wilson.
+
+origin: cnelson@einnovation.com 24th February 2003
+problem: passwords not quoted properly
+workaround: user add quotes themselves
+
+origin: Han Pilmeyer and others
+feature request: add an option to prompt for password rather than have
+it coded into secrets file.  prompt just prior to starting pppd.
+(use pppd password prompting plugin)
+
+tunnel list
+	click-column signal, sort by column number
+	gtk_clist_set_sort_column
+	gtk_clist_sort
+
+on add or update
+	when updating /etc files, show user what is to be done
+
+log window design issue
+	see code comments, in function start()
+	design defect in php or php-gtk
+		being looked into by Andrei Zmievski <andrei@gravitonic.com>
+	prevents logging after connect, mandating updetach only
+	(now fixed, but need to add logging after connect)
