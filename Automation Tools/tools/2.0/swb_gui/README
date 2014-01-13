@@ -1,0 +1,15 @@
+Usage:
+
+This is an Windows application with GUI to control the since Switch Board 2.0. With the given IP and Telnet Port, it will remotely telnet into the SWB, and you can easily to get the status of SWB and change the settings by GUI.
+
+
+Install Instructions:
+
+cd ~/automation/tools/2.0/common/swb_gui
+yum install wine-common
+winecfg
+wine ~/.wine/drive_c/windows/system32/regsvr32.exe ./MSWINSCK.OCX
+mkdir -p ~/.cache/winetricks/vb6run/
+cp VB6.0-KB290887-X86.exe ~/.cache/winetricks/vb6run/
+./winetricks vb6run
+wine Sw_Telnet.exe
