@@ -1,0 +1,65 @@
+<testcase>
+    <name>setuptb.xml</name>
+    <emaildesc>This file is used to setup a host with basic configuration</emaildesc>
+    <description>
+        setuptb.xml is used to set up testbed with a common configuration
+    </description>
+    <id>
+        <manual>1234</manual>
+        <auto></auto>
+    </id>
+    <code>
+        $lftpuser="root,gomtt03";
+        $U_USER="root";
+        $U_PWD ="gomtt03";
+        $U_BINROOT="$SQAROOT/bin/1.0/common";
+        $U_SETUPPATH="$SQAROOT/tools/1.0/tbsetup";
+
+    </code>
+    <stage>
+        <step name="0">
+            <script>ping $U_DUT -w 5 -c 5</script>
+            <passed>next</passed>
+            <failed>end</failed>
+        </step>
+        <step name="1">
+            <script>$U_BINROOT/clicfg.pl -d $U_DUT -i 22 -o 1800 -u $U_USER -p $U_PWD -l $G_CURRENTLOG -f
+                $U_SETUPPATH/initialSetup.txt
+            </script>
+            <passed>next</passed>
+            <failed>next</failed>
+        </step>
+        <step name="2">
+            <script>$U_BINROOT/clicfg.pl -d $U_DUT -i 22 -o 300 -u $U_USER -p $U_PWD -l $G_CURRENTLOG -f
+                $U_SETUPPATH/stafcfg1.txt
+            </script>
+            <passed>next</passed>
+            <failed>next</failed>
+        </step>
+        <step name="3">
+            <script>$U_BINROOT/clicfg.pl -d $U_DUT -i 22 -o 300 -u $U_USER -p $U_PWD -l $G_CURRENTLOG -f
+                $U_SETUPPATH/stafcfg2.txt
+            </script>
+            <passed>next</passed>
+            <failed>next</failed>
+        </step>
+        <step name="4">
+            <script>$U_BINROOT/clicfg.pl -d $U_DUT -i 22 -o 300 -u $U_USER -p $U_PWD -l $G_CURRENTLOG -v "perl -MCPAN
+                -MDBI -e \"print test\" " -v "perl -MCPAN -MCGI -e \"print test\" "
+            </script>
+            <passed>next</passed>
+            <failed>next</failed>
+        </step>
+        <step name="5">
+            <script>$U_BINROOT/clicfg.pl -d $U_DUT -i 22 -o 300 -u $U_USER -p $U_PWD -l $G_CURRENTLOG -v
+                "$U_BINROOT/sanityenvtest.pl -l /tmp"
+            </script>
+            <passed>end</passed>
+            <failed>end</failed>
+        </step>
+
+
+    </stage>
+</testcase>
+
+

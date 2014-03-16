@@ -1,0 +1,33 @@
+digraph TopLevel {
+    compound = true
+    bgcolor = lightcyan1
+    fontname = Arial
+    fontsize = 8
+    label = "TopLevel"
+    node [
+        fontname = Arial,
+        fontsize = 8,
+        color = black
+    ]
+
+    BasicUtility [
+        fontcolor = black,
+        URL = "classes/BasicUtility.html",
+        shape = ellipse,
+        color = palegoldenrod,
+        style = filled,
+        label = "BasicUtility"
+    ]
+
+    FireWatir [
+        URL = "classes/FireWatir.html",
+        shape = box,
+        label = "FireWatir"
+    ]
+
+    FireWatir -> BasicUtility [
+
+    ]
+
+}
+

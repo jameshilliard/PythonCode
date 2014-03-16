@@ -1,0 +1,1 @@
+../SV1KH/get_DUT_WAN_IP.sh

@@ -1,0 +1,1 @@
+../common/setupWANServer.sh

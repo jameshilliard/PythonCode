@@ -1,0 +1,1 @@
+../TV2KH/fetch_dut_info.sh

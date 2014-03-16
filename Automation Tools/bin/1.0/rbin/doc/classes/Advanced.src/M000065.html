@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>universal_plug_and_play (Advanced)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File Advanced/Advanced.rb, line 4225</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">universal_plug_and_play</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
+
+    <span class="ruby-comment cmt"># Get to the advanced page.</span>
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">goto_advanced</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
+    
+    <span class="ruby-comment cmt"># Get to the &quot;Universal Plug and Play&quot; page.</span>
+    <span class="ruby-keyword kw">begin</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'Universal Plug and Play'</span>).<span class="ruby-identifier">click</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'Universal Plug and Play'</span>, <span class="ruby-value str">'Reached page \'Universal Plug and Play\'.'</span>)
+    <span class="ruby-keyword kw">rescue</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:error</span>, <span class="ruby-value str">'Universal Plug and Play'</span>, <span class="ruby-value str">'Did not reach \'Universal Plug and Play\' page'</span>)
+      <span class="ruby-keyword kw">return</span>
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># Check the key.</span>
+    <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'section'</span>) <span class="ruby-operator">&amp;&amp;</span>
+         <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'subsection'</span>) ) <span class="ruby-keyword kw">then</span>
+      <span class="ruby-comment cmt"># Right,go on.</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'local_administration'</span>,<span class="ruby-value str">'Some key NOT found.'</span>)
+      <span class="ruby-keyword kw">return</span>
+    <span class="ruby-keyword kw">end</span> 
+    
+    <span class="ruby-comment cmt"># Parese the json file.</span>
+    
+    <span class="ruby-comment cmt"># &quot;Allow Other Network Users to Control Wireless Broadband Router\'s Network Features&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Allow Other Network Users to Control Wireless Broadband Router\'s Network Features'</span>)
+      
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Allow Other Network Users to Control Wireless Broadband Router\'s Network Features'</span>]
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Allow Other Network Users to Control Wireless Broadband Router\'s Network Features&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'upnp_enabled'</span>).<span class="ruby-identifier">set</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Allow Other Network Users to Control Wireless Broadband Router\'s Network Features'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Allow Other Network Users to Control Wireless Broadband Router\'s Network Features'</span>])
+ 
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        
+        <span class="ruby-comment cmt"># Clear &quot;Allow Other Network Users to Control Wireless Broadband Router\'s Network Features&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'upnp_enabled'</span>).<span class="ruby-identifier">clear</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Allow Other Network Users to Control Wireless Broadband Router\'s Network Features'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Allow Other Network Users to Control Wireless Broadband Router\'s Network Features'</span>])
+        
+      <span class="ruby-keyword kw">else</span>
+        
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">''</span>,<span class="ruby-value str">'Did NOT find the value in \'Allow Other Network Users to Control Wireless Broadband Router\'s Network Features\'.'</span>)
+        <span class="ruby-keyword kw">return</span>
+        
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+      
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if     </span>
+    
+    <span class="ruby-comment cmt"># &quot;Enable Automatic Cleanup of Old Unused UpnP Services&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Enable Automatic Cleanup of Old Unused UpnP Services'</span>)
+      
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Enable Automatic Cleanup of Old Unused UpnP Services'</span>]
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Enable Automatic Cleanup of Old Unused UpnP Services&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'upnp_rules_auto_clean_enabled'</span>).<span class="ruby-identifier">set</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Enable Automatic Cleanup of Old Unused UpnP Services'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Enable Automatic Cleanup of Old Unused UpnP Services'</span>])
+ 
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        
+        <span class="ruby-comment cmt"># Clear &quot;Enable Automatic Cleanup of Old Unused UpnP Services&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'upnp_rules_auto_clean_enabled'</span>).<span class="ruby-identifier">clear</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Enable Automatic Cleanup of Old Unused UpnP Services'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Enable Automatic Cleanup of Old Unused UpnP Services'</span>])
+        
+      <span class="ruby-keyword kw">else</span>
+        
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">''</span>,<span class="ruby-value str">'Did NOT find the value in \'Enable Automatic Cleanup of Old Unused UpnP Services\'.'</span>)
+        <span class="ruby-keyword kw">return</span>
+        
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+      
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if   </span>
+
+    <span class="ruby-comment cmt"># &quot;Publish Only the Main WAN Connection&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Publish Only the Main WAN Connection'</span>)
+      
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Publish Only the Main WAN Connection'</span>]
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Publish Only the Main WAN Connection&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'wan_conns_to_publish'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;0&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Publish Only the Main WAN Connection'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Publish Only the Main WAN Connection'</span>])
+ 
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        
+        <span class="ruby-comment cmt"># Clear &quot;Publish Only the Main WAN Connection&quot;</span>
+        <span class="ruby-comment cmt"># Do nothing.</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Publish Only the Main WAN Connection'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Publish Only the Main WAN Connection'</span>])
+        
+      <span class="ruby-keyword kw">else</span>
+        
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">''</span>,<span class="ruby-value str">'Did NOT find the value in \'Publish Only the Main WAN Connection\'.'</span>)
+        <span class="ruby-keyword kw">return</span>
+        
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+      
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if   </span>
+    
+    <span class="ruby-comment cmt"># &quot;Publish All WAN Connections&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Publish All WAN Connections'</span>)
+      
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Publish All WAN Connections'</span>]
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Publish All WAN Connections&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'wan_conns_to_publish'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;1&quot;</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Publish All WAN Connections'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Publish All WAN Connections'</span>])
+ 
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        
+        <span class="ruby-comment cmt"># Clear &quot;Publish All WAN Connections&quot;</span>
+        <span class="ruby-comment cmt"># Do nothing.</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Publish All WAN Connections'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Publish All WAN Connections'</span>])
+        
+      <span class="ruby-keyword kw">else</span>
+        
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">''</span>,<span class="ruby-value str">'Did NOT find the value in \'Publish All WAN Connections\'.'</span>)
+        <span class="ruby-keyword kw">return</span>
+        
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+      
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if   </span>
+
+  <span class="ruby-comment cmt"># Apply for the change.</span>
+  <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>,<span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>
+  <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Universal Plug and Play'</span>,<span class="ruby-value str">'SUCCESS'</span>)
+    
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

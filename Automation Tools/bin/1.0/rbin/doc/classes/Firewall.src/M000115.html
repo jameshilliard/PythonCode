@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>AdvancedFiltering (Firewall)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File Firewall/Firewall.rb, line 183</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-constant">AdvancedFiltering</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
+   
+    <span class="ruby-comment cmt"># Get to the &quot; Advanced Filtering&quot; page.</span>
+    <span class="ruby-keyword kw">begin</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'Advanced Filtering'</span>).<span class="ruby-identifier">click</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'Advanced Filtering page'</span>, <span class="ruby-value str">'Reached!'</span>)
+    <span class="ruby-keyword kw">rescue</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:error</span>, <span class="ruby-value str">'Advanced Filtering'</span>, <span class="ruby-value str">'Did not reach the page'</span>)
+      <span class="ruby-keyword kw">return</span>
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># Check the key.</span>
+    <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'section'</span>) <span class="ruby-operator">&amp;&amp;</span>
+         <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'layout'</span>) <span class="ruby-operator">&amp;&amp;</span>
+         <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'page'</span>) ) <span class="ruby-keyword kw">then</span>
+      <span class="ruby-comment cmt"># Right,go on.</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Advanced Filtering'</span>,<span class="ruby-value str">'Some key NOT found.'</span>)
+      <span class="ruby-keyword kw">return</span>
+    <span class="ruby-keyword kw">end</span>     
+    
+           
+    <span class="ruby-comment cmt"># ************* Begin *************</span>
+    
+    <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'page'</span>]
+      
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'network_input'</span> 
+      
+      <span class="ruby-comment cmt"># Click the &quot;network_input&quot; button.</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:href</span>,<span class="ruby-value str">'javascript:mimic_button(\'add: 0%5F..\', 1)'</span>).<span class="ruby-identifier">click</span>
+      <span class="ruby-keyword kw">rescue</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Advance Filetering'</span>,<span class="ruby-value str">'No such link, you must reset the BHR before the case.'</span>)
+        <span class="ruby-keyword kw">return</span>
+      <span class="ruby-keyword kw">end</span>
+    
+      <span class="ruby-comment cmt"># Add this rule.</span>
+      <span class="ruby-identifier">add_advanced_filtering</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">info</span>)
+      
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'ethernet_input'</span>   
+      
+      <span class="ruby-comment cmt"># Click the &quot;network_input&quot; button.</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:href</span>,<span class="ruby-value str">'javascript:mimic_button(\'add: 1%5F..\', 1)'</span>).<span class="ruby-identifier">click</span>
+      <span class="ruby-keyword kw">rescue</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Advance Filetering'</span>,<span class="ruby-value str">'No such link, you must reset the BHR before the case.'</span>)
+        <span class="ruby-keyword kw">return</span>
+      <span class="ruby-keyword kw">end</span>      
+      
+      <span class="ruby-comment cmt"># Add this rule.</span>
+      <span class="ruby-identifier">add_advanced_filtering</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">info</span>)
+      
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'broadband_ethernet_input'</span>  
+      
+      <span class="ruby-comment cmt"># Click the &quot;network_input&quot; button.</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:href</span>,<span class="ruby-value str">'javascript:mimic_button(\'add: 2%5F..\', 1)'</span>).<span class="ruby-identifier">click</span>
+      <span class="ruby-keyword kw">rescue</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Advance Filetering'</span>,<span class="ruby-value str">'No such link, you must reset the BHR before the case.'</span>)
+        <span class="ruby-keyword kw">return</span>
+      <span class="ruby-keyword kw">end</span>       
+      
+      <span class="ruby-comment cmt"># Add this rule.</span>
+      <span class="ruby-identifier">add_advanced_filtering</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">info</span>)        
+      
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'coax_input'</span>  
+      
+      <span class="ruby-comment cmt"># Click the &quot;network_input&quot; button.</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:href</span>,<span class="ruby-value str">'javascript:mimic_button(\'add: 3%5F..\', 1)'</span>).<span class="ruby-identifier">click</span>
+      <span class="ruby-keyword kw">rescue</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Advance Filetering'</span>,<span class="ruby-value str">'No such link, you must reset the BHR before the case.'</span>)
+        <span class="ruby-keyword kw">return</span>
+      <span class="ruby-keyword kw">end</span>        
+      
+      <span class="ruby-comment cmt"># Add this rule.</span>
+      <span class="ruby-identifier">add_advanced_filtering</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">info</span>) 
+      
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'broadband_coax_input'</span>  
+      
+      <span class="ruby-comment cmt"># Click the &quot;network_input&quot; button.</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:href</span>,<span class="ruby-value str">'javascript:mimic_button(\'add: 4%5F..\', 1)'</span>).<span class="ruby-identifier">click</span>
+      <span class="ruby-keyword kw">rescue</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Advance Filetering'</span>,<span class="ruby-value str">'No such link, you must reset the BHR before the case.'</span>)
+        <span class="ruby-keyword kw">return</span>
+      <span class="ruby-keyword kw">end</span>       
+      
+      <span class="ruby-comment cmt"># Add this rule.</span>
+      <span class="ruby-identifier">add_advanced_filtering</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">info</span>)    
+      
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'wireless_input'</span>  
+      
+      <span class="ruby-comment cmt"># Click the &quot;network_input&quot; button.</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:href</span>,<span class="ruby-value str">'javascript:mimic_button(\'add: 5%5F..\', 1)'</span>).<span class="ruby-identifier">click</span>
+      <span class="ruby-keyword kw">rescue</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Advance Filetering'</span>,<span class="ruby-value str">'No such link, you must reset the BHR before the case.'</span>)
+        <span class="ruby-keyword kw">return</span>
+      <span class="ruby-keyword kw">end</span>        
+      
+      <span class="ruby-comment cmt"># Add this rule.</span>
+      <span class="ruby-identifier">add_advanced_filtering</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">info</span>)    
+      
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'network_output'</span>  
+      
+      <span class="ruby-comment cmt"># Click the &quot;network_input&quot; button.</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:href</span>,<span class="ruby-value str">'javascript:mimic_button(\'add: 6%5F..\', 1)'</span>).<span class="ruby-identifier">click</span>
+      <span class="ruby-keyword kw">rescue</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Advance Filetering'</span>,<span class="ruby-value str">'No such link, you must reset the BHR before the case.'</span>)
+        <span class="ruby-keyword kw">return</span>
+      <span class="ruby-keyword kw">end</span>        
+      
+      <span class="ruby-comment cmt"># Add this rule.</span>
+      <span class="ruby-identifier">add_advanced_filtering</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">info</span>)       
+      
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'ethernet_output'</span>    
+      
+      <span class="ruby-comment cmt"># Click the &quot;network_input&quot; button.</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:href</span>,<span class="ruby-value str">'javascript:mimic_button(\'add: 7%5F..\', 1)'</span>).<span class="ruby-identifier">click</span>
+      <span class="ruby-keyword kw">rescue</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Advance Filetering'</span>,<span class="ruby-value str">'No such link, you must reset the BHR before the case.'</span>)
+        <span class="ruby-keyword kw">return</span>
+      <span class="ruby-keyword kw">end</span>         
+      
+      <span class="ruby-comment cmt"># Add this rule.</span>
+      <span class="ruby-identifier">add_advanced_filtering</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">info</span>)   
+       
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'broadband_ethernet_output'</span>  
+      
+      <span class="ruby-comment cmt"># Click the &quot;network_input&quot; button.</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:href</span>,<span class="ruby-value str">'javascript:mimic_button(\'add: 8%5F..\', 1)'</span>).<span class="ruby-identifier">click</span>
+      <span class="ruby-keyword kw">rescue</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Advance Filetering'</span>,<span class="ruby-value str">'No such link, you must reset the BHR before the case.'</span>)
+        <span class="ruby-keyword kw">return</span>
+      <span class="ruby-keyword kw">end</span>      
+      
+      <span class="ruby-comment cmt"># Add this rule.</span>
+      <span class="ruby-identifier">add_advanced_filtering</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">info</span>)   
+      
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'coax_output'</span>   
+      
+      <span class="ruby-comment cmt"># Click the &quot;network_input&quot; button.</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:href</span>,<span class="ruby-value str">'javascript:mimic_button(\'add: 9%5F..\', 1)'</span>).<span class="ruby-identifier">click</span>
+      <span class="ruby-keyword kw">rescue</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Advance Filetering'</span>,<span class="ruby-value str">'No such link, you must reset the BHR before the case.'</span>)
+        <span class="ruby-keyword kw">return</span>
+      <span class="ruby-keyword kw">end</span>        
+      
+      <span class="ruby-comment cmt"># Add this rule.</span>
+      <span class="ruby-identifier">add_advanced_filtering</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">info</span>)     
+      
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'broadband_coax_output'</span>   
+      
+      <span class="ruby-comment cmt"># Click the &quot;network_input&quot; button.</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:href</span>,<span class="ruby-value str">'javascript:mimic_button(\'add: 10%5F..\', 1)'</span>).<span class="ruby-identifier">click</span>
+      <span class="ruby-keyword kw">rescue</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Advance Filetering'</span>,<span class="ruby-value str">'No such link, you must reset the BHR before the case.'</span>)
+        <span class="ruby-keyword kw">return</span>
+      <span class="ruby-keyword kw">end</span>       
+      
+      <span class="ruby-comment cmt"># Add this rule.</span>
+      <span class="ruby-identifier">add_advanced_filtering</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">info</span>) 
+      
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'wireless_output'</span>   
+      
+      <span class="ruby-comment cmt"># Click the &quot;network_input&quot; button.</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:href</span>,<span class="ruby-value str">'javascript:mimic_button(\'add: 11%5F..\', 1)'</span>).<span class="ruby-identifier">click</span>
+      <span class="ruby-keyword kw">rescue</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Advance Filetering'</span>,<span class="ruby-value str">'No such link, you must reset the BHR before the case.'</span>)
+        <span class="ruby-keyword kw">return</span>
+      <span class="ruby-keyword kw">end</span>       
+      
+      <span class="ruby-comment cmt"># Add this rule.</span>
+      <span class="ruby-identifier">add_advanced_filtering</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">info</span>)     
+       
+    <span class="ruby-keyword kw">else</span>
+      
+      <span class="ruby-comment cmt"># Wrong here.</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Advanced Filtering'</span>,<span class="ruby-value str">'No such page name.'</span>)
+      <span class="ruby-keyword kw">return</span>
+      
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+    
+    <span class="ruby-comment cmt"># Output the result.</span>
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:Result_Info</span>,<span class="ruby-value str">'Advanced Filtering'</span>,<span class="ruby-value str">'SUCCESS'</span>)
+     
+    <span class="ruby-comment cmt"># ************* End ****************</span>
+    
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

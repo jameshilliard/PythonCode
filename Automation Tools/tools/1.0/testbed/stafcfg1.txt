@@ -1,0 +1,10 @@
+cd $SQAROOT/tools/1.0/tbsetup
+unalias cp
+cp -f Config.pm /usr/lib/perl5/5.8.8/CPAN/Config.pm
+perl -MCPAN -e"force install autobundle"
+perl -MCPAN -e"force install Test::More"
+perl -MCPAN -e"force install Bundle::CPAN"
+perl -MCPAN -e"force install Log::Log4perl"
+perl -MCPAN -e"force install Expect"
+perl -MCPAN -e"force install XML::Simple"
+perl -MCPAN -MLog::Log4perl -MExpect -MXML::Simple -e "print holla"

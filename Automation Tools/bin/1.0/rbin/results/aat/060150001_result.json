@@ -1,0 +1,33 @@
+{
+  "0001_AAT": {
+    "Info": {
+      "MAC Address1": "00:0f:b3:a7:27:06",
+      "MAC Address2": "00:21:27:18:50:9b",
+      "IP Address1": "192.168.10.254",
+      "MAC Address3": "00:21:85:c6:d2:31",
+      "IP Address2": "192.168.1.4",
+      "Device1": "Broadband Connection (Ethernet)",
+      "Refresh": "DONE",
+      "MAC Address4": "00:1f:d0:c1:05:69",
+      "IP Address3": "192.168.10.2",
+      "Device2": "Network (Home\/Office)",
+      "ARP Table": "Reached page 'ARP Table'.",
+      "Output ARP table": "SUCCESS",
+      "IP Address4": "192.168.10.50",
+      "Device3": "Broadband Connection (Ethernet)",
+      "Device4": "Broadband Connection (Ethernet)",
+      "Goto Advanced": "Reached the main 'Advanced' page"
+    }
+  },
+  "9999_logout": {
+    "Info": {
+      "logout": "success",
+      "main": "Reached main page"
+    }
+  },
+  "0000_login": {
+    "Info": {
+      "main": "Successfully logged in"
+    }
+  }
+}

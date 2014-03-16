@@ -1,0 +1,10 @@
+To delete a Port Mapping:
+upnpc-shared.exe -d 1000 TCP
+                   External
+
+To add a Port Mapping:
+upnpc-shared -a 192.168.1.2 1000 1000 TCP
+                         Internal External
+
+To list status
+upnpc-shared.exe -s

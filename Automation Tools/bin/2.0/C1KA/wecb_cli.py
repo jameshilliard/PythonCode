@@ -1,0 +1,1 @@
+../common/wecb_cli.py

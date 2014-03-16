@@ -1,0 +1,1 @@
+../common/wireless_connect_DUT_SCAN.sh

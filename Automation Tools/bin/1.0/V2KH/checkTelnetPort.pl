@@ -1,0 +1,1 @@
+../TV2KH/checkTelnetPort.pl

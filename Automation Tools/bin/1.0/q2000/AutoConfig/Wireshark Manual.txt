@@ -1,0 +1,34 @@
+Wireshark manual:
+
+
+1. Fiter setting before capture:
+Wireshark filter for Q2000: 
+    ip.dst == 192.168.0.1 and http and 
+    !(http.request.method==M-SEARCH) and !(http.request.method==NOTIFY) and 
+    !(http.request.uri contains connect_left_refresh.html) and 
+    !(http.request.uri contains .css) and 
+    !(http.request.uri contains .js)  and 
+    !(http.request.uri contains .gif)  and 
+    !(http.request.uri contains .bmp)  and 
+    !(http.request.uri contains .png)
+    
+    
+    
+    NOTE:
+    ip.dst == 192.168.0.1 : destination ip is DUT
+    http : http package only
+    !(http.request.method==M-SEARCH) and !(http.request.method==NOTIFY) : filter SSDP
+    !(http.request.uri contains connect_left_refresh.html) : filter auto refresh request
+    
+    (!(http.request.uri contains .css) and 
+    !(http.request.uri contains .js)  and 
+    !(http.request.uri contains .gif)  and 
+    !(http.request.uri contains .bmp)  and 
+    !(http.request.uri contains .png) ) : filter all resource request
+    
+    
+2. Save to file
+    File-->Export-->File 
+    Packet Range : choose 'Displayed'
+    Packet Format : choose 'Package summary line'
+                    choose 'Package details :' --> 'All expanded'

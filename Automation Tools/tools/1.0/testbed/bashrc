@@ -1,0 +1,67 @@
+# .bashrc
+
+# User specific aliases and functions
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+
+#password sqa1
+export SQAROOT=~/actiontec/automation/
+export G_LIBVERSION=1.0
+export G_BINVERSION=1.0
+export G_CFGVERSION=1.0
+export G_PFVERSION=1.0
+#export G_FTP_SERVER=builder1
+export G_FTP_SERVER=automationsvn
+export G_HTTP_SERVER=173.13.177.211
+export G_FTP_DIR=/log/autotest
+export G_CONFIG=1.0
+export G_FQDN=actiontec.com
+export G_DBHOST=sql
+export G_DBUSER=ctestlink
+export G_FROMRCPT=qaman@actiontec.com
+export G_DBPWD=ctlmtt
+export G_DBNAME=ctestlink_db
+export G_IMGPATH=/autobuild/official
+export G_TSUITEPATH=$SQAROOT/testsuites/1.0/common
+export PATH=$PATH:$SQAROOT/bin/$G_BINVERSION/common:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local
+export G_DISPSERVER=localhost
+alias bin='cd $SQAROOT/bin/1.0/common'
+alias lib='cd $SQAROOT/lib/1.0/common'
+alias tsuite='cd $SQAROOT/testsuites/1.0/verizon'
+alias config='cd $SQAROOT/config/1.0/common'
+alias logs='cd $SQAROOT/logs'
+alias auto='cd $SQAROOT/'
+alias pf='cd $SQAROOT/platform'
+alias tools='cd $SQAROOT/tools'
+alias mi424tc='cd $SQAROOT/platform/1.0/vf2113/testcases/mi424'
+alias svncheck="svn co svn:/$SQAROOT/QA"
+alias testbed='cd $SQAROOT/config/1.0/testbed'
+alias verizon='cd $SQAROOT/platform/1.0/verizon/testcases/'
+alias verizon2='cd $SQAROOT/platform/1.0/verizon2/testcases/'
+alias q1000='cd $SQAROOT/platform/1.0/q1000/testcases/'
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+export SVN_EDITOR=vi
+PATH=$PATH:/usr/local/staf/bin:/usr/local/perl2exe:/usr/local/perl2exe/perl5/bin:/usr/local/webtest/bin
+export PATH
+LD_LIBRARY_PATH=/usr/local/staf/lib
+export LD_LIBRARY_PATH
+CLASSPATH=/usr/local/staf/lib/JSTAF.jar:/usr/local/staf/samples/demo/STAFDemo.jar
+export CLASSPATH
+STAFCONVDIR=/usr/local/staf/codepage
+export STAFCONVDIR
+STAFCODEPAGE=LATIN_1
+export STAFCODEPAGE
+export PERLLIB=/usr/local/staf/bin:/usr/local/staf/lib/perl58
+export JAVA_HOME=/usr/local/jdk1.6.0_10/
+export EMAIL=action_joe@actiontec.com
+export MY_TB=tb1
+#export MY_DIST="glu@actiontec.com\;cborn@actiontec.com"
+#export MY_DIST="tzheng@actiontec.com\;cborn@actiontec.com"
+export MY_DIST="tzheng@actiontec.com"
+export MY_EMAIL=jonguyen

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>RouteSetting_LanEthernet (MyNetwork)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File MyNetwork/MyNetwork.rb, line 3270</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-constant">RouteSetting_LanEthernet</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
+    <span class="ruby-keyword kw">begin</span>
+      <span class="ruby-comment cmt">#@ff.link(:href, 'javascript:mimic_button(\'add: 0_..\', 1)').click</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:href</span>, <span class="ruby-value str">'javascript:mimic_button(\'route_add: ...\', 1)'</span>).<span class="ruby-identifier">click</span>
+    <span class="ruby-keyword kw">rescue</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:error</span>, <span class="ruby-value str">'RouteSetting_LanEthernet()'</span>, <span class="ruby-value str">'Did not reach Route Settings page'</span>)
+      <span class="ruby-keyword kw">return</span>
+    <span class="ruby-keyword kw">end</span>    
+    <span class="ruby-comment cmt"># Name(Route Settings)</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-value str">'Name(Route Settings)'</span>)
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Name(Route Settings)'</span>]
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Network (Home/Office)'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:id</span>, <span class="ruby-value str">'combo_device'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'br0'</span>) 
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'RouteSetting_LanEthernet()-&gt;Name(Route Settings)'</span>, <span class="ruby-value str">&quot;Name(Route Settings) = &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">info</span>[<span class="ruby-value str">'Name(Route Settings)'</span>])
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Broadband Connection (Ethernet)'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:id</span>, <span class="ruby-value str">'combo_device'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'eth1'</span>) 
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'RouteSetting_LanEthernet()-&gt;Name(Route Settings)'</span>, <span class="ruby-value str">&quot;Name(Route Settings) = &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">info</span>[<span class="ruby-value str">'Name(Route Settings)'</span>])
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Broadband Connection (Coax)'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:id</span>, <span class="ruby-value str">'combo_device'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'clink1'</span>) 
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'RouteSetting_LanEthernet()-&gt;Name(Route Settings)'</span>, <span class="ruby-value str">&quot;Name(Route Settings) = &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">info</span>[<span class="ruby-value str">'Name(Route Settings)'</span>])
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'WAN PPPoE'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:id</span>, <span class="ruby-value str">'combo_device'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'ppp0'</span>) 
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'RouteSetting_LanEthernet()-&gt;Name(Route Settings)'</span>, <span class="ruby-value str">&quot;Name(Route Settings) = &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">info</span>[<span class="ruby-value str">'Name(Route Settings)'</span>])
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'WAN PPPoE 2'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:id</span>, <span class="ruby-value str">'combo_device'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'ppp1'</span>) 
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'RouteSetting_LanEthernet()-&gt;Name(Route Settings)'</span>, <span class="ruby-value str">&quot;Name(Route Settings) = &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">info</span>[<span class="ruby-value str">'Name(Route Settings)'</span>])
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:error</span>, <span class="ruby-value str">'RouteSetting_LanEthernet()-&gt;Name(Route Settings)'</span>, <span class="ruby-value str">'Name(Route Settings) undefined'</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'RouteSetting_LanEthernet()-&gt;Name(Route Settings)'</span>, <span class="ruby-value str">'No Name(Route Settings) key found'</span>)
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># Destination(Route Settings)</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-value str">'Destination(Route Settings)'</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Destination(Route Settings)'</span>].<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+       <span class="ruby-identifier">octets</span>=<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Destination(Route Settings)'</span>].<span class="ruby-identifier">split</span>(<span class="ruby-value str">'.'</span>)
+       <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'dest0'</span>).<span class="ruby-identifier">value</span>=(<span class="ruby-identifier">octets</span>[<span class="ruby-value">0</span>])
+       <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'dest1'</span>).<span class="ruby-identifier">value</span>=(<span class="ruby-identifier">octets</span>[<span class="ruby-value">1</span>])
+       <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'dest2'</span>).<span class="ruby-identifier">value</span>=(<span class="ruby-identifier">octets</span>[<span class="ruby-value">2</span>])
+       <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'dest3'</span>).<span class="ruby-identifier">value</span>=(<span class="ruby-identifier">octets</span>[<span class="ruby-value">3</span>])
+       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'RouteSetting_LanEthernet()-&gt;Destination(Route Settings)'</span>, <span class="ruby-value str">&quot;Destination(Route Settings) = &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">info</span>[<span class="ruby-value str">'Destination(Route Settings)'</span>])
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'RouteSetting_LanEthernet()-&gt;Name(Route Settings)'</span>, <span class="ruby-value str">'No Name(Route Settings) key found'</span>)
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># Netmask(Route Settings)</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-value str">'Netmask(Route Settings)'</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Netmask(Route Settings)'</span>].<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+       <span class="ruby-identifier">octets</span>=<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Netmask(Route Settings)'</span>].<span class="ruby-identifier">split</span>(<span class="ruby-value str">'.'</span>)
+       <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'netmask0'</span>).<span class="ruby-identifier">value</span>=(<span class="ruby-identifier">octets</span>[<span class="ruby-value">0</span>])
+       <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'netmask1'</span>).<span class="ruby-identifier">value</span>=(<span class="ruby-identifier">octets</span>[<span class="ruby-value">1</span>])
+       <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'netmask2'</span>).<span class="ruby-identifier">value</span>=(<span class="ruby-identifier">octets</span>[<span class="ruby-value">2</span>])
+       <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'netmask3'</span>).<span class="ruby-identifier">value</span>=(<span class="ruby-identifier">octets</span>[<span class="ruby-value">3</span>])
+       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'RouteSetting_LanEthernet()-&gt;Netmask(Route Settings)'</span>, <span class="ruby-value str">&quot;Netmask(Route Settings) = &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">info</span>[<span class="ruby-value str">'Netmask(Route Settings)'</span>])
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'RouteSetting_LanEthernet()-&gt;Netmask(Route Settings)'</span>, <span class="ruby-value str">'No Netmask(Route Settings) key found'</span>)
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># Gateway(Route Settings)</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-value str">'Gateway(Route Settings)'</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Gateway(Route Settings)'</span>].<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+       <span class="ruby-identifier">octets</span>=<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Gateway(Route Settings)'</span>].<span class="ruby-identifier">split</span>(<span class="ruby-value str">'.'</span>)
+       <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'gateway0'</span>).<span class="ruby-identifier">value</span>=(<span class="ruby-identifier">octets</span>[<span class="ruby-value">0</span>])
+       <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'gateway1'</span>).<span class="ruby-identifier">value</span>=(<span class="ruby-identifier">octets</span>[<span class="ruby-value">1</span>])
+       <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'gateway2'</span>).<span class="ruby-identifier">value</span>=(<span class="ruby-identifier">octets</span>[<span class="ruby-value">2</span>])
+       <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'gateway3'</span>).<span class="ruby-identifier">value</span>=(<span class="ruby-identifier">octets</span>[<span class="ruby-value">3</span>])
+       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'RouteSetting_LanEthernet()-&gt;Gateway(Route Settings)'</span>, <span class="ruby-value str">&quot;Gateway(Route Settings) = &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">info</span>[<span class="ruby-value str">'Gateway(Route Settings)'</span>])
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'RouteSetting_LanEthernet()-&gt;Gateway(Route Settings)'</span>, <span class="ruby-value str">'No Gateway(Route Settings) key found'</span>)
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># Metric(Route Settings)</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-value str">'Metric(Route Settings)'</span>)  
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'metric'</span>).<span class="ruby-identifier">value</span>=<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Metric(Route Settings)'</span>]
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'RouteSetting_LanEthernet()-&gt;Metric(Route Settings)'</span>, <span class="ruby-value str">'Metric(Route Settings)= '</span><span class="ruby-operator">+</span><span class="ruby-identifier">info</span>[<span class="ruby-value str">'Metric(Route Settings)'</span>])
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'RouteSetting_LanEthernet()-&gt;Metric(Route Settings)'</span>, <span class="ruby-value str">'No Metric(Route Settings) key found'</span>)
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># click 'Apply' button to complete setup</span>
+    <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>
+    <span class="ruby-keyword kw">if</span>  <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">contains_text</span>(<span class="ruby-value str">&quot;Input Errors&quot;</span>)      
+      <span class="ruby-comment cmt">#n=@ff.tables.length     </span>
+      <span class="ruby-identifier">errorTable</span>=<span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">tables</span>[<span class="ruby-value">18</span>]
+      <span class="ruby-identifier">errorTable_rowcount</span>=<span class="ruby-identifier">errorTable</span>.<span class="ruby-identifier">row_count</span>
+      <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword kw">in</span> <span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">errorTable_rowcount</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:PageInfo_Error</span>, <span class="ruby-node">&quot;RouteSetting_LanEthernet()-&gt;Apply (#{i})&quot;</span>, <span class="ruby-identifier">errorTable</span>.[](<span class="ruby-identifier">i</span>).<span class="ruby-identifier">text</span>)    
+      <span class="ruby-keyword kw">end</span> 
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:error</span>, <span class="ruby-value str">'RouteSetting_LanEthernet()-&gt;Apply'</span>, <span class="ruby-value str">'Route setup fault'</span>)   
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">contains_text</span>(<span class="ruby-value str">&quot;Attention&quot;</span>) 
+        <span class="ruby-identifier">errorTable</span>=<span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">tables</span>[<span class="ruby-value">18</span>]
+        <span class="ruby-identifier">errorTable_rowcount</span>=<span class="ruby-identifier">errorTable</span>.<span class="ruby-identifier">row_count</span>
+        <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword kw">in</span> <span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">errorTable_rowcount</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:PageInfo_Attention</span>, <span class="ruby-node">&quot;RouteSetting_LanEthernet()-&gt;Apply (#{i})&quot;</span>, <span class="ruby-identifier">errorTable</span>.[](<span class="ruby-identifier">i</span>).<span class="ruby-identifier">text</span>)    
+        <span class="ruby-keyword kw">end</span> 
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:result_info</span>, <span class="ruby-value str">'RouteSetting_LanEthernet()-&gt;Apply'</span>, <span class="ruby-value str">'RouteRoute setup sucessful with Attention'</span>)
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:result_info</span>, <span class="ruby-value str">'RouteSetting_LanEthernet()-&gt;Apply'</span>, <span class="ruby-value str">'Route setup sucessful'</span>)
+      <span class="ruby-keyword kw">end</span> 
+    <span class="ruby-keyword kw">end</span>
+    
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

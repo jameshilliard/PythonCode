@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>scheduler_rules (Advanced)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File Advanced/Advanced.rb, line 6292</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">scheduler_rules</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
+
+    <span class="ruby-comment cmt"># Get to the advanced page.</span>
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">goto_advanced</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
+    
+    <span class="ruby-comment cmt"># Get to the &quot;Scheduler Rules&quot; page.</span>
+    <span class="ruby-keyword kw">begin</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'Scheduler Rules'</span>).<span class="ruby-identifier">click</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'Scheduler Rules'</span>, <span class="ruby-value str">'Reached page \'Scheduler Rules\'.'</span>)
+    <span class="ruby-keyword kw">rescue</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:error</span>, <span class="ruby-value str">'Scheduler Rules'</span>, <span class="ruby-value str">'Did not reach \'Scheduler Rules\' page'</span>)
+      <span class="ruby-keyword kw">return</span>
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># Check the key.</span>
+    <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'section'</span>) ) <span class="ruby-keyword kw">then</span>
+      <span class="ruby-comment cmt"># Right,go on.</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'scheduler_rules'</span>,<span class="ruby-value str">'Some key NOT found.'</span>)
+      <span class="ruby-keyword kw">return</span>
+    <span class="ruby-keyword kw">end</span>  
+    
+    <span class="ruby-comment cmt"># Parse the json file</span>
+      
+    <span class="ruby-comment cmt"># Add a scheduler rule here.</span>
+    
+    <span class="ruby-comment cmt"># Click the &quot;Add&quot; button under scheduler rule main page.</span>
+    <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>,<span class="ruby-value str">'Add'</span>).<span class="ruby-identifier">click</span>
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Add a scheduler rule'</span>,<span class="ruby-value str">'Begin'</span>)
+    
+    <span class="ruby-comment cmt"># Confirm it</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value str">'Set Rule Schedule'</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'scheduler_rules'</span>,<span class="ruby-value str">'Did not reach the \'Set Rule Schedule\' page'</span>)
+      <span class="ruby-keyword kw">return</span>
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># Set the rule name</span>
+    <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'schdlr_rule_name'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Rule Name'</span>])
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Rule Name'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Rule Name'</span>])
+    
+    <span class="ruby-comment cmt"># Active?</span>
+    <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Rule will be Active at the Scheduled Time'</span>]
+      
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;on&quot;</span>
+      <span class="ruby-comment cmt"># Active</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">radio</span>(<span class="ruby-identifier">:id</span>,<span class="ruby-value str">'is_enabling_0'</span>).<span class="ruby-identifier">set</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;off&quot;</span>
+      <span class="ruby-comment cmt"># Inactive</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">radio</span>(<span class="ruby-identifier">:id</span>,<span class="ruby-value str">'is_enabling_0'</span>).<span class="ruby-identifier">clear</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-comment cmt"># Wong here</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'scheduler_rules'</span>,<span class="ruby-value str">'Ambigurous on active or inactive.'</span>)
+      <span class="ruby-keyword kw">return</span>
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Rule will be Active at the Scheduled Time'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Rule will be Active at the Scheduled Time'</span>])
+    
+    <span class="ruby-comment cmt"># Active?</span>
+    <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Rule will be inactive at the Scheduled Time'</span>]
+      
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;on&quot;</span>
+      <span class="ruby-comment cmt"># Active</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">radio</span>(<span class="ruby-identifier">:id</span>,<span class="ruby-value str">'is_enabling_1'</span>).<span class="ruby-identifier">set</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;off&quot;</span>
+      <span class="ruby-comment cmt"># Inactive</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">radio</span>(<span class="ruby-identifier">:id</span>,<span class="ruby-value str">'is_enabling_1'</span>).<span class="ruby-identifier">clear</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-comment cmt"># Wong here</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'scheduler_rules'</span>,<span class="ruby-value str">'Ambigurous on active or inactive.'</span>)
+      <span class="ruby-keyword kw">return</span>
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Rule will be inactive at the Scheduled Time'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Rule will be inactive at the Scheduled Time'</span>])
+        
+    <span class="ruby-comment cmt"># Click the &quot;Add Rule Schedule&quot; button.</span>
+    <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>,<span class="ruby-value str">'Add Rule Schedule'</span>).<span class="ruby-identifier">click</span>
+    
+    <span class="ruby-comment cmt"># Setup the days.</span>
+      
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:debug</span>, <span class="ruby-value str">'scheduler_rules'</span>, <span class="ruby-value str">'doing rule days begin'</span>)
+      
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Monday'</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Monday'</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'on'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">label</span>(<span class="ruby-identifier">:for</span>,<span class="ruby-value str">'day_mon_'</span>).<span class="ruby-identifier">click</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Tuesday'</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Tuesday'</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'on'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">label</span>(<span class="ruby-identifier">:for</span>,<span class="ruby-value str">'day_tue_'</span>).<span class="ruby-identifier">click</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>    
+    
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Wednesday'</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Wednesday'</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'on'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">label</span>(<span class="ruby-identifier">:for</span>,<span class="ruby-value str">'day_wed_'</span>).<span class="ruby-identifier">click</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>      
+
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Thursday'</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Thursday'</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'on'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">label</span>(<span class="ruby-identifier">:for</span>,<span class="ruby-value str">'day_thu_'</span>).<span class="ruby-identifier">click</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>     
+    
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Friday'</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Friday'</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'on'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">label</span>(<span class="ruby-identifier">:for</span>,<span class="ruby-value str">'day_fri_'</span>).<span class="ruby-identifier">click</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>   
+    
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Saturday'</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Saturday'</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'on'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">label</span>(<span class="ruby-identifier">:for</span>,<span class="ruby-value str">'day_sat_'</span>).<span class="ruby-identifier">click</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>    
+    
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Sunday'</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Sunday'</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'on'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">label</span>(<span class="ruby-identifier">:for</span>,<span class="ruby-value str">'day_sun_'</span>).<span class="ruby-identifier">click</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>    
+           
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:debug</span>, <span class="ruby-value str">'scheduler_rules'</span>, <span class="ruby-value str">'doing rule days end'</span>)
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Add days'</span>,<span class="ruby-value str">'OK'</span>)
+    
+    <span class="ruby-comment cmt"># Setup the hours</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Start Time'</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'End Time'</span>)
+      
+       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:debug</span>, <span class="ruby-value str">'scheduler_rules'</span>, <span class="ruby-value str">'doing rule hours: begin'</span> )     
+         
+       <span class="ruby-comment cmt"># Click &quot;New Hours Range Entry&quot;.</span>
+       <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'New Hours Range Entry'</span>).<span class="ruby-identifier">click</span>
+  
+       <span class="ruby-identifier">start_time</span> = <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Start Time'</span>].<span class="ruby-identifier">split</span>(<span class="ruby-value str">':'</span>)
+       <span class="ruby-identifier">end_time</span> = <span class="ruby-identifier">info</span>[<span class="ruby-value str">'End Time'</span>].<span class="ruby-identifier">split</span>(<span class="ruby-value str">':'</span>)
+       
+       <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'start_hour'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">start_time</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">strip</span>)
+       <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'start_min'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">start_time</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">strip</span>)
+       <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'end_hour'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">end_time</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">strip</span>)
+       <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'end_min'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">end_time</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">strip</span>)
+       
+       <span class="ruby-comment cmt"># Apply for the &quot;hours&quot;</span>
+       <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>
+         
+       
+       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:debug</span>, <span class="ruby-value str">'scheduler_rules'</span>, <span class="ruby-value str">'doing rule hours: end'</span> )
+       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Add hours'</span>,<span class="ruby-value str">'OK'</span>)
+                
+    <span class="ruby-keyword kw">end</span>  <span class="ruby-comment cmt">#end if hours</span>
+     
+    <span class="ruby-comment cmt"># Apply for the days and hours</span>
+    <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>
+    
+    <span class="ruby-comment cmt"># Apply for the rules</span>
+    <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>,<span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>
+    
+    <span class="ruby-comment cmt"># Close the &quot;Scheduler Rules&quot; page</span>
+    <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>,<span class="ruby-value str">'Close'</span>).<span class="ruby-identifier">click</span>
+    
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Add a scheduler rule'</span>,<span class="ruby-value str">'End'</span>)
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Scheduler Rules'</span>,<span class="ruby-value str">'SUCCESS'</span>)
+    
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

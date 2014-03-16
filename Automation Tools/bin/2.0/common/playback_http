@@ -1,0 +1,24 @@
+#!/bin/bash
+#
+#
+# Description   :
+#   
+#
+#
+# History       :
+#   DATE        |   REV     | AUTH      | INFO
+#16 Nov 2011    |   1.0.1   | rayofox   | switch to new tool http_player
+#
+
+REV="$0 version 1.0.1 (16 Nov 2011)"
+# print REV
+
+echo "${REV}"
+
+
+#python -u ${SQAROOT}/tools/${G_BINVERSION}/autoconf/autoconf.py $*
+if [ "$U_DUT_TYPE" == "WECB" ] || [ "$U_DUT_TYPE" == "NcsWecb3000" ] || [ "$U_DUT_TYPE" == "TelusWecb3000"] || ["$U_DUT_TYPE" == "ComcastWecb3000"] || [ "$U_DUT_TYPE" == "VerizonWecb3000"];then
+    python -u /root/automation/bin/2.0/WECB/wecb_cli.py "$@"
+else
+    python -u ${SQAROOT}/tools/${G_BINVERSION}/http_player/http_player.py "$@"
+fi

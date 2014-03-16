@@ -1,0 +1,7 @@
+listen 1234
+connect http://192.168.10.34:4567/1fc7a5a7-f140-4718-8e84-137ae0a93bbc actiontec actiontec NONE
+wait
+get_attribs InternetGatewayDevice.LANDevice.1.WLANConfiguration.7.SSID
+wait
+rpc0
+quit

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>logs (BasicUtility)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File BasicUtility.rb, line 48</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">logs</span>(<span class="ruby-identifier">where</span>)
+    
+    <span class="ruby-comment cmt"># the directory string we are passed may have timestamp info in it.</span>
+    <span class="ruby-identifier">t</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+    <span class="ruby-ivar">@logs</span> = <span class="ruby-identifier">t</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-identifier">where</span>)
+    
+    <span class="ruby-comment cmt"># does it already exists?  otherwise create the directory tree</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-ivar">@logs</span>)
+      
+      <span class="ruby-comment cmt"># make sure it is a directory</span>
+      <span class="ruby-identifier">s</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">stat</span>(<span class="ruby-ivar">@logs</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">directory?</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-value str">'Error: logs set to '</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@logs</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-value str">' which is not a directory'</span>
+        <span class="ruby-identifier">exit</span> <span class="ruby-value">-2</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkdir_p</span>(<span class="ruby-ivar">@logs</span>)
+      <span class="ruby-keyword kw">rescue</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-value str">'Error: could not create logs directory '</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@logs</span>.<span class="ruby-identifier">to_s</span>
+        <span class="ruby-identifier">exit</span> <span class="ruby-value">-2</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

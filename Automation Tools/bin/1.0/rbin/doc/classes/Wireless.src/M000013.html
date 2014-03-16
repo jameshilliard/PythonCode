@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>AdvancedSecuritySettings (Wireless)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File Wireless/Wireless.rb, line 345</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-constant">AdvancedSecuritySettings</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
+    
+    <span class="ruby-comment cmt"># Get to the &quot;Advanced Security Settings&quot; page.</span>
+    <span class="ruby-keyword kw">begin</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'Advanced Security Settings'</span>).<span class="ruby-identifier">click</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'Advanced Security Settings page'</span>, <span class="ruby-value str">'Reached!'</span>)
+    <span class="ruby-keyword kw">rescue</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:error</span>, <span class="ruby-value str">'Advanced Security Settings'</span>, <span class="ruby-value str">'Did not reach the page'</span>)
+      <span class="ruby-keyword kw">return</span>
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># Check the key.</span>
+    <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'section'</span>) <span class="ruby-operator">&amp;&amp;</span>
+         <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'layout'</span>) <span class="ruby-operator">&amp;&amp;</span>
+         <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'page'</span>) ) <span class="ruby-keyword kw">then</span>
+      <span class="ruby-comment cmt"># Right,go on.</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Advanced Security Settings'</span>,<span class="ruby-value str">'Some key NOT found.'</span>)
+      <span class="ruby-keyword kw">return</span>
+    <span class="ruby-keyword kw">end</span>   
+    
+    <span class="ruby-comment cmt"># Find the page and branch function.</span>
+    
+    <span class="ruby-comment cmt"># ************* Begin *************</span>
+     
+    <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'page'</span>]
+      
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'802mode'</span> 
+      <span class="ruby-comment cmt"># Click the &quot;802.11b/g Mode&quot;</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>,<span class="ruby-value str">'802.11b/g Mode'</span>).<span class="ruby-identifier">click</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'page'</span>],<span class="ruby-value str">'Clicked'</span>)
+        <span class="ruby-identifier">_802mode</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">info</span>)
+      <span class="ruby-keyword kw">rescue</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Advanced Security Settings'</span>,<span class="ruby-value str">'Page error under wireless.'</span>)
+        <span class="ruby-keyword kw">return</span>
+      <span class="ruby-keyword kw">end</span>      
+      
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'wma'</span>
+      <span class="ruby-comment cmt"># Click the &quot;Wireless MAC Authentication&quot;</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>,<span class="ruby-value str">'Wireless MAC Authentication'</span>).<span class="ruby-identifier">click</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'page'</span>],<span class="ruby-value str">'Clicked'</span>)
+        <span class="ruby-identifier">wma</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">info</span>)
+      <span class="ruby-keyword kw">rescue</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Advanced Security Settings'</span>,<span class="ruby-value str">'Page error under wireless.'</span>)
+        <span class="ruby-keyword kw">return</span>
+      <span class="ruby-keyword kw">end</span>
+      
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'ssidb'</span> 
+      <span class="ruby-comment cmt"># Click the &quot;SSID Broadcast&quot;</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>,<span class="ruby-value str">'SSID Broadcast'</span>).<span class="ruby-identifier">click</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'page'</span>],<span class="ruby-value str">'Clicked'</span>)
+        <span class="ruby-identifier">ssidb</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">info</span>)
+      <span class="ruby-keyword kw">rescue</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Advanced Security Settings'</span>,<span class="ruby-value str">'Page error under wireless.'</span>)
+        <span class="ruby-keyword kw">return</span>
+      <span class="ruby-keyword kw">end</span>
+      
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'wpa2'</span>
+      <span class="ruby-comment cmt"># Click the &quot;WPA2&quot;</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">radio</span>(<span class="ruby-identifier">:id</span>,<span class="ruby-value str">'wpa2'</span>).<span class="ruby-identifier">set</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'page'</span>],<span class="ruby-value str">'Clicked'</span>)
+        <span class="ruby-identifier">wpa2</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">info</span>)
+      <span class="ruby-keyword kw">rescue</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Advanced Security Settings'</span>,<span class="ruby-value str">'Page error under wireless.'</span>)
+        <span class="ruby-keyword kw">return</span>
+      <span class="ruby-keyword kw">end</span>      
+      
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'wpa'</span>
+      <span class="ruby-comment cmt"># Click the &quot;WPA&quot;</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">radio</span>(<span class="ruby-identifier">:id</span>,<span class="ruby-value str">'wpa'</span>).<span class="ruby-identifier">set</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'page'</span>],<span class="ruby-value str">'Clicked'</span>)
+        <span class="ruby-identifier">wpa</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">info</span>)
+      <span class="ruby-keyword kw">rescue</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Advanced Security Settings'</span>,<span class="ruby-value str">'Page error under wireless.'</span>)
+        <span class="ruby-keyword kw">return</span>
+      <span class="ruby-keyword kw">end</span>
+      
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'wep802r'</span> 
+      <span class="ruby-comment cmt"># Click the &quot;WEP802R&quot;</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">radio</span>(<span class="ruby-identifier">:id</span>,<span class="ruby-value str">'wep1'</span>).<span class="ruby-identifier">set</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'page'</span>],<span class="ruby-value str">'Clicked'</span>)
+        <span class="ruby-identifier">wep802r</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">info</span>)
+      <span class="ruby-keyword kw">rescue</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Advanced Security Settings'</span>,<span class="ruby-value str">'Page error under wireless.'</span>)
+        <span class="ruby-keyword kw">return</span>
+      <span class="ruby-keyword kw">end</span>
+      
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'wep'</span>
+      <span class="ruby-comment cmt"># Click the &quot;WEP&quot;</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">radio</span>(<span class="ruby-identifier">:id</span>,<span class="ruby-value str">'wep0'</span>).<span class="ruby-identifier">set</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'page'</span>],<span class="ruby-value str">'Clicked'</span>)
+        <span class="ruby-identifier">wep</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">info</span>)
+      <span class="ruby-keyword kw">rescue</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Advanced Security Settings'</span>,<span class="ruby-value str">'Page error under wireless.'</span>)
+        <span class="ruby-keyword kw">return</span>
+      <span class="ruby-keyword kw">end</span>
+                    
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Other Advanced Wireless Options'</span>
+      <span class="ruby-comment cmt"># Click the &quot;Other Advanced Wireless Options&quot;</span>
+      <span class="ruby-keyword kw">begin</span>
+        
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>,<span class="ruby-value str">'Other Advanced Wireless Options'</span>).<span class="ruby-identifier">click</span>
+        <span class="ruby-comment cmt"># Confirm it</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'Yes'</span>).<span class="ruby-identifier">click</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'page'</span>],<span class="ruby-value str">'Clicked'</span>)
+        <span class="ruby-constant">OtherAdvancedWirelessOptions</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">info</span>)
+      <span class="ruby-keyword kw">rescue</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Advanced Security Settings'</span>,<span class="ruby-value str">'Page error under wireless.'</span>)
+        <span class="ruby-keyword kw">return</span>
+      <span class="ruby-keyword kw">end</span>
+      
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-comment cmt"># Wrong here.</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Advanced Security Settings'</span>,<span class="ruby-value str">'No such page name.'</span>)
+      <span class="ruby-keyword kw">return</span>      
+      
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+         
+    <span class="ruby-comment cmt"># ************* End *************</span>
+    
+    <span class="ruby-comment cmt"># Output the result</span>
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Advanced Security Settings'</span>,<span class="ruby-value str">'SUCCESS'</span>)
+    
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

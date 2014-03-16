@@ -1,0 +1,1 @@
+../q2000/check_DNS.sh

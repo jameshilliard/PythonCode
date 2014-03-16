@@ -1,0 +1,15 @@
+$TTL 1D
+@	IN SOA	ns.centurylink.net. root.centurylink.net. (
+					0	; serial
+					1D	; refresh
+					1H	; retry
+					1W	; expire
+					3H )	; minimum
+
+@ IN NS ns.centurylink.net.
+
+ns IN A 192.168.55.254
+ntp1 IN A 192.168.55.254
+ntp2 IN A 192.168.55.254
+ntp3 IN A 192.168.55.254
+ntp4 IN A 192.168.55.254

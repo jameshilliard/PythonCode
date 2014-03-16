@@ -1,0 +1,1 @@
+../common/differ_wan_set.sh

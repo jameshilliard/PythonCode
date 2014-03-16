@@ -1,0 +1,1 @@
+../TV2KH/modify_waneth_static.sh

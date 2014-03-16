@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>routing (Advanced)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File Advanced/Advanced.rb, line 6751</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">routing</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
+
+    <span class="ruby-comment cmt"># Get to the advanced page.</span>
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">goto_advanced</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
+    
+    <span class="ruby-comment cmt"># Get to the &quot;Routing&quot; page.</span>
+    <span class="ruby-keyword kw">begin</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'Routing'</span>).<span class="ruby-identifier">click</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'routing'</span>, <span class="ruby-value str">'Reached page \'Routing\'.'</span>)
+    <span class="ruby-keyword kw">rescue</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:error</span>, <span class="ruby-value str">'routing'</span>, <span class="ruby-value str">'Did not reach \'Routing\' page'</span>)
+      <span class="ruby-keyword kw">return</span>
+    <span class="ruby-keyword kw">end</span>
+      
+    <span class="ruby-comment cmt"># Check the key.</span>
+    <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'section'</span>) ) <span class="ruby-keyword kw">then</span>
+      <span class="ruby-comment cmt"># Right,go on.</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'routing'</span>,<span class="ruby-value str">'Some key NOT found.'</span>)
+      <span class="ruby-keyword kw">return</span>
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># &quot;New Route&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'New Route'</span>) <span class="ruby-keyword kw">then</span>
+      <span class="ruby-comment cmt"># &quot;New Route&quot;</span>
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'New Route'</span>]
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        <span class="ruby-comment cmt"># Do nothing... :(</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-comment cmt"># Wrong here.</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'routing'</span>,<span class="ruby-value str">'No \'New Route\' key.'</span>)
+        <span class="ruby-keyword kw">return</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'New Route'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'New Route'</span>])
+    
+    <span class="ruby-comment cmt"># &quot;Internet Group Management Protocol(IGMP)&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Internet Group Management Protocol(IGMP)'</span>) <span class="ruby-keyword kw">then</span>
+      <span class="ruby-comment cmt"># &quot;Internet Group Management Protocol(IGMP)&quot;</span>
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Internet Group Management Protocol(IGMP)'</span>]
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>
+        <span class="ruby-comment cmt"># Select it</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'mcast_enabled'</span>).<span class="ruby-identifier">set</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Internet Group Management Protocol(IGMP)'</span>,<span class="ruby-value str">'on'</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        <span class="ruby-comment cmt"># Don't select it.</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'mcast_enabled'</span>).<span class="ruby-identifier">clear</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Internet Group Management Protocol(IGMP)'</span>,<span class="ruby-value str">'off'</span>)
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-comment cmt"># Wrong here.</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'routing'</span>,<span class="ruby-value str">'No \'Internet Group Management Protocol(IGMP)\' key.'</span>)
+        <span class="ruby-keyword kw">return</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># &quot;Domain Routing&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Domain Routing'</span>) <span class="ruby-keyword kw">then</span>
+      <span class="ruby-comment cmt"># &quot;Internet Group Management Protocol(IGMP)&quot;</span>
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Domain Routing'</span>]
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>
+        <span class="ruby-comment cmt"># Select it</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dns_routing_enabled'</span>).<span class="ruby-identifier">set</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Domain Routing'</span>,<span class="ruby-value str">'on'</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        <span class="ruby-comment cmt"># Don't select it.</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'dns_routing_enabled'</span>).<span class="ruby-identifier">clear</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Domain Routing'</span>,<span class="ruby-value str">'off'</span>)
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-comment cmt"># Wrong here.</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'routing'</span>,<span class="ruby-value str">'No \'Domain Routing\' key.'</span>)
+        <span class="ruby-keyword kw">return</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># Apply for the change</span>
+    <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>,<span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>
+    
+    <span class="ruby-comment cmt"># Jump out an &quot;attention&quot; message?</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value str">'Attention'</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>,<span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># routing success</span>
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Routing'</span>,<span class="ruby-value str">'SUCCESS'</span>)
+
+  <span class="ruby-comment cmt"># Code under is no use.</span>
+??
+    
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

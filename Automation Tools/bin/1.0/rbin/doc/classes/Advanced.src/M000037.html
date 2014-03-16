@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>qos_user_defined_proto (Advanced)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File Advanced/Advanced.rb, line 797</span>
+<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">qos_user_defined_proto</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">proto_info</span>)
+  
+     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:debug</span>, <span class="ruby-value str">'qos_add_rule'</span>, <span class="ruby-value str">&quot;usser defined info = &quot;</span> <span class="ruby-operator">+</span><span class="ruby-identifier">proto_info</span>.<span class="ruby-identifier">to_s</span>)
+     <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'svc_service_combo'</span>).<span class="ruby-identifier">select</span>(<span class="ruby-value str">&quot;User Defined&quot;</span>)
+       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:debug</span>, <span class="ruby-value str">'qos_add_rule'</span>, <span class="ruby-value str">&quot;selected user defined&quot;</span>)
+       <span class="ruby-comment cmt">#@ff.link(:href, 'javascript:mimic_button(\'add: '+idx.to_s+'%5F..\', 1)').click</span>
+       <span class="ruby-comment cmt">#@ff.link(:href,'javascript:mimic_button(\'add_server_ports: ...\',1)').click</span>
+       <span class="ruby-identifier">proto_info</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">proto_instance</span><span class="ruby-operator">|</span> 
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>,<span class="ruby-value str">'Add Server Ports'</span>).<span class="ruby-identifier">click</span>
+          <span class="ruby-identifier">proto_vals</span> =  <span class="ruby-identifier">proto_instance</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">':'</span>)
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">proto_vals</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'tcp'</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">proto_vals</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'~tcp'</span> <span class="ruby-keyword kw">or</span>
+             <span class="ruby-identifier">proto_vals</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'udp'</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">proto_vals</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'~udp'</span> 
+             <span class="ruby-comment cmt"># forms are tcp:sport,dport</span>
+             <span class="ruby-comment cmt"># tcp:sport-sport,port</span>
+             <span class="ruby-comment cmt"># tcp:sport-sport,dport-dport</span>
+             <span class="ruby-comment cmt"># tcp:sport-sport,dport</span>
+             <span class="ruby-comment cmt"># each of thiese can alos be precedded by a tilde (~)</span>
+             <span class="ruby-comment cmt"># to signify exclusion</span>
+             <span class="ruby-comment cmt"># e.g. ~tcp:~10-20,~30-40</span>
+  
+             <span class="ruby-identifier">tcp_ports</span> = <span class="ruby-identifier">proto_vals</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">split</span>(<span class="ruby-value str">','</span>) 
+  
+             <span class="ruby-comment cmt"># select udp or tcp</span>
+             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">proto_vals</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-value str">'tcp'</span>)
+                 <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'svc_entry_protocol'</span>).<span class="ruby-identifier">select</span>(<span class="ruby-value str">'TCP'</span>)
+             <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">proto_vals</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-value str">'udp'</span>)
+                 <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'svc_entry_protocol'</span>).<span class="ruby-identifier">select</span>(<span class="ruby-value str">'UDP'</span>)
+             <span class="ruby-keyword kw">end</span>
+             <span class="ruby-comment cmt"># check to see if protocol is excluded</span>
+             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">proto_vals</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-value str">'~'</span>)
+                 <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">label</span>(<span class="ruby-identifier">:for</span>, <span class="ruby-value str">'svc_entry_protocol_exclude_'</span>).<span class="ruby-identifier">click</span>
+                 <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:debug</span>, <span class="ruby-value str">'qos_add_rule'</span>, <span class="ruby-value str">&quot;set proto exlude&quot;</span>)
+             <span class="ruby-keyword kw">end</span>
+  
+             <span class="ruby-comment cmt"># deal with the src ports</span>
+             <span class="ruby-comment cmt"># is this a single port definition or Range</span>
+             <span class="ruby-identifier">exclude</span> = <span class="ruby-keyword kw">false</span>
+              <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:debug</span>, <span class="ruby-value str">'qos_add_rule'</span>, <span class="ruby-value str">&quot;src port= &quot;</span><span class="ruby-operator">+</span> <span class="ruby-identifier">tcp_ports</span>[<span class="ruby-value">0</span>])
+             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">tcp_ports</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-value str">'any'</span>)
+                 <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'port_dst_combo'</span>).<span class="ruby-identifier">select</span>(<span class="ruby-value str">'Any'</span>)
+             <span class="ruby-keyword kw">else</span>
+                 <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">tcp_ports</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-value str">'~'</span>)
+                     <span class="ruby-comment cmt"># src ports/range are excluded strip the ~ before</span>
+                     <span class="ruby-comment cmt"># configuring the port numbers</span>
+                     <span class="ruby-identifier">exclude</span> = <span class="ruby-keyword kw">true</span>
+                     <span class="ruby-identifier">tcp_ports</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">delete!</span>(<span class="ruby-value str">'~'</span>)
+                 <span class="ruby-keyword kw">end</span>
+                 <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">tcp_ports</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-value str">'-'</span>)
+                     <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'port_src_combo'</span>).<span class="ruby-identifier">select</span>(<span class="ruby-value str">'Range'</span>)
+                      <span class="ruby-identifier">range</span>= <span class="ruby-identifier">tcp_ports</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">split</span>(<span class="ruby-value str">'-'</span>) 
+                     <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'port_src_start'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">range</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">strip</span>)
+                     <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'port_src_end'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">range</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">strip</span>)
+                 <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">tcp_ports</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">!=</span> <span class="ruby-value str">'any'</span>
+                     <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'port_src_combo'</span>).<span class="ruby-identifier">select</span>(<span class="ruby-value str">'Single'</span>)
+                     <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'port_src_start'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">tcp_ports</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">strip</span>)
+                 <span class="ruby-keyword kw">end</span>
+                 <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">exclude</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">true</span>
+                     <span class="ruby-comment cmt"># src ports/range are excluded set exclude which is </span>
+                     <span class="ruby-comment cmt"># available after single or range is selected</span>
+                     <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">label</span>(<span class="ruby-identifier">:for</span>, <span class="ruby-value str">'port_src_exclude_'</span>).<span class="ruby-identifier">click</span>
+                 <span class="ruby-keyword kw">end</span>
+              <span class="ruby-keyword kw">end</span>
+              <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:debug</span>, <span class="ruby-value str">'qos_add_rule'</span>, <span class="ruby-value str">&quot;set src port&quot;</span>)
+  
+             <span class="ruby-comment cmt"># deal with the destination ports</span>
+             <span class="ruby-comment cmt"># is this a single port definition or Range</span>
+             <span class="ruby-identifier">exclude</span> = <span class="ruby-keyword kw">false</span>
+             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">tcp_ports</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-value str">'any'</span>)
+                 <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'port_dst_combo'</span>).<span class="ruby-identifier">select</span>(<span class="ruby-value str">'Any'</span>)
+             <span class="ruby-keyword kw">else</span>
+                 <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">tcp_ports</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-value str">'~'</span>)
+                     <span class="ruby-comment cmt"># src ports/range are excluded strip the ~ before </span>
+                     <span class="ruby-comment cmt"># configuring the port numbers</span>
+                     <span class="ruby-identifier">exclude</span> = <span class="ruby-keyword kw">true</span>
+                     <span class="ruby-identifier">tcp_ports</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">delete!</span>(<span class="ruby-value str">'~'</span>)
+                 <span class="ruby-keyword kw">end</span>
+                 <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">tcp_ports</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-value str">'-'</span>)
+                     <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'port_dst_combo'</span>).<span class="ruby-identifier">select</span>(<span class="ruby-value str">'Range'</span>)
+                     <span class="ruby-identifier">range</span>= <span class="ruby-identifier">tcp_ports</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">split</span>(<span class="ruby-value str">'-'</span>) 
+                     <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'port_dst_start'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">range</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">strip</span>)
+                     <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'port_dst_end'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">range</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">strip</span>)
+                 <span class="ruby-keyword kw">else</span>
+                     <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'port_dst_combo'</span>).<span class="ruby-identifier">select</span>(<span class="ruby-value str">'Single'</span>)
+                     <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'port_dst_start'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">tcp_ports</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">strip</span>)
+                 <span class="ruby-keyword kw">end</span>
+                 <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">exclude</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">true</span>
+                    <span class="ruby-comment cmt"># dest ports/range are excluded chck excluded which is avail</span>
+                    <span class="ruby-comment cmt"># once range or single is selected</span>
+                    <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">label</span>(<span class="ruby-identifier">:for</span>, <span class="ruby-value str">'port_dst_exclude_'</span>).<span class="ruby-identifier">click</span>
+                    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:debug</span>, <span class="ruby-value str">'qos_add_rule'</span>, <span class="ruby-value str">&quot;set dst exclude&quot;</span>)
+                 <span class="ruby-keyword kw">end</span>
+             <span class="ruby-keyword kw">end</span>
+             <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>
+          <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end tcp or udp</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">proto_vals</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-value str">'icmp'</span>)
+              <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'svc_entry_protocol'</span>).<span class="ruby-identifier">select</span>(<span class="ruby-value str">'ICMP'</span>)
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">proto_vals</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-value str">'~'</span>)
+                     <span class="ruby-comment cmt"># icmp is excluded</span>
+                     <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">label</span>(<span class="ruby-identifier">:for</span>,<span class="ruby-value str">'svc_entry_protocol_exclude_'</span>).<span class="ruby-identifier">click</span>
+              <span class="ruby-keyword kw">end</span>
+              <span class="ruby-keyword kw">if</span>  <span class="ruby-identifier">proto_vals</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-value str">'Other'</span>)
+                  <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'icmp_combo'</span>).<span class="ruby-identifier">select</span>(<span class="ruby-value str">'Other'</span>)
+                  <span class="ruby-identifier">types</span> = <span class="ruby-identifier">proto_vals</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;,&quot;</span>)
+                  <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'icmp_type'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">types</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">strip</span>)
+                  <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'icmp_code'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">types</span>[<span class="ruby-value">2</span>].<span class="ruby-identifier">strip</span>)
+                  
+              <span class="ruby-keyword kw">else</span>
+                  <span class="ruby-identifier">types</span> =<span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'icmp_combo'</span>).<span class="ruby-identifier">getAllContents</span>
+                 <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">types</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">proto_vals</span>[<span class="ruby-value">1</span>])
+                     <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'icmp_combo'</span>).<span class="ruby-identifier">select</span>(<span class="ruby-identifier">proto_vals</span>[<span class="ruby-value">1</span>])
+                 <span class="ruby-keyword kw">else</span>
+                    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:debug</span>, <span class="ruby-value str">'qos_add_rule'</span>, <span class="ruby-value str">&quot;icmp message type &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">proto_vals</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">+</span> <span class="ruby-value str">&quot; not found&quot;</span>)
+                    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:error</span>, <span class="ruby-value str">'qos_add_rule'</span>, <span class="ruby-value str">&quot;icmp message type &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">proto_vals</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">+</span> <span class="ruby-value str">&quot; not found&quot;</span>)
+  
+                 <span class="ruby-keyword kw">end</span>
+              
+              <span class="ruby-keyword kw">end</span>
+          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>
+          <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end icmp</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">proto_vals</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-value str">'GRE'</span>)
+              <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'svc_entry_protocol'</span>).<span class="ruby-identifier">select</span>(<span class="ruby-value str">'GRE'</span>)
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">proto_vals</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-value str">'~'</span>)
+                     <span class="ruby-comment cmt"># icmp is excluded</span>
+                     <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">label</span>(<span class="ruby-identifier">:for</span>,<span class="ruby-value str">'svc_entry_protocol_exclude_'</span>).<span class="ruby-identifier">click</span>
+              <span class="ruby-keyword kw">end</span>
+              <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">proto_vals</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-value str">'ESP'</span>)
+              <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'svc_entry_protocol'</span>).<span class="ruby-identifier">select</span>(<span class="ruby-value str">'ESP'</span>)
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">proto_vals</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-value str">'~'</span>)
+                     <span class="ruby-comment cmt"># icmp is excluded</span>
+                     <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">label</span>(<span class="ruby-identifier">:for</span>,<span class="ruby-value str">'svc_entry_protocol_exclude_'</span>).<span class="ruby-identifier">click</span>
+              <span class="ruby-keyword kw">end</span>
+              <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">proto_vals</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-value str">'AH'</span>)
+              <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'svc_entry_protocol'</span>).<span class="ruby-identifier">select</span>(<span class="ruby-value str">'AH'</span>)
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">proto_vals</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-value str">'~'</span>)
+                     <span class="ruby-comment cmt"># icmp is excluded</span>
+                     <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">label</span>(<span class="ruby-identifier">:for</span>,<span class="ruby-value str">'svc_entry_protocol_exclude_'</span>).<span class="ruby-identifier">click</span>
+              <span class="ruby-keyword kw">end</span>
+              <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">proto_vals</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-value str">'Other'</span>)
+              <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'svc_entry_protocol'</span>).<span class="ruby-identifier">select</span>(<span class="ruby-value str">'Other'</span>)
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">proto_vals</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-value str">'~'</span>)
+                     <span class="ruby-comment cmt"># icmp is excluded</span>
+                     <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">label</span>(<span class="ruby-identifier">:for</span>,<span class="ruby-value str">'svc_entry_protocol_exclude_'</span>).<span class="ruby-identifier">click</span>
+              <span class="ruby-keyword kw">end</span>
+              <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'svc_entry_protocol_num'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">proto_vals</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">strip</span>)
+              <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>
+          <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

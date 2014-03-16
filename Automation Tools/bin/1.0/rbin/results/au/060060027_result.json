@@ -1,0 +1,24 @@
+{
+  "9999_logout": {
+    "Info": {
+      "logout": "success",
+      "main": "Reached main page"
+    }
+  },
+  "0000_login": {
+    "Info": {
+      "main": "Reached main page"
+    }
+  },
+  "0027_AU": {
+    "Info": {
+      "Goto Advanced": "Reached the main 'Advanced' page",
+      "Add new user": "Succeeded",
+      "Permissions": "Limited",
+      "username": "qa27",
+      "fullname": "shqa",
+      "Password": "123qwe",
+      "Users": "Reached page 'Users'."
+    }
+  }
+}

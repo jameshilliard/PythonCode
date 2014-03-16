@@ -1,0 +1,271 @@
+<ConfigurationFile>
+  <Version>2.1</Version>
+  <ChassisConfig>
+    <ChassisName>192.168.10.99<Card>Card 1<Port>192.168.10.99_card1_port3<CardID>1</CardID>
+          <CardModel>Legacy</CardModel>
+          <PowerCapability>Low</PowerCapability>
+          <PortID>3</PortID>
+          <BindStatus>True</BindStatus>
+          <PortName>192.168.10.99_card1_port3</PortName>
+          <PortType>8023</PortType>
+          <EthernetSpeed>1000</EthernetSpeed>
+          <Duplex>full</Duplex>
+          <Autonegotiation>on</Autonegotiation>
+          <Band />
+          <Channel />
+          <SecondaryChannelPlacement>defer</SecondaryChannelPlacement>
+          <EnableRxAttenuation>on</EnableRxAttenuation>
+          <HighPerformance>on</HighPerformance>
+          <hiddenSSIDs>[]</hiddenSSIDs>
+          <CardMode>TGA</CardMode>
+          <PartCode>100110</PartCode>
+          <DownloadHWLog>on</DownloadHWLog>
+        </Port>
+      </Card><Card>Card 2<Port>192.168.10.99_card2_port1<CardID>2</CardID>
+          <CardModel>Legacy</CardModel>
+          <PowerCapability>Low</PowerCapability>
+          <PortID>1</PortID>
+          <BindStatus>True</BindStatus>
+          <PortName>192.168.10.99_card2_port1</PortName>
+          <PortType>80211</PortType>
+          <Band />
+          <Channel>6</Channel>
+          <SecondaryChannelPlacement>defer</SecondaryChannelPlacement>
+          <EnableRxAttenuation>on</EnableRxAttenuation>
+          <HighPerformance>on</HighPerformance>
+          <hiddenSSIDs>[]</hiddenSSIDs>
+          <CardMode>TGA</CardMode>
+          <PartCode>100210</PartCode>
+          <DownloadHWLog>on</DownloadHWLog>
+        </Port>
+      </Card>
+    </ChassisName>
+  </ChassisConfig><BlogConfig>
+    <PortName>192.168.10.99_card2_port1<BlogMode>False</BlogMode>
+      <BlogBinSetUpConfig>
+        <Band_1>
+          <BinHigh>614</BinHigh>
+          <BinLow>40</BinLow>
+          <BinStrikeProbability>25</BinStrikeProbability>
+        </Band_1><Band_2>
+          <BinHigh>1189</BinHigh>
+          <BinLow>615</BinLow>
+          <BinStrikeProbability>25</BinStrikeProbability>
+        </Band_2><Band_3>
+          <BinHigh>1764</BinHigh>
+          <BinLow>1190</BinLow>
+          <BinStrikeProbability>25</BinStrikeProbability>
+        </Band_3><Band_4>
+          <BinHigh>2340</BinHigh>
+          <BinLow>1765</BinLow>
+          <BinStrikeProbability>25</BinStrikeProbability>
+        </Band_4>
+      </BlogBinSetUpConfig>
+    </PortName>
+  </BlogConfig><PortPropertiesConfig>
+    <PortName>192.168.10.99_card2_port1<BssidSsidPair>
+        <Bssid>00:1f:90:f4:94:8c</Bssid>
+        <Ssid>verizontest</Ssid>
+      </BssidSsidPair>
+    </PortName>
+  </PortPropertiesConfig><ClientProfileConfig>
+    <ClientGroupName>
+      <Enable>True</Enable>
+      <Name>wireless_group</Name>
+      <GratuitousArp>False</GratuitousArp>
+      <BehindNAT>False</BehindNAT>
+      <Dhcp>Enable</Dhcp>
+      <NumClients>1</NumClients>
+      <Interface>802.11 a/b/g</Interface>
+      <CtsToSelf>off</CtsToSelf>
+      <PortName>192.168.10.99_card2_port1</PortName>
+      <Ssid>verizontest</Ssid>
+      <Bssid>00:1f:90:f4:94:8c</Bssid>
+      <TrafficClass>Voice</TrafficClass>
+      <NodeId>wireless_group</NodeId>
+      <Hops>1</Hops>
+      <Ipv4>
+        <SubnetMask>255.255.255.0</SubnetMask>
+        <BaseIp>192.168.10.220</BaseIp>
+        <IncrIp>0.0.0.1</IncrIp>
+        <Gateway>192.168.10.1</Gateway>
+      </Ipv4><Mac>
+        <MacAddressMode>Auto</MacAddressMode>
+        <MacAddress />
+        <MacAddressIncr>Default</MacAddressIncr>
+      </Mac><Performance>
+        <phyInterface>802.11ag</phyInterface>
+        <DataPhyRate>54</DataPhyRate>
+        <MgmtPhyRate>6</MgmtPhyRate>
+        <nPhySettings />
+        <TxPower>-6</TxPower>
+        <AssocProbe>Unicast</AssocProbe>
+        <VlanEnable>False</VlanEnable>
+        <VlanUserPriority>0</VlanUserPriority>
+        <VlanCfi>False</VlanCfi>
+        <VlanId>0</VlanId>
+        <ProactiveKeyCaching>False</ProactiveKeyCaching>
+        <Wlan80211eQoSEnable>False</Wlan80211eQoSEnable>
+        <Wlan80211eQoSAC>AC_BE/Best Effort</Wlan80211eQoSAC>
+        <KeepAlive>False</KeepAlive>
+        <KeepAliveRate>10</KeepAliveRate>
+      </Performance><Security>
+        <AnonymousIdentity>anonymous</AnonymousIdentity>
+        <ApAuthMethod>Open</ApAuthMethod>
+        <ClientCertificate />
+        <EnableValidateCertificate>off</EnableValidateCertificate>
+        <EncryptionMethod>None</EncryptionMethod>
+        <EthNetworkAuthMethod>None</EthNetworkAuthMethod>
+        <Identity>anonymous</Identity>
+        <KeyId>1</KeyId>
+        <KeyType>ascii</KeyType>
+        <KeyWidth />
+        <LoginFile />
+        <LoginMethod>Single</LoginMethod>
+        <Method>None</Method>
+        <NetworkAuthMethod>None</NetworkAuthMethod>
+        <NetworkKey />
+        <Password>whatever</Password>
+        <PrivateKeyFile />
+        <RootCertificate />
+        <StartIndex>1</StartIndex>
+      </Security>
+    </ClientGroupName><ClientGroupName>
+      <Enable>True</Enable>
+      <Name>ether_group</Name>
+      <GratuitousArp>False</GratuitousArp>
+      <BehindNAT>False</BehindNAT>
+      <Dhcp>Enable</Dhcp>
+      <NumClients>1</NumClients>
+      <Interface>802.3 Ethernet</Interface>
+      <CtsToSelf>off</CtsToSelf>
+      <PortName>192.168.10.99_card1_port3</PortName>
+      <Ssid>None</Ssid>
+      <Bssid>None</Bssid>
+      <TrafficClass>Voice</TrafficClass>
+      <NodeId>ether_group</NodeId>
+      <Hops>1</Hops>
+      <Ipv4>
+        <SubnetMask>255.255.255.0</SubnetMask>
+        <BaseIp>192.168.10.230</BaseIp>
+        <IncrIp>0.0.0.1</IncrIp>
+        <Gateway>192.168.10.1</Gateway>
+      </Ipv4><Mac>
+        <MacAddressMode>Auto</MacAddressMode>
+        <MacAddress />
+        <MacAddressIncr>Default</MacAddressIncr>
+      </Mac><Performance>
+        <phyInterface>802.11ag</phyInterface>
+        <DataPhyRate>54</DataPhyRate>
+        <MgmtPhyRate>6</MgmtPhyRate>
+        <nPhySettings />
+        <TxPower>-6</TxPower>
+        <AssocProbe>Unicast</AssocProbe>
+        <VlanEnable>False</VlanEnable>
+        <VlanUserPriority>0</VlanUserPriority>
+        <VlanCfi>False</VlanCfi>
+        <VlanId>0</VlanId>
+        <ProactiveKeyCaching>False</ProactiveKeyCaching>
+        <Wlan80211eQoSEnable>False</Wlan80211eQoSEnable>
+        <Wlan80211eQoSAC>AC_BE/Best Effort</Wlan80211eQoSAC>
+        <KeepAlive>False</KeepAlive>
+        <KeepAliveRate>10</KeepAliveRate>
+      </Performance><Security>
+        <AnonymousIdentity>anonymous</AnonymousIdentity>
+        <ApAuthMethod>Open</ApAuthMethod>
+        <ClientCertificate />
+        <EnableValidateCertificate>on</EnableValidateCertificate>
+        <EncryptionMethod>None</EncryptionMethod>
+        <EthNetworkAuthMethod>None</EthNetworkAuthMethod>
+        <Identity>anonymous</Identity>
+        <KeyId>1</KeyId>
+        <KeyType>ascii</KeyType>
+        <KeyWidth />
+        <LoginFile />
+        <LoginMethod>Single</LoginMethod>
+        <Method />
+        <NetworkAuthMethod>None</NetworkAuthMethod>
+        <NetworkKey />
+        <Password>whatever</Password>
+        <PrivateKeyFile />
+        <RootCertificate />
+        <StartIndex>1</StartIndex>
+      </Security>
+    </ClientGroupName>
+  </ClientProfileConfig><Traffics>
+    <TrafficType>Udp</TrafficType>
+    <Udp>
+      <SourcePort>8000</SourcePort>
+      <DestinationPort>69</DestinationPort>
+    </Udp><Payload>
+      <Content>All Zeros</Content>
+      <PayloadData />
+      <UserPattern>repeating</UserPattern>
+    </Payload>
+  </Traffics><TestConfig>Benchmarking<LogsAndResultsInfo>
+      <db />
+      <dbname />
+      <dbpassword />
+      <dbserverip />
+      <dbtype />
+      <dbusername />
+      <GeneratePCAPlog />
+      <GeneratePdfReport>True</GeneratePdfReport>
+      <LogsDir>/home/autolab1/vwautomate/automation/bin/./../results/20090224-140533/unicast_packet_loss</LogsDir>
+      <pf>True</pf>
+      <testcasedescription />
+      <testcasename />
+      <TestNameDir>False</TestNameDir>
+      <TimeStampDir>False</TimeStampDir>
+    </LogsAndResultsInfo><Learning>
+      <AgingTime>5</AgingTime>
+      <ArpNumRetries>2</ArpNumRetries>
+      <ArpRate>100</ArpRate>
+      <ArpTimeout>5</ArpTimeout>
+      <ClientLearningTime>0</ClientLearningTime>
+      <FlowLearningTime>2</FlowLearningTime>
+    </Learning><TestParameters>
+      <ClientContention>0</ClientContention>
+      <LossTolerance>0.0</LossTolerance>
+      <NumTrials>1</NumTrials>
+      <RandomSeed>1143144062</RandomSeed>
+      <SettleTime>2</SettleTime>
+      <TestDurationHr>0</TestDurationHr>
+      <TestDurationMin>0</TestDurationMin>
+      <TestDurationSec>30</TestDurationSec>
+      <TrialDuration>10</TrialDuration>
+    </TestParameters><DutInfo>
+      <APModel>generic unspecified</APModel>
+      <APSWVersion>Unspecified</APSWVersion>
+      <WLANSwitchModel>Unspecified</WLANSwitchModel>
+      <WLANSwitchSWVersion>Unspecified</WLANSwitchSWVersion>
+    </DutInfo><Connection>
+      <AssocRate>2</AssocRate>
+      <AssocTimeout>20</AssocTimeout>
+      <ConnectionType>Aggregate</ConnectionType>
+    </Connection><Test>unicast_packet_loss<Frame>Standard</Frame>
+      <FrameSizeList>[1023]</FrameSizeList>
+      <ILoadList>[128.0]</ILoadList>
+      <ILoadMode>Custom</ILoadMode>
+      <AcceptableFrameLossRate>5</AcceptableFrameLossRate>
+      <MediumCapacity>
+        <Mode>'Auto'</Mode>
+      </MediumCapacity><FrameType>80211</FrameType>
+    </Test>
+  </TestConfig><MapConfig>
+    <SourceDestinationInfo>
+      <MappingOptions>1</MappingOptions>
+      <Source>['wireless_group']</Source>
+      <Destination>['ether_group']</Destination>
+      <MappingType>One To One</MappingType>
+      <FlowDirection>Unidirectional</FlowDirection>
+      <FlowOptions>
+        <PhyRate>54</PhyRate>
+        <Type>UDP</Type>
+        <SourcePort>8000</SourcePort>
+        <DestinationPort>69</DestinationPort>
+      </FlowOptions><ConnectMode>infrastructure</ConnectMode>
+      <Force1to1>0</Force1to1>
+    </SourceDestinationInfo>
+  </MapConfig>
+</ConfigurationFile>

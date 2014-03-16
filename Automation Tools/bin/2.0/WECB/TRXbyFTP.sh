@@ -1,0 +1,1 @@
+../common/TRXbyFTP.sh

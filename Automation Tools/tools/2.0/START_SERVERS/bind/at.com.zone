@@ -1,0 +1,14 @@
+$TTL 1D
+@	IN SOA	ns.at.com. root.at.com. (
+					0	; serial
+					1D	; refresh
+					1H	; retry
+					1W	; expire
+					3H )	; minimum
+
+@ IN NS ns.at.com.
+
+ns IN A 192.168.55.254
+www IN CNAME ns
+ftp IN CNAME ns
+ntp IN CNAME ns
