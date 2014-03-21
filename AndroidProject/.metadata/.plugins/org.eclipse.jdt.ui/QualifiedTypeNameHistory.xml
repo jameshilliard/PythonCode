@@ -4,4 +4,11 @@
 <fullyQualifiedTypeName name="android.graphics.Color"/>
 <fullyQualifiedTypeName name="com.marschen.s01_e05_view.R.id"/>
 <fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
+<fullyQualifiedTypeName name="com.marschen.s01_e09_checkbox.MainActivity.OnBoxClickListener"/>
+<fullyQualifiedTypeName name="android.widget.CheckBox"/>
+<fullyQualifiedTypeName name="android.widget.CompoundButton.OnCheckedChangeListener"/>
+<fullyQualifiedTypeName name="com.marschen.s01_e09_checkbox.MainActivity.CheckBoxListener"/>
+<fullyQualifiedTypeName name="com.marschen.s01_e09_checkbox.R.id"/>
+<fullyQualifiedTypeName name="java.util.zip.CheckedInputStream"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
 </qualifiedTypeNameHistroy>

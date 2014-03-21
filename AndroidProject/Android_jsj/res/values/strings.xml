@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TaxiPriceCaculator2</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello</string>
+    <string name="label_mileage">"Miles:"</string>
+	<string name="label_mileage_unit">Km</string>
+	<string name="label_price">"Price:"</string>
+	<string name="label_price_unit">RMB</string>
+	<string name="night_mode">"During 23:00–05:00"</string>
+	<string name="intrduction_title">"上海出租车价格计算方法："</string>
+	<string name="intrduction">"一般状况：车价=起步价【14元】+(里程数 - 起步里程数【3公里】)*每公里单价【2.4元】 (里程数大于3小于10) \n 车价=起步价【14元】 (里程数小于3) \n远程状况：车价=起步价【14元】+(远程里程标准【10公里】 - 起步里程数【3公里】)*每公里单价 + (里程数 - 远程里程标准【10】) *远程每公里单价【3.6元】 (里程数大于10)\n提醒：在5:00---23:00期间，起步费14元(包括一元的燃油费)，可运营3公里，超过3公里后每公里2.40元，总里程超过10公里后超过部分按每公里3.60元计算。 \n在23:00---到次日5:00期间，起步费18元(包括一元的燃油费)，可运营3公里，超过3公里后每公里3.10元，总里程超过10公里后超过部分按每公里4.70元计算。"</string>
+</resources>

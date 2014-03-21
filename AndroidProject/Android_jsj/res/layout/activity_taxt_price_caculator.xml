@@ -1,0 +1,82 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".TaxtPriceCaculator" >
+    <LinearLayout
+        android:id="@+id/group_mileage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        <TextView
+	        android:id="@+id/mileage"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/label_mileage" />
+	
+	    <EditText
+	        android:id="@+id/mileage_input"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:inputType="number"
+	        android:ems="6" 
+	        android:singleLine="true"/>
+	    <TextView
+	        android:id="@+id/mileage_unit"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/label_mileage_unit" />
+    </LinearLayout>
+    
+	<LinearLayout
+        android:id="@+id/group_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/group_mileage" > 
+        <TextView
+	        android:id="@+id/price"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/label_price" />
+	
+	    <Button
+	        android:id="@+id/price_display"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:ems="6" />
+	    <TextView
+	        android:id="@+id/price_unit"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/label_price_unit" />
+    </LinearLayout>
+
+	<Switch
+	    android:id="@+id/switch_day_night_modes"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentRight="true"
+	    android:layout_below="@+id/group_price"
+	    android:text="@string/night_mode"
+	    android:layout_marginBottom="20dip" />
+	
+	<TextView
+	        android:id="@+id/info_title"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/intrduction_title"
+	        android:layout_below="@+id/switch_day_night_modes"/>
+	<TextView
+	        android:id="@+id/info"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/intrduction"
+	        android:layout_below="@+id/info_title"
+	        android:maxLines="10"
+	        android:scrollbars="vertical"/>
+</RelativeLayout>
