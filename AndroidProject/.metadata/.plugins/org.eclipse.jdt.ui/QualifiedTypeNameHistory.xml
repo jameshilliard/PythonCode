@@ -6,9 +6,18 @@
 <fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
 <fullyQualifiedTypeName name="com.marschen.s01_e09_checkbox.MainActivity.OnBoxClickListener"/>
 <fullyQualifiedTypeName name="android.widget.CheckBox"/>
-<fullyQualifiedTypeName name="android.widget.CompoundButton.OnCheckedChangeListener"/>
 <fullyQualifiedTypeName name="com.marschen.s01_e09_checkbox.MainActivity.CheckBoxListener"/>
 <fullyQualifiedTypeName name="com.marschen.s01_e09_checkbox.R.id"/>
 <fullyQualifiedTypeName name="java.util.zip.CheckedInputStream"/>
+<fullyQualifiedTypeName name="com.example.se01_10_radio.R.id"/>
+<fullyQualifiedTypeName name="android.widget.RadioGroup.OnCheckedChangeListener"/>
+<fullyQualifiedTypeName name="android.widget.RadioGroup"/>
+<fullyQualifiedTypeName name="android.widget.CompoundButton.OnCheckedChangeListener"/>
+<fullyQualifiedTypeName name="com.example.se01_10_radio.MainActivity.RadioButtonListener"/>
+<fullyQualifiedTypeName name="android.widget.RadioButton"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="android.widget.ImageView"/>
+<fullyQualifiedTypeName name="com.marschen.s01_e11_imageview.R.id"/>
+<fullyQualifiedTypeName name="com.marschen.s01_e11_imageview.R.drawable"/>
+<fullyQualifiedTypeName name="android.widget.ImageView.ScaleType"/>
 </qualifiedTypeNameHistroy>
