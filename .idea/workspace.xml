@@ -2,36 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ef9862c3-926b-459f-a303-b72ec3dc8529" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Selenium2PythonAutomationProjectPractice/chapter3/sector1: operate browser/forwardbackbrowser.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Selenium2PythonAutomationProjectPractice/chapter3/sector1: operate browser/operatebrowser.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Selenium2PythonAutomationProjectPractice/chapter3/sector1: operate browser/setsizebrowser.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Selnium2.0Webdriver/.idea/.name" afterPath="$PROJECT_DIR$/Selenium2PythonAutomationProjectPractice/.idea/.name" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Selnium2.0Webdriver/.idea/SeleniumWebdriver.iml" afterPath="$PROJECT_DIR$/Selenium2PythonAutomationProjectPractice/.idea/SeleniumWebdriver.iml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Selnium2.0Webdriver/.idea/encodings.xml" afterPath="$PROJECT_DIR$/Selenium2PythonAutomationProjectPractice/.idea/encodings.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Selnium2.0Webdriver/.idea/misc.xml" afterPath="$PROJECT_DIR$/Selenium2PythonAutomationProjectPractice/.idea/misc.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Selnium2.0Webdriver/.idea/modules.xml" afterPath="$PROJECT_DIR$/Selenium2PythonAutomationProjectPractice/.idea/modules.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Selnium2.0Webdriver/.idea/scopes/scope_settings.xml" afterPath="$PROJECT_DIR$/Selenium2PythonAutomationProjectPractice/.idea/scopes/scope_settings.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Selnium2.0Webdriver/.idea/vcs.xml" afterPath="$PROJECT_DIR$/Selenium2PythonAutomationProjectPractice/.idea/vcs.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Selnium2.0Webdriver/.idea/workspace.xml" afterPath="$PROJECT_DIR$/Selenium2PythonAutomationProjectPractice/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Selnium2.0Webdriver/PythonTestPage2.py" afterPath="$PROJECT_DIR$/Selenium2PythonAutomationProjectPractice/PythonTestPage2.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Selnium2.0Webdriver/PythonTestPage3.py" afterPath="$PROJECT_DIR$/Selenium2PythonAutomationProjectPractice/PythonTestPage3.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Selnium2.0Webdriver/RobotFramework/var.py" afterPath="$PROJECT_DIR$/Selenium2PythonAutomationProjectPractice/RobotFramework/var.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Selnium2.0Webdriver/Test.html" afterPath="$PROJECT_DIR$/Selenium2PythonAutomationProjectPractice/Test.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Selnium2.0Webdriver/Test4.html" afterPath="$PROJECT_DIR$/Selenium2PythonAutomationProjectPractice/Test4.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Selnium2.0Webdriver/TestPage.py" afterPath="$PROJECT_DIR$/Selenium2PythonAutomationProjectPractice/TestPage.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Selnium2.0Webdriver/TestPage1.py" afterPath="$PROJECT_DIR$/Selenium2PythonAutomationProjectPractice/TestPage1.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Selnium2.0Webdriver/TestPage4.py" afterPath="$PROJECT_DIR$/Selenium2PythonAutomationProjectPractice/TestPage4.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Selnium2.0Webdriver/TestPage5.py" afterPath="$PROJECT_DIR$/Selenium2PythonAutomationProjectPractice/TestPage5.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Selnium2.0Webdriver/TestPage6.py" afterPath="$PROJECT_DIR$/Selenium2PythonAutomationProjectPractice/TestPage6.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Selnium2.0Webdriver/TestPage7.py" afterPath="$PROJECT_DIR$/Selenium2PythonAutomationProjectPractice/TestPage7.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Selnium2.0Webdriver/TestPage8.py" afterPath="$PROJECT_DIR$/Selenium2PythonAutomationProjectPractice/TestPage8.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Selnium2.0Webdriver/frame.html" afterPath="$PROJECT_DIR$/Selenium2PythonAutomationProjectPractice/frame.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Selnium2.0Webdriver/inner.html" afterPath="$PROJECT_DIR$/Selenium2PythonAutomationProjectPractice/inner.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Selnium2.0Webdriver/js.html" afterPath="$PROJECT_DIR$/Selenium2PythonAutomationProjectPractice/js.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Selnium2.0Webdriver/unitestbaidu.py" afterPath="$PROJECT_DIR$/Selenium2PythonAutomationProjectPractice/unitestbaidu.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Selnium2.0Webdriver/unittest.py" afterPath="$PROJECT_DIR$/Selenium2PythonAutomationProjectPractice/unittest.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/PythonCode.iml" afterPath="$PROJECT_DIR$/.idea/PythonCode.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PythonCode.iws" />
@@ -92,10 +62,8 @@
       <file leaf-file-name="forwardbackbrowser.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Selenium2PythonAutomationProjectPractice/chapter3/sector1: operate browser/forwardbackbrowser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="22" selection-start="168" selection-end="168" vertical-scroll-proportion="0.38446602" vertical-offset="0" max-vertical-offset="738">
-              <folding>
-                <element signature="e#35#65#0" expanded="true" />
-              </folding>
+            <state line="3" column="30" selection-start="65" selection-end="65" vertical-scroll-proportion="0.12" vertical-offset="0" max-vertical-offset="738">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -166,42 +134,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="PythonCode" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PythonCode" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PythonCode" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Selenium2PythonAutomationProjectPractice" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PythonCode" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PythonCode" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Selenium2PythonAutomationProjectPractice" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="chapter3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sector1: operate browser" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -446,6 +378,23 @@
     </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="all">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="ef9862c3-926b-459f-a303-b72ec3dc8529" name="Default" comment="" />
@@ -456,19 +405,19 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="32" width="1280" height="962" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40864196" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.40864196" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26618123" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26618123" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32839507" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32839507" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962963" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32880098" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -527,10 +476,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Selenium2PythonAutomationProjectPractice/chapter3/sector1: operate browser/forwardbackbrowser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="22" selection-start="168" selection-end="168" vertical-scroll-proportion="0.38446602" vertical-offset="0" max-vertical-offset="738">
-          <folding>
-            <element signature="e#35#65#0" expanded="true" />
-          </folding>
+        <state line="3" column="30" selection-start="65" selection-end="65" vertical-scroll-proportion="0.12" vertical-offset="0" max-vertical-offset="738">
+          <folding />
         </state>
       </provider>
     </entry>
