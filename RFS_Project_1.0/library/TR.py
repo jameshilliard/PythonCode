@@ -16,10 +16,15 @@ class TR:
     output = None
     
     def __init__(self):
-        self.wan_ip = os.getenv('G_HOST_IP1')
+        print '='*100
+        print 'wan_ip:'
+        print self.wan_ip
         self.wan_user = os.getenv('user', 'root')
         self.wan_pwd = os.getenv('pwd', '123qaz')
         self.acs_url = os.getenv('ACS_ConnectionRequestURL')
+        print '='*100
+        print 'acs connection request url'
+        print self.acs_url
         self.acs_user = os.getenv('acs_user', 'actiontec')
         self.acs_pwd = os.getenv('acs_pwd', 'actiontec')
         self.prompt = ['\]$', '\]# ', 'Permission denied,', pexpect.EOF, pexpect.TIMEOUT]
