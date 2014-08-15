@@ -153,7 +153,7 @@ class TR:
                 print 'AT_ERROR : SPV FAIL,Find "FaultCode"!'
                 return False
             else:
-                rc = self.readfile(output, filter=r'<Status>0</Status>')
+                rc = self.readfile(output, filter=r'>0</Status>')
                 if rc:
                     print 'AT_INFO : SPV PASS PASS PASS PASS PASS!'
                     return True
