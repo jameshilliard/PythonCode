@@ -16,13 +16,12 @@ class TR:
     output = None
     
     def __init__(self):
-        print '='*100
+        self.wan_ip = os.getenv('G_HOST_IP1')
         print 'wan_ip:'
         print self.wan_ip
         self.wan_user = os.getenv('user', 'root')
         self.wan_pwd = os.getenv('pwd', '123qaz')
         self.acs_url = os.getenv('ACS_ConnectionRequestURL')
-        print '='*100
         print 'acs connection request url'
         print self.acs_url
         self.acs_user = os.getenv('acs_user', 'actiontec')
@@ -32,6 +31,7 @@ class TR:
         self.output = '/tmp/jacs_output'
     
     def do_gpv(self, *nkw):
+        self.__init__()
         print '=' * 100
         print "Begin GPV"
         print nkw
@@ -124,6 +124,7 @@ class TR:
         return rc
             
     def do_spv(self, *nkw):
+        self.__init__()
         print '=' * 100
         print "Begin SPV"
         print nkw
