@@ -6,6 +6,7 @@ Library           String
 Library           Remote
 Library           Screenshot
 Library           Dialogs
+Library           library/TR.py
 
 *** Keywords ***
 Setup_Variables
