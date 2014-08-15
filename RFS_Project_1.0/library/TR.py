@@ -16,7 +16,7 @@ class TR:
     output = None
     
     def __init__(self):
-        self.wan_ip = os.getenv('wan_mgm_ip')
+        self.wan_ip = os.getenv('G_HOST_IP1')
         self.wan_user = os.getenv('user', 'root')
         self.wan_pwd = os.getenv('pwd', '123qaz')
         self.acs_url = os.getenv('ACS_ConnectionRequestURL')
