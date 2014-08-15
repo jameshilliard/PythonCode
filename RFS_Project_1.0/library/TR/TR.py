@@ -16,10 +16,14 @@ class TR:
     output = None
     
     def __init__(self):
-        self.wan_ip = os.getenv('wan_mgm_ip')
+        self.wan_ip = os.getenv('G_HOST_IP1')
+        print 'wan_ip:'
+        print self.wan_ip
         self.wan_user = os.getenv('user', 'root')
         self.wan_pwd = os.getenv('pwd', '123qaz')
         self.acs_url = os.getenv('ACS_ConnectionRequestURL')
+        print 'acs connection request url'
+        print self.acs_url
         self.acs_user = os.getenv('acs_user', 'actiontec')
         self.acs_pwd = os.getenv('acs_pwd', 'actiontec')
         self.prompt = ['\]$', '\]# ', 'Permission denied,', pexpect.EOF, pexpect.TIMEOUT]
@@ -27,6 +31,7 @@ class TR:
         self.output = '/tmp/jacs_output'
     
     def do_gpv(self, *nkw):
+        self.__init__()
         print '=' * 100
         print "Begin GPV"
         print nkw
@@ -119,6 +124,7 @@ class TR:
         return rc
             
     def do_spv(self, *nkw):
+        self.__init__()
         print '=' * 100
         print "Begin SPV"
         print nkw
@@ -153,7 +159,7 @@ class TR:
                 print 'AT_ERROR : SPV FAIL,Find "FaultCode"!'
                 return False
             else:
-                rc = self.readfile(output, filter=r'<Status>0</Status>')
+                rc = self.readfile(output, filter=r'>0</Status>')
                 if rc:
                     print 'AT_INFO : SPV PASS PASS PASS PASS PASS!'
                     return True
