@@ -1,10 +1,10 @@
 *** Settings ***
-Suite Setup       Setup_env_variable
-Library           SSHLibrary
-Library           OperatingSystem
-Library           ../../../../../../WCB3000/Wireless/TR.py
+Suite Setup       Setup_Suite_variable
+Resource          ../../../../../Share_Resource.txt
 
 *** Variables ***
+@{U_CUSTOM_SPV_OBJECTLIST}    Device.X_ACTIONTEC_COM_RemoteLogin.Enable =1 boolean    Device.X_ACTIONTEC_COM_RemoteLogin.Port=22 unsignedInt    Device.X_ACTIONTEC_COM_RemoteLogin.Protocol=SSH string    Device.X_ACTIONTEC_COM_RemoteLogin.IdleTimeout=60 unsignedInt    Device.X_ACTIONTEC_COM_RemoteLogin.Username=admin string    Device.X_ACTIONTEC_COM_RemoteLogin.Password=1 string
+@{U_CUSTOM_GPV_OBJECTLIST}    Device.X_ACTIONTEC_COM_RemoteLogin.Enable =1    Device.X_ACTIONTEC_COM_RemoteLogin.Port=22    Device.X_ACTIONTEC_COM_RemoteLogin.Protocol=SSH    Device.X_ACTIONTEC_COM_RemoteLogin.IdleTimeout=60    Device.X_ACTIONTEC_COM_RemoteLogin.Username=admin
 ${U_CUSTOM_DUT_BR0}    192.168.1.64
 ${U_CUSTOM_SSH_USER}    admin
 ${U_CUSTOM_SSH_PASSWORD}    1
@@ -12,22 +12,22 @@ ${U_CUSTOM_SSH_PASSWORD}    1
 *** Test Cases ***
 02301376_Enable SSH via TR069
     Comment    Enable SSH
-    DoSPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable =1 boolean    Device.X_ACTIONTEC_COM_RemoteLogin.Port=22 unsignedInt    Device.X_ACTIONTEC_COM_RemoteLogin.Protocol=SSH string    Device.X_ACTIONTEC_COM_RemoteLogin.IdleTimeout=60 unsignedInt    Device.X_ACTIONTEC_COM_RemoteLogin.Username=admin string    Device.X_ACTIONTEC_COM_RemoteLogin.Password=1 string
+    SPV    @{U_CUSTOM_SPV_OBJECTLIST}
     Comment    Verify SPV Result
-    ${Check_GPV}    DoGPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable =1    Device.X_ACTIONTEC_COM_RemoteLogin.Port =22    Device.X_ACTIONTEC_COM_RemoteLogin.Protocol=SSH    Device.X_ACTIONTEC_COM_RemoteLogin.IdleTimeout=60
-    Should Be True    ${Check_GPV}
+    GPV    @{U_CUSTOM_GPV_OBJECTLIST}
     Comment    Verify SSH
-    SSHLibrary.Open Connection    ${U_CUSTOM_DUT_BR0}
-    SSHLibrary.Login    ${U_CUSTOM_SSH_USER}    ${U_CUSTOM_SSH_PASSWORD}
-    SSHLibrary.Close Connection
+    SSH_DUT    ${U_CUSTOM_DUT_BR0}    ${U_CUSTOM_SSH_USER}    ${U_CUSTOM_SSH_PASSWORD}
     [Teardown]    Check_SSH_Disabled
 
 *** Keywords ***
-Setup_Env_variable
-    Set Environment Variable    wan_mgm_ip    192.168.8.51
+Setup_Suite_variable
+    Comment    Set Env Variables
+    Set Environment Variable    G_HOST_IP1    192.168.8.51
     Set Environment Variable    ACS_ConnectionRequestURL    http://192.168.1.64:7547/
-
-Check_SSH_Disabled
-    DoSPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=0 boolean
-    ${Init_GPV}=    DoGPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=0
-    Should Be True    ${Init_GPV}
+    Comment    Set Suite Variables
+    @{U_CUSTOM_GPV_OBJECTLIST}    Set Variable    Device.X_ACTIONTEC_COM_RemoteLogin.Enable =1    Device.X_ACTIONTEC_COM_RemoteLogin.Port=22    Device.X_ACTIONTEC_COM_RemoteLogin.Protocol=SSH    Device.X_ACTIONTEC_COM_RemoteLogin.IdleTimeout=60    Device.X_ACTIONTEC_COM_RemoteLogin.Username=admin
+    @{U_CUSTOM_SPV_OBJECTLIST}    Set Variable    Device.X_ACTIONTEC_COM_RemoteLogin.Enable =1 boolean    Device.X_ACTIONTEC_COM_RemoteLogin.Port=22 unsignedInt    Device.X_ACTIONTEC_COM_RemoteLogin.Protocol=SSH string    Device.X_ACTIONTEC_COM_RemoteLogin.IdleTimeout=60 unsignedInt    Device.X_ACTIONTEC_COM_RemoteLogin.Username=admin string
+    ...    Device.X_ACTIONTEC_COM_RemoteLogin.Password=1 string
+    ${U_CUSTOM_DUT_BR0}    Set Variable    192.168.1.64
+    ${U_CUSTOM_SSH_USER}    Set Variable    admin
+    ${U_CUSTOM_SSH_PASSWORD}    Set Variable    1
