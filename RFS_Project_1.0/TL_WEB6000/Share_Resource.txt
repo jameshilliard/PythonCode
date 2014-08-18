@@ -1,0 +1,26 @@
+*** Settings ***
+Library           SSHLibrary
+Library           OperatingSystem
+Library           ../../robotframework/RFS_Project_1.0/library/TR/TR.py
+
+*** Keywords ***
+SPV
+    [Arguments]    @{SPV_arg}
+    ${Check_SPV}    DoSPV    @{SPV_arg}
+    Should Be True    ${Check_SPV}
+
+GPV
+    [Arguments]    @{GPV_arg}
+    ${Check_GPV}    DoGPV    @{GPV_arg}
+    Should Be True    ${Check_GPV}
+
+Check_SSH_Disabled
+    DoSPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=0 boolean
+    ${Init_GPV}=    DoGPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=0
+    Should Be True    ${Init_GPV}
+
+SSH_DUT
+    [Arguments]    ${ssh_address}    ${username}    ${password}
+    SSHLibrary.Open Connection    ${ssh_address}
+    SSHLibrary.Login    ${username}    ${password}
+    SSHLibrary.Close Connection
