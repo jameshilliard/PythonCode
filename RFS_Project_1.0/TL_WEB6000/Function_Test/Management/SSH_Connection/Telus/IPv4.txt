@@ -1,4 +1,5 @@
 *** Settings ***
+Resource          ../../../../Variables_ENV.txt
 Resource          ../../../../Share_Resource.txt
 
 *** Variables ***
@@ -11,7 +12,7 @@ Resource          ../../../../Share_Resource.txt
     Comment    Verify SPV Result
     GPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable =1    Device.X_ACTIONTEC_COM_RemoteLogin.Port=22    Device.X_ACTIONTEC_COM_RemoteLogin.Protocol=SSH    Device.X_ACTIONTEC_COM_RemoteLogin.IdleTimeout=60    Device.X_ACTIONTEC_COM_RemoteLogin.Username=admin
     Comment    Verify SSH
-    SSH_DUT    %{U_CUSTOM_DUT_BR0}    %{U_CUSTOM_SSH_USER}    %{U_CUSTOM_SSH_PASSWORD}
+    SSH_DUT    ${U_CUSTOM_DUT_BR0}    ${U_CUSTOM_SSH_USER}    ${U_CUSTOM_SSH_PASSWORD}
     [Teardown]    Check_SSH_Disabled
 
 *** Keywords ***

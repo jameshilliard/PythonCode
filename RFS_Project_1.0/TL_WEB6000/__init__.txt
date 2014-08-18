@@ -7,6 +7,3 @@ Setup_Suite_variable
     Comment    Set Env Variables
     Set Environment Variable    G_HOST_IP1    192.168.8.51
     Set Environment Variable    ACS_ConnectionRequestURL    http://192.168.1.64:7547/
-    Set Environment Variable    U_CUSTOM_DUT_BR0    192.168.1.64
-    Set Environment Variable    U_CUSTOM_SSH_USER    admin
-    Set Environment Variable    U_CUSTOM_SSH_PASSWORD    1
