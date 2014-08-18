@@ -7,5 +7,3 @@ Library           Screenshot
 Library           library/TR/TR.py
 
 *** Keywords ***
-Setup_Variables
-    Set Environment Variable    G_HOST_IP1    192.168.8.21
