@@ -24,3 +24,9 @@ SSH_DUT
     SSHLibrary.Open Connection    ${ssh_address}
     SSHLibrary.Login    ${username}    ${password}
     SSHLibrary.Close Connection
+
+PingTest
+    [Arguments]    ${destIP}    ${count}    ${interface}
+    Set Environment Variable    G_CURRENTLOG    /tmp/
+    ${PingResult}=    Run    Pingtest.sh -d ${destIP} -c ${count} -i ${interface}
+    Should Not Contain    ${PingResult}    failed

@@ -5,7 +5,7 @@ Resource          ../../../../Share_Resource.txt
 *** Variables ***
 
 *** Test Cases ***
-02301376_Enable SSH via TR069
+RFW-T6000-9532:02301376_Enable SSH via TR069
     Comment    Setup_Suite_variable
     Comment    Enable SSH
     SPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable =1 boolean    Device.X_ACTIONTEC_COM_RemoteLogin.Port=22 unsignedInt    Device.X_ACTIONTEC_COM_RemoteLogin.Protocol=SSH string    Device.X_ACTIONTEC_COM_RemoteLogin.IdleTimeout=60 unsignedInt    Device.X_ACTIONTEC_COM_RemoteLogin.Username=admin string    Device.X_ACTIONTEC_COM_RemoteLogin.Password=1 string
