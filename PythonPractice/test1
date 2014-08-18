@@ -1,0 +1,41 @@
+while 1:
+    num = raw_input('Enter the money:')
+    if float(num)<1:
+        try:
+            num = float(num)*100
+            print num
+            #num = int(num)
+            #print num
+            if num%1==0:
+                num=int(num)
+            else:
+                print num%1
+                print "Enter error!!!"
+                break
+
+
+        except Exception, e:
+            print e
+            break
+
+        if num / 25 > 0:
+            print str(num / 25) + ' 25 cent'
+            num = num % 25
+
+        if num / 10 > 0:
+            print str(num / 10) + ' 10 cent'
+            num = num % 10
+
+        if num / 5 > 0:
+            print str(num / 5) + ' 5 cent'
+            num = num % 5
+
+        if num / 2 > 0:
+            print str(num / 2) + ' 2 cent'
+            num = num % 2
+
+        if num / 1 == 1:
+            print str(1) + ' 1 cent'
+        break
+    else:
+         print "Please enter the float less than 1!!!"
