@@ -3,9 +3,7 @@ Library           OperatingSystem
 Library           Telnet
 Library           Collections
 Library           String
-Library           Remote
 Library           Screenshot
-Library           Dialogs
 Library           library/TR/TR.py
 
 *** Keywords ***
