@@ -27,17 +27,16 @@ SSH_DUT
 
 PingTest
     [Arguments]    ${destIP}    ${count}    ${interface}
-    [Documentation]    Use AT Pingtest tool, and return value should not contain failed, otherwise this keyword will fail
-    ...
+    [Documentation]    Use Linux ping command return value should be "0", and output should not contain "100% packet loss"
     ...    Arguments: ${destIP} | ${count} | ${interface}
     ...
     ...    Usage:
     ...    PingTest | 192.168.1.254 | 4 | eth2
     ...
     ...    Arguments can be a real value or variable defined in Variables list.
-    Set Environment Variable    G_CURRENTLOG    /tmp/
-    ${PingResult}=    Run    Pingtest.sh -d ${destIP} -c ${count} -i ${interface}
-    Should Not Contain    ${PingResult}    failed
+    ${rc}    ${PingResult}    Run And Return Rc And Output    ping ${destIP} -c ${count} -I ${interface}
+    Should Be Equal As Numbers    ${rc}    0
+    Should Not Contain    ${PingResult}    , 100% packet loss
 
 GetIP
     [Arguments]    ${interface}
