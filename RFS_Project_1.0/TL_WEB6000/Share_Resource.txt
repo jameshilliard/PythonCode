@@ -27,6 +27,35 @@ SSH_DUT
 
 PingTest
     [Arguments]    ${destIP}    ${count}    ${interface}
+    [Documentation]    Use AT Pingtest tool, and return value should not contain failed, otherwise this keyword will fail
+    ...
+    ...    Arguments: ${destIP} | ${count} | ${interface}
+    ...
+    ...    Usage:
+    ...    PingTest | 192.168.1.254 | 4 | eth2
+    ...
+    ...    Arguments can be a real value or variable defined in Variables list.
     Set Environment Variable    G_CURRENTLOG    /tmp/
     ${PingResult}=    Run    Pingtest.sh -d ${destIP} -c ${count} -i ${interface}
     Should Not Contain    ${PingResult}    failed
+
+GetIP
+    [Arguments]    ${interface}
+    [Documentation]    Use dhclient get IP address on identify interface, and return value should contain 'renewal', otherwise the keyword will not pass.
+    ...
+    ...    Example:
+    ...
+    ...    GetIP | ${U_CUSTOM_IF1}
+    Run    dhclient -r ${interface}
+    ${GetIP_Result}    Run    dhclient -v ${interface}
+    Should contain    ${GetIP_Result}    renewal
+
+Release_IP
+    [Arguments]    ${interface}
+    [Documentation]    Release the IP by dhclient
+    ...
+    ...    Arguments: ${interface}
+    ...
+    ...    Example:
+    ...    Release_IP | ${U_CUSTOM_IF1}
+    Run    dhclient -r ${interface}

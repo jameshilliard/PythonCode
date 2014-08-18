@@ -4,5 +4,6 @@ Resource          ../../../../../Share_Resource.txt
 
 *** Test Cases ***
 RFW-T6000-9425:02300285_ICMP Traffic
-    Comment    GetIP    ${U_CUSTOM_IF1}
-    PingTest    192.168.1.99    4    ${U_CUSTOM_IF1}
+    GetIP    ${U_CUSTOM_IF1}
+    PingTest    192.168.55.254    4    ${U_CUSTOM_IF1}
+    [Teardown]    Release_IP    ${U_CUSTOM_IF1}
