@@ -80,6 +80,7 @@ ConfigIP
 
 Capture packets on LAN
     [Arguments]    ${interface}
-    Start Capture On Lan    interface={$interface}    output=/tmp/test1.pcap
+    Start Capture On Lan    interface=${interface}    output=/tmp/test1.pcap    filter=Beacon
     Parse Packets    \    raw=/tmp/test1.pcap    output=/tmp/filter.log
-    Stop Capture On Lan    output=/tmp/test1.pcap
+    sleep    10
+    Stop Capture On Lan    raw=/tmp/test1.pcap

@@ -4,3 +4,4 @@ Resource          ../../../../Share_Resource.txt
 
 *** Test Cases ***
 RFW-T6000-10566:Disable Wireless Radio
+    Capture packets on LAN    wlan4
