@@ -1,22 +1,20 @@
 *** Settings ***
-Suite Setup       Disable_GW_Radio    ${U_UPGW_BSSID}
-Suite Teardown    Enable_GW_Radio    ${U_UPGW_BSSID}
 Resource          ../../../../Variables_ENV.txt
 Resource          ../../../../Share_Resource.txt
 
 *** Test Cases ***
 RFW-T6000-10566:Disable Wireless Radio
-    [Setup]    Setup_EnableSSH
     Comment    Check DUT Wifi Radio ON and Beacon
-    GPV    # DUT wifi Radio=1
-    Capture Beacon    # filter rule
+    GPV    Device.WiFi.Radio.1.Enable=1
+    Capture Beacon    wlan.bssid == 00:18:01:00:7b:ab    \    # filter rule is DUT's BSSID
     Comment    Disable DUT Wifi Radio
-    SPV    # DUT Wifi Radio=0
-    GPV    # DUT Wifi Radio=0
-    Check WiFi Radio_Function
-    Check WiFi Radio_GUI
+    SPV    Device.WiFi.Radio.1.Enable=0 boolean
+    GPV    Device.WiFi.Radio.1.Enable=0
+    Capture Beacon    wlan.bssid == 00:18:01:00:7b:ab    negtive
+    Check WiFi Radio_GUI    ${U_CUSTOM_DUT_BR0}    ${U_LOGIN_USER}    ${U_LOGIN_PASSWORD}    2.4GHz    off
     Comment    Jacs Reboot DUT
     SPV    # Reboot object
+    Sleep    80
     Comment    Retest
-    Check WiFi Radio_Function
-    Check WiFi Radio_GUI
+    Capture Beacon    wlan.bssid == 00:18:01:00:7b:ab    negtive
+    Check WiFi Radio_GUI    ${U_CUSTOM_DUT_BR0}    ${U_LOGIN_USER}    ${U_LOGIN_PASSWORD}    2.4GHz    off

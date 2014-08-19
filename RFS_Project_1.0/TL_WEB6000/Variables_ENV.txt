@@ -1,8 +1,9 @@
 *** Settings ***
 
 *** Variables ***
-${U_CUSTOM_DUT_BR0}    192.168.1.64
+${U_CUSTOM_DUT_BR0}    192.168.1.65
 ${U_CUSTOM_SSH_USER}    admin
 ${U_CUSTOM_SSH_PASSWORD}    1
 ${U_CUSTOM_IF1}    eth2
-${U_UPGW_BSSID}    00:18:01:00:e3:d5
+${U_LOGIN_USER}    root
+${U_LOGIN_PASSWORD}    .pqNSJ
