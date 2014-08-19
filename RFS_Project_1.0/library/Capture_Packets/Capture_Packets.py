@@ -2,68 +2,83 @@ import os
 import sys
 import re
 import time
-
+import subprocess
+import datetime
 class Capture_Packets():
     
+    def ExcuteCMD(self, cmd):
+        "Excute shell command ,return code and output"
+        cmd = cmd
+        # print cmd
+        rc = 1
+        content = ""
+        # print (datetime.datetime.now())
+        p = subprocess.Popen(cmd, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        p.wait()
+        rc = p.returncode
+        content = p.stdout.read().strip()
+        if content:
+            print ">>>" + content + "<<<"
+        
+        if p.returncode == 0:
+            # print 'AT_INFO : "' + cmd + '" Excute SUCESS!'
+            rc = True
+        else:
+            print 'AT_WARNING : "' + cmd + '" Excute FAIL!'
+            rc = False
+        p.stdout.close()
+        return rc, content
+
     def Get_Wlan_Card_Name(self):
         cmd = 'ifconfig -a |grep -o "^ *wlan[0-9][0-9]* *"|awk ' + "'{print $1}'"
-        f = os.popen(cmd)
-        data = f.readline().strip()
-        if not data:
+        rc, result = self.ExcuteCMD(cmd)
+        if rc:
+            data = result.strip()
+        else:
             data = None
-        f.close()
-        print data
         return data
     
-    def Excute_CMD(self, cmd):
-        print cmd
-        rc = os.system(cmd)
-        if str(rc) == str(0):
-            return True
-        else:
-            return False
         
     def Up_Monitor_Interface(self):
         wlan = self.Get_Wlan_Card_Name()
         mon = 'mon_' + str(wlan)
         if wlan:
             
-            if self.Excute_CMD(cmd='ifconfig |grep "^ *' + wlan + '"'):
+            if self.ExcuteCMD(cmd='ifconfig |grep "^ *' + wlan + '"')[0]:
                 pass
             else:
-                if self.Excute_CMD(cmd='ifconfig ' + wlan + ' up'):
+                if self.ExcuteCMD(cmd='ifconfig ' + wlan + ' up')[0]:
                     pass
                 else:
                     print 'AT_ERROR : ' + 'ifconfig ' + wlan + ' up' + ' FAIL FAIL!'
                     return False, None
                 
-            if self.Excute_CMD(cmd='ifconfig |grep ' + mon):
+            if self.ExcuteCMD(cmd='ifconfig |grep ' + mon)[0]:
                 print 'AT_INFO : Monitor Interface is already Up PASS PASS!'
                 return True, mon
-            elif self.Excute_CMD(cmd='ifconfig -a|grep ' + mon):
+            elif self.ExcuteCMD(cmd='ifconfig -a|grep ' + mon)[0]:
                 print 'AT_INFO : Monitor Interface is exist,but NOT UP!'
-                if self.Excute_CMD(cmd='ifconfig ' + mon + ' up'):
+                if self.ExcuteCMD(cmd='ifconfig ' + mon + ' up')[0]:
                     print 'AT_INFO : Monitor Interface is already Up PASS PASS!'
                     return True, mon
                 else:
                     print 'AT_ERROR : Monitor Interface Up FAIL FAIL!'
                     return False, None
             else:
-                if self.Excute_CMD(cmd='iw dev ' + wlan + ' interface add ' + mon + ' type monitor'):
-                    if self.Excute_CMD(cmd='ifconfig |grep ' + mon):
+                if self.ExcuteCMD(cmd='iw dev ' + wlan + ' interface add ' + mon + ' type monitor')[0]:
+                    if self.ExcuteCMD(cmd='ifconfig |grep ' + mon)[0]:
                         print 'AT_INFO : Monitor Interface is already Up PASS PASS!'
                         return True, mon
-                    elif self.Excute_CMD(cmd='ifconfig -a|grep ' + mon):
-                        print 'AT_INFO : Monitor Interface is exist,but NOT UP!'
-                        if self.Excute_CMD(cmd='ifconfig ' + mon + ' up'):
-                            print 'AT_INFO : Monitor Interface is already Up PASS PASS!'
+                    elif self.ExcuteCMD(cmd='ifconfig -a|grep ' + mon)[0]:
+                        if self.ExcuteCMD(cmd='ifconfig ' + mon + ' up')[0]:
+                            print 'AT_INFO : Monitor Interface Up PASS PASS!'
                             return True, mon
                         else:
                             print 'AT_ERROR : Monitor Interface Up FAIL FAIL!'
                             return False, None
                 else:
                     print 'AT_ERROR : Monitor Interface Add FAIL FAIL!'
-                    return True, mon
+                    return False, mon
         else:
             print 'AT_ERROR : NO Exist WLAN Card!'
             return False, None
@@ -72,52 +87,61 @@ class Capture_Packets():
     def Stop_Capture_On_Lan(self, output="/tmp/capture_packets.pcap"):
         ""
         print 'Stop_Capture_On_Lan'
-        cmd = 'ps aux|grep -v grep|grep tshark'
-        f = os.popen(cmd)
-        for i in f:
-            print i,
-        f.close()
+        # self.ExcuteCMD(cmd="ps aux|grep -v grep|grep tshark")
         
-        cmd = 'ps aux|grep -v grep|grep tshark|grep "' + output + '"|' + "awk '{print $2}' "
-        f = os.popen(cmd)
-        try:
-            for i in f:
-                print '>>>' + str(i).strip() + '<<<'
-                kill_cmd = 'kill -9 ' + str(i).strip()
-                if self.Excute_CMD(kill_cmd):
-                    pass
-                else:
-                    print 'AT_ERROR : Stop Capture FAIL FAIL!'
-                    f.close()
-                    return False
-        except Exception, e:
-            print e
-            return False
-        f.close()
+        rc, result = self.ExcuteCMD(cmd='ps aux|grep -v grep|grep tshark|grep "' + output + '"|' + "awk '{print $2}' ")
+        if rc:
+            try:
+                for i in result.split():
+                    if i:
+                        # print '>>>' + str(i).strip() + '<<<'
+                        kill_cmd = 'kill -9 ' + str(i).strip()
+                        if self.ExcuteCMD(cmd=kill_cmd)[0]:
+                            pass
+                        else:
+                            print 'AT_ERROR : Stop Capture FAIL FAIL!'
+                            f.close()
+                            return False
+            except Exception, e:
+                print e
+                return False
+        else:
+            print 'AT_INFO : Not Exist releated tshark program!'
+            return True
+        # self.ExcuteCMD(cmd="ps aux|grep -v grep|grep tshark")
         print 'AT_INFO : Stop Capture PASS PASS!'
         return True
     
     
     def Start_Capture_On_Lan(self, interface="", output="/tmp/capture_packets.pcap", filter="", duration=""):
         ""
-        print 'Start_Capture_On_Lan'
         interface = str(interface)
         output = str(output)
         filter = str(filter)
         duration = str(duration)
         
+        # Up Monitor interface
         if interface.lower() == 'monitor':
             rc, mon = self.Up_Monitor_Interface()
             if rc and mon:
                 interface = mon
+                self.ExcuteCMD(cmd='ifconfig')
+                self.ExcuteCMD('route -n')
             else:
+                return False
+        else:
+            # check interface
+            if not self.ExcuteCMD('ifconfig -a | grep "^' + interface + ' "')[0]:
+                print 'AT_ERROR : ' + interface + ' NOT Exist!'
                 return False
         
         if not interface:
             print 'AT_ERROR : No interface defined!'
             return False
+        # stop capture
         self.Stop_Capture_On_Lan(output)
-
+        
+        # remove file
         try:
             if os.path.exists(output):
                 os.remove(output)
@@ -125,6 +149,9 @@ class Capture_Packets():
             print e
             return False
         
+        # run tshark
+        print 
+        print 'Start_Capture_On_Lan'
         try:
             cmd = "nohup tshark -i " + interface
             if duration:
@@ -135,19 +162,19 @@ class Capture_Packets():
         except Exception, e:
             print e
             return False
-        rc = self.Excute_CMD(cmd)
-        print '-' * 100
+        rc, f = self.ExcuteCMD(cmd)
+        
+        # view all tshark command
+        time.sleep(2)
         print 'ALl tshark process as below:'
-        view_cmd = "ps aux|grep -v grep|grep tshark"
-        f = os.popen(view_cmd)
-        for i in f:
-            print i,
-        f.close()
+        self.ExcuteCMD(cmd="ps aux|grep -v grep|grep tshark")
         print '-' * 100
+        
+        # check tshark
         if rc:
             print 'Current tshark process as below:'
-            check_cmd = "ps aux|grep -v grep|grep tshark|grep -w " + output
-            if self.Excute_CMD(check_cmd):
+            check_cmd = "ps aux|grep -v grep|grep tshark|grep " + interface + "|grep -w " + output
+            if self.ExcuteCMD(check_cmd)[0]:
                 print 'AT_INFO : tshark command run PASS PASS!'
                 return True
             else:
@@ -157,7 +184,6 @@ class Capture_Packets():
             print 'AT_ERROR : ' + str(cmd) + ' run FAIL FAIL!'
             print 'AT_ERROR : tshark command run FAIL FAIL!'
             return False
-        pass
     
     def Start_Capture_On_Remote(self):
         pass
@@ -182,7 +208,7 @@ class Capture_Packets():
             return False
         try:
             cmd = 'tshark -r ' + raw + ' -R "' + filter + '" > ' + output
-            if self.Excute_CMD(cmd):
+            if self.ExcuteCMD(cmd)[0]:
                 pass
             else:
                 print 'AT_ERROR : Parse Packets FAIL FAIL!'
@@ -190,10 +216,9 @@ class Capture_Packets():
         except Exception, e:
             print e
             return False
-        cmd = 'cat ' + output + ' |wc -l'
-        f = os.popen(cmd)
-        data = f.readline().strip()
-        f.close()
+        
+        rc, data = self.ExcuteCMD(cmd='cat ' + output + ' |wc -l')
+        
         print str(data) + ' packets captured!'
         try:
             data = int(data)
@@ -217,8 +242,8 @@ class Capture_Packets():
         return data
             
 # obj = Capture_Packets()
-# obj.Start_Capture_On_Lan(interface='eth1', output="./123", duration=60) 
-# # obj.Up_Monitor_Interface()
+# obj.Start_Capture_On_Lan(interface='eth1', output="/tmp/123", duration=360) 
+# obj.Up_Monitor_Interface()
 # time.sleep(10)
-# obj.Stop_Capture_On_Lan(output='./123')
-# obj.Parse_Packets(raw='./123', filter='http')
+# obj.Stop_Capture_On_Lan(output='/tmp/123')
+# obj.Parse_Packets(raw='/tmp/123', filter='http')
