@@ -1,7 +1,22 @@
 *** Settings ***
+Suite Setup       Disable_GW_Radio    ${U_UPGW_BSSID}
+Suite Teardown    Enable_GW_Radio    ${U_UPGW_BSSID}
 Resource          ../../../../Variables_ENV.txt
 Resource          ../../../../Share_Resource.txt
 
 *** Test Cases ***
 RFW-T6000-10566:Disable Wireless Radio
-    Capture packets on LAN    wlan4
+    [Setup]    Setup_EnableSSH
+    Comment    Check DUT Wifi Radio ON and Beacon
+    GPV    # DUT wifi Radio=1
+    Capture Beacon    # filter rule
+    Comment    Disable DUT Wifi Radio
+    SPV    # DUT Wifi Radio=0
+    GPV    # DUT Wifi Radio=0
+    Check WiFi Radio_Function
+    Check WiFi Radio_GUI
+    Comment    Jacs Reboot DUT
+    SPV    # Reboot object
+    Comment    Retest
+    Check WiFi Radio_Function
+    Check WiFi Radio_GUI

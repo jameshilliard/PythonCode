@@ -78,9 +78,25 @@ ConfigIP
     ${rc}    ${output}    Run And Return Rc And Output    ifconfig ${interface}
     Should Contain    ${output}    ${address}
 
-Capture packets on LAN
-    [Arguments]    ${interface}
-    Start Capture On Lan    interface=${interface}    output=/tmp/test1.pcap    filter=Beacon
-    Parse Packets    \    raw=/tmp/test1.pcap    output=/tmp/filter.log
-    sleep    10
+Capture Beacon
+    [Arguments]    ${filter_rule}
+    Start Capture On Lan    \    output=/tmp/test1.pcap    filter=Beacon
+    sleep    2
     Stop Capture On Lan    raw=/tmp/test1.pcap
+    Parse Packets    filter=${filter_rule}    raw=/tmp/test1.pcap    output=/tmp/filter.log
+    ${rc}=    ${cat_result}=    Run And Return Rc And Output    cat /tmp/filter.log
+    Should Not Be Empty    ${cat_result}
+
+Disable_GW_Radio
+    [Arguments]    ${UPGWBSSID}
+    SPV    #UPGW WIFI Radio
+    GPV    #UPGW WIFI Radio
+    ${Command_result}=    Run And Return Rc    iw dev wlan9 scan|grep ${UPGWBSSID}
+    Should Not Contain    ${Command_result}    ${UPGWBSSID}
+
+Enable_GW_Radio
+    [Arguments]    ${UPGWBSSID}
+    SPV    #UPGW WIFI Radio
+    GPV    #UPGW WIFI Radio
+    ${Command_result}=    Run And Return Rc    iw dev wlan9 scan|grep ${UPGWBSSID}
+    Should Contain    ${Command_result}    ${UPGWBSSID}
