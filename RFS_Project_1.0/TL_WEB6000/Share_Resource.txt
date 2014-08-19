@@ -14,7 +14,7 @@ GPV
     ${Check_GPV}    DoGPV    @{GPV_arg}
     Should Be True    ${Check_GPV}
 
-Check_SSH_Disabled
+Teardown_SSH_Disabled
     DoSPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=0 boolean
     ${Init_GPV}=    DoGPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=0
     Should Be True    ${Init_GPV}
@@ -22,8 +22,10 @@ Check_SSH_Disabled
 SSH_DUT
     [Arguments]    ${ssh_address}    ${username}    ${password}
     SSHLibrary.Open Connection    ${ssh_address}
-    SSHLibrary.Login    ${username}    ${password}
+    ${x}=    Run Keyword And Return Status    SSHLibrary.Login    ${username}    ${password}
     SSHLibrary.Close Connection
+    Log    ==========SSH Result is ${x}==========
+    [Return]    ${x}
 
 PingTest
     [Arguments]    ${destIP}    ${count}    ${interface}
@@ -58,3 +60,19 @@ Release_IP
     ...    Example:
     ...    Release_IP | ${U_CUSTOM_IF1}
     Run    dhclient -r ${interface}
+
+Setup_SSH_Disabled
+    ${Init_GPV}=    DoGPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=0
+    Should Be True    ${Init_GPV}
+
+Setup_SSH_Enabled
+    DoSPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable =1 boolean    Device.X_ACTIONTEC_COM_RemoteLogin.Port=22 unsignedInt    Device.X_ACTIONTEC_COM_RemoteLogin.Protocol=SSH string    Device.X_ACTIONTEC_COM_RemoteLogin.IdleTimeout=60 unsignedInt    Device.X_ACTIONTEC_COM_RemoteLogin.Username=admin string    Device.X_ACTIONTEC_COM_RemoteLogin.Password=1 string
+    ${Init_GPV}=    DoGPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=1
+    Should Be True    ${Init_GPV}
+
+ConfigIP
+    [Arguments]    ${interface}    ${address}=192.168.1.100
+    ${rc}    Run And Return Rc    ifconfig ${interface} ${address}
+    Should Be Equal As Numbers    ${rc}    0
+    ${rc}    ${output}    Run And Return Rc And Output    ifconfig ${interface}
+    Should Contain    ${output}    ${address}
