@@ -247,9 +247,9 @@ class Capture_Packets():
         return data
 
 
-output = '/tmp/123'
-obj = Capture_Packets()
-obj.Start_Capture_On_Lan(interface='eth1', output=output, duration=360,filter='beacon') 
-time.sleep(10)
-obj.Stop_Capture_On_Lan(raw=output)
-obj.Parse_Packets(raw=output)
+# output = '/tmp/123'
+# obj = Capture_Packets()
+# obj.Start_Capture_On_Lan(interface='eth1', output=output, duration=360,filter='beacon') 
+# time.sleep(10)
+# obj.Stop_Capture_On_Lan(raw=output)
+# obj.Parse_Packets(raw=output)
