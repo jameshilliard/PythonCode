@@ -1,0 +1,2 @@
+*** Test Cases ***
+RFW-T6000-9438:02300263_ICMP Traffic
