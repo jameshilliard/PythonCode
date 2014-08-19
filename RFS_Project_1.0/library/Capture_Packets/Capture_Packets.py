@@ -18,12 +18,13 @@ class Capture_Packets():
         rc = p.returncode
         content = p.stdout.read().strip()
         if content:
-            print ">>>" + content + "<<<"
-        print rc
+            print ">" + content + "<"
+        
         if p.returncode == 0:
             # print 'AT_INFO : "' + cmd + '" Excute SUCESS!'
             rc = True
         else:
+            print 'return code :' + rc
             print 'AT_WARNING : "' + cmd + '" Excute FAIL!'
             rc = False
         p.stdout.close()
@@ -193,6 +194,8 @@ class Capture_Packets():
         pass
     
     def Parse_Packets(self, filter='', raw='/tmp/capture_packets.pcap', output='/tmp/parse_capture_packets.log', negtive=False):
+        
+        print 'Parse_Packets'
         filter = str(filter)
         raw = str(raw)
         output = str(output)
@@ -211,13 +214,15 @@ class Capture_Packets():
             print 'AT_ERROR : ' + raw + ' NOT Exist!'
             return False
         try:
-            cmd = 'tshark -r ' + raw + ' -R "' + filter + '" > ' + output
+            if filter:
+                cmd = 'tshark -r ' + raw + ' -R "' + filter + '" > ' + output
+            else:
+                cmd = 'tshark -r ' + raw + ' > ' + output
             if self.ExcuteCMD(cmd)[0]:
                 pass
             else:
-                pass
-                #print 'AT_ERROR : Parse Packets FAIL FAIL!'
-                #return False
+                print 'AT_ERROR : Parse Packets FAIL FAIL!'
+                return False
         except Exception, e:
             print e
             return False
@@ -247,9 +252,9 @@ class Capture_Packets():
         return data
 
 
-# output = '/tmp/123'
-# obj = Capture_Packets()
-# obj.Start_Capture_On_Lan(interface='eth1', output=output, duration=360,filter='beacon') 
-# time.sleep(10)
-# obj.Stop_Capture_On_Lan(raw=output)
-# obj.Parse_Packets(raw=output)
+output = '/tmp/123'
+obj = Capture_Packets()
+obj.Start_Capture_On_Lan(interface='eth1', output=output, duration=360, filter='beacon') 
+time.sleep(10)
+obj.Stop_Capture_On_Lan(raw=output)
+obj.Parse_Packets(raw=output)
