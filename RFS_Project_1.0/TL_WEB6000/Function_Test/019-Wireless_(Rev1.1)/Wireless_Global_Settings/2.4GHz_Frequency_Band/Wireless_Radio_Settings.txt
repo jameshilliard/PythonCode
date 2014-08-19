@@ -1,1 +1,6 @@
+*** Settings ***
+Resource          ../../../../Variables_ENV.txt
+Resource          ../../../../Share_Resource.txt
+
 *** Test Cases ***
+RFW-T6000-10566:Disable Wireless Radio

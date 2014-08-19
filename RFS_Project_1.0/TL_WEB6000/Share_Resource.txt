@@ -2,6 +2,7 @@
 Library           SSHLibrary
 Library           OperatingSystem
 Library           ../../robotframework/RFS_Project_1.0/library/TR/TR.py
+Library           ../library/Capture_Packets/Capture_Packets.py
 
 *** Keywords ***
 SPV
@@ -76,3 +77,9 @@ ConfigIP
     Should Be Equal As Numbers    ${rc}    0
     ${rc}    ${output}    Run And Return Rc And Output    ifconfig ${interface}
     Should Contain    ${output}    ${address}
+
+Capture packets on LAN
+    [Arguments]    ${interface}
+    Start Capture On Lan    interface={$interface}    output=/tmp/test1.pcap
+    Parse Packets    \    raw=/tmp/test1.pcap    output=/tmp/filter.log
+    Stop Capture On Lan    output=/tmp/test1.pcap
