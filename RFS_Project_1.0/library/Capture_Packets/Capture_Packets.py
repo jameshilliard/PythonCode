@@ -89,7 +89,7 @@ class Capture_Packets():
         print 'Stop_Capture_On_Lan'
         # self.ExcuteCMD(cmd="ps aux|grep -v grep|grep tshark")
         
-        rc, result = self.ExcuteCMD(cmd='ps aux|grep -v grep|grep tshark|grep "' + output + '"|' + "awk '{print $2}' ")
+        rc, result = self.ExcuteCMD(cmd='ps aux|grep -v grep|grep tshark|grep "' + raw + '"|' + "awk '{print $2}' ")
         if rc:
             try:
                 for i in result.split():
