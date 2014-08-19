@@ -24,7 +24,7 @@ class Capture_Packets():
             # print 'AT_INFO : "' + cmd + '" Excute SUCESS!'
             rc = True
         else:
-            print 'return code :' + rc
+            print 'return code :' + str(rc)
             print 'AT_WARNING : "' + cmd + '" Excute FAIL!'
             rc = False
         p.stdout.close()
@@ -252,9 +252,9 @@ class Capture_Packets():
         return data
 
 
-output = '/tmp/123'
-obj = Capture_Packets()
-obj.Start_Capture_On_Lan(interface='eth1', output=output, duration=360, filter='beacon') 
-time.sleep(10)
-obj.Stop_Capture_On_Lan(raw=output)
-obj.Parse_Packets(raw=output)
+# output = '/tmp/123'
+# obj = Capture_Packets()
+# obj.Start_Capture_On_Lan(interface='eth1', output=output, duration=360, filter='beacon') 
+# time.sleep(10)
+# obj.Stop_Capture_On_Lan(raw=output)
+# obj.Parse_Packets(filter="wlan.bssid== 00:26:62:9f:4f:6f and wlan_mgt.ds.current_channel == 1",raw=output)
