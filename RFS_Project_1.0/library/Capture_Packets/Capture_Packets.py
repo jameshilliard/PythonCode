@@ -84,7 +84,7 @@ class Capture_Packets():
             return False, None
 
     
-    def Stop_Capture_On_Lan(self, output="/tmp/capture_packets.pcap"):
+    def Stop_Capture_On_Lan(self, raw="/tmp/capture_packets.pcap"):
         ""
         print 'Stop_Capture_On_Lan'
         # self.ExcuteCMD(cmd="ps aux|grep -v grep|grep tshark")
@@ -120,8 +120,19 @@ class Capture_Packets():
         filter = str(filter)
         duration = str(duration)
         
+        # stop capture
+        self.Stop_Capture_On_Lan(output)
+        
+        # remove file
+        try:
+            if os.path.exists(output):
+                self.ExcuteCMD(cmd='rm -f ' + output)
+        except Exception, e:
+            print e
+            return False
+        
         # Up Monitor interface
-        if interface.lower() == 'monitor':
+        if filter.lower() == 'beacon':
             rc, mon = self.Up_Monitor_Interface()
             if rc and mon:
                 interface = mon
@@ -138,16 +149,6 @@ class Capture_Packets():
         if not interface:
             print 'AT_ERROR : No interface defined!'
             return False
-        # stop capture
-        self.Stop_Capture_On_Lan(output)
-        
-        # remove file
-        try:
-            if os.path.exists(output):
-                os.remove(output)
-        except Exception, e:
-            print e
-            return False
         
         # run tshark
         print 
@@ -157,7 +158,10 @@ class Capture_Packets():
             if duration:
                 cmd += " -a duration:" + duration
             if filter:
-                cmd += ' -f "' + filter + '"'
+                if filter.lower() == 'beacon':
+                    cmd += " -f 'wlan[0] == 0x80'"
+                else:
+                    cmd += ' -f "' + filter + '"'
             cmd += ' -w ' + output + ' >/dev/null 2>&1 &'
         except Exception, e:
             print e
@@ -188,7 +192,7 @@ class Capture_Packets():
     def Start_Capture_On_Remote(self):
         pass
     
-    def Parse_Packets(self, filter, raw='', output='/tmp/parse_capture_packets.log', negtive=False):
+    def Parse_Packets(self, filter='', raw='/tmp/capture_packets.pcap', output='/tmp/parse_capture_packets.log', negtive=False):
         filter = str(filter)
         raw = str(raw)
         output = str(output)
@@ -197,8 +201,8 @@ class Capture_Packets():
         print output
         
         if not filter:
-            print 'AT_ERROR : No Filter!'
-            return False
+            print 'AT_WARNING : No Filter!'
+            
         if not raw:
             print 'AT_ERROR : No Packets Files!'
             return False
@@ -240,10 +244,11 @@ class Capture_Packets():
                 print 'AT_ERROR : Positive Test,Parse Packets FAIL FAIL!'
                 return False
         return data
-            
+
+
+# output = '/tmp/123'
 # obj = Capture_Packets()
-# obj.Start_Capture_On_Lan(interface='eth1', output="/tmp/123", duration=360) 
-# obj.Up_Monitor_Interface()
+# obj.Start_Capture_On_Lan(interface='eth1', output=output, duration=360) 
 # time.sleep(10)
-# obj.Stop_Capture_On_Lan(output='/tmp/123')
-# obj.Parse_Packets(raw='/tmp/123', filter='http')
+# obj.Stop_Capture_On_Lan(raw=output)
+# obj.Parse_Packets(raw=output)
