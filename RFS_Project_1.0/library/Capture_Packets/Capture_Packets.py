@@ -19,7 +19,7 @@ class Capture_Packets():
         content = p.stdout.read().strip()
         if content:
             print ">>>" + content + "<<<"
-        
+        print rc
         if p.returncode == 0:
             # print 'AT_INFO : "' + cmd + '" Excute SUCESS!'
             rc = True
@@ -215,8 +215,9 @@ class Capture_Packets():
             if self.ExcuteCMD(cmd)[0]:
                 pass
             else:
-                print 'AT_ERROR : Parse Packets FAIL FAIL!'
-                return False
+                pass
+                #print 'AT_ERROR : Parse Packets FAIL FAIL!'
+                #return False
         except Exception, e:
             print e
             return False
@@ -246,9 +247,9 @@ class Capture_Packets():
         return data
 
 
-# output = '/tmp/123'
-# obj = Capture_Packets()
-# obj.Start_Capture_On_Lan(interface='eth1', output=output, duration=360) 
-# time.sleep(10)
-# obj.Stop_Capture_On_Lan(raw=output)
-# obj.Parse_Packets(raw=output)
+output = '/tmp/123'
+obj = Capture_Packets()
+obj.Start_Capture_On_Lan(interface='eth1', output=output, duration=360,filter='beacon') 
+time.sleep(10)
+obj.Stop_Capture_On_Lan(raw=output)
+obj.Parse_Packets(raw=output)
