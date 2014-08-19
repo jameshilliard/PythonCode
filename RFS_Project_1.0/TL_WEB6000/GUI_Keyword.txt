@@ -1,0 +1,17 @@
+*** Settings ***
+Library           Selenium2Library
+
+*** Keywords ***
+GUI_LoginDUT
+    [Arguments]    ${DUT_URL}    ${USR}    ${PASSWORD}
+    Open Browser    ${DUT_URL}
+    ${Title}=    Get Text    id="title_login_span"
+    Should Be Equal As Strings    ${Title}    Login
+    Input Text    id="login_username"    ${USR}
+    Input Text    id="login_password"    ${PASSWORD}
+    Click Button    id="login_button_span"
+    Page Should Contain    Hi root
+
+Check WiFi Radio_2G
+
+Check WiFi Radio_5G
