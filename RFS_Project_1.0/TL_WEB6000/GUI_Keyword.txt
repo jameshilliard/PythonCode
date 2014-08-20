@@ -3,15 +3,28 @@ Library           Selenium2Library
 
 *** Keywords ***
 GUI_LoginDUT
-    [Arguments]    ${DUT_URL}    ${USR}    ${PASSWORD}
-    Open Browser    ${DUT_URL}
-    ${Title}=    Get Text    id="title_login_span"
+    [Arguments]    ${USR}    ${PASSWORD}
+    ${Title}=    Get Title
     Should Be Equal As Strings    ${Title}    Login
-    Input Text    id="login_username"    ${USR}
-    Input Text    id="login_password"    ${PASSWORD}
-    Click Button    id="login_button_span"
+    Input Text    id=login_username    ${USR}
+    Input Text    id=login_password    ${PASSWORD}
+    Click Button    id=login_button_span
     Page Should Contain    Hi root
 
 Check WiFi Radio_2G
+    [Arguments]    ${casetype}=on
+    ${Status_2G}=    Get Text    xpath=//*[@id="id2_apenb"]
+    Should Be Equal As Strings    ${Status_2G}    Enabled
+    Click Element    id=top_wireless
+    ${Title}=    Get Title
+    Should Be Equal As Strings    ${Title}    Wireless Network List
+    Click Element    id=left_wl_basic
+    ${Title}=    Get Title
+    Should Be Equal As Strings    ${Title}    Basic Setup
+    Select Radio Button    wl_freq    id_freq0
+    Radio Button Should Be Set To    wl2_enb    id2_on
+    Select Radio Button    wl_freq    id_freq2
+    Radio Button Should Be Set To    wl2_enb    id2_on
 
 Check WiFi Radio_5G
+    ${Status_5G}=    Get Text    xpath=//*[@id="id5_apenb"]
