@@ -2,22 +2,26 @@
 Suite Setup       WiFiRadio_Enable
 Resource          ../../../../Variables_ENV.txt
 Resource          ../../../../Share_Resource.txt
+Resource          ../../../../GUI_Keyword.txt
 
 *** Test Cases ***
 RFW-T6000-10566:Disable Wireless Radio
+    #1. Ensure that Wireless Radio is enabled on DUT in 2.4GHz band and DUT is sending Beacon packets periodically.
     Comment    Check DUT Wifi Radio ON and Beacon
     GPV    Device.WiFi.Radio.1.Enable=1
-    Capture Beacon    wlan.bssid == 00:18:01:00:7b:ab    False    # filter rule is DUT's BSSID
+    Capture Beacon    wlan.bssid == 00:18:01:00:7b:ab    True    # filter rule is DUT's BSSID
+    #2. Disable Wireless Radio in 2.4GHz band.
     Comment    Disable DUT Wifi Radio
     SPV    Device.WiFi.Radio.1.Enable=0 boolean
     GPV    Device.WiFi.Radio.1.Enable=0
-    Capture Beacon    wlan.bssid == 00:18:01:00:7b:ab    True    # filter rule is DUT's BSSID
+    #3. Go to check Expected Results.
+    Capture Beacon    wlan.bssid == 00:18:01:00:7b:ab    False    # filter rule is DUT's BSSID
     Comment    GUI Check WiFi Radio ON or OFF
     GUI_Check WiFi Radio_2G    ${U_DUT_BR0_IP}    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}    off
-    Comment    Jacs Reboot DUT
-    Comment    SPV    # Reboot object
-    Sleep    90    \    # wait for DUT bootup
+    #4. Reboot DUT
+    Reboot_DUT_By_Jacs
+    #5. Go to check Expected Results again after DUT boots up.
     Comment    Retest
-    Capture Beacon    wlan.bssid == 00:18:01:00:7b:ab    True    # filter rule is DUT's BSSID
+    Capture Beacon    wlan.bssid == 00:18:01:00:7b:ab    False    # filter rule is DUT's BSSID
     GUI_Check WiFi Radio_2G    ${U_DUT_BR0_IP}    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}    off
     [Teardown]    WiFiRadio_Enable

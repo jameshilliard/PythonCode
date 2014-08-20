@@ -13,12 +13,12 @@ GUI_LoginDUT
 
 GUI_Check WiFi Radio_2G
     [Arguments]    ${U_DUT_BR0_IP}    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}    ${casetype}=on
-    Open Browser    ${U_DUT_BR0_IP}
+    Open Browser    http://${U_DUT_BR0_IP}
     GUI_LoginDUT    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}
     ${Status_2G}=    Get Text    xpath=//*[@id="id2_apenb"]
-    Run Keyword If    ${casetype}=on    Should Be Equal As Strings    ${Status_2G}    Enabled    ELSE IF    ${casetype}=off
+    Run Keyword If    '${casetype}' == 'on'    Should Be Equal As Strings    ${Status_2G}    Enabled    ELSE IF    '${casetype}' == 'off'
     ...    Should Be Equal As Strings    ${Status_2G}    Disabled
-    GUI_LogoutDUT
+    GUI_LogoutDUT    ${U_DUT_BR0_IP}
     Close Browser
 
 GUI_Check WiFi Radio_5G
@@ -28,11 +28,12 @@ GUI_Check WiFi Radio_5G
     ${Status_5G}=    Get Text    xpath=//*[@id="id5_apenb"]
     Run Keyword If    ${casetype}=on    Should Be Equal As Strings    ${Status_5G}    Enabled    ELSE IF    ${casetype}=off
     ...    Should Be Equal As Strings    ${Status_5G}    Disabled
-    GUI_LogoutDUT
+    GUI_LogoutDUT    ${U_DUT_BR0_IP}
     Close Browser
 
 GUI_LogoutDUT
-    Go To    http://192.168.1.65/wcb_main.html
+    [Arguments]    ${U_DUT_BR0_IP}
+    Go To    http://${U_DUT_BR0_IP}/wcb_main.html
     Page Should Contain Element    id=userToolbar
     Click Element    id=top_logout_span
     Confirm Action

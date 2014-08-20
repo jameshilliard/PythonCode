@@ -2,7 +2,6 @@
 Library           SSHLibrary
 Library           OperatingSystem
 Library           ../library/Capture_Packets/Capture_Packets.py
-Resource          GUI_Keyword.txt
 Library           Selenium2Library
 Library           ../library/TR/TR.py
 
@@ -11,6 +10,7 @@ SPV
     [Arguments]    @{SPV_arg}
     ${Check_SPV}    DoSPV    @{SPV_arg}
     Should Be True    ${Check_SPV}
+    Sleep    20
 
 GPV
     [Arguments]    @{GPV_arg}
@@ -91,11 +91,11 @@ ConfigIP
     Should Contain    ${output}    ${address}
 
 Capture Beacon
-    [Arguments]    ${filter_rule}    ${negtive}
+    [Arguments]    ${filter_rule}    ${positive}=True
     Start Capture On Lan    \    output=/tmp/test1.pcap    filter=Beacon
     sleep    2
     Stop Capture On Lan    raw=/tmp/test1.pcap
-    ${rc}=    Parse Packets    filter=${filter_rule}    raw=/tmp/test1.pcap    output=/tmp/filter.log    negtive=${negtive}
+    ${rc}=    Parse Packets    filter=${filter_rule}    raw=/tmp/test1.pcap    output=/tmp/filter.log    positive=${positive}
     Should Be True    ${rc}
 
 WiFiRadio_Enable
