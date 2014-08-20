@@ -18,10 +18,12 @@ GPV
     Should Be True    ${Check_GPV}
 
 SPV_ON_GW
+    [Arguments]    @{SPV_arg}
     ${Check_SPV}    DoSPVOnGW    @{SPV_arg}
     Should Be True    ${Check_SPV}
 
 GPV_ON_GW
+    [Arguments]    @{GPV_arg}
     ${Check_GPV}    DoGPVOnGW    @{GPV_arg}
     Should Be True    ${Check_GPV}
 
@@ -89,19 +91,19 @@ ConfigIP
     Should Contain    ${output}    ${address}
 
 Capture Beacon
-    [Arguments]    ${filter_rule}    ${negtive}=False
+    [Arguments]    ${filter_rule}    ${negtive}
     Start Capture On Lan    \    output=/tmp/test1.pcap    filter=Beacon
     sleep    2
     Stop Capture On Lan    raw=/tmp/test1.pcap
     ${rc}=    Parse Packets    filter=${filter_rule}    raw=/tmp/test1.pcap    output=/tmp/filter.log    negtive=${negtive}
     Should Be True    ${rc}
 
-Teardown_WiFiRadio_Enable
+WiFiRadio_Enable
     DoSPV    Device.WiFi.Radio.1.Enable=1 boolean
     ${Init_GPV}=    DoGPV    Device.WiFi.Radio.1.Enable=1
     Should Be True    ${Init_GPV}
 
-Setup_WiFiRadio_Disable
+WiFiRadio_Disable
     DoSPV    Device.WiFi.Radio.1.Enable=0 boolean
     ${Init_GPV}=    DoGPV    Device.WiFi.Radio.1.Enable=0
     Should Be True    ${Init_GPV}

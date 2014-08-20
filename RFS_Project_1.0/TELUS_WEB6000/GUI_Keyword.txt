@@ -1,0 +1,40 @@
+*** Settings ***
+Library           Selenium2Library
+
+*** Keywords ***
+GUI_LoginDUT
+    [Arguments]    ${USR}    ${PASSWORD}
+    ${Title}=    Get Title
+    Should Be Equal As Strings    ${Title}    Login
+    Input Text    id=login_username    ${USR}
+    Input Text    id=login_password    ${PASSWORD}
+    Click Element    id=login_btn
+    Page Should Contain Element    id=userToolbar
+
+GUI_Check WiFi Radio_2G
+    [Arguments]    ${U_DUT_BR0_IP}    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}    ${casetype}=on
+    Open Browser    ${U_DUT_BR0_IP}
+    GUI_LoginDUT    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}
+    ${Status_2G}=    Get Text    xpath=//*[@id="id2_apenb"]
+    Run Keyword If    ${casetype}=on    Should Be Equal As Strings    ${Status_2G}    Enabled    ELSE IF    ${casetype}=off
+    ...    Should Be Equal As Strings    ${Status_2G}    Disabled
+    GUI_LogoutDUT
+    Close Browser
+
+GUI_Check WiFi Radio_5G
+    [Arguments]    ${U_DUT_BR0_IP}    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}    ${casetype}=on
+    Open Browser    ${U_DUT_BR0_IP}
+    GUI_LoginDUT    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}
+    ${Status_5G}=    Get Text    xpath=//*[@id="id5_apenb"]
+    Run Keyword If    ${casetype}=on    Should Be Equal As Strings    ${Status_5G}    Enabled    ELSE IF    ${casetype}=off
+    ...    Should Be Equal As Strings    ${Status_5G}    Disabled
+    GUI_LogoutDUT
+    Close Browser
+
+GUI_LogoutDUT
+    Go To    http://192.168.1.65/wcb_main.html
+    Page Should Contain Element    id=userToolbar
+    Click Element    id=top_logout_span
+    Confirm Action
+    ${Title}=    Get Title
+    Should Be Equal As Strings    ${Title}    Login
