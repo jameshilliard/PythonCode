@@ -12,8 +12,6 @@ RFW-T6000-10566:Disable Wireless Radio
     GPV    Device.WiFi.Radio.1.Enable=0
     Capture Beacon    wlan.bssid == 00:18:01:00:7b:ab    True    # filter rule is DUT's BSSID
     Comment    GUI Check WiFi Radio ON or OFF
-    Open Browser    ${U_DUT_BR0_IP}
-    GUI_LoginDUT    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}
     Check WiFi Radio_2G    off
     Comment    Jacs Reboot DUT
     SPV    # Reboot object

@@ -18,10 +18,12 @@ GPV
     Should Be True    ${Check_GPV}
 
 SPV_ON_GW
+    [Arguments]    @{SPV_arg}
     ${Check_SPV}    DoSPVOnGW    @{SPV_arg}
     Should Be True    ${Check_SPV}
 
 GPV_ON_GW
+    [Arguments]    @{GPV_arg}
     ${Check_GPV}    DoGPVOnGW    @{GPV_arg}
     Should Be True    ${Check_GPV}
 
