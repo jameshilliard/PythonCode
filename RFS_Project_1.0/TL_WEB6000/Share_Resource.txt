@@ -95,3 +95,13 @@ Capture Beacon
     Stop Capture On Lan    raw=/tmp/test1.pcap
     ${rc}=    Parse Packets    filter=${filter_rule}    raw=/tmp/test1.pcap    output=/tmp/filter.log    negtive=${negtive}
     Should Be True    ${rc}
+
+Teardown_WiFiRadio_Enable
+    DoSPV    Device.WiFi.Radio.1.Enable=1 boolean
+    ${Init_GPV}=    DoGPV    Device.WiFi.Radio.1.Enable=1
+    Should Be True    ${Init_GPV}
+
+Setup_WiFiRadio_Disable
+    DoSPV    Device.WiFi.Radio.1.Enable=0 boolean
+    ${Init_GPV}=    DoGPV    Device.WiFi.Radio.1.Enable=0
+    Should Be True    ${Init_GPV}
