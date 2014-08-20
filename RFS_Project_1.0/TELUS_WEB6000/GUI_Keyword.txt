@@ -9,6 +9,7 @@ GUI_LoginDUT
     Input Text    id=login_username    ${USR}
     Input Text    id=login_password    ${PASSWORD}
     Click Element    id=login_btn
+    Sleep    1
     Page Should Contain Element    id=userToolbar
 
 GUI_Check WiFi Radio_2G
@@ -37,5 +38,6 @@ GUI_LogoutDUT
     Page Should Contain Element    id=userToolbar
     Click Element    id=top_logout_span
     Confirm Action
+    Sleep    2
     ${Title}=    Get Title
     Should Be Equal As Strings    ${Title}    Login

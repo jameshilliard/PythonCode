@@ -1,0 +1,11 @@
+*** Settings ***
+Resource          ../../../../../Variables_ENV.txt
+Resource          ../../../../../Share_Resource.txt
+Resource          ../../../../../GUI_Keyword.txt
+
+*** Test Cases ***
+RFW-T6000-12559:Channel In Use (Auto) [20MHz]
+    #1. Ensure Wireless Radio is enabled in 2.4GHz band and Channel Width is set to 20MHz.    \    \    2. Ensure that Wireless Channel Selection is set to Auto.
+    GPV    Device.WiFi.Radio.1.Enable=1    Device.WiFi.Radio.1.OperatingChannelBandwidth=20MHz    Device.WiFi.Radio.1.AutoChannelEnable=1
+    #3. Capture Beacon packets sent by DUT in 2.4GHz band and check the current channel available in 'DS Parameter Set Information Element' in Beacon packet.
+    Capture Beacon    wlan.bssid == 00:18:01:00:7b:ab    True

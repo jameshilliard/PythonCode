@@ -93,7 +93,7 @@ ConfigIP
 Capture Beacon
     [Arguments]    ${filter_rule}    ${positive}=True
     Start Capture On Lan    \    output=/tmp/test1.pcap    filter=Beacon
-    sleep    2
+    sleep    1
     Stop Capture On Lan    raw=/tmp/test1.pcap
     ${rc}=    Parse Packets    filter=${filter_rule}    raw=/tmp/test1.pcap    output=/tmp/filter.log    positive=${positive}
     Should Be True    ${rc}
