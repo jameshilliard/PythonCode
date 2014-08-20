@@ -1,2 +1,21 @@
+*** Settings ***
+Resource          ../../../../../../Share_Resource.txt
+
 *** Test Cases ***
 RFW-T6000-9940:02301504_Regular SSID
+    #Begin Test
+    #[Step 1] [Setup] \ Change Gateway SSID name : Change Gateway SSID name
+    #spv    Device.WiFi.SSID.1.SSID=${U_CUSTOM_2G_SSID1} string
+    #[Step 2][GUI Check] The SSID can be synchronized to DUT for SSID 1 (2.4GHz) correctly.
+    GPV    InternetGatewayDevice.UserInterface    InternetGatewayDevice.ManagementServer.ParameterKey=asdf
+    #[Step 3][GUI Check] The SSID can be synchronized to DUT for SSID 1 (5GHz) correctly.
+    #[Step 4][FUN Check] Wireless STA is able to associate to DUT in 2.4GHz frequency band with the SSID.
+    #[Step 5][FUN Check] \ Wireless STA is able to associate to DUT in 5GHz frequency band with the SSID.
+    #[Step 6] [GUI Check] Synchronized Wireless Settings can be displayed on following GUI pages correctly. \ \ \ \ \ Home Page (Status Page). \ \ \ \ Wireless Setup>Wireless Network List Page. \ \ \ \ Wireless Setup>Basic Setup Page.
+    #[Step 7][Setup] Reboot DUT
+    #[Step 8]:Same as [Step 2]
+    #[Step 9]:Same as [Step 3]
+    #[Step 10]:Same as [Step 4]
+    #[Step 11]:Same as [Step 5]
+    #[Step 12]:Same as [Step 6]
+    #Test Done

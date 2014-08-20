@@ -21,7 +21,8 @@ class TR:
         print self.wan_ip
         self.wan_user = os.getenv('user', 'root')
         self.wan_pwd = os.getenv('pwd', '123qaz')
-        self.acs_url = os.getenv('ACS_ConnectionRequestURL')
+        if not self.acs_url:
+            self.acs_url = os.getenv('ACS_ConnectionRequestURL')
         print 'acs connection request url'
         print self.acs_url
         self.acs_user = os.getenv('acs_user', 'actiontec')
@@ -30,13 +31,38 @@ class TR:
         self.cfg_file = '/tmp/jacs_config_file'
         self.output = '/tmp/jacs_output'
     
+    def do_gpv_on_gw(self, *nkw):
+        print 'do_gpv_on_gw'
+        nkw = nkw
+        self.acs_url = os.getenv('UPGW_ACS_ConnectionRequestURL')
+        if not self.acs_url:
+            print 'AT_ERROR : UPGW_ACS_ConnectionRequestURL NOT Exist!'
+            return False
+        if self.do_gpv(nkw):
+            return True
+        else:
+            return False
+    
+    def do_spv_on_gw(self, *nkw):
+        nkw = nkw
+        self.acs_url = os.getenv('UPGW_ACS_ConnectionRequestURL')
+        if not self.acs_url:
+            print 'AT_ERROR : UPGW_ACS_ConnectionRequestURL NOT Exist!'
+            return False
+        if self.do_spv(nkw):
+            return True
+        else:
+            return False
+    
     def do_gpv(self, *nkw):
         self.__init__()
         print '=' * 100
         print "Begin GPV"
+        if type(nkw) is type(()) and type(nkw[0]) is type(()):
+            nkw = nkw[0]
         print nkw
-        output = self.output
         
+        output = self.output        
         self.nodes = list(nkw)
         gpv_node = []
         check_dict = {}
@@ -45,7 +71,6 @@ class TR:
         
         # (u'InternetGatewayDevice.LANDevice.1.WLANConfiguration.1.SSID', u'output=/tmp/1')
         for key in self.nodes:
-            print key
             m1 = re.match(gpv_format1, key)
             m2 = re.match(gpv_format2, key)
             if m1:

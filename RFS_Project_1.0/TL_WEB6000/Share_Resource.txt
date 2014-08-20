@@ -1,10 +1,10 @@
 *** Settings ***
 Library           SSHLibrary
 Library           OperatingSystem
-Library           ../../robotframework/RFS_Project_1.0/library/TR/TR.py
 Library           ../library/Capture_Packets/Capture_Packets.py
 Resource          GUI_Keyword.txt
 Library           Selenium2Library
+Library           ../library/TR/TR.py
 
 *** Keywords ***
 SPV
@@ -17,10 +17,13 @@ GPV
     ${Check_GPV}    DoGPV    @{GPV_arg}
     Should Be True    ${Check_GPV}
 
-Teardown_SSH_Disabled
-    DoSPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=0 boolean
-    ${Init_GPV}=    DoGPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=0
-    Should Be True    ${Init_GPV}
+SPV_ON_GW
+    ${Check_SPV}    DoSPVOnGW    @{SPV_arg}
+    Should Be True    ${Check_SPV}
+
+GPV_ON_GW
+    ${Check_GPV}    DoGPVOnGW    @{GPV_arg}
+    Should Be True    ${Check_GPV}
 
 SSH_DUT
     [Arguments]    ${ssh_address}    ${username}    ${password}
@@ -71,6 +74,11 @@ Setup_SSH_Disabled
 Setup_SSH_Enabled
     DoSPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable =1 boolean    Device.X_ACTIONTEC_COM_RemoteLogin.Port=22 unsignedInt    Device.X_ACTIONTEC_COM_RemoteLogin.Protocol=SSH string    Device.X_ACTIONTEC_COM_RemoteLogin.IdleTimeout=60 unsignedInt    Device.X_ACTIONTEC_COM_RemoteLogin.Username=admin string    Device.X_ACTIONTEC_COM_RemoteLogin.Password=1 string
     ${Init_GPV}=    DoGPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=1
+    Should Be True    ${Init_GPV}
+
+Teardown_SSH_Disabled
+    DoSPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=0 boolean
+    ${Init_GPV}=    DoGPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=0
     Should Be True    ${Init_GPV}
 
 ConfigIP
