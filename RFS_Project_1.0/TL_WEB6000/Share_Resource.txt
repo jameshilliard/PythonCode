@@ -105,3 +105,5 @@ Setup_WiFiRadio_Disable
     DoSPV    Device.WiFi.Radio.1.Enable=0 boolean
     ${Init_GPV}=    DoGPV    Device.WiFi.Radio.1.Enable=0
     Should Be True    ${Init_GPV}
+
+Reboot_DUT_By_Jacs
