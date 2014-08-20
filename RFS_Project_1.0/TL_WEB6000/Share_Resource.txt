@@ -4,6 +4,7 @@ Library           OperatingSystem
 Library           ../../robotframework/RFS_Project_1.0/library/TR/TR.py
 Library           ../library/Capture_Packets/Capture_Packets.py
 Resource          GUI_Keyword.txt
+Library           Selenium2Library
 
 *** Keywords ***
 SPV
@@ -80,17 +81,9 @@ ConfigIP
     Should Contain    ${output}    ${address}
 
 Capture Beacon
-    [Arguments]    ${filter_rule}    ${casetype}=common
+    [Arguments]    ${filter_rule}    ${negtive}=False
     Start Capture On Lan    \    output=/tmp/test1.pcap    filter=Beacon
     sleep    2
     Stop Capture On Lan    raw=/tmp/test1.pcap
-    Parse Packets    filter=${filter_rule}    raw=/tmp/test1.pcap    output=/tmp/filter.log
-    ${rc}=    ${cat_result}=    Run And Return Rc And Output    cat /tmp/filter.log
-    Run Keyword If    ${casetype}=common    Should Not Be Empty    ${cat_result}
-    ...    ELSE IF    ${casetype}=negtive    Should Be Empty    ${cat_result}
-
-Check WiFi Radio_GUI
-    [Arguments]    ${DUT_URL}    ${USR}    ${PASSWORD}    ${Frequency}    ${casetype}=on
-    GUI_LoginDUT    ${DUT_URL}    ${USR}    ${PASSWORD}
-    Run Keyword If    ${Frequency}=2.4GHz    Check WiFi Radio_2G    ${casetype}
-    ...    ELSE IF    ${Frequency}=5GHz    Check WiFi Radio_5G    ${casetype}
+    ${rc}=    Parse Packets    filter=${filter_rule}    raw=/tmp/test1.pcap    output=/tmp/filter.log    negtive=${negtive}
+    Should Be True    ${rc}
