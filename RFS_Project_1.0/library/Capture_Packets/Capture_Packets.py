@@ -216,7 +216,7 @@ class Capture_Packets():
         try:
             if filter:
                 print 'filter'
-                filter=filter.replace('"','\\"')
+                filter = filter.replace('"', '\\"')
                 print filter
                 cmd = 'tshark -r ' + raw + ' -R "' + filter + '" > ' + output
             else:
@@ -224,8 +224,9 @@ class Capture_Packets():
             if self.ExcuteCMD(cmd)[0]:
                 pass
             else:
-                print 'AT_ERROR : Parse Packets FAIL FAIL!'
-                return False
+                print 'AT_WARNING : Parse Packets Command RUN FAIL FAIL!'
+                pass
+                # return False
         except Exception, e:
             print e
             return False

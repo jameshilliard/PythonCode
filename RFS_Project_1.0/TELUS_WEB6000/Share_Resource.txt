@@ -1,10 +1,14 @@
 *** Settings ***
 Library           SSHLibrary
 Library           OperatingSystem
-Library           ../../robotframework/RFS_Project_1.0/library/TR/TR.py
 Library           ../library/Capture_Packets/Capture_Packets.py
 Resource          GUI_Keyword.txt
+<<<<<<< HEAD
 Library           ../library/Wifi/Wifi.py
+=======
+Library           Selenium2Library
+Library           ../library/TR/TR.py
+>>>>>>> e53b12c14b5c96f18810568464bdb43c09e39b49
 
 *** Keywords ***
 SPV
@@ -17,10 +21,15 @@ GPV
     ${Check_GPV}    DoGPV    @{GPV_arg}
     Should Be True    ${Check_GPV}
 
-Teardown_SSH_Disabled
-    DoSPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=0 boolean
-    ${Init_GPV}=    DoGPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=0
-    Should Be True    ${Init_GPV}
+SPV_ON_GW
+    [Arguments]    @{SPV_arg}
+    ${Check_SPV}    DoSPVOnGW    @{SPV_arg}
+    Should Be True    ${Check_SPV}
+
+GPV_ON_GW
+    [Arguments]    @{GPV_arg}
+    ${Check_GPV}    DoGPVOnGW    @{GPV_arg}
+    Should Be True    ${Check_GPV}
 
 SSH_DUT
     [Arguments]    ${ssh_address}    ${username}    ${password}
@@ -73,6 +82,11 @@ Setup_SSH_Enabled
     ${Init_GPV}=    DoGPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=1
     Should Be True    ${Init_GPV}
 
+Teardown_SSH_Disabled
+    DoSPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=0 boolean
+    ${Init_GPV}=    DoGPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=0
+    Should Be True    ${Init_GPV}
+
 ConfigIP
     [Arguments]    ${interface}    ${address}=192.168.1.100
     ${rc}    Run And Return Rc    ifconfig ${interface} ${address}
@@ -81,10 +95,11 @@ ConfigIP
     Should Contain    ${output}    ${address}
 
 Capture Beacon
-    [Arguments]    ${filter_rule}    ${casetype}=common
+    [Arguments]    ${filter_rule}    ${negtive}
     Start Capture On Lan    \    output=/tmp/test1.pcap    filter=Beacon
     sleep    2
     Stop Capture On Lan    raw=/tmp/test1.pcap
+<<<<<<< HEAD
     Parse Packets    filter=${filter_rule}    raw=/tmp/test1.pcap    output=/tmp/filter.log
     ${rc}=    ${cat_result}=    Run And Return Rc And Output    cat /tmp/filter.log
     Run Keyword If    ${casetype}=common    Should Not Be Empty    ${cat_result}    ELSE IF    ${casetype}=negtive    Should Be Empty
@@ -95,3 +110,19 @@ Check WiFi Radio_GUI
     GUI_LoginDUT    ${DUT_URL}    ${USR}    ${PASSWORD}
     Run Keyword If    ${Frequency}=2.4GHz    Check WiFi Radio_2G    ${casetype}    ELSE IF    ${Frequency}=5GHz    Check WiFi Radio_5G
     ...    ${casetype}
+=======
+    ${rc}=    Parse Packets    filter=${filter_rule}    raw=/tmp/test1.pcap    output=/tmp/filter.log    negtive=${negtive}
+    Should Be True    ${rc}
+
+WiFiRadio_Enable
+    DoSPV    Device.WiFi.Radio.1.Enable=1 boolean
+    ${Init_GPV}=    DoGPV    Device.WiFi.Radio.1.Enable=1
+    Should Be True    ${Init_GPV}
+
+WiFiRadio_Disable
+    DoSPV    Device.WiFi.Radio.1.Enable=0 boolean
+    ${Init_GPV}=    DoGPV    Device.WiFi.Radio.1.Enable=0
+    Should Be True    ${Init_GPV}
+
+Reboot_DUT_By_Jacs
+>>>>>>> e53b12c14b5c96f18810568464bdb43c09e39b49

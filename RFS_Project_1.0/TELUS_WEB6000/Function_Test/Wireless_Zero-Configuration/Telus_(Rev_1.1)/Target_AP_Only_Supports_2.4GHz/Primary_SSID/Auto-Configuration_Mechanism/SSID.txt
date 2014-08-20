@@ -1,0 +1,30 @@
+*** Settings ***
+Resource          ../../../../../../Share_Resource.txt
+
+*** Test Cases ***
+RFW-T6000-9940:02301504_Regular SSID
+    #Begin Test
+    #[Step 1] [Setup]     Change Gateway SSID name : Change Gateway SSID name
+    SPVOnGW    InternetGatewayDevice.LANDevice.1.WLANConfiguration.1.SSID=${U_CUSTOM_SSID} string
+    GPVOnGW    InternetGatewayDevice.LANDevice.1.WLANConfiguration.1.SSID=${U_CUSTOM_SSID}
+    #[Step 2][GUI Check]     The SSID can be synchronized to DUT for SSID 1 (2.4GHz) correctly.
+    GPV    Device.WiFi.SSID.1.SSID=${U_CUSTOM_SSID}
+    #[Step 3][GUI Check]     The SSID can be synchronized to DUT for SSID 1 (5GHz) correctly.
+    GPV    Device.WiFi.SSID.5.SSID=${U_CUSTOM_SSID}
+    #[Step 4][FUN Check]     #[Step 4][FUN Check] Wireless STA is able to associate to DUT in 2.4GHz frequency band with the SSID.
+    ConnectSSID    ssid=${U_CUSTOM_SSID}    key=${U_WIRELESS_2G_WPAPSK1}    bssid=${U_WIRELESS_2G_BSSID1}
+    #[Step 5][FUN Check]     Wireless STA is able to associate to DUT in 5GHz frequency band with the SSID.
+    ConnectSSID    ssid=${U_CUSTOM_SSID}    key=${U_WIRELESS_5G_WPAPSK1}    bssid=${U_WIRELESS_5G_BSSID1}
+    #[Step 6] [GUI Check]     #[Step 6] [GUI Check] Synchronized Wireless Settings can be displayed on following GUI pages correctly. \ \ \ \ \ Home Page (Status Page). \ \ \ \ Wireless Setup>Wireless Network List Page. \ \ \ \ Wireless Setup>Basic Setup Page.
+    #[Step 7][Setup] Reboot DUT
+    Reboot_DUT_By_Jacs
+    #[Step 8]:Same as [Step 2]
+    GPV    Device.WiFi.SSID.1.SSID=${U_CUSTOM_SSID}
+    #[Step 9]:Same as [Step 3]
+    GPV    Device.WiFi.SSID.5.SSID=${U_CUSTOM_SSID}
+    #[Step 10]:Same as [Step 4]
+    ConnectSSID    ssid=${U_CUSTOM_SSID}    key=${U_WIRELESS_2G_WPAPSK1}    bssid=${U_WIRELESS_2G_BSSID1}
+    #[Step 11]:Same as [Step 5]
+    ConnectSSID    ssid=${U_CUSTOM_SSID}    key=${U_WIRELESS_5G_WPAPSK1}    bssid=${U_WIRELESS_5G_BSSID1}
+    #[Step 12]:Same as [Step 6]
+    #Test Done

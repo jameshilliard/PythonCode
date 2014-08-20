@@ -1,0 +1,15 @@
+*** Settings ***
+Resource          ../../../../../Variables_ENV.txt
+Resource          ../../../../../Share_Resource.txt
+
+*** Test Cases ***
+RFW-T6000-9438:02300263_ICMP Traffic
+    comment    get the interface of wireless card
+    ${interface}    get Interface    wlan
+    comment    make sure wireless card connect the specified AP
+    connect SSID    ${U_WIRELESS_2G_SSID1}    ${U_WIRELESS_2G_BSSID1}    ${U_WIRELESS_PROTO_WPA}    ${U_WIRELESS_KEY_MGMT_WPA}    ${WIRELESS_PAIRWISE_AES}    ${U_WIRELESS_GROUP_AES}
+    ...    ${U_WIRELESS_CUSTOM_WPAPSK}    ${CURDIR}${/}U_WIRELESS_CONFIG_FILE_2G
+    comment    make sure that wireless wireless card get IP
+    GetIP    ${interface}
+    comment    ping the specified IP on wan side
+    PingTest    192.168.55.254    4    ${U_CUSTOM_IF1}

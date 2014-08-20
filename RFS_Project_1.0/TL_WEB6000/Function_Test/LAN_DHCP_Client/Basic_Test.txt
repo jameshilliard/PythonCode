@@ -1,0 +1,32 @@
+*** Settings ***
+Resource          ../../Share_Resource.txt
+Resource          ../../Variables_ENV.txt
+Library           ../../../library/Capture_Packets/Capture_Packets.py
+Library           ../../../library/TR/TR.py
+
+*** Test Cases ***
+RFW-T6000-9191:02300428_Obtain IP address from Broadband Gateway
+    [Tags]    Need \ Hub between DUT and Broadband Gateway
+    #1. Connect DUT to a Broadband Gateway via MoCA connection. \
+     #2. Make sure DHCP service is enabled on the Broadband Gateway.
+    GetIP    eth2
+    Start_Capture_On_Lan
+    #reboot DUT and make sure it get IP
+    Reboot DUT
+    #stop capture on Lan
+    Stop_Capture_On_Lan
+    #prase the captured packets
+    Parse_Packets
+    #get DUT's IP Address
+    ${DUT_IP}    GPV
+    # LAN Interface get IP via DUT
+    Get IP    eth1
+    GPV    Device.WiFi.Radio.1.Enable=0
+    Capture Beacon    wlan.bssid == 00:18:01:00:7b:ab    negtive
+    Check WiFi Radio_GUI    ${U_CUSTOM_DUT_BR0}    ${U_LOGIN_USER}    ${U_LOGIN_PASSWORD}    2.4GHz    off
+    Comment    Jacs Reboot DUT
+    SPV    # Reboot object
+    Sleep    80
+    Comment    Retest
+    Capture Beacon    wlan.bssid == 00:18:01:00:7b:ab    negtive
+    Check WiFi Radio_GUI    ${U_CUSTOM_DUT_BR0}    ${U_LOGIN_USER}    ${U_LOGIN_PASSWORD}    2.4GHz    off

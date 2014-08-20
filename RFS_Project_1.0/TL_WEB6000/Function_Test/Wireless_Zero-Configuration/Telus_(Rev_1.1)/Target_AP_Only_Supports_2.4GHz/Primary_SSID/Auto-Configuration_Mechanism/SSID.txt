@@ -1,2 +1,0 @@
-*** Test Cases ***
-RFW-T6000-9940:02301504_Regular SSID
