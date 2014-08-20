@@ -1,2 +1,0 @@
-*** Test Cases ***
-02301500_Broadband Gateway supports Auto-Configuration
