@@ -6,12 +6,3 @@ Resource          ../../../../../Share_Resource.txt
 RFW-T6000-9438:02300263_ICMP Traffic
     ${interface}    Run    ifconfig -a | grep "wlan" | awk -F ' ' '{print $1}'
     LOG    ${interface}
-
-=======
-
-RFW-T6000-9438:02300263_ICMP_Traffic
-    Connect Wireless Client
-    GetIP    ${U_CUSTOM_IF1}
-    PingTest    192.168.55.254    4    ${U_CUSTOM_IF1}
-
->>>>>>> elen

@@ -1,5 +1,3 @@
 *** Settings ***
 
 *** Test Cases ***
-GPV Test
-    Do GPV
