@@ -1,0 +1,24 @@
+*** Settings ***
+Resource          ../../../../Variables_ENV.txt
+Resource          ../../../../Share_Resource.txt
+
+*** Test Cases ***
+RFW-T6000-10566:Disable Wireless Radio
+    Comment    Check DUT Wifi Radio ON and Beacon
+    GPV    Device.WiFi.Radio.1.Enable=1
+    Capture Beacon    wlan.bssid == 00:18:01:00:7b:ab    \    # filter rule is DUT's BSSID
+    Comment    Disable DUT Wifi Radio
+    SPV    Device.WiFi.Radio.1.Enable=0 boolean
+    GPV    Device.WiFi.Radio.1.Enable=0
+    Capture Beacon    wlan.bssid == 00:18:01:00:7b:ab    True    # filter rule is DUT's BSSID
+    Comment    GUI Check WiFi Radio ON or OFF
+    Check WiFi Radio_2G    off
+    Comment    Jacs Reboot DUT
+    SPV    # Reboot object
+    Sleep    80    \    # wait for DUT bootup
+    Comment    Retest
+    Capture Beacon    wlan.bssid == 00:18:01:00:7b:ab    True    # filter rule is DUT's BSSID
+    Open Browser    ${U_DUT_BR0_IP}
+    GUI_LoginDUT    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}
+    Check WiFi Radio_2G    off
+    [Teardown]    Teardown_WiFiRadio_Enable
