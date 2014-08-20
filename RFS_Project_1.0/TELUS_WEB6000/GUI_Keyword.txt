@@ -8,10 +8,10 @@ GUI_LoginDUT
     Should Be Equal As Strings    ${Title}    Login
     Input Text    id=login_username    ${USR}
     Input Text    id=login_password    ${PASSWORD}
-    Click Button    id=login_button_span
-    Page Should Contain    Hi root
+    Click Element    id=login_btn
+    Page Should Contain Element    id=userToolbar
 
-Check WiFi Radio_2G
+GUI_Check WiFi Radio_2G
     [Arguments]    ${U_DUT_BR0_IP}    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}    ${casetype}=on
     Open Browser    ${U_DUT_BR0_IP}
     GUI_LoginDUT    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}
@@ -21,7 +21,7 @@ Check WiFi Radio_2G
     GUI_LogoutDUT
     Close Browser
 
-Check WiFi Radio_5G
+GUI_Check WiFi Radio_5G
     [Arguments]    ${U_DUT_BR0_IP}    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}    ${casetype}=on
     Open Browser    ${U_DUT_BR0_IP}
     GUI_LoginDUT    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}
@@ -33,8 +33,8 @@ Check WiFi Radio_5G
 
 GUI_LogoutDUT
     Go To    http://192.168.1.65/wcb_main.html
-    Page Should Contain    Hi root
+    Page Should Contain Element    id=userToolbar
     Click Element    id=top_logout_span
-    Choose Ok On Next Confirmation
+    Confirm Action
     ${Title}=    Get Title
     Should Be Equal As Strings    ${Title}    Login
