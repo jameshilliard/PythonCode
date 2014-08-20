@@ -1,4 +1,5 @@
 *** Settings ***
+Suite Setup       setup_testbed_variable
 Library           OperatingSystem
 Library           Telnet
 Library           Collections
@@ -7,3 +8,5 @@ Library           Screenshot
 Library           library/TR/TR.py
 
 *** Keywords ***
+Setup_Testbed_Variable
+    Set Environment Variable    G_HOST_IP1    192.168.55.3

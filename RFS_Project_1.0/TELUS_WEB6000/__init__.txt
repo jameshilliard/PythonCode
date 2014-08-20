@@ -1,16 +1,16 @@
 *** Settings ***
-Suite Setup       setup_suite_variable
+Suite Setup       Setup_DUT_variable
 Library           OperatingSystem
 
 *** Keywords ***
-Setup_Suite_variable
+Setup_DUT_variable
     Comment    Set Env Variables
-    Set Environment Variable    G_HOST_IP1    192.168.8.51
-    Set Environment Variable    ACS_ConnectionRequestURL    http://192.168.1.65:7547/cwmp/
-    Set Environment Variable    UPGW_ACS_ConnectionRequestURL    http://192.168.55.1:7547/cwmp/
+    Set Environment Variable    ACS_ConnectionRequestURL    http://192.168.55.4:4567/cwmp/
+    Set Environment Variable    UPGW_ACS_ConnectionRequestURL    http://192.168.55.4:4567/cwmp/
     Comment    Set Environment Variable    U_WIRELESS_2G_SSID1
     Comment    Set Environment Variable    U_WIRELESS_2G_BSSID1
     Comment    Set Environment Variable    U_WIRELESS_2G_WPAPSK1
     Comment    Set Environment Variable    U_WIRELESS_5G_SSID1
     Comment    Set Environment Variable    U_WIRELESS_5G_BSSID1
     Comment    Set Environment Variable    U_WIRELESS_5G_WPAPSK1
+    Set Environment Variable    G_PROD_IP_BR0_0_0    192.168.0.1
