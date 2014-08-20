@@ -193,7 +193,7 @@ class Capture_Packets():
     def Start_Capture_On_Remote(self):
         pass
     
-    def Parse_Packets(self, filter='', raw='/tmp/capture_packets.pcap', output='/tmp/parse_capture_packets.log', positive=True):
+    def Parse_Packets(self, filter='', raw='/tmp/capture_packets.pcap', output='/tmp/parse_capture_packets.log', positive="True"):
         
         print 'Parse_Packets'
         filter = str(filter)
@@ -242,14 +242,14 @@ class Capture_Packets():
             print e
             return False
         if data > 0:
-            if positive:
+            if str(positive).lower() == 'true':
                 print 'AT_INFO : Positive Test,Parse Packets PASS PASS!'
                 return True
             else:
                 print 'AT_ERROR : Negtive Test,Parse Packets FAIL FAIL!'
                 return False
         else:
-            if positive:
+            if str(positive).lower() == 'true':
                 print 'AT_ERROR : Positive Test,Parse Packets FAIL FAIL!'
                 return False
             else:
