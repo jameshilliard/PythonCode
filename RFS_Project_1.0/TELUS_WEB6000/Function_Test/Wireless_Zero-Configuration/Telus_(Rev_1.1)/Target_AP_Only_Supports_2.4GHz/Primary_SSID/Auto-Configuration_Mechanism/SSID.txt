@@ -17,7 +17,7 @@ RFW-T6000-9940:02301504_Regular SSID
     ConnectSSID    ssid=${U_CUSTOM_SSID}    key=${U_WIRELESS_5G_WPAPSK1}    bssid=${U_WIRELESS_5G_BSSID1}
     #[Step 6] [GUI Check]    #[Step 6] [GUI Check] Synchronized Wireless Settings can be displayed on following GUI pages correctly. \ \ \ \ \ Home Page (Status Page). \ \ \ \ Wireless Setup>Wireless Network List Page. \ \ \ \ Wireless Setup>Basic Setup Page.
     #[Step 7][Setup] Reboot DUT
-    Reboot_DUT_By_Jacs
+    TR_Reboot_DUT
     #[Step 8]:Same as [Step 2]
     TR_GPV_Check    Device.WiFi.SSID.1.SSID=${U_CUSTOM_SSID}
     #[Step 9]:Same as [Step 3]
