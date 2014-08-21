@@ -211,7 +211,7 @@ class Wifi:
 
 
         Examples:
-        | connect SSID | bssid=10:9f:a9:70:01:03 | type=WPA-PSK   |   key=1234567890   |
+        | connect SSID | ssid=prince2g | bssid=10:9f:a9:70:01:03 | type=WPA-PSK   |   key=1234567890   |
 
 
         """
