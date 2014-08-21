@@ -1,5 +1,6 @@
 *** Settings ***
 Library           Selenium2Library
+Library           String
 
 *** Keywords ***
 GUI_LoginDUT
@@ -9,15 +10,16 @@ GUI_LoginDUT
     Input Text    id=login_username    ${USR}
     Input Text    id=login_password    ${PASSWORD}
     Click Element    id=login_btn
-    Sleep    1
+    Sleep    2
     Page Should Contain Element    id=userToolbar
 
 GUI_Check WiFi Radio_2G
     [Arguments]    ${U_DUT_BR0_IP}    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}    ${casetype}=on
     Open Browser    http://${U_DUT_BR0_IP}
+    Sleep    2
     GUI_LoginDUT    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}
     ${Status_2G}=    Get Text    xpath=//*[@id="id2_apenb"]
-    Run Keyword If    '${casetype}' == 'on'    Should Be Equal As Strings    ${Status_2G}    Enabled    ELSE IF    '${casetype}' == 'off'
+    Run Keyword If    '${casetype}' == 'on'    Should Be Equal As Strings    ${Status_2G}    Enabled    ELSE IF '${casetype}' == 'off'    '${casetype}' == 'off'
     ...    Should Be Equal As Strings    ${Status_2G}    Disabled
     GUI_LogoutDUT    ${U_DUT_BR0_IP}
     Close Browser
@@ -25,6 +27,7 @@ GUI_Check WiFi Radio_2G
 GUI_Check WiFi Radio_5G
     [Arguments]    ${U_DUT_BR0_IP}    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}    ${casetype}=on
     Open Browser    ${U_DUT_BR0_IP}
+    Sleep    5
     GUI_LoginDUT    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}
     ${Status_5G}=    Get Text    xpath=//*[@id="id5_apenb"]
     Run Keyword If    ${casetype}=on    Should Be Equal As Strings    ${Status_5G}    Enabled    ELSE IF    ${casetype}=off
@@ -41,3 +44,14 @@ GUI_LogoutDUT
     Sleep    2
     ${Title}=    Get Title
     Should Be Equal As Strings    ${Title}    Login
+
+GUI_Check_Channel_2G
+    [Arguments]    ${U_DUT_BR0_IP}    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}    ${AutoChannel}=True
+    Open Browser    http://${U_DUT_BR0_IP}
+    GUI_LoginDUT    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}
+    ${Channel_display}=    Get Text    xpath=//*[@id="id2_apchannel"]
+    ${GUI_Channel}=    Run Keyword If    '${AutoChannel}'=='True'    Get Substring    ${Channel_display}    5    ELSE IF
+    ...    '${AutoChannel}'=='False'    Get Substring    ${Channel_display}    0
+    GUI_LogoutDUT    ${U_DUT_BR0_IP}
+    Close Browser
+    [Return]    ${GUI_Channel}
