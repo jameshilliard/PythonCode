@@ -1,0 +1,8 @@
+*** Settings ***
+Library           OperatingSystem
+
+*** Keywords ***
+Setup_Suite_Variable
+    Set Environment Variable    U_CUSTOM_UPGW_LAN_INDEX    1
+    Set Environment Variable    U_CUSTOM_UPGW__SSID_INDEX    1
+    Set Environment Variable    U_CUSTOM_UPGW_WLAN_NODE    InternetGatewayDevice.LANDevice.${U_CUSTOM_UPGW_LAN_INDEX}.WLANConfiguration.${U_CUSTOM_UPGW_SSID_INDEX}

@@ -2,6 +2,8 @@ import os
 import sys
 import pexpect
 import re
+import time
+import subprocess
 
 class TR:
     nodes = None
@@ -14,6 +16,7 @@ class TR:
     prompt = None
     cfg_file = None
     output = None
+    br0_ip = None
     
     def __init__(self):
         self.wan_ip = os.getenv('G_HOST_IP1')
@@ -30,7 +33,91 @@ class TR:
         self.prompt = ['\]$', '\]# ', 'Permission denied,', pexpect.EOF, pexpect.TIMEOUT]
         self.cfg_file = '/tmp/jacs_config_file'
         self.output = '/tmp/jacs_output'
+        self.br0_ip = os.getenv('G_PROD_IP_BR0_0_0')
+        
+        
+    def ExcuteCMD(self, cmd):
+        "Excute shell command ,return code and output"
+        cmd = cmd
+        # print cmd
+        rc = 1
+        content = ""
+        # print (datetime.datetime.now())
+        p = subprocess.Popen(cmd, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        p.wait()
+        rc = p.returncode
+        content = p.stdout.read().strip()
+        if content:
+            print ">" + content + "<"
+        
+        if p.returncode == 0:
+            # print 'AT_INFO : "' + cmd + '" Excute SUCESS!'
+            rc = True
+        else:
+            print 'return code :' + str(rc)
+            print 'AT_WARNING : "' + cmd + '" Excute FAIL!'
+            rc = False
+        p.stdout.close()
+        return rc, content
     
+    
+    def Reset_UPGW_by_jacs(self):
+        "Reboot Up Gw"
+        print '=' * 100
+        print 'Begin Reboot Up GW'
+        self.acs_url = os.getenv('UPGW_ACS_ConnectionRequestURL')
+        if not self.acs_url:
+            print 'AT_ERROR : UPGW_ACS_ConnectionRequestURL NOT Exist!'
+            return False
+        if self.Reboot_DUT():
+            return True
+        else:
+            return False
+        
+    def Reset_DUT_by_jacs(self):
+        "Reboot DUT"
+        print '=' * 100
+        print 'Begin Reboot DUT'
+        self.__init__()
+        output = self.output
+        if not self.Create_Reboot_Config_File():
+            print 'AT_ERROR : Create Config File ERROR!'
+            return False
+          
+        rc = self.copyCfg(self.cfg_file)
+        if rc:
+            rc = self.ExcuteJacs(output)
+            self.readfile(output)
+            if rc:
+                print 'AT_INFO : Begin Reboot DUT!'
+                for i in range(10):
+                    rc, f = self.ExcuteCMD(cmd='ping ' + self.br0_ip + ' -c 5')
+                    if rc:
+                        time.sleep(5)
+                        continue
+                    else:
+                        print 'AT_INFO : Can NOT ping through DUT Now!'
+                        print 'wait 90 seconds'
+                        time.sleep(90)
+                        rc, f = self.ExcuteCMD(cmd='ping ' + self.br0_ip + ' -c 5')
+                        if rc:
+                            print 'AT_INFO : DUT CAN Ping Through!'
+                            print 'AT_INFO : Reboot DUT PASS PASS!'
+                            return True
+                        else:
+                            print 'AT_ERROR : DUT CAN NOT ping through after 90 seconds!'
+                            print 'AT_ERROR : Reboot FAIL FAIL FAIL!'
+                            return False
+                
+                print 'AT_ERROR : DUT CAN always ping through after run jacs command,Maybe DUT not reboot!'
+                print 'AT_ERROR : Reboot FAIL FAIL FAIL!'
+                return False
+            else:
+                print 'AT_ERROR : Reboot FAIL FAIL FAIL!'
+                return False
+        else:
+            return False
+        
     def do_gpv_on_gw(self, *nkw):
         print 'do_gpv_on_gw'
         nkw = nkw
@@ -112,7 +199,7 @@ class TR:
         else:
             return False
 #     
-    def getGPVResult(self, item, output):
+    def getGPVResult(self, item, output=''):
         ""
         if not output:
             output = self.output
@@ -301,6 +388,25 @@ class TR:
         self.readfile(self.cfg_file)
         return True
     
+    def Create_Reboot_Config_File(self,):
+        try:
+            file = open(self.cfg_file, 'w')
+        except Exception, e:
+            print e
+            return False
+        file.writelines('listen 1234' + os.linesep)
+        file.writelines('connect ' + self.acs_url + ' ' + self.acs_user + ' ' + self.acs_pwd + ' NONE' + os.linesep)
+        file.writelines('wait' + os.linesep)
+        file.writelines('rpc cwmp:InformResponse MaxEnvelopes=1' + os.linesep)
+        file.writelines('wait' + os.linesep)
+        file.writelines('rpc cwmp:Reboot' + os.linesep)
+        file.writelines('wait' + os.linesep)
+        file.writelines('rpc0' + os.linesep)
+        file.writelines('quit' + os.linesep)
+        file.close()
+        self.readfile(self.cfg_file)
+        return True
+     
     def copyCfg(self, file):
         try:
             start_cmd = 'scp ' + file + ' ' + self.wan_ip + ':' + file
