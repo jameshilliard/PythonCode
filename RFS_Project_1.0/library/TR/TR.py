@@ -199,7 +199,7 @@ class TR:
         else:
             return False
 #     
-    def getGPVResult(self, item, output):
+    def getGPVResult(self, item, output=''):
         ""
         if not output:
             output = self.output
