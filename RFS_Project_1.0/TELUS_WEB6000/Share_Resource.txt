@@ -7,12 +7,12 @@ Library           Selenium2Library
 Library           ../library/TR/TR.py
 
 *** Keywords ***
-SPV
+TR_SPV
     [Arguments]    @{SPV_arg}
     ${Check_SPV}    DoSPV    @{SPV_arg}
     Should Be True    ${Check_SPV}
 
-GPV
+TR_GPV_Check
     [Arguments]    @{GPV_arg}
     ${Check_GPV}    DoGPV    @{GPV_arg}
     Should Be True    ${Check_GPV}

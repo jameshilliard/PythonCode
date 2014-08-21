@@ -10,12 +10,12 @@ RFW-T6000-12557:Disable Wireless Radio
     [Setup]    WiFiRadio_Enable
     #1. Ensure that Wireless Radio is enabled on DUT in 2.4GHz band and DUT is sending Beacon packets periodically.
     Comment    Check DUT Wifi Radio ON and Beacon
-    GPV    Device.WiFi.Radio.1.Enable=1
+    TR_GPV_Check    Device.WiFi.Radio.1.Enable=1
     Capture Beacon    wlan.bssid == 00:18:01:00:7b:ab    True    # filter rule is DUT's BSSID
     #2. Disable Wireless Radio in 2.4GHz band.
     Comment    Disable DUT Wifi Radio
-    SPV    Device.WiFi.Radio.1.Enable=0 boolean
-    GPV    Device.WiFi.Radio.1.Enable=0
+    TR_SPV    Device.WiFi.Radio.1.Enable=0 boolean
+    TR_GPV_Check    Device.WiFi.Radio.1.Enable=0
     #3. Go to check Expected Results.
     Capture Beacon    wlan.bssid == 00:18:01:00:7b:ab    False    # filter rule is DUT's BSSID
     Comment    GUI Check WiFi Radio ON or OFF
@@ -31,12 +31,12 @@ RFW-T6000-12558:Enabled Wireless Radio
     [Setup]    WiFiRadio_Disable
     #1. Ensure that Wireless Radio is disabled on DUT in 2.4GHz frequency band.
     Comment    Check DUT Wifi Radio OFF and Beacon
-    GPV    Device.WiFi.Radio.1.Enable=0
+    TR_GPV_Check    Device.WiFi.Radio.1.Enable=0
     Capture Beacon    wlan.bssid == 00:18:01:00:7b:ab    False    # filter rule is DUT's BSSID
     #2. Enable Wireless Radio on DUT in 2.4ghz frequency band.
     Comment    Enable DUT Wifi Radio
-    SPV    Device.WiFi.Radio.1.Enable=1 boolean
-    GPV    Device.WiFi.Radio.1.Enable=1
+    TR_SPV    Device.WiFi.Radio.1.Enable=1 boolean
+    TR_GPV_Check    Device.WiFi.Radio.1.Enable=1
     #3. Go to check Expected Results.
     Capture Beacon    wlan.bssid == 00:18:01:00:7b:ab    True    # filter rule is DUT's BSSID
     Comment    GUI Check WiFi Radio ON or OFF
