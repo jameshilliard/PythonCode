@@ -3,12 +3,9 @@ Library           SSHLibrary
 Library           OperatingSystem
 Library           ../library/Capture_Packets/Capture_Packets.py
 Resource          GUI_Keyword.txt
-<<<<<<< HEAD
 Library           ../library/Wifi/Wifi.py
-=======
 Library           Selenium2Library
 Library           ../library/TR/TR.py
->>>>>>> e53b12c14b5c96f18810568464bdb43c09e39b49
 
 *** Keywords ***
 SPV
@@ -37,6 +34,7 @@ SSH_DUT
     ${x}=    Run Keyword And Return Status    SSHLibrary.Login    ${username}    ${password}
     SSHLibrary.Close Connection
     Log    ==========SSH Result is ${x}==========
+    connet SSID
     [Return]    ${x}
 
 PingTest
@@ -99,6 +97,7 @@ Capture Beacon
     Start Capture On Lan    \    output=/tmp/test1.pcap    filter=Beacon
     sleep    2
     Stop Capture On Lan    raw=/tmp/test1.pcap
+
 <<<<<<< HEAD
     Parse Packets    filter=${filter_rule}    raw=/tmp/test1.pcap    output=/tmp/filter.log
     ${rc}=    ${cat_result}=    Run And Return Rc And Output    cat /tmp/filter.log
@@ -110,6 +109,7 @@ Check WiFi Radio_GUI
     GUI_LoginDUT    ${DUT_URL}    ${USR}    ${PASSWORD}
     Run Keyword If    ${Frequency}=2.4GHz    Check WiFi Radio_2G    ${casetype}    ELSE IF    ${Frequency}=5GHz    Check WiFi Radio_5G
     ...    ${casetype}
+
 =======
     ${rc}=    Parse Packets    filter=${filter_rule}    raw=/tmp/test1.pcap    output=/tmp/filter.log    negtive=${negtive}
     Should Be True    ${rc}
@@ -125,4 +125,5 @@ WiFiRadio_Disable
     Should Be True    ${Init_GPV}
 
 Reboot_DUT_By_Jacs
+
 >>>>>>> e53b12c14b5c96f18810568464bdb43c09e39b49
