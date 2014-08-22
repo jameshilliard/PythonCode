@@ -1,0 +1,45 @@
+*** Settings ***
+Resource          ../../Variables_ENV.txt
+Resource          ../../Share_Resource.txt
+Library           Dialogs
+
+*** Test Cases ***
+RFW-T6000-12489:02300427_Periodic DHCP Discovery
+    #1. DUT is connected to a Broadband Gateway whose DHCP service is disabled.
+    #2. Capture BOOTP packets sent from DUT.
+    Start Capture On Lan    interface=eth2
+    TR_Reboot_DUT
+    Pause Execution
+    Stop Capture On Lan
+    Parse Packets    filter=bootp and eth.src == 10:9f:a9:70:00:fc and eth.dst == ff:ff:ff:ff:ff:ff and bootp.option.type == 53 and bootp.option.value == 01
+    Parse Packets    filter=bootp and eth.src == a8:39:44:f6:e4:f0 and eth.dst == 10:9f:a9:70:00:fc and bootp.option.type == 53 and bootp.option.value == 02    positive=True
+    Parse Packets    filter=bootp and eth.src == 10:9f:a9:70:00:fc and eth.dst == ff:ff:ff:ff:ff:ff and bootp.option.type == 53 and bootp.option.value == 03
+    Parse Packets    filter=bootp and eth.src == a8:39:44:f6:e4:f0 and eth.dst == 10:9f:a9:70:00:fc and bootp.option.type == 53 and bootp.option.value == 02
+    #3. Go to check Expected Result 1.
+
+RFW-T6000-12490:02300428_Obtain IP address from Broadband Gateway
+    #1. Connect DUT to a Broadband Gateway via MoCA connection.
+    #2. Make sure DHCP service is enabled on the Broadband Gateway.
+    #3. Catpure packets transmitted between DUT and Broadband Gateway.
+    #4. Go to check Expected Result 1.    Expected Result 1: \ 1. DUT will broadcast DHCP discovery after boot-up. \ 2. DUT can response to DHCP offer sent from Broadband Gateway correctly. \ 3. DUT can obtain IP address and other necessary information including Subnet Mask, Default Gateway and DNS server information from Broadband Gateway.
+    #5. Connect a LAN device to DUT and make sure that the LAN device can obtain IP address and other necessary information from Broadband Gateway.
+    #6. Have the LAN device access DUT's web console with the IP address assigned to DUT.
+    #7. Go to check Expected Result 2.    Expected Result 2: \ 1. Log-in page from DUT can be accessed on the LAN device. \ 2. Following information on Home page should be shown correctly after logging in with valid username and password: \ Module Number, Firmware Version, IP Address, Subnet Mask, Default Gateway, IPv6 Link Local IP Address.
+    #8. Have the LAN device access DUT's web console with the Default Management IP address (LAN device's IP address should be set to 192.168.1.x first (x ranges from 1 to 253)).
+    #9. Go to check Expected Result 3.    Expected Result 3: \ 1. Cannot access DUT's web console.
+    #10. Reboot DUT and then do step 3~7 again.
+
+RFW-T6000-12491:02300429_Renew DHCP Lease Period
+    #1. DUT has been connected to a Broadband Gateway and obtained IP address and other necessary information from the Broadband Gateway.
+    #2. Lease period on DHCP server is set to 2 min.
+    #3. Capture DHCP packets transmitted between DUT and the Broadband Gateway.
+    #4. Go to check Expected Result 1.    Expected Result 1: \ DUT will send DHCP Request packet to Broadband Gateway at the time of half lease period.
+    #5. Have a LAN device connected to DUT acess DUT's web console with IP address originialy obtained from Broadband Gateway at step 1 after step 4.
+    #6. Go to check Expected Result 2.    Expected Result 2: \ 1. Log-in page from DUT can be accessed on the LAN device. \ 2. Following information on Home page should be shown correctly after logging in with valid username and password: \ Module Number, Firmware Version, IP Address, Subnet Mask, Default Gateway, IPv6 Link Local IP Address.
+
+RFW-T6000-12492:02300430_Lease Period Expired
+    #1. DUT has been connected to a Broadband Gateway and obtained IP address and other necessary information from the Broadband Gateway.
+    #2. Lease period on DHCP server is set to 2 min.
+    #3. Turn off DHCP service on the Broadband Gateway.
+    #4. Have the LAN device directly connected to DUT access DUT's web console with the Default Management IP address after DHCP lease period expires (LAN device's IP address should be set to 192.168.1.x first (x ranges from 1 to 253)).
+    #5. Go to check Expected Result 1.    Expected Result 1: \ 1. The LAN device connected to DUT directly can access DUT's Web console with default management IP address. \ 2. Following information on Home page should be shown correctly after logging in with valid username and password: \ Module Number, Firmware Version, IP Address, Subnet Mask, Default Gateway, IPv6 Link Local IP Address.

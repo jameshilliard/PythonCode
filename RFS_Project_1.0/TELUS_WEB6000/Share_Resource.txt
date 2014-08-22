@@ -58,6 +58,7 @@ FUN_PingTest
     ...    Arguments can be a real value or variable defined in Variables list.
     ${rc}    ${PingResult}    Run And Return Rc And Output    ping ${destIP} -c ${count} -I ${interface}
     Should Be Equal As Numbers    ${rc}    0
+    Log    ${PingResult}
     Should Not Contain    ${PingResult}    , 100% packet loss
 
 FUN_GetIP

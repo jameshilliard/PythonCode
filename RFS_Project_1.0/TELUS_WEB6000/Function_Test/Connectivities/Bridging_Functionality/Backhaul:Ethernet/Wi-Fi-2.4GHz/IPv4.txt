@@ -4,13 +4,16 @@ Resource          ../../../../../Share_Resource.txt
 
 *** Test Cases ***
 RFW-T6000-9438:02300263_ICMP Traffic
-    ${interface}    Run    ifconfig -a | grep "wlan" | awk -F ' ' '{print $1}'
+    #1. Connect DUT to a Broadband Gateway via LAN Ethernet
+    #2. WAN PC is located on WAN side and LAN PC2 is connected to the LAN interface on Broadband Gateway.
+    #3. PC1 is associated with DUT via Wi-Fi in 2.4GHz frequency band.
+    ${interface}=    Wifi.Get Wlan Card Name
     LOG    ${interface}
     connect SSID    ssid=prince2g    bssid=10:9f:a9:70:01:03    type=WPA-PSK    key=1234567890
-    Scan SSID    ssid=prince2g    bssid=10:9f:a9:70:01:03
-
-RFW-T6000-9438:02300263_ICMP Traffic1
-    ${interface}    Run    ifconfig -a | grep "wlan" | awk -F ' ' '{print $1}'
-    LOG    ${interface}
-    connect SSID    ssid=prince2g    bssid=10:9f:a9:70:01:03    type=WPA-PSK    key=1234567890
-    Scan SSID    ssid=prince2g    bssid=10:9f:a9:70:01:02
+    Run    killall dhclient
+    FUN_GetIP    ${interface}
+    #4. Ping LAN PC2 from LAN PC1.
+    #5. Ping WAN PC from LAN PC1.    #Expected Result 1: \ 1. LAN PC1 can ping through LAN PC2 and WAN PC. \ 2. LAN PC2 can ping through LAN PC1.
+    #6. Ping LAN PC1 from LAN PC2.
+    FUN_PingTest    192.168.55.254    4    ${interface}
+    [Teardown]    FUN_Release_IP    ${interface}
