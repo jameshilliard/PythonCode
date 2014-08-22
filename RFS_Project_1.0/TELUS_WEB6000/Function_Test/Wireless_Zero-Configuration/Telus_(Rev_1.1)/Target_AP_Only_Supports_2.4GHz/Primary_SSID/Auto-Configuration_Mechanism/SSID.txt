@@ -5,13 +5,13 @@ Resource          ../../../../../../Share_Resource.txt
 RFW-T6000-9940:02301504_Regular SSID
     #Begin Test
     #[Step 1] [Setup]    Change Gateway SSID name
-    Comment    TR_SPVOnGW    %{U_CUSTOM_UPGW_WLAN_NODE}.SSID=%{U_CUSTOM_SSID} string
+    TR_SPVOnGW    %{U_CUSTOM_UPGW_WLAN_NODE}.SSID=%{U_CUSTOM_SSID} string
     TR_GPVOnGW    %{U_CUSTOM_UPGW_WLAN_NODE}.SSID=%{U_CUSTOM_SSID}
-    Comment    sleep    %{U_CUSTOM_ZERO_CONFIG_WAIT_TIME}
+    sleep    %{U_CUSTOM_ZERO_CONFIG_WAIT_TIME}
     #[Step 2][GUI Check]    The SSID can be synchronized to DUT for SSID 1 (2.4GHz) correctly.
     TR_GPV_Check    Device.WiFi.SSID.1.SSID=%{U_CUSTOM_SSID}
     #[Step 3][GUI Check]    The SSID can be synchronized to DUT for SSID 1 (5GHz) correctly.
-    Comment    TR_GPV_Check    Device.WiFi.SSID.5.SSID=%{U_CUSTOM_SSID}
+    TR_GPV_Check    Device.WiFi.SSID.5.SSID=%{U_CUSTOM_SSID}-5G
     #[Step 4][FUN Check]    Wireless STA is able to associate to DUT in 2.4GHz frequency band with the SSID.
     Comment    ConnectSSID    ssid=%{U_CUSTOM_SSID}    key=%{U_WIRELESS_2G_WPAPSK1}    bssid=%{U_WIRELESS_2G_BSSID1}
     #[Step 5][FUN Check]    Wireless STA is able to associate to DUT in 5GHz frequency band with the SSID.
