@@ -7,3 +7,10 @@ RFW-T6000-9438:02300263_ICMP Traffic
     ${interface}    Run    ifconfig -a | grep "wlan" | awk -F ' ' '{print $1}'
     LOG    ${interface}
     connect SSID    ssid=prince2g    bssid=10:9f:a9:70:01:03    type=WPA-PSK    key=1234567890
+    Scan SSID    ssid=prince2g    bssid=10:9f:a9:70:01:03
+
+RFW-T6000-9438:02300263_ICMP Traffic1
+    ${interface}    Run    ifconfig -a | grep "wlan" | awk -F ' ' '{print $1}'
+    LOG    ${interface}
+    connect SSID    ssid=prince2g    bssid=10:9f:a9:70:01:03    type=WPA-PSK    key=1234567890
+    Scan SSID    ssid=prince2g    bssid=10:9f:a9:70:01:02
