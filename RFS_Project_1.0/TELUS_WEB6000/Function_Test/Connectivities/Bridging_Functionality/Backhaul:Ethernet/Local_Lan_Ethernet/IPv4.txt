@@ -3,7 +3,7 @@ Resource          ../../../../../Variables_ENV.txt
 Resource          ../../../../../Share_Resource.txt
 
 *** Test Cases ***
-RFW-T6000-9425:02300285_ICMP Traffic
+RFW-T6000-12489:02300285_ICMP Traffic
     FUN_GetIP    ${U_CUSTOM_IF1}
     FUN_PingTest    192.168.55.254    4    ${U_CUSTOM_IF1}
     [Teardown]    FUN_Release_IP    ${U_CUSTOM_IF1}
