@@ -5,28 +5,28 @@ Resource          ../../../../../../Share_Resource.txt
 02301517_Compatibility Mode (802.11 b, g, n)
     #Begin Test
     #[Step 1] [Setup]    Change Wireless Mode Gateway to Compatibility Mode (802.11 b, g, n)
-    SPVOnGW    ${U_CUSTOM_UPGW_WLAN_NODE}.Standard=b,g,n string
+    TR_SPVOnGW    ${U_CUSTOM_UPGW_WLAN_NODE}.Standard=b,g,n string
     …    ${U_CUSTOM_UPGW_WLAN_NODE}.SSID=${U_WIRELESS_SSID1} string
     …    ${U_CUSTOM_UPGW_WLAN_NODE}.BeaconType=WPAand11i string
     …    ${U_CUSTOM_UPGW_WLAN_NODE}.IEEE11iEncryptionModes=AESEncryption string
     …    ${U_CUSTOM_UPGW_WLAN_NODE}.IEEE11iAuthenticationMode=PSKAuthentication string
     …    ${U_CUSTOM_UPGW_WLAN_NODE}.PreSharedKey.1.PreSharedKey=${U_WIRELESS_CUSTOM_WPAPSK} string
-    GPVOnGW    ${U_CUSTOM_UPGW_WLAN_NODE}.Standard=b,g,n
+    TR_GPVOnGW    ${U_CUSTOM_UPGW_WLAN_NODE}.Standard=b,g,n
     …    ${U_CUSTOM_UPGW_WLAN_NODE}.SSID=${U_WIRELESS_SSID1}
     …    ${U_CUSTOM_UPGW_WLAN_NODE}.BeaconType=WPAand11i
     …    ${U_CUSTOM_UPGW_WLAN_NODE}.IEEE11iEncryptionModes=AESEncryption
     …    ${U_CUSTOM_UPGW_WLAN_NODE}.IEEE11iAuthenticationMode=PSKAuthentication
     #[Step 2][TR Check]    The Wireless Mode settings can be synchronized to DUT for SSID 1 (2.4GHz) correctly.
-    GPV    Device.WiFi.Radio.1.OperatingStandards=b,g,n
+    TR_GPV_Check    Device.WiFi.Radio.1.OperatingStandards=b,g,n
     #[Step 3][FUN Check]    Wireless STA is able to associate to DUT in 2.4GHz frequency band with the SSID.
     ConnectSSID    ssid=${U_WIRELESS_SSID1}
     …    key=${U_WIRELESS_2G_WPAPSK1}
     …    bssid=${U_WIRELESS_2G_BSSID1}
     #[Step 4] [GUI Check]    Wireless Settings for both 2.4Ghz and 5GHz can be displayed on 'Home' page, 'Wireless Settings' page, 'Wireless Security' page correctly.
     #[Step 5][Setup] Reboot DUT
-    Reboot_DUT_By_Jacs
+    TR_Reboot_DUT
     #[Step 6]:Same as [Step 2]
-    GPV    Device.WiFi.Radio.1.OperatingStandards=b,g,n
+    TR_GPV_Check    Device.WiFi.Radio.1.OperatingStandards=b,g,n
     #[Step 7]:Same as [Step 3]
     ConnectSSID    ssid=${U_WIRELESS_SSID1}
     …    key=${U_WIRELESS_2G_WPAPSK1}
