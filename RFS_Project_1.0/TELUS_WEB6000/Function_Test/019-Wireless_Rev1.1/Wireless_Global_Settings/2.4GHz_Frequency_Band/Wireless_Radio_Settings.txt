@@ -23,7 +23,7 @@ RFW-T6000-12557:Disable Wireless Radio
     Comment    TR_Reboot_DUT
     #5. Go to check Expected Results again after DUT boots up.
     Comment    Retest
-    FUN_Parse WiFi_L2 Packets    ${U_WIRELESSINTERFACE}    wlan.bssid == 00:18:01:00:7b:ab and wlan.fc.type_subtype == 0x08    False    # filter rule is DUT's BSSID
+    FUN_Parse WiFi_L2 Packets    wlan.bssid == 00:18:01:00:7b:ab and wlan.fc.type_subtype == 0x08    False    # filter rule is DUT's BSSID
     GUI_Check WiFi Radio_2G    ${U_DUT_BR0_IP}    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}    off
 
 RFW-T6000-12558:Enabled Wireless Radio
@@ -44,5 +44,5 @@ RFW-T6000-12558:Enabled Wireless Radio
     Comment    TR_Reboot_DUT
     #5. Go to check Expected Results again after DUT boots up.
     Comment    Retest
-    FUN_Parse WiFi_L2 Packets    ${U_WIRELESSINTERFACE}    wlan.bssid == 00:18:01:00:7b:ab and wlan.fc.type_subtype == 0x08    True    # filter rule is DUT's BSSID
+    FUN_Parse WiFi_L2 Packets    wlan.bssid == 00:18:01:00:7b:ab and wlan.fc.type_subtype == 0x08    True    # filter rule is DUT's BSSID
     GUI_Check WiFi Radio_2G    ${U_DUT_BR0_IP}    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}    on

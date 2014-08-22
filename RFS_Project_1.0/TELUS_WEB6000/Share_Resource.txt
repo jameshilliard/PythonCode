@@ -10,13 +10,13 @@ Library           ../library/TR/TR.py
 *** Keywords ***
 TR_SPV
     [Arguments]    @{SPV_arg}
-    ${Check_SPV}    DoSPV    @{SPV_arg}
+    ${Check_SPV}    DoSPVonDUT    @{SPV_arg}
     Should Be True    ${Check_SPV}
-    Sleep    20
+    Sleep    15
 
 TR_GPV_Check
     [Arguments]    @{GPV_arg}
-    ${Check_GPV}    DoGPV    @{GPV_arg}
+    ${Check_GPV}    DoGPVonDUT    @{GPV_arg}
     Should Be True    ${Check_GPV}
 
 TR_SPV_ON_GW
@@ -29,11 +29,10 @@ TR_GPV_ON_GW
     [Arguments]    @{GPV_arg}
     ${Check_GPV}    DoGPVOnGW    @{GPV_arg}
     Should Be True    ${Check_GPV}
-    Sleep    15
 
 TR_GPV_Return_Value
     [Arguments]    ${arg1}
-    ${Check_GPV}    DoGPV    ${arg1}
+    ${Check_GPV}    DoGPVonDUT    ${arg1}
     Should Be True    ${Check_GPV}
     ${rc}=    getGPVResult    ${arg1}
     [Return]    ${rc}
@@ -106,9 +105,9 @@ FUN_Parse WiFi_L2 Packets
     Start Capture On Lan    interface=mon    output=/tmp/test1.pcap
     sleep    5
     Stop Capture On Lan    raw=/tmp/test1.pcap
-    Parse Packets    filter=${filter_rule}    raw=/tmp/test1.pcap    output=/tmp/filter.log
-    ${rc}=    ${cat_result}=    Run And Return Rc And Output    cat /tmp/filter.log
-    Run Keyword If    ${casetype}=common    Should Not Be Empty    ${cat_result}    ELSE IF    ${casetype}=negtive    Should Be Empty
+    Parse Packets    filter=${filter_rule}    raw=/tmp/test1.pcap    output=/tmp/filter.log    positive=${positive}
+    ${rc}    ${cat_result}=    Run And Return Rc And Output    cat /tmp/filter.log
+    Run Keyword If    '${positive}'=='True'    Should Not Be Empty    ${cat_result}    ELSE IF    '${positive}'=='False'    Should Be Empty
     ...    ${cat_result}
 
 TR_SPV_WiFiRadio_Enable

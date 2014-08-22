@@ -18,14 +18,13 @@ class TR:
     output = None
     br0_ip = None
     
-    def __init__(self):
+    def init(self):
         self.wan_ip = os.getenv('G_HOST_IP1')
         print 'wan_ip:'
         print self.wan_ip
         self.wan_user = os.getenv('user', 'root')
         self.wan_pwd = os.getenv('pwd', '123qaz')
-        if not self.acs_url:
-            self.acs_url = os.getenv('ACS_ConnectionRequestURL')
+        
         print 'acs connection request url'
         print self.acs_url
         self.acs_user = os.getenv('acs_user', 'actiontec')
@@ -78,7 +77,7 @@ class TR:
         "Reboot DUT"
         print '=' * 100
         print 'Begin Reboot DUT'
-        self.__init__()
+        self.init()
         output = self.output
         if not self.Create_Reboot_Config_File():
             print 'AT_ERROR : Create Config File ERROR!'
@@ -119,32 +118,64 @@ class TR:
             return False
         
     def do_gpv_on_gw(self, *nkw):
+        print '=' * 100
         print 'do_gpv_on_gw'
         nkw = nkw
         self.acs_url = os.getenv('UPGW_ACS_ConnectionRequestURL')
         if not self.acs_url:
             print 'AT_ERROR : UPGW_ACS_ConnectionRequestURL NOT Exist!'
             return False
+        self.init()
         if self.do_gpv(nkw):
             return True
         else:
             return False
     
     def do_spv_on_gw(self, *nkw):
+        print '=' * 100
+        print 'do_spv_on_gw'
         nkw = nkw
         self.acs_url = os.getenv('UPGW_ACS_ConnectionRequestURL')
-        if not self.acs_url:
+        if not self.acs_url:      
             print 'AT_ERROR : UPGW_ACS_ConnectionRequestURL NOT Exist!'
             return False
+        self.init()
         if self.do_spv(nkw):
             return True
         else:
             return False
-    
-    def do_gpv(self, *nkw):
-        self.__init__()
+        
+    def do_gpv_on_dut(self, *nkw):
         print '=' * 100
-        print "Begin GPV"
+        print 'do_gpv_on_dut'
+        
+        nkw = nkw
+        self.acs_url = os.getenv('ACS_ConnectionRequestURL')
+        if not self.acs_url:
+            print 'AT_ERROR : ACS_ConnectionRequestURL NOT Exist!'
+            return False
+        self.init()
+        if self.do_gpv(nkw):
+            return True
+        else:
+            return False
+    
+    def do_spv_on_dut(self, *nkw):
+        print '=' * 100
+        print 'do_spv_on_dut'
+        nkw = nkw
+        self.acs_url = os.getenv('ACS_ConnectionRequestURL')
+        if not self.acs_url:      
+            print 'AT_ERROR : ACS_ConnectionRequestURL NOT Exist!'
+            return False
+        self.init()
+        if self.do_spv(nkw):
+            return True
+        else:
+            return False
+
+    def do_gpv(self, *nkw):
+        
         if type(nkw) is type(()) and type(nkw[0]) is type(()):
             nkw = nkw[0]
         print nkw
@@ -153,8 +184,8 @@ class TR:
         self.nodes = list(nkw)
         gpv_node = []
         check_dict = {}
-        gpv_format1 = r'^ *[\w\.]+ *$'
-        gpv_format2 = r'^ *([\w\.]+) *= *([\w\.\,/]+) *$'
+        gpv_format1 = r'^ *[\w\.-]+ *$'
+        gpv_format2 = r'^ *([\w\.-]+) *= *([:\w\.\,/-]+) *.*$'
         
         # (u'InternetGatewayDevice.LANDevice.1.WLANConfiguration.1.SSID', u'output=/tmp/1')
         for key in self.nodes:
@@ -236,15 +267,14 @@ class TR:
         return rc
             
     def do_spv(self, *nkw):
-        self.__init__()
-        print '=' * 100
-        print "Begin SPV"
+        if type(nkw) is type(()) and type(nkw[0]) is type(()):
+            nkw = nkw[0]
         print nkw
-        output = self.output
         
+        output = self.output
         self.nodes = list(nkw)
         spv_node = []
-        spv_format = r'^ *([\w\.]+) *= *([\w\.\,/]+) +([\w]+) *$'
+        spv_format = r'^ *([\w\.-]+) *= *([:\w\.\,/-]+) +([\w]+) *$'
         
         # (u'InternetGatewayDevice.LANDevice.1.WLANConfiguration.1.SSID=1', u'output=/tmp/1')
         for key in self.nodes:

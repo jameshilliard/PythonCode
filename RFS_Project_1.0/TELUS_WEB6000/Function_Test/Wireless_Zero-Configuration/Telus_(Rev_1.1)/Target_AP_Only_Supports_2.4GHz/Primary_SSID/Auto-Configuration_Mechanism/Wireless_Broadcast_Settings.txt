@@ -5,23 +5,24 @@ Resource          ../../../../../../Share_Resource.txt
 02301535_Broadcasting is Enabled
     #Begin Test
     #[Step 1] [TR Setup]    Wireless Broadcasting Settings on the Broadband Gateway is Enabled
-    TR_SPVOnGW    ${U_CUSTOM_UPGW_WLAN_NODE}.BeaconAdvertisementEnabled=1 boolean
-    TR_GPVOnGW    ${U_CUSTOM_UPGW_WLAN_NODE}.BeaconAdvertisementEnabled=1
+    TR_SPVOnGW    %{U_CUSTOM_UPGW_WLAN_NODE}.BeaconAdvertisementEnabled=1 boolean
+    TR_GPVOnGW    %{U_CUSTOM_UPGW_WLAN_NODE}.BeaconAdvertisementEnabled=1
+    sleep    %{U_CUSTOM_ZERO_CONFIG_WAIT_TIME}
     #[Step 2][TR Check]    The Broadcasting Settings on DUT is also Enabled after synchronization in 2.4GHz frequency band.
     TR_GPV_Check    Device.WiFi.AccessPoint.1.SSIDAdvertisementEnabled=1
     #[Step 3][TR Check]    The Broadcasting Settings on DUT is also Enabled after synchronization in 5GHz frequency band.
     TR_GPV_Check    Device.WiFi.AccessPoint.5.SSIDAdvertisementEnabled=1
     #[Step 4] [GUI Check]    Wireless Settings for both 2.4Ghz and 5GHz can be displayed on 'Home' page, 'Wireless Settings' page, 'Wireless Security' page correctly.
     #[Step 5][Setup] Reboot DUT
-    TR_Reboot_DUT
+    Comment    TR_Reboot_DUT
     #[Step 6]:Same as [Step 2]
     TR_GPV_Check    Device.WiFi.AccessPoint.1.SSIDAdvertisementEnabled=1
     #[Step 7]:Same as [Step 3]
     TR_GPV_Check    Device.WiFi.AccessPoint.5.SSIDAdvertisementEnabled=1
     #[Step 8]:Same as [Step 4]
     #[Step 9][TR Setup]    Disable Wireless Broadcasting on the Broadband Gateway
-    TR_SPVOnGW    ${U_CUSTOM_UPGW_WLAN_NODE}.BeaconAdvertisementEnabled=0 boolean
-    TR_GPVOnGW    ${U_CUSTOM_UPGW_WLAN_NODE}.BeaconAdvertisementEnabled=0
+    TR_SPVOnGW    %{U_CUSTOM_UPGW_WLAN_NODE}.BeaconAdvertisementEnabled=0 boolean
+    TR_GPVOnGW    %{U_CUSTOM_UPGW_WLAN_NODE}.BeaconAdvertisementEnabled=0
     #[Step 10][TR Check]    The Broadcasting Settings on DUT is also Enabled after synchronization in 2.4GHz frequency band.
     TR_GPV_Check    Device.WiFi.AccessPoint.1.SSIDAdvertisementEnabled=0
     #[Step 11][TR Check]    The Broadcasting Settings on DUT is also Enabled after synchronization in 5GHz frequency band.
@@ -32,8 +33,9 @@ Resource          ../../../../../../Share_Resource.txt
 02301536_Broadcasting is Disabled
     #Begin Test
     #[Step 1] [TR Setup]    Disable Wireless Broadcasting on the Broadband Gateway
-    TR_SPVOnGW    ${U_CUSTOM_UPGW_WLAN_NODE}.BeaconAdvertisementEnabled=0 boolean
-    TR_GPVOnGW    ${U_CUSTOM_UPGW_WLAN_NODE}.BeaconAdvertisementEnabled=0
+    TR_SPVOnGW    %{U_CUSTOM_UPGW_WLAN_NODE}.BeaconAdvertisementEnabled=0 boolean
+    TR_GPVOnGW    %{U_CUSTOM_UPGW_WLAN_NODE}.BeaconAdvertisementEnabled=0
+    sleep    %{U_CUSTOM_ZERO_CONFIG_WAIT_TIME}
     #[Step 2][TR Check]    The Broadcasting Settings on DUT is also Enabled after synchronization in 2.4GHz frequency band.
     TR_GPV_Check    Device.WiFi.AccessPoint.1.SSIDAdvertisementEnabled=0
     #[Step 3][TR Check]    The Broadcasting Settings on DUT is also Enabled after synchronization in 5GHz frequency band.
@@ -47,8 +49,8 @@ Resource          ../../../../../../Share_Resource.txt
     TR_GPV_Check    Device.WiFi.AccessPoint.5.SSIDAdvertisementEnabled=0
     #[Step 8]:Same as [Step 4]
     #[Step 9][TR Setup]    Enable Wireless Broadcasting on the Broadband Gateway
-    TR_SPVOnGW    ${U_CUSTOM_UPGW_WLAN_NODE}.BeaconAdvertisementEnabled=1 boolean
-    TR_GPVOnGW    ${U_CUSTOM_UPGW_WLAN_NODE}.BeaconAdvertisementEnabled=1 boolean
+    TR_SPVOnGW    %{U_CUSTOM_UPGW_WLAN_NODE}.BeaconAdvertisementEnabled=1 boolean
+    TR_GPVOnGW    %{U_CUSTOM_UPGW_WLAN_NODE}.BeaconAdvertisementEnabled=1 boolean
     #[Step 10][TR Check]    The Broadcasting Settings on DUT is also Enabled after synchronization in 2.4GHz frequency band.
     TR_GPV_Check    Device.WiFi.AccessPoint.1.SSIDAdvertisementEnabled=1
     #[Step 11][TR Check]    The Broadcasting Settings on DUT is also Enabled after synchronization in 5GHz frequency band.

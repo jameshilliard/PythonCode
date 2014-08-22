@@ -23,9 +23,9 @@ RFW-T6000-12565:WMM Is Enabled: Packet Analysis
     FUN_Parse WiFi_L2 Packets    wlan.fc.type_subtype == 0x08 and wlan.bssid == 00:18:01:00:7b:ab    True    #Capture Beacon
     FUN_Parse WiFi_L2 Packets    wlan.fc.type_subtype == 0x05 and wlan.bssid == 00:18:01:00:7b:ab    True    #Capture Probe Response
     #3. Go to check Expected Results.    Do GUI Check: WMM status can be shown correctly on corresponding Web GUI pages.
-    GUI_Check_WMM_2G    ${U_DUT_BR0_IP}    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}    off
+    GUI_Check_WMM_2G    ${U_DUT_BR0_IP}    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}    on
     #4. Reboot DUT.
     Comment    TR_Reboot_DUT and Retest
     FUN_Parse WiFi_L2 Packets    wlan.fc.type_subtype == 0x08 and wlan.bssid == 00:18:01:00:7b:ab    True    #Capture Beacon
     FUN_Parse WiFi_L2 Packets    wlan.fc.type_subtype == 0x05 and wlan.bssid == 00:18:01:00:7b:ab    True    #Capture Probe Response
-    GUI_Check_WMM_2G    ${U_DUT_BR0_IP}    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}    off
+    GUI_Check_WMM_2G    ${U_DUT_BR0_IP}    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}    on

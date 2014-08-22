@@ -5,34 +5,27 @@ Resource          ../../../../../../Share_Resource.txt
 RFW-T6000-9940:02301504_Regular SSID
     #Begin Test
     #[Step 1] [Setup]    Change Gateway SSID name
-    TR_SPVOnGW    ${U_CUSTOM_UPGW_WLAN_NODE}.SSID=${U_CUSTOM_SSID} string
-    TR_GPVOnGW    ${U_CUSTOM_UPGW_WLAN_NODE}.SSID=${U_CUSTOM_SSID}
+    TR_SPVOnGW    %{U_CUSTOM_UPGW_WLAN_NODE}.SSID=%{U_CUSTOM_SSID} string
+    TR_GPVOnGW    %{U_CUSTOM_UPGW_WLAN_NODE}.SSID=%{U_CUSTOM_SSID}
+    sleep    %{U_CUSTOM_ZERO_CONFIG_WAIT_TIME}
     #[Step 2][GUI Check]    The SSID can be synchronized to DUT for SSID 1 (2.4GHz) correctly.
-    TR_GPV_Check    Device.WiFi.SSID.1.SSID=${U_CUSTOM_SSID}
+    TR_GPV_Check    Device.WiFi.SSID.1.SSID=%{U_CUSTOM_SSID}
     #[Step 3][GUI Check]    The SSID can be synchronized to DUT for SSID 1 (5GHz) correctly.
-    TR_GPV_Check    Device.WiFi.SSID.5.SSID=${U_CUSTOM_SSID}
+    TR_GPV_Check    Device.WiFi.SSID.5.SSID=%{U_CUSTOM_SSID}-5G
     #[Step 4][FUN Check]    Wireless STA is able to associate to DUT in 2.4GHz frequency band with the SSID.
-    ConnectSSID    ssid=${U_CUSTOM_SSID}
-    …    key=${U_WIRELESS_2G_WPAPSK1}
-    …    bssid=${U_WIRELESS_2G_BSSID1}
+    Comment    ConnectSSID    ssid=%{U_CUSTOM_SSID}    key=%{U_WIRELESS_2G_WPAPSK1}    bssid=%{U_WIRELESS_2G_BSSID1}
     #[Step 5][FUN Check]    Wireless STA is able to associate to DUT in 5GHz frequency band with the SSID.
-    ConnectSSID    ssid=${U_CUSTOM_SSID}
-    …    key=${U_WIRELESS_5G_WPAPSK1}
-    …    bssid=${U_WIRELESS_5G_BSSID1}
+    Comment    ConnectSSID    ssid=%{U_CUSTOM_SSID}    key=%{U_WIRELESS_5G_WPAPSK1}    bssid=%{U_WIRELESS_5G_BSSID1}
     #[Step 6] [GUI Check]    Synchronized Wireless Settings can be displayed on following GUI pages correctly. \ Home Page (Status Page). \ Wireless Setup>Wireless Network List Page. \ Wireless Setup>Basic Setup Page.
     #[Step 7][Setup] Reboot DUT
-    TR_Reboot_DUT
+    Comment    TR_Reboot_DUT
     #[Step 8]:Same as [Step 2]
-    TR_GPV_Check    Device.WiFi.SSID.1.SSID=${U_CUSTOM_SSID}
+    Comment    TR_GPV_Check    Device.WiFi.SSID.1.SSID=%{U_CUSTOM_SSID}
     #[Step 9]:Same as [Step 3]
-    TR_GPV_Check    Device.WiFi.SSID.5.SSID=${U_CUSTOM_SSID}
+    Comment    TR_GPV_Check    Device.WiFi.SSID.5.SSID=%{U_CUSTOM_SSID}
     #[Step 10]:Same as [Step 4]
-    ConnectSSID    ssid=${U_CUSTOM_SSID}
-    …    key=${U_WIRELESS_2G_WPAPSK1}
-    …    bssid=${U_WIRELESS_2G_BSSID1}
+    Comment    ConnectSSID    ssid=%{U_CUSTOM_SSID}    key=%{U_WIRELESS_2G_WPAPSK1}    bssid=%{U_WIRELESS_2G_BSSID1}
     #[Step 11]:Same as [Step 5]
-    ConnectSSID    ssid=${U_CUSTOM_SSID}
-    …    key=${U_WIRELESS_5G_WPAPSK1}
-    …    bssid=${U_WIRELESS_5G_BSSID1}
+    Comment    ConnectSSID    ssid=%{U_CUSTOM_SSID}    key=%{U_WIRELESS_5G_WPAPSK1}    bssid=%{U_WIRELESS_5G_BSSID1}
     #[Step 12]:Same as [Step 6]
     #End Test
