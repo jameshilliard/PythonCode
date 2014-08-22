@@ -100,24 +100,15 @@ FUN_ConfigIP
     ${rc}    ${output}    Run And Return Rc And Output    ifconfig ${interface}
     Should Contain    ${output}    ${address}
 
-FUN_Capture Beacon
+FUN_Parse WiFi_L2 Packets
     [Arguments]    ${filter_rule}    ${positive}=True
-    Start Capture On Lan    \    output=/tmp/test1.pcap    filter=Beacon
+    Start Capture On Lan    interface=mon    output=/tmp/test1.pcap
     sleep    5
     Stop Capture On Lan    raw=/tmp/test1.pcap
     Parse Packets    filter=${filter_rule}    raw=/tmp/test1.pcap    output=/tmp/filter.log
     ${rc}=    ${cat_result}=    Run And Return Rc And Output    cat /tmp/filter.log
     Run Keyword If    ${casetype}=common    Should Not Be Empty    ${cat_result}    ELSE IF    ${casetype}=negtive    Should Be Empty
     ...    ${cat_result}
-
-Check WiFi Radio_GUI
-    [Arguments]    ${DUT_URL}    ${USR}    ${PASSWORD}    ${Frequency}    ${casetype}=on
-    GUI_LoginDUT    ${DUT_URL}    ${USR}    ${PASSWORD}
-    Run Keyword If    ${Frequency}=2.4GHz    Check WiFi Radio_2G    ${casetype}    ELSE IF    ${Frequency}=5GHz    Check WiFi Radio_5G
-    ...    ${casetype}
-    ${rc}=    Parse Packets    filter=${filter_rule}    raw=/tmp/test1.pcap    output=/tmp/filter.log    negtive=${negtive}
-    ${rc}=    Parse Packets    filter=${filter_rule}    raw=/tmp/test1.pcap    output=/tmp/filter.log    positive=${positive}
-    Should Be True    ${rc}
 
 TR_SPV_WiFiRadio_Enable
     DoSPV    Device.WiFi.Radio.1.Enable=1 boolean
@@ -130,8 +121,6 @@ TR_SPV_WiFiRadio_Disable
     Sleep    15
     ${Init_GPV}=    DoGPV    Device.WiFi.Radio.1.Enable=0
     Should Be True    ${Init_GPV}
-
-Reboot_DUT_By_Jacs
 
 TR_Reboot_DUT
     Reset DUT by jacs

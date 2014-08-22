@@ -133,7 +133,7 @@ class Capture_Packets():
             return False
         
         # Up Monitor interface
-        if filter.lower() == 'beacon':
+        if filter.lower() == 'beacon' or interface.lower() == 'mon':
             rc, mon = self.Up_Monitor_Interface()
             if rc and mon:
                 interface = mon
