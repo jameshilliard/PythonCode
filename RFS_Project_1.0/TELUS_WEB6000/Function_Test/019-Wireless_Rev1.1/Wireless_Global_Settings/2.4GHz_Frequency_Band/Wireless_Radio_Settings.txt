@@ -1,5 +1,4 @@
 *** Settings ***
-Suite Setup       TR_SPV_WiFiRadio_Enable
 Suite Teardown    TR_SPV_WiFiRadio_Enable
 Resource          ../../../../Variables_ENV.txt
 Resource          ../../../../Share_Resource.txt

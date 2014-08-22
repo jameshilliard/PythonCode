@@ -11,7 +11,7 @@ TR_SPV
     [Arguments]    @{SPV_arg}
     ${Check_SPV}    DoSPV    @{SPV_arg}
     Should Be True    ${Check_SPV}
-    Sleep    15
+    Sleep    20
 
 TR_GPV_Check
     [Arguments]    @{GPV_arg}
@@ -22,11 +22,13 @@ TR_SPV_ON_GW
     [Arguments]    @{SPV_arg}
     ${Check_SPV}    DoSPVOnGW    @{SPV_arg}
     Should Be True    ${Check_SPV}
+    Sleep    15
 
 TR_GPV_ON_GW
     [Arguments]    @{GPV_arg}
     ${Check_GPV}    DoGPVOnGW    @{GPV_arg}
     Should Be True    ${Check_GPV}
+    Sleep    15
 
 TR_GPV_Return_Value
     [Arguments]    ${arg1}
@@ -79,11 +81,13 @@ FUN_Release_IP
 
 TR_SPV_SSH_Disabled
     DoSPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable =0 boolean
+    Sleep    15
     ${Init_GPV}=    DoGPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=0
     Should Be True    ${Init_GPV}
 
 TR_SPV_SSH_Enabled
     DoSPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable =1 boolean    Device.X_ACTIONTEC_COM_RemoteLogin.Port=22 unsignedInt    Device.X_ACTIONTEC_COM_RemoteLogin.Protocol=SSH string    Device.X_ACTIONTEC_COM_RemoteLogin.IdleTimeout=60 unsignedInt    Device.X_ACTIONTEC_COM_RemoteLogin.Username=admin string    Device.X_ACTIONTEC_COM_RemoteLogin.Password=1 string
+    Sleep    15
     ${Init_GPV}=    DoGPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=1
     Should Be True    ${Init_GPV}
 
@@ -104,11 +108,13 @@ FUN_Capture Beacon
 
 TR_SPV_WiFiRadio_Enable
     DoSPV    Device.WiFi.Radio.1.Enable=1 boolean
+    Sleep    15
     ${Init_GPV}=    DoGPV    Device.WiFi.Radio.1.Enable=1
     Should Be True    ${Init_GPV}
 
 TR_SPV_WiFiRadio_Disable
     DoSPV    Device.WiFi.Radio.1.Enable=0 boolean
+    Sleep    15
     ${Init_GPV}=    DoGPV    Device.WiFi.Radio.1.Enable=0
     Should Be True    ${Init_GPV}
 
