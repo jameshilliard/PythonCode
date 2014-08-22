@@ -10,13 +10,13 @@ Library           ../library/TR/TR.py
 *** Keywords ***
 TR_SPV
     [Arguments]    @{SPV_arg}
-    ${Check_SPV}    DoSPV    @{SPV_arg}
+    ${Check_SPV}    DoSPVonDUT    @{SPV_arg}
     Should Be True    ${Check_SPV}
     Sleep    20
 
 TR_GPV_Check
     [Arguments]    @{GPV_arg}
-    ${Check_GPV}    DoGPV    @{GPV_arg}
+    ${Check_GPV}    DoGPVonDUT    @{GPV_arg}
     Should Be True    ${Check_GPV}
 
 TR_SPV_ON_GW
@@ -33,7 +33,7 @@ TR_GPV_ON_GW
 
 TR_GPV_Return_Value
     [Arguments]    ${arg1}
-    ${Check_GPV}    DoGPV    ${arg1}
+    ${Check_GPV}    DoGPVonDUT    ${arg1}
     Should Be True    ${Check_GPV}
     ${rc}=    getGPVResult    ${arg1}
     [Return]    ${rc}
