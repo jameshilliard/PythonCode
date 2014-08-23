@@ -56,3 +56,29 @@ GUI_Check_Channel_2G
     GUI_LogoutDUT    ${U_DUT_BR0_IP}
     Close Browser
     [Return]    ${GUI_Channel}
+
+GUI_Check_Channel_5G
+    [Arguments]    ${U_DUT_BR0_IP}    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}    ${AutoChannel}=True
+    Open Browser    http://${U_DUT_BR0_IP}
+    sleep    2
+    GUI_LoginDUT    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}
+    ${Channel_display}=    Get Text    //*[@id="id5_apchannel"]
+    ${GUI_Channel}=    Run Keyword If    '${AutoChannel}'=='True'    Get Substring    ${Channel_display}    5    ELSE IF
+    ...    '${AutoChannel}'=='False'    Get Substring    ${Channel_display}    0
+    GUI_LogoutDUT    ${U_DUT_BR0_IP}
+    Close Browser
+    [Return]    ${GUI_Channel}
+
+GUI_Check_WMM_2G
+    [Arguments]    ${U_DUT_BR0_IP}    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}    ${Enable}=on
+    Open Browser    http://${U_DUT_BR0_IP}
+    sleep    2
+    GUI_LoginDUT    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}
+    Go To    http://${U_DUT_BR0_IP}/wl_security.html
+    Sleep    2
+    Click Element    id_freq2
+    Run Keyword If    '${Enable}'=='on'    Radio Button Should Be Set To    wl_wmm    1
+    ...    ELSE IF    '${Enable}'=='off'    Radio Button Should Be Set To    wl_wmm    0
+    GUI_LogoutDUT    ${U_DUT_BR0_IP}
+    Close Browser
+    [Return]    ${GUI_Channel}
