@@ -105,9 +105,9 @@ FUN_Parse WiFi_L2 Packets
     Start Capture On Lan    interface=mon    output=/tmp/test1.pcap
     sleep    5
     Stop Capture On Lan    raw=/tmp/test1.pcap
-    Parse Packets    filter=${filter_rule}    raw=/tmp/test1.pcap    output=/tmp/filter.log
-    ${rc}=    ${cat_result}=    Run And Return Rc And Output    cat /tmp/filter.log
-    Run Keyword If    ${casetype}=common    Should Not Be Empty    ${cat_result}    ELSE IF    ${casetype}=negtive    Should Be Empty
+    Parse Packets    filter=${filter_rule}    raw=/tmp/test1.pcap    output=/tmp/filter.log    positive=${positive}
+    ${rc}    ${cat_result}=    Run And Return Rc And Output    cat /tmp/filter.log
+    Run Keyword If    '${positive}'=='True'    Should Not Be Empty    ${cat_result}    ELSE IF    '${positive}'=='False'    Should Be Empty
     ...    ${cat_result}
 
 TR_SPV_WiFiRadio_Enable
