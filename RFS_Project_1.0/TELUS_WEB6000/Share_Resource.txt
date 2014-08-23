@@ -105,26 +105,10 @@ FUN_Parse WiFi_L2 Packets
     Start Capture On Lan    interface=mon    output=/tmp/test1.pcap
     sleep    5
     Stop Capture On Lan    raw=/tmp/test1.pcap
-<<<<<<< HEAD
-
-<<<<<<< HEAD
     Parse Packets    filter=${filter_rule}    raw=/tmp/test1.pcap    output=/tmp/filter.log
     ${rc}=    ${cat_result}=    Run And Return Rc And Output    cat /tmp/filter.log
     Run Keyword If    ${casetype}=common    Should Not Be Empty    ${cat_result}    ELSE IF    ${casetype}=negtive    Should Be Empty
     ...    ${cat_result}
-
-Check WiFi Radio_GUI
-    [Arguments]    ${DUT_URL}    ${USR}    ${PASSWORD}    ${Frequency}    ${casetype}=on
-    GUI_LoginDUT    ${DUT_URL}    ${USR}    ${PASSWORD}
-    Run Keyword If    ${Frequency}=2.4GHz    Check WiFi Radio_2G    ${casetype}    ELSE IF    ${Frequency}=5GHz    Check WiFi Radio_5G
-    ...    ${casetype}
-
-=======
-    ${rc}=    Parse Packets    filter=${filter_rule}    raw=/tmp/test1.pcap    output=/tmp/filter.log    negtive=${negtive}
-=======
-    ${rc}=    Parse Packets    filter=${filter_rule}    raw=/tmp/test1.pcap    output=/tmp/filter.log    positive=${positive}
->>>>>>> develop
-    Should Be True    ${rc}
 
 TR_SPV_WiFiRadio_Enable
     DoSPV    Device.WiFi.Radio.1.Enable=1 boolean
@@ -138,11 +122,5 @@ TR_SPV_WiFiRadio_Disable
     ${Init_GPV}=    DoGPV    Device.WiFi.Radio.1.Enable=0
     Should Be True    ${Init_GPV}
 
-<<<<<<< HEAD
-Reboot_DUT_By_Jacs
-
->>>>>>> e53b12c14b5c96f18810568464bdb43c09e39b49
-=======
 TR_Reboot_DUT
     Reset DUT by jacs
->>>>>>> develop
