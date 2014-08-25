@@ -467,6 +467,7 @@ class TR:
     def readfile(self, file, filter=''):
         filter = filter
         match_flag = False
+        print '>'*100
         try:
             file = open(file, 'r')
         except Exception, e:
@@ -479,6 +480,7 @@ class TR:
                 if m:
                     match_flag = True
         file.close()
+        print '<'*100
         return match_flag
 #             
 # tr = TR()
