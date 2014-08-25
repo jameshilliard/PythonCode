@@ -3,6 +3,7 @@ Resource          ../../../../../../Share_Resource.txt
 
 *** Test Cases ***
 02301535_Broadcasting is Enabled
+    [Tags]    prince
     #Begin Test
     #[Step 1] [TR Setup]    Wireless Broadcasting Settings on the Broadband Gateway is Enabled
     TR_SPVOnGW    %{U_CUSTOM_UPGW_WLAN_NODE}.BeaconAdvertisementEnabled=1 boolean
@@ -31,6 +32,7 @@ Resource          ../../../../../../Share_Resource.txt
     #EndTest
 
 02301536_Broadcasting is Disabled
+    [Tags]    prince
     #Begin Test
     #[Step 1] [TR Setup]    Disable Wireless Broadcasting on the Broadband Gateway
     TR_SPVOnGW    %{U_CUSTOM_UPGW_WLAN_NODE}.BeaconAdvertisementEnabled=0 boolean

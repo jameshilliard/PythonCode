@@ -102,3 +102,34 @@ GUI_Check_WMM_5G
     Close Browser
     [Teardown]    Close Browser
     [Return]    ${GUI_Channel}
+
+GUI_Login_UPGW
+    ${Title}=    Get Title
+    Should Be Equal As Strings    ${Title}    Home
+    Input Text    admin_user_name    %{U_DUT_HTTP_USER_UP_GW}
+    Input Text    admin_password    %{U_DUT_HTTP_PWD_UP_GW}
+    Click Element    css=a.button1 > span
+    Comment    Sleep    2
+    Comment    Page Should Contain Element    /html/body/div/div[3]/div[2]/div[3]/div[2]/a/span
+
+GUI_Set_UPGW_802.11bgn_mode_to_bgn
+    Open Browser    http://%{U_DUT_BR0_IP_UP_GW}
+    Sleep    2
+    GUI_LoginUPGW
+    sleep     2
+    Go To     http://%{U_DUT_BR0_IP_UP_GW}/wirelesssetup_advanced.html
+    sleep     2
+    Select From List By Index    id_80211bg_mode    0
+    sleep    1
+    click Element    css=p > a.button1 > span
+    sleep    15
+    ${Title}=    Get Title
+    Should Be Equal As Strings    ${Title}    Wireless Setup - Advanced Settings
+    GUI_Logout_UPGW
+    Close Browser
+
+GUI_Logout_UPGW
+    Go To     http://%{U_DUT_BR0_IP_UP_GW}/index.html
+    sleep     2
+    click Element    css=#login_info > a.button1 > span
+    sleep     1

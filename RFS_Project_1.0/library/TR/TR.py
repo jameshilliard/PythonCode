@@ -77,6 +77,10 @@ class TR:
         "Reboot DUT"
         print '=' * 100
         print 'Begin Reboot DUT'
+        self.acs_url = os.getenv('ACS_ConnectionRequestURL')
+        if not self.acs_url:
+            print 'AT_ERROR : ACS_ConnectionRequestURL NOT Exist!'
+            return False
         self.init()
         output = self.output
         if not self.Create_Reboot_Config_File():

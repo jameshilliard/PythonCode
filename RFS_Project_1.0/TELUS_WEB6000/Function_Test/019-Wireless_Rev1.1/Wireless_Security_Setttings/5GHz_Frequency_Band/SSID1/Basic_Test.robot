@@ -3,6 +3,7 @@ Resource          ../../../../../Share_Resource.txt
 
 *** Test Cases ***
 WPA-WPA2 BOTH (TKIP+AES)
+    [Tags]    prince
     #Begin Test
     #[Step 1][TR Set]    Set Wireless security method for the primary SSID to WPA-WPA2 BOTH (TKIP+AES) and enter key.
     TR_SPV    Device.WiFi.SSID.5.SSID=%{U_CUSTOM_SSID} string    Device.WiFi.AccessPoint.5.Security.ModeEnabled=WPA-WPA2-Personal string    Device.WiFi.AccessPoint.5.Security.X_ACTIONTEC_COM_WPAEncryptionMode=TKIPandAESEncryption string    Device.WiFi.AccessPoint.1.Security.X_ACTIONTEC_COM_WPA2EncryptionMode=TKIPandAESEncryption string    Device.WiFi.AccessPoint.1.Security.PreSharedKey= %{U_WIRELESS_CUSTOM_WPAPSK} string

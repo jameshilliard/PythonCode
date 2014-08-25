@@ -3,6 +3,7 @@ Resource          ../../../../../../Share_Resource.txt
 
 *** Test Cases ***
 RFW-T6000-9940:02301504_Regular SSID
+    [Tags]    prince
     #Begin Test
     #[Step 1] [Setup]    Change Gateway SSID name
     TR_SPVOnGW    %{U_CUSTOM_UPGW_WLAN_NODE}.SSID=%{U_CUSTOM_SSID} string

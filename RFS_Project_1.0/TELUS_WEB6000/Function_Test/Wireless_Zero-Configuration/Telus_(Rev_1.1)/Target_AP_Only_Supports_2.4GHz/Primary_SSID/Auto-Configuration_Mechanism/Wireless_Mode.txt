@@ -3,10 +3,10 @@ Resource          ../../../../../../Share_Resource.txt
 
 *** Test Cases ***
 02301517_Compatibility Mode (802.11 b, g, n)
+    [Tags]    prince
     #Begin Test
     #[Step 1] [Setup]    Change Wireless Mode Gateway to Compatibility Mode (802.11 b, g, n)
-    TR_SPVOnGW    %{U_CUSTOM_UPGW_WLAN_NODE}.Standard=b,g,n string    %{U_CUSTOM_UPGW_WLAN_NODE}.SSID=%{U_WIRELESS_SSID1} string    %{U_CUSTOM_UPGW_WLAN_NODE}.BeaconType=WPAand11i string    %{U_CUSTOM_UPGW_WLAN_NODE}.IEEE11iEncryptionModes=AESEncryption string    %{U_CUSTOM_UPGW_WLAN_NODE}.IEEE11iAuthenticationMode=PSKAuthentication string    %{U_CUSTOM_UPGW_WLAN_NODE}.PreSharedKey.1.PreSharedKey=%{U_WIRELESS_CUSTOM_WPAPSK} string
-    TR_GPVOnGW    %{U_CUSTOM_UPGW_WLAN_NODE}.Standard=b,g,n    %{U_CUSTOM_UPGW_WLAN_NODE}.SSID=%{U_WIRELESS_SSID1}    %{U_CUSTOM_UPGW_WLAN_NODE}.BeaconType=WPAand11i    %{U_CUSTOM_UPGW_WLAN_NODE}.IEEE11iEncryptionModes=AESEncryption    %{U_CUSTOM_UPGW_WLAN_NODE}.IEEE11iAuthenticationMode=PSKAuthentication
+    GUI_Set_UPGW_802.11bgn_mode_to_bgn
     sleep    %{U_CUSTOM_ZERO_CONFIG_WAIT_TIME}
     #[Step 2][TR Check]    The Wireless Mode settings can be synchronized to DUT for SSID 1 (2.4GHz) correctly.
     TR_GPV_Check    Device.WiFi.Radio.1.OperatingStandards=b,g,n
