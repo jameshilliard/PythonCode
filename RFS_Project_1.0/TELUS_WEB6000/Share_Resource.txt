@@ -111,16 +111,25 @@ FUN_Parse WiFi_L2 Packets
     ...    ${cat_result}
 
 TR_SPV_WiFiRadio_Enable
-    DoSPV    Device.WiFi.Radio.1.Enable=1 boolean
+    [Arguments]    ${x}=1
+    DoSPV    Device.WiFi.Radio.${x}.Enable=1 boolean
     Sleep    15
-    ${Init_GPV}=    DoGPV    Device.WiFi.Radio.1.Enable=1
+    ${Init_GPV}=    DoGPV    Device.WiFi.Radio.${x}.Enable=1
     Should Be True    ${Init_GPV}
 
 TR_SPV_WiFiRadio_Disable
-    DoSPV    Device.WiFi.Radio.1.Enable=0 boolean
+    [Arguments]    ${x}=1
+    DoSPV    Device.WiFi.Radio.${x}=1.Enable=0 boolean
     Sleep    15
-    ${Init_GPV}=    DoGPV    Device.WiFi.Radio.1.Enable=0
+    ${Init_GPV}=    DoGPV    Device.WiFi.Radio.${x}=1.Enable=0
     Should Be True    ${Init_GPV}
 
 TR_Reboot_DUT
     Reset DUT by jacs
+
+TR_SPV_WMM_Enable
+    [Arguments]    ${x}=1
+    DoSPV    Device.WiFi.AccessPoint.${x}.WMMEnable=1 boolean    Device.WiFi.AccessPoint.${x}.UAPSDEnable=1 boolean
+    Sleep    15
+    ${Init_GPV}=    DoGPV    Device.WiFi.AccessPoint.${x}.WMMEnable=1 boolean    Device.WiFi.AccessPoint.${x}.UAPSDEnable=1 boolean
+    Should Be True    ${Init_GPV}

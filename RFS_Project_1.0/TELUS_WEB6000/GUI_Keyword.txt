@@ -23,6 +23,7 @@ GUI_Check WiFi Radio_2G
     ...    Should Be Equal As Strings    ${Status_2G}    Disabled
     GUI_LogoutDUT    ${U_DUT_BR0_IP}
     Close Browser
+    [Teardown]    Close Browser
 
 GUI_Check WiFi Radio_5G
     [Arguments]    ${U_DUT_BR0_IP}    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}    ${casetype}=on
@@ -34,6 +35,7 @@ GUI_Check WiFi Radio_5G
     ...    Should Be Equal As Strings    ${Status_5G}    Disabled
     GUI_LogoutDUT    ${U_DUT_BR0_IP}
     Close Browser
+    [Teardown]    Close Browser
 
 GUI_LogoutDUT
     [Arguments]    ${U_DUT_BR0_IP}
@@ -55,6 +57,7 @@ GUI_Check_Channel_2G
     ...    '${AutoChannel}'=='False'    Get Substring    ${Channel_display}    0
     GUI_LogoutDUT    ${U_DUT_BR0_IP}
     Close Browser
+    [Teardown]    Close Browser
     [Return]    ${GUI_Channel}
 
 GUI_Check_Channel_5G
@@ -67,6 +70,7 @@ GUI_Check_Channel_5G
     ...    '${AutoChannel}'=='False'    Get Substring    ${Channel_display}    0
     GUI_LogoutDUT    ${U_DUT_BR0_IP}
     Close Browser
+    [Teardown]    Close Browser
     [Return]    ${GUI_Channel}
 
 GUI_Check_WMM_2G
@@ -77,8 +81,24 @@ GUI_Check_WMM_2G
     Go To    http://${U_DUT_BR0_IP}/wl_security.html
     Sleep    2
     Click Element    id_freq2
-    Run Keyword If    '${Enable}'=='on'    Radio Button Should Be Set To    wl_wmm    1
-    ...    ELSE IF    '${Enable}'=='off'    Radio Button Should Be Set To    wl_wmm    0
+    Run Keyword If    '${Enable}'=='on'    Radio Button Should Be Set To    wl_wmm    1    ELSE IF    '${Enable}'=='off'
+    ...    Radio Button Should Be Set To    wl_wmm    0
     GUI_LogoutDUT    ${U_DUT_BR0_IP}
     Close Browser
+    [Teardown]    Close Browser
+    [Return]    ${GUI_Channel}
+
+GUI_Check_WMM_5G
+    [Arguments]    ${U_DUT_BR0_IP}    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}    ${Enable}=on
+    Open Browser    http://${U_DUT_BR0_IP}
+    sleep    2
+    GUI_LoginDUT    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}
+    Go To    http://${U_DUT_BR0_IP}/wl_security.html
+    Sleep    2
+    Click Element    id_freq5
+    Run Keyword If    '${Enable}'=='on'    Radio Button Should Be Set To    wl_wmm    1    ELSE IF    '${Enable}'=='off'
+    ...    Radio Button Should Be Set To    wl_wmm    0
+    GUI_LogoutDUT    ${U_DUT_BR0_IP}
+    Close Browser
+    [Teardown]    Close Browser
     [Return]    ${GUI_Channel}

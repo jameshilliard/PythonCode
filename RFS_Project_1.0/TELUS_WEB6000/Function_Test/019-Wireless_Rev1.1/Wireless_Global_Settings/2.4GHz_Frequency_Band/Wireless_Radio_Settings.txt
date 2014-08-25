@@ -1,12 +1,12 @@
 *** Settings ***
-Suite Teardown    TR_SPV_WiFiRadio_Enable
+Suite Teardown    TR_SPV_WiFiRadio_Enable    1
 Resource          ../../../../Variables_ENV.txt
 Resource          ../../../../Share_Resource.txt
 Resource          ../../../../GUI_Keyword.txt
 
 *** Test Cases ***
 RFW-T6000-12557:Disable Wireless Radio
-    [Setup]    TR_SPV_WiFiRadio_Enable
+    [Setup]    TR_SPV_WiFiRadio_Enable    1
     #1. Ensure that Wireless Radio is enabled on DUT in 2.4GHz band and DUT is sending Beacon packets periodically.
     Comment    Check DUT Wifi Radio ON and Beacon
     TR_GPV_Check    Device.WiFi.Radio.1.Enable=1
@@ -23,11 +23,11 @@ RFW-T6000-12557:Disable Wireless Radio
     Comment    TR_Reboot_DUT
     #5. Go to check Expected Results again after DUT boots up.
     Comment    Retest
-    FUN_Parse WiFi_L2 Packets    wlan.bssid == 00:18:01:00:7b:ab and wlan.fc.type_subtype == 0x08    False    # filter rule is DUT's BSSID
+    FUN_Parse WiFi_L2 Packets    wlan.fc.type_subtype == 0x08 and wlan.bssid == 00:18:01:00:7b:ab    False    # filter rule is DUT's BSSID
     GUI_Check WiFi Radio_2G    ${U_DUT_BR0_IP}    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}    off
 
 RFW-T6000-12558:Enabled Wireless Radio
-    [Setup]    TR_SPV_WiFiRadio_Disable
+    [Setup]    TR_SPV_WiFiRadio_Disable    1
     #1. Ensure that Wireless Radio is disabled on DUT in 2.4GHz frequency band.
     Comment    Check DUT Wifi Radio OFF and Beacon
     TR_GPV_Check    Device.WiFi.Radio.1.Enable=0
@@ -44,5 +44,5 @@ RFW-T6000-12558:Enabled Wireless Radio
     Comment    TR_Reboot_DUT
     #5. Go to check Expected Results again after DUT boots up.
     Comment    Retest
-    FUN_Parse WiFi_L2 Packets    wlan.bssid == 00:18:01:00:7b:ab and wlan.fc.type_subtype == 0x08    True    # filter rule is DUT's BSSID
+    FUN_Parse WiFi_L2 Packets    wlan.fc.type_subtype == 0x08 and wlan.bssid == 00:18:01:00:7b:ab    True    # filter rule is DUT's BSSID
     GUI_Check WiFi Radio_2G    ${U_DUT_BR0_IP}    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}    on
