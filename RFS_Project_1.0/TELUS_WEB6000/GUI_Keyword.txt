@@ -116,9 +116,9 @@ GUI_Set_UPGW_802.11bgn_mode_to_bgn
     Open Browser    http://%{U_DUT_BR0_IP_UP_GW}
     Sleep    2
     GUI_LoginUPGW
-    sleep     2
-    Go To     http://%{U_DUT_BR0_IP_UP_GW}/wirelesssetup_advanced.html
-    sleep     2
+    sleep    2
+    Go To    http://%{U_DUT_BR0_IP_UP_GW}/wirelesssetup_advanced.html
+    sleep    2
     Select From List By Index    id_80211bg_mode    0
     sleep    1
     click Element    css=p > a.button1 > span
@@ -129,7 +129,21 @@ GUI_Set_UPGW_802.11bgn_mode_to_bgn
     Close Browser
 
 GUI_Logout_UPGW
-    Go To     http://%{U_DUT_BR0_IP_UP_GW}/index.html
-    sleep     2
+    Go To    http://%{U_DUT_BR0_IP_UP_GW}/index.html
+    sleep    2
     click Element    css=#login_info > a.button1 > span
-    sleep     1
+    sleep    1
+
+GUI_Restore_Wireless_UPGW
+    Open Browser    http://%{U_DUT_BR0_IP_UP_GW}
+    Sleep    2
+    GUI_LoginUPGW
+    sleep    2
+    Go To    http://%{U_DUT_BR0_IP_UP_GW}/utilities_restoredefaultsettings.html
+    sleep    2
+    click Element    //div[@id='content_right_contentarea']/table/tbody/tr[3]/td[2]/a/span
+    sleep    1
+    Confirm Action
+    sleep    30
+    GUI_Logout_UPGW
+    Close Browser
