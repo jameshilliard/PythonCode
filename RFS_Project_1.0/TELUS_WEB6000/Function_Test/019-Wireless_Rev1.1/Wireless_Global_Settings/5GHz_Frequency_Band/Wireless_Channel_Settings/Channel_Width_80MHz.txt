@@ -9,7 +9,7 @@ RFW-T6000-12574:Channel In Use_Auto_80MHz
     TR_SPV    Device.WiFi.Radio.1.Enable=1 boolean    Device.WiFi.Radio.1.AutoChannelEnable=1 boolean    Device.WiFi.Radio.1.OperatingChannelBandwidth=40MHz string    Device.WiFi.Radio.1.ExtensionChannel=BelowControlChannel string
     #3. Capture Beacon packets sent by DUT in 2.4GHz band and check the current channel available in 'DS Parameter Set Information Element' in Beacon packet.    Value of Secondary Channel Offset must be 'Secondary channel is below the primary channel': wlan_mgt.ht.info.secchanoffset == 0x01
     ${Channel}=    TR_GPV_Return_Value    Device.WiFi.Radio.1.Channel
-    FUN_Parse WiFi_L2 Packets    wlan.fc.type_subtype == 0x08 and wlan.bssid == 00:18:01:00:7b:ab and wlan_mgt.tag.interpretation == "Current Channel: ${Channel}" and wlan_mgt.ht.info.secchanoffset == 0x03    True
+    FUN_Parse WiFi_L2 Packets    wlan.fc.type_subtype == 0x08 and wlan.bssid == ${U_WIRELESS_5G_BSSID1} and wlan_mgt.tag.interpretation == "Current Channel: ${Channel}" and wlan_mgt.ht.info.secchanoffset == 0x03    True
     #4. Go to check Expected Results. Channel Info can be shown on GUI correctly.
     ${GUI_Channel}=    GUI_Check_Channel_2G    ${U_DUT_BR0_IP}    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}    True
     Should Be Equal As Strings    ${GUI_Channel}    ${Channel}
