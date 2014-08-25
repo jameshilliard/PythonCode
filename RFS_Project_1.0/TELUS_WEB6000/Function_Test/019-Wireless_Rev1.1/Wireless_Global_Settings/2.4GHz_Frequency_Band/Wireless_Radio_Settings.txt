@@ -6,6 +6,7 @@ Resource          ../../../../GUI_Keyword.txt
 
 *** Test Cases ***
 RFW-T6000-12557:Disable Wireless Radio
+    [Tags]    Verified
     [Setup]    TR_SPV_WiFiRadio_Enable    1
     #1. Ensure that Wireless Radio is enabled on DUT in 2.4GHz band and DUT is sending Beacon packets periodically.
     Comment    Check DUT Wifi Radio ON and Beacon
@@ -27,6 +28,7 @@ RFW-T6000-12557:Disable Wireless Radio
     GUI_Check WiFi Radio_2G    ${U_DUT_BR0_IP}    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}    off
 
 RFW-T6000-12558:Enabled Wireless Radio
+    [Tags]    Verified
     [Setup]    TR_SPV_WiFiRadio_Disable    1
     #1. Ensure that Wireless Radio is disabled on DUT in 2.4GHz frequency band.
     Comment    Check DUT Wifi Radio OFF and Beacon

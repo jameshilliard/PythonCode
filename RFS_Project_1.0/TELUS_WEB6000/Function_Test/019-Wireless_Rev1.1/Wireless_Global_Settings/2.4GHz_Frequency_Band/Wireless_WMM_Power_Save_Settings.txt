@@ -6,6 +6,7 @@ Resource          ../../../../GUI_Keyword.txt
 
 *** Test Cases ***
 RFW-T6000-12566:WMM Power-Save Is Disabled: Packet Analysis
+    [Tags]    Not Verified
     [Setup]    TR_SPV_WMM_Enable
     #1. Disable WMM on DUT.    2. Captuer Beacon and Probe Response packets sent by DUT.
     TR_SPV    Device.WiFi.AccessPoint.1.UAPSDEnable=0 boolean
@@ -20,6 +21,7 @@ RFW-T6000-12566:WMM Power-Save Is Disabled: Packet Analysis
     Comment    GUI_Check_WMM_2G    ${U_DUT_BR0_IP}    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}    off
 
 RFW-T6000-12567:WMM Power-Save Is Enabled: Packet Analysis
+    [Tags]    Not Verified
     [Setup]    TR_SPV_WMM_Enable
     #1. Disable WMM on DUT.    2. Captuer Beacon and Probe Response packets sent by DUT.
     TR_SPV    Device.WiFi.AccessPoint.1.UAPSDEnable=1 boolean

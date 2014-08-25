@@ -5,6 +5,7 @@ Resource          ../../../../../GUI_Keyword.txt
 
 *** Test Cases ***
 RFW-T6000-12573:Channel In Use_Manual_40MHz
+    [Tags]    Not Verified
     #1. Ensure Wireless Radio is enabled in 2.4GHz band and Channel Width is set to 40MHz (Above).    2. Manually specify a Wireless Channel for example, 6 and Apply.
     TR_SPV    Device.WiFi.Radio.1.Enable=1 boolean    Device.WiFi.Radio.1.AutoChannelEnable=0 boolean    Device.WiFi.Radio.1.OperatingChannelBandwidth=40MHz string    Device.WiFi.Radio.1.ExtensionChannel=AboveControlChannel string    Device.WiFi.Radio.1.Channel=6 unsignedInt
     #3. Capture Beacon packets sent by DUT in 2.4GHz band and check the current channel available in 'HT IE (61)' in Beacon packet.

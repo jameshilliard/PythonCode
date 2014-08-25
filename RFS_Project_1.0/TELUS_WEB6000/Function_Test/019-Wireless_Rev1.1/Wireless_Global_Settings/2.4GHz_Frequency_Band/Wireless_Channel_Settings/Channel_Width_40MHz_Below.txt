@@ -5,6 +5,7 @@ Resource          ../../../../../GUI_Keyword.txt
 
 *** Test Cases ***
 RFW-T6000-12560:Channel In Use_Auto_40MHz
+    [Tags]    Verified
     #1. Ensure Wireless Radio is enabled in 2.4GHz band and Channel Width is set to 20MHz.    2. Ensure that Wireless Channel Selection is set to Auto.
     TR_SPV    Device.WiFi.Radio.1.Enable=1 boolean    Device.WiFi.Radio.1.AutoChannelEnable=1 boolean    Device.WiFi.Radio.1.OperatingChannelBandwidth=40MHz string    Device.WiFi.Radio.1.ExtensionChannel=BelowControlChannel string
     #3. Capture Beacon packets sent by DUT in 2.4GHz band and check the current channel available in 'DS Parameter Set Information Element' in Beacon packet.    Value of Secondary Channel Offset must be 'Secondary channel is below the primary channel': wlan_mgt.ht.info.secchanoffset == 0x01
