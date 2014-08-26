@@ -7,44 +7,41 @@ Library           Dialogs
 RFW-T6000-12489:02300427_Periodic DHCP Discovery
     [Tags]    Capture Packets Between UPGW and DUT    Not Verified
     #1. DUT is connected to a Broadband Gateway whose DHCP service is disabled.
-    TR_SPV_ON_GW    InternetGatewayDevice.LANDevice.1.LANHostConfigManagement.DHCPServerEnable=0 boolean
+    TR_SET_GW_DHCP    0
     Run    killall dhclient
     ${GetIP_Result}    Run    dhclient -v eth2
     Should Not Contain    ${GetIP_Result}    renewal
     #2. Capture BOOTP packets sent from DUT.
     Start Capture On LAN    interface=eth2
-    Pause Execution    Please Reboot DUT by Manual
     TR_Reboot_DUT
     Stop Capture On Lan
     Run    dhclient -r eth2
     #3. Go to check Expected Result 1.    Expected Result 1: \ 1. DUT will broadcast DHCP discovery periodically.
-    Parse Packets    filter=bootp and eth.src == 10:9f:a9:70:00:fc and eth.dst == ff:ff:ff:ff:ff:ff and bootp.option.type == 53 and bootp.option.value == 01
-    Parse Packets    filter=bootp and eth.src == a8:39:44:f6:e4:f0 and eth.dst == 10:9f:a9:70:00:fc and bootp.option.type == 53 and bootp.option.value == 02    positive=False
-    TR_SPV_ON_GW    InternetGatewayDevice.LANDevice.1.LANHostConfigManagement.DHCPServerEnable=1 boolean
+    Parse Packets    filter=bootp and eth.src == ${U_DUT_BR0_MAC} and eth.dst == ff:ff:ff:ff:ff:ff and bootp.option.type == 53 and bootp.option.value == 01
+    Parse Packets    filter=bootp and eth.src ==    and eth.dst == ${U_DUT_BR0_MAC} and bootp.option.type == 53 and bootp.option.value == 02    positive=False
+    [Teardown]    TR_SET_GW_DHCP    1
 
 RFW-T6000-12490:02300428_Obtain IP address from Broadband Gateway
     [Tags]    Capture Packets Between UPGW and DUT    Not Verified
     #1. Connect DUT to a Broadband Gateway via MoCA connection.
     #2. Make sure DHCP service is enabled on the Broadband Gateway.
-    TR_GPV_ON_GW    InternetGatewayDevice.LANDevice.1.LANHostConfigManagement.DHCPServerEnable=1
+    TR_SET_GW_DHCP    1
     #3. Catpure packets transmitted between DUT and Broadband Gateway.
     Start Capture On Lan    interface=eth2
-    Pause Execution    message=Press OK
     TR_Reboot_DUT
     Stop Capture On Lan
     #4. Go to check Expected Result 1.    Expected Result 1: \ 1. DUT will broadcast DHCP discovery after boot-up. \ 2. DUT can response to DHCP offer sent from Broadband Gateway correctly. \ 3. DUT can obtain IP address and other necessary information including Subnet Mask, Default Gateway and DNS server information from Broadband Gateway.
-    Parse Packets    filter=bootp and eth.src == 10:9f:a9:70:00:fc and eth.dst == ff:ff:ff:ff:ff:ff and bootp.option.type == 53 and bootp.option.value == 01
-    Parse Packets    filter=bootp and eth.src == a8:39:44:f6:e4:f0 and eth.dst == 10:9f:a9:70:00:fc and bootp.option.type == 53 and bootp.option.value == 02
-    parse Packets    filter=bootp and eth.src == 10:9f:a9:70:00:fc and eth.dst == ff:ff:ff:ff:ff:ff and bootp.option.type == 53 and bootp.option.value == 03
-    parse Packets    filter=bootp and eth.src == a8:39:44:f6:e4:f0 and eth.dst == 10:9f:a9:70:00:fc and bootp.option.type == 53 and bootp.option.value == 05
+    Parse Packets    filter=bootp and eth.src == ${U_DUT_BR0_MAC} and eth.dst == ff:ff:ff:ff:ff:ff and bootp.option.type == 53 and bootp.option.value == 01
+    Parse Packets    filter=bootp and eth.src == ${U_GW_BR0_MAC} and eth.dst == ${U_DUT_BR0_MAC} and bootp.option.type == 53 and bootp.option.value == 02
+    parse Packets    filter=bootp and eth.src == ${U_DUT_BR0_MAC} and eth.dst == ff:ff:ff:ff:ff:ff and bootp.option.type == 53 and bootp.option.value == 03
+    parse Packets    filter=bootp and eth.src == ${U_GW_BR0_MAC} and eth.dst == ${U_DUT_BR0_MAC} and bootp.option.type == 53 and bootp.option.value == 05
     Pause Execution    message=Press OK to continue
-    ${U_DUT_WAN_IP}    parse packets    filter=bootp and eth.src == 10:9f:a9:70:00:fc and eth.dst == ff:ff:ff:ff:ff:ff and bootp.option.type == 53 and bootp.option.value == 03
-    ${U_SubnetMask}    parse Packets    filter=bootp and eth.src == a8:39:44:f6:e4:f0 and eth.dst == 10:9f:a9:70:00:fc and bootp.option.type == 53 and bootp.option.value == 05
-    ${U_DNS}    parse Packets    filter=bootp and eth.src == a8:39:44:f6:e4:f0 and eth.dst == 10:9f:a9:70:00:fc and bootp.option.type == 53 and bootp.option.value == 05
-    ${U_GW}    parse Packets    filter=bootp and eth.src == a8:39:44:f6:e4:f0 and eth.dst == 10:9f:a9:70:00:fc and bootp.option.type == 53 and bootp.option.value == 05
+    ${U_DUT_WAN_IP}    parse packets    filter=bootp and eth.src == ${U_DUT_BR0_MAC} and eth.dst == ff:ff:ff:ff:ff:ff and bootp.option.type == 53 and bootp.option.value == 03
+    ${U_SubnetMask}    parse Packets    filter=bootp and eth.src == ${U_GW_BR0_MAC} and eth.dst == ${U_DUT_BR0_MAC} and bootp.option.type == 53 and bootp.option.value == 05
+    ${U_DNS}    parse Packets    filter=bootp and eth.src == ${U_GW_BR0_MAC} and eth.dst == ${U_DUT_BR0_MAC} and bootp.option.type == 53 and bootp.option.value == 05
+    ${U_GW}    parse Packets    filter=bootp and eth.src == ${U_GW_BR0_MAC} and eth.dst == ${U_DUT_BR0_MAC} and bootp.option.type == 53 and bootp.option.value == 05
     TR_GPV_Check    Device.DHCPv4.Client.1.IPAddress=${U_DUT_WAN_IP}
     TR_GPV_Check    Device.DHCPv4.Client.1.SubnetMask =${U_SubnetMask}
-    TR_GPV_Check    Device.DHCPv4.Client.1.IPRouters =${U_GW}
     TR_GPV_Check    Device.DHCPv4.Client.1.IPRouters =${U_GW}
     TR_GPV_Check    Device.DHCPv4.Client.1.DNSServers=${U_GW}
     #5. Connect a LAN device to DUT and make sure that the LAN device can obtain IP address and other necessary information from Broadband Gateway.
@@ -79,21 +76,27 @@ RFW-T6000-12490:02300428_Obtain IP address from Broadband Gateway
     [Teardown]    Close Browser
 
 RFW-T6000-12491:02300429_Renew DHCP Lease Period
+    [Tags]    Capture Packets Between UPGW and DUT    Not Verified
     #1. DUT has been connected to a Broadband Gateway and obtained IP address and other necessary information from the Broadband Gateway.
     #2. Lease period on DHCP server is set to 2 min.
+    ${TMP_Default_Lease_Time}    TR_GPV_GW_Return_Value    InternetGatewayDevice.LANDevice.1.LANHostConfigManagement.DHCPLeaseTime
+    Log    ${TMP_Default_Lease_Time}
+    TR_SET_GW_DHCP_LEASE_TIME    120
     #3. Capture DHCP packets transmitted between DUT and the Broadband Gateway.
+    Pause Execution    Please Reboot DUT by Manual
+    TR_Reboot_DUT
+    Start Capture On Lan    interface=eth2
+    Sleep    2 minutes
+    Stop Capture On Lan
     #4. Go to check Expected Result 1.    Expected Result 1: \ DUT will send DHCP Request packet to Broadband Gateway at the time of half lease period.
+    Parse Packets    filter=bootp and eth.src == ${U_DUT_BR0_MAC} and eth.dst == ${U_GW_BR0_MAC} and bootp.option.type == 53 and bootp.option.value == 03
     #5. Have a LAN device connected to DUT acess DUT's web console with IP address originialy obtained from Broadband Gateway at step 1 after step 4.
+    Run    killall dhclient
+    Fun_GetIP    eth1
     #6. Go to check Expected Result 2.    Expected Result 2: \ 1. Log-in page from DUT can be accessed on the LAN device. \ 2. Following information on Home page should be shown correctly after logging in with valid username and password: \ Module Number, Firmware Version, IP Address, Subnet Mask, Default Gateway, IPv6 Link Local IP Address.
-
-RFW-T6000-12492:02300430_Lease Period Expired
-    #1. DUT has been connected to a Broadband Gateway and obtained IP address and other necessary information from the Broadband Gateway.
-    #2. Lease period on DHCP server is set to 2 min.
-    #3. Turn off DHCP service on the Broadband Gateway.
-    #4. Have the LAN device directly connected to DUT access DUT's web console with the Default Management IP address after DHCP lease period expires (LAN device's IP address should be set to 192.168.1.x first (x ranges from 1 to 253)).
-    #5. Go to check Expected Result 1.    Expected Result 1: \ 1. The LAN device connected to DUT directly can access DUT's Web console with default management IP address. \ 2. Following information on Home page should be shown correctly after logging in with valid username and password: \ Module Number, Firmware Version, IP Address, Subnet Mask, Default Gateway, IPv6 Link Local IP Address.
-
-GUICheck
+    ${SubnetMask}    TR_GPV_Return_Value    Device.DHCPv4.Client.1.SubnetMask
+    ${IPRouters}    TR_GPV_Return_Value    Device.DHCPv4.Client.1.IPRouters
+    ${IPAddress}    TR_GPV_Return_Value    Device.DHCPv4.Client.1.IPAddress
     Open Browser    http://${U_DUT_BR0_IP}
     Sleep    5
     GUI_LoginDUT    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}
@@ -102,15 +105,49 @@ GUICheck
     ${Temp_Firmware_Version}    Get Text    xpath=/html/body/div/div[5]/div[2]/table[4]/tbody/tr[2]/td[2]/span
     Should Be Equal    ${U_DUT_FIRMWARE_VERSION}    ${Temp_Firmware_Version}
     ${Temp_IP_Address}    Get Text    id=id_ipaddress
-    Should Be Equal    192.168.1.66    ${Temp_IP_Address}
+    Should Be Equal    ${IPAddress}    ${Temp_IP_Address}
     ${Temp_IP_Subnet}    Get Text    id=id_subnet
-    Should Be Equal    255.255.255.0    ${Temp_IP_Subnet}
+    Should Be Equal    ${SubnetMask}    ${Temp_IP_Subnet}
     ${Temp_IP_GateWay}    Get Text    id=id_gateway
-    Should Be Equal    192.168.1.254    ${Temp_IP_GateWay}
+    Should Be Equal    ${IPRouters}    ${Temp_IP_GateWay}
     GUI_LogoutDUT    ${U_DUT_BR0_IP}
-    #8. Have the LAN device access DUT's web console with the Default Management IP address (LAN device's IP address should be set to 192.168.1.x first (x ranges from 1 to 253)).
-    Close Browser
+    #Tear Down
+    Fun_ReleaseIP    eth1
+    TR_SET_GW_DHCP_LEASE_TIME \    ${TMP_Default_Lease_Time}
+    [Teardown]    Close Browser
+
+RFW-T6000-12492:02300430_Lease Period Expired
+    [Tags]    Capture Packets Between UPGW and DUT    Not Verified
+    #1. DUT has been connected to a Broadband Gateway and obtained IP address and other necessary information from the Broadband Gateway.
+    ${SubnetMask}    TR_GPV_Return_Value    Device.DHCPv4.Client.1.SubnetMask
+    #2. Lease period on DHCP server is set to 2 min.
+    ${TMP_Default_Lease_Time}    TR_GPV_GW_Return_Value    InternetGatewayDevice.LANDevice.1.LANHostConfigManagement.DHCPLeaseTime
+    Log    ${TMP_Default_Lease_Time}
+    TR_SET_GW_DHCP_LEASE_TIME    120
+    #3. Turn off DHCP service on the Broadband Gateway.
+    TR_SET_GW_DHCP    0
+    TR_Reboot_DUT
+    #4. Have the LAN device directly connected to DUT access DUT's web console with the Default Management IP address after DHCP lease period expires (LAN device's IP address should be set to 192.168.1.x first (x ranges from 1 to 253)).
+    Sleep    120
+    Run    ifconfig %{G_HOST_IF0_1_0} %{G_HOST_IP1_MANAGEMENT}
+    #5. Go to check Expected Result 1.    Expected Result 1: \ 1. The LAN device connected to DUT directly can access DUT's Web console with default management IP address. \ 2. Following information on Home page should be shown correctly after logging in with valid username and password: \ Module Number, Firmware Version, IP Address, Subnet Mask, Default Gateway, IPv6 Link Local IP Address.
     Open Browser    http://${U_DUT_Management_IP}
     Sleep    5
-    Page Should Contain    Firefox can't establish a connection to the server at 192.168.99.254.
-    [Teardown]
+    GUI_LoginDUT    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}
+    ${Temp_ModuleNumber}    Get Text    xpath=/html/body/div/div[5]/div[2]/table[4]/tbody/tr/td[2]
+    Should Be Equal    ${U_DUT_MODULE_NUMBER}    ${Temp_ModuleNumber}
+    ${Temp_Firmware_Version}    Get Text    xpath=/html/body/div/div[5]/div[2]/table[4]/tbody/tr[2]/td[2]/span
+    Should Be Equal    ${U_DUT_FIRMWARE_VERSION}    ${Temp_Firmware_Version}
+    ${Temp_IP_Address}    Get Text    id=id_ipaddress
+    Should Be Equal    ${U_DUT_Management_IP}    ${Temp_IP_Address}
+    ${Temp_IP_Subnet}    Get Text    id=id_subnet
+    Should Be Equal    ${SubnetMask}    ${Temp_IP_Subnet}
+    ${Temp_IP_GateWay}    Get Text    id=id_gateway
+    Should Be Equal    0.0.0.0    ${Temp_IP_GateWay}
+    GUI_LogoutDUT    ${U_DUT_Management_IP}
+    Close Browser
+    #Tear Down
+    Run    ifconfig %{G_HOST_IF0_1_0} 192.168.1.100
+    TR_SET_GW_DHCP    1
+    TR_SET_GW_DHCP_LEASE_TIME    ${TMP_Default_Lease_Time}
+    [Teardown]    Close Broswer

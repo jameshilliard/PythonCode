@@ -124,3 +124,20 @@ TR_SPV_WiFiRadio_Disable
 
 TR_Reboot_DUT
     Reset DUT by jacs
+
+TR_GPV_GW_Return_Value
+    [Arguments]    ${arg1}
+    ${Check_GPV}    DoGPVOnGW    ${arg1}
+    Should Be True    ${Check_GPV}
+    ${rc}=    getGPVResult    ${arg1}
+    [Return]    ${rc}
+
+TR_SET_GW_DHCPLEASE_TIME
+    [Arguments]    ${Time}
+    TR_SPV_ON_GW    InternetGatewayDevice.LANDevice.1.LANHostConfigManagement.DHCPLeaseTime=${Time} int
+    TR_GPV_ON_GW    InternetGatewayDevice.LANDevice.1.LANHostConfigManagement.DHCPLeaseTime=${Time}
+
+TR_SET_GW_DHCP
+    [Arguments]    ${Value}
+    TR_SPV_ON_GW    InternetGatewayDevice.LANDevice.1.LANHostConfigManagement.DHCPServerEnable=${Value} boolean
+    TR_GPV_ON_GW    InternetGatewayDevice.LANDevice.1.LANHostConfigManagement.DHCPServerEnable=${Value}

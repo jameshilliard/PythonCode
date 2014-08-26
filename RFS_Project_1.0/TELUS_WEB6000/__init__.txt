@@ -5,7 +5,7 @@ Library           OperatingSystem
 *** Keywords ***
 Setup_DUT_variable
     Comment    Set Env Variables
-    Set Environment Variable    ACS_ConnectionRequestURL    http://192.168.1.64:1234
+    Set Environment Variable    ACS_ConnectionRequestURL    http://192.168.1.66:7547
     Set Environment Variable    UPGW_ACS_ConnectionRequestURL    http://192.168.55.1:7547/
     Comment    Set Environment Variable    U_WIRELESS_2G_SSID1
     Comment    Set Environment Variable    U_WIRELESS_2G_BSSID1
@@ -13,4 +13,6 @@ Setup_DUT_variable
     Comment    Set Environment Variable    U_WIRELESS_5G_SSID1
     Comment    Set Environment Variable    U_WIRELESS_5G_BSSID1
     Comment    Set Environment Variable    U_WIRELESS_5G_WPAPSK1
-    Set Environment Variable    G_PROD_IP_BR0_0_0    192.168.1.64
+    Set Environment Variable    G_PROD_IP_BR0_0_0    192.168.1.66
+    Set Environment Variable    G_HOST_IF0_1_0    eth1
+    Set Environment Variable    G_HOST_IP1_MANAGEMENT    192.168.99.100
