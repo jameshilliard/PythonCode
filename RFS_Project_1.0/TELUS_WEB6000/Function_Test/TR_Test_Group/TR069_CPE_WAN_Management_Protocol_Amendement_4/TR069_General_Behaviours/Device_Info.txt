@@ -5,4 +5,5 @@ Resource          ../../../../GUI_Keyword.txt
 
 *** Test Cases ***
 RFW-T6000-12516:Device ID in SOAP Body
-    TR_Check Device ID in SOAP    Actiontec    001505    TELUS V2000H    CVJA2301901176
+    #1. Ensure that DUT has been connected to WAN and registered at ACS server successfully. \ 2. Capture Periodic Informs sent by DUT. \ 3. Check Device ID info in the SOAP Body. \ 4. Go to check Expected Results.    Manufacturer    OUI    ProductClass    SerialNumber
+    TR_Check Device ID in SOAP Log    Actiontec    001505    WCB3000    SN001801007ba4

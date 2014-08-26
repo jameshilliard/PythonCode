@@ -139,11 +139,11 @@ TR_SET_GW_DHCPLEASE_TIME
     [Arguments]    ${Time}
     TR_SPV_ON_GW    InternetGatewayDevice.LANDevice.1.LANHostConfigManagement.DHCPLeaseTime=${Time} int
     TR_GPV_ON_GW    InternetGatewayDevice.LANDevice.1.LANHostConfigManagement.DHCPLeaseTime=${Time}
+
 TR_SET_GW_DHCP
     [Arguments]    ${Value}
     TR_SPV_ON_GW    InternetGatewayDevice.LANDevice.1.LANHostConfigManagement.DHCPServerEnable=${Value} boolean
     TR_GPV_ON_GW    InternetGatewayDevice.LANDevice.1.LANHostConfigManagement.DHCPServerEnable=${Value}
-
 
 TR_SPV_2G_SSID1_ANYWPA_BOTH_CUS_KEY
     TR_SPV    Device.WiFi.SSID.1.SSID=%{U_CUSTOM_SSID} string    Device.WiFi.AccessPoint.1.Security.ModeEnabled=WPA-WPA2-Personal string    Device.WiFi.AccessPoint.1.Security.X_ACTIONTEC_COM_WPAEncryptionMode=TKIPandAESEncryption string    Device.WiFi.AccessPoint.1.Security.X_ACTIONTEC_COM_WPA2EncryptionMode=TKIPandAESEncryption string    Device.WiFi.AccessPoint.1.Security.PreSharedKey= %{U_WIRELESS_CUSTOM_WPAPSK} string
@@ -170,5 +170,15 @@ TR_Enable_DUT_Local_SSH
     TR_SPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=1 boolean    Device.X_ACTIONTEC_COM_RemoteLogin.Protocol=SSH string    Device.X_ACTIONTEC_COM_RemoteLogin.Username=%{U_DUT_TELNET_USER}    Device.X_ACTIONTEC_COM_RemoteLogin.Password=%{U_DUT_TELNET_PWD}
     TR_GPV_Check    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=1 boolean    Device.X_ACTIONTEC_COM_RemoteLogin.Protocol=SSH string    Device.X_ACTIONTEC_COM_RemoteLogin.Username=%{U_DUT_TELNET_USER}
 
-TR_Check Device ID in SOAP
+TR_Check Device ID in SOAP Log
     [Arguments]    ${Manufacturer}    ${OUI}    ${ProductClass}    ${SerialNumber}
+    ${Check_GPV}=    Do Gpv On Dut
+    Should Be True    ${Check_GPV}
+    ${rc1}    ${OUI_log}=    Run And Return Rc And Output    cat /tmp/jacs_output | grep OUI |awk -F\\> '{print $2}' | awk -F\\< '{print $1}' | sort | uniq
+    ${rc2}    ${Manufacturer_log}=    Run And Return Rc And Output    cat /tmp/jacs_output | grep Manufacturer |awk -F\\> '{print $2}' | awk -F\\< '{print $1}' | sort | uniq
+    ${rc3}    ${ProductClass_log}=    Run And Return Rc And Output    cat /tmp/jacs_output | grep ProductClass |awk -F\\> '{print $2}' | awk -F\\< '{print $1}' | sort | uniq
+    ${rc4}    ${SerialNumber_log}=    Run And Return Rc And Output    cat /tmp/jacs_output | grep SerialNumber |awk -F\\> '{print $2}' | awk -F\\< '{print $1}' | sort | uniq
+    Should Be Equal As Strings    ${OUI}    ${OUI_log}
+    Should Be Equal As Strings    ${Manufacturer}    ${Manufacturer_log}
+    Should Be Equal As Strings    ${ProductClass}    ${ProductClass_log}
+    Should Be Equal As Strings    ${SerialNumber}    ${SerialNumber_log}
