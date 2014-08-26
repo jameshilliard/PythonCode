@@ -68,7 +68,7 @@ RFW-T6000-12490:02300428_Obtain IP address from Broadband Gateway
     Close Browser
     #8. Have the LAN device access DUT's web console with the Default Management IP address (LAN device's IP address should be set to 192.168.1.x first (x ranges from 1 to 253)).
     #9. Go to check Expected Result 3.    Expected Result 3: \ 1. Cannot access DUT's web console.
-    Open Browser    http://${U_DUT_Management_IP}
+    Open Browser    http://${U_DUT_BR0_IP_DEFAULT}
     Sleep    5
     Page Should Contain    Firefox can't establish a connection to the server at 192.168.99.254.
     Fun_ReleaseIP    eth1
@@ -129,9 +129,9 @@ RFW-T6000-12492:02300430_Lease Period Expired
     TR_Reboot_DUT
     #4. Have the LAN device directly connected to DUT access DUT's web console with the Default Management IP address after DHCP lease period expires (LAN device's IP address should be set to 192.168.1.x first (x ranges from 1 to 253)).
     Sleep    120
-    Run    ifconfig %{G_HOST_IF0_1_0} %{G_HOST_IP1_MANAGEMENT}
+    Run    ifconfig %{G_HOST_IF0_1_0} %{U_DUT_BR0_IP_DEFAULT}
     #5. Go to check Expected Result 1.    Expected Result 1: \ 1. The LAN device connected to DUT directly can access DUT's Web console with default management IP address. \ 2. Following information on Home page should be shown correctly after logging in with valid username and password: \ Module Number, Firmware Version, IP Address, Subnet Mask, Default Gateway, IPv6 Link Local IP Address.
-    Open Browser    http://${U_DUT_Management_IP}
+    Open Browser    http://${U_DUT_BR0_IP_DEFAULT}
     Sleep    5
     GUI_LoginDUT    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}
     ${Temp_ModuleNumber}    Get Text    xpath=/html/body/div/div[5]/div[2]/table[4]/tbody/tr/td[2]
