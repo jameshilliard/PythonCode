@@ -9,4 +9,19 @@ Library           library/TR/TR.py
 
 *** Keywords ***
 Setup_Testbed_Variable
-    Set Environment Variable    G_HOST_IP1    192.168.8.51
+    #LAN PC Info
+    Set Environment Variable    G_HOST_IP0    192.168.8.10
+    Set Environment Variable    G_HOST_IF0_0_0    eth0
+    Set Environment Variable    G_HOST_TIP0_0_0    192.168.8.10
+    Set Environment Variable    G_HOST_IF0_1_0    eth1
+    Set Environment Variable    G_HOST_TIP0_1_0    192.168.1.100
+    Set Environment Variable    G_HOST_IF0_2_0    eth2
+    Set Environment Variable    G_HOST_TIP0_2_0    192.168.1.200
+    #WAN PC Info
+    Set Environment Variable    G_HOST_IP1    192.168.8.11
+    Set Environment Variable    G_HOST_IF1_0_0    eth0
+    Set Environment Variable    G_HOST_TIP1_0_0    192.168.8.11
+    Set Environment Variable    G_HOST_IF1_1_0    eth1
+    Set Environment Variable    G_HOST_TIP1_1_0    ""
+    Set Environment Variable    G_HOST_IF1_2_0    eth2
+    Set Environment Variable    G_HOST_TIP1_2_0    192.168.55.254
