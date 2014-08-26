@@ -47,7 +47,7 @@ FUN_SSH_DUT
     [Return]    ${x}
 
 FUN_PingTest
-    [Arguments]    ${destIP}    ${count}    ${interface}
+    [Arguments]    ${destIP}    ${count}=4    ${interface}=eth1
     [Documentation]    Use Linux ping command return value should be "0", and output should not contain "100% packet loss"
     ...    Arguments: ${destIP} | ${count} | ${interface}
     ...
