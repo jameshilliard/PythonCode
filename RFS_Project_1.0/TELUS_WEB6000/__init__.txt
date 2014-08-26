@@ -5,8 +5,8 @@ Library           OperatingSystem
 *** Keywords ***
 Setup_DUT_variable
     Comment    Set Env Variables
-    Set Environment Variable    ACS_ConnectionRequestURL    http://192.168.1.64:7547
-    Set Environment Variable    UPGW_ACS_ConnectionRequestURL    http://192.168.55.254:7547/cwmp/
+    Set Environment Variable    ACS_ConnectionRequestURL    http://192.168.1.64:1234
+    Set Environment Variable    UPGW_ACS_ConnectionRequestURL    http://192.168.55.1:7547/
     Comment    Set Environment Variable    U_WIRELESS_2G_SSID1
     Comment    Set Environment Variable    U_WIRELESS_2G_BSSID1
     Comment    Set Environment Variable    U_WIRELESS_2G_WPAPSK1
