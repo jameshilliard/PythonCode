@@ -1,12 +1,12 @@
 *** Settings ***
 
 *** Variables ***
-${U_DUT_BR0_IP}    192.168.1.66
-${U_DUT_Management_IP}    192.168.99.254    # the Default Management IP address of DUT
+${U_DUT_BR0_IP}    192.168.1.65
+${U_DUT_BR0_IP_DEFAULT}    192.168.99.254
 ${U_DUT_SSH_USER}    admin
 ${U_DUT_SSH_PWD}    1
 ${U_DUT_HTTP_USER}    root
-${U_DUT_HTTP_PWD}    )D@V*{
+${U_DUT_HTTP_PWD}    .pqNSJ
 ${U_CUSTOM_IF1}    eth2
 ${U_DUT_BR0_IP_UP_GW}    192.168.1.254
 ${U_DUT_HTTP_USER_UP_GW}    root
@@ -17,3 +17,6 @@ ${U_DUT_MODULE_NUMBER}    WCB3000
 ${U_DUT_FIRMWARE_VERSION}    v0.16.2.5
 ${U_DUT_BR0_MAC}    10:9f:a9:70:00:fc
 ${U_GW_BR0_MAC}    a8:39:44:f6:e4:f0
+${U_WIRELESS_2G_BSSID1}    00:18:01:00:7b:ab
+${U_WIRELESS_5G_BSSID1}    00:18:01:00:7b:a7
+

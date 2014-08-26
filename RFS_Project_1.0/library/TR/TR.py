@@ -72,11 +72,64 @@ class TR:
             return True
         else:
             return False
-        
+    
+    def Firmware_Upgrade(self, fw):
+        "Firmware Upgarde DUT by TR"
+        print '=' * 100
+        print 'Begin Firmware Upgarde DUT by TR'
+        self.acs_url = os.getenv('ACS_ConnectionRequestURL')
+        if not self.acs_url:
+            print 'AT_ERROR : ACS_ConnectionRequestURL NOT Exist!'
+            return False
+        self.init()
+        output = self.output
+        if not self.Create_Firmware_Upgrade_Config_File(self.wan_ip, fw):
+            print 'AT_ERROR : Create Config File ERROR!'
+            return False
+          
+        rc = self.copyCfg(self.cfg_file)
+        if rc:
+            rc = self.ExcuteJacs(output)
+            rr = self.readfile(output, filter='<Status xsi:type="cwmp:DownloadResponse-Status">1</Status>')
+            if rc and rr:
+                print 'AT_INFO : Begin Firmware Upgrade DUT!'
+                for i in range(10):
+                    rc, f = self.ExcuteCMD(cmd='ping ' + self.br0_ip + ' -c 5')
+                    if rc:
+                        time.sleep(5)
+                        continue
+                    else:
+                        print 'AT_INFO : Can NOT ping through DUT Now!'
+                        print 'wait 90 seconds'
+                        time.sleep(90)
+                        rc, f = self.ExcuteCMD(cmd='ping ' + self.br0_ip + ' -c 5')
+                        if rc:
+                            print 'AT_INFO : DUT CAN Ping Through!'
+                            print 'AT_INFO : Firmware Upgrade DUT PASS PASS!'
+                            return True
+                        else:
+                            print 'AT_ERROR : DUT CAN NOT ping through after 90 seconds!'
+                            print 'AT_ERROR : Firmware Upgrade FAIL FAIL FAIL!'
+                            return False
+                
+                print 'AT_ERROR : DUT CAN always ping through after run jacs command,Maybe DUT not reboot!'
+                print 'AT_ERROR : Firmware Upgrade FAIL FAIL FAIL!'
+                return False
+            else:
+                print 'AT_ERROR : Firmware Upgrade FAIL FAIL FAIL!'
+                return False
+        else:
+            return False
+    
+    
     def Reset_DUT_by_jacs(self):
         "Reboot DUT"
         print '=' * 100
         print 'Begin Reboot DUT'
+        self.acs_url = os.getenv('ACS_ConnectionRequestURL')
+        if not self.acs_url:
+            print 'AT_ERROR : ACS_ConnectionRequestURL NOT Exist!'
+            return False
         self.init()
         output = self.output
         if not self.Create_Reboot_Config_File():
@@ -418,7 +471,7 @@ class TR:
         self.readfile(self.cfg_file)
         return True
     
-    def Create_Reboot_Config_File(self,):
+    def Create_Reboot_Config_File(self):
         try:
             file = open(self.cfg_file, 'w')
         except Exception, e:
@@ -430,6 +483,30 @@ class TR:
         file.writelines('rpc cwmp:InformResponse MaxEnvelopes=1' + os.linesep)
         file.writelines('wait' + os.linesep)
         file.writelines('rpc cwmp:Reboot' + os.linesep)
+        file.writelines('wait' + os.linesep)
+        file.writelines('rpc0' + os.linesep)
+        file.writelines('quit' + os.linesep)
+        file.close()
+        self.readfile(self.cfg_file)
+        return True
+    
+    def Create_Firmware_Upgrade_Config_File(self, ip, fw):
+        try:
+            file = open(self.cfg_file, 'w')
+        except Exception, e:
+            print e
+            return False
+        file.writelines('listen 1234' + os.linesep)
+        file.writelines('connect ' + self.acs_url + ' ' + self.acs_user + ' ' + self.acs_pwd + ' NONE' + os.linesep)
+        file.writelines('wait' + os.linesep)
+        file.writelines('rpc cwmp:InformResponse MaxEnvelopes=1' + os.linesep)
+        file.writelines('wait' + os.linesep)
+        file.writelines('rpc cwmp:Download CommandKey=12345678 FileType=1 URL=http://' + str(ip) + '/' + str(fw) + 'FileSize=0 DelaySeconds=1' + os.linesep)
+        file.writelines('wait' + os.linesep)
+        file.writelines('rpc0' + os.linesep)
+        file.writelines('rpc cwmp:InformResponse MaxEnvelopes=1' + os.linesep)
+        file.writelines('wait' + os.linesep)
+        file.writelines('rpc cwmp:TransferCompleteResponse' + os.linesep)
         file.writelines('wait' + os.linesep)
         file.writelines('rpc0' + os.linesep)
         file.writelines('quit' + os.linesep)
@@ -467,6 +544,7 @@ class TR:
     def readfile(self, file, filter=''):
         filter = filter
         match_flag = False
+        print '>' * 100
         try:
             file = open(file, 'r')
         except Exception, e:
@@ -479,6 +557,7 @@ class TR:
                 if m:
                     match_flag = True
         file.close()
+        print '<' * 100
         return match_flag
 #             
 # tr = TR()

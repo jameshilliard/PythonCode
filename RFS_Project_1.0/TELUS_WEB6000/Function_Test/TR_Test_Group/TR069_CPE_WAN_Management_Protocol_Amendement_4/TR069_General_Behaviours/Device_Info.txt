@@ -1,0 +1,2 @@
+*** Test Cases ***
+RFW-T6000-12516:Device ID in SOAP Body

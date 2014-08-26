@@ -3,6 +3,7 @@ Resource          ../../../../../../Share_Resource.txt
 
 *** Test Cases ***
 02301514_Security_Off
+    [Tags]    prince
     #Begin Test
     #[Step 1] [Setup]    Wireless Security Settings on the Broadband Gateway for SSID 1 is Security Off.
     TR_SPVOnGW    %{U_CUSTOM_UPGW_WLAN_NODE}.BeaconType=Basic string    %{U_CUSTOM_UPGW_WLAN_NODE}.BasicEncryptionModes=None string    %{U_CUSTOM_UPGW_WLAN_NODE}.SSID=%{U_WIRELESS_SSID1} string
@@ -31,6 +32,7 @@ Resource          ../../../../../../Share_Resource.txt
     #End Test
 
 02301515_WPA-WPA2_AES_Custom Key
+    [Tags]    prince
     #Begin Test
     #[Step 1] [Setup]    Change Wireless Security Settings on the Broadband Gateway for SSID 1 to WPA-WPA2, AES with Custom key entered.
     TR_SPVOnGW    %{U_CUSTOM_UPGW_WLAN_NODE}.SSID=%{U_WIRELESS_SSID1} string    %{U_CUSTOM_UPGW_WLAN_NODE}.BeaconType=WPAand11i string    %{U_CUSTOM_UPGW_WLAN_NODE}.IEEE11iEncryptionModes=AESEncryption string    %{U_CUSTOM_UPGW_WLAN_NODE}.IEEE11iAuthenticationMode=PSKAuthentication string    %{U_CUSTOM_UPGW_WLAN_NODE}.PreSharedKey.1.PreSharedKey=%{U_WIRELESS_CUSTOM_WPAPSK} string

@@ -10,31 +10,31 @@ Library           ../library/TR/TR.py
 *** Keywords ***
 TR_SPV
     [Arguments]    @{SPV_arg}
-    ${Check_SPV}    DoSPVonDUT    @{SPV_arg}
+    ${Check_SPV}    Do Spv On Dut    @{SPV_arg}
     Should Be True    ${Check_SPV}
     Sleep    15
 
 TR_GPV_Check
     [Arguments]    @{GPV_arg}
-    ${Check_GPV}    DoGPVonDUT    @{GPV_arg}
+    ${Check_GPV}    Do Gpv On Dut    @{GPV_arg}
     Should Be True    ${Check_GPV}
 
 TR_SPV_ON_GW
     [Arguments]    @{SPV_arg}
-    ${Check_SPV}    DoSPVOnGW    @{SPV_arg}
+    ${Check_SPV}    Do Spv On Gw    @{SPV_arg}
     Should Be True    ${Check_SPV}
     Sleep    15
 
 TR_GPV_ON_GW
     [Arguments]    @{GPV_arg}
-    ${Check_GPV}    DoGPVOnGW    @{GPV_arg}
+    ${Check_GPV}    Do Gpv On Gw    @{GPV_arg}
     Should Be True    ${Check_GPV}
 
 TR_GPV_Return_Value
     [Arguments]    ${arg1}
-    ${Check_GPV}    DoGPVonDUT    ${arg1}
+    ${Check_GPV}    Do Gpv On Dut    ${arg1}
     Should Be True    ${Check_GPV}
-    ${rc}=    getGPVResult    ${arg1}
+    ${rc}=    Get GPV Result    ${arg1}
     [Return]    ${rc}
 
 FUN_SSH_DUT
@@ -47,7 +47,7 @@ FUN_SSH_DUT
     [Return]    ${x}
 
 FUN_PingTest
-    [Arguments]    ${destIP}    ${count}    ${interface}
+    [Arguments]    ${destIP}    ${count}=4    ${interface}=eth1
     [Documentation]    Use Linux ping command return value should be "0", and output should not contain "100% packet loss"
     ...    Arguments: ${destIP} | ${count} | ${interface}
     ...
@@ -82,15 +82,15 @@ FUN_Release_IP
     Run    dhclient -r ${interface}
 
 TR_SPV_SSH_Disabled
-    DoSPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable =0 boolean
+    Do Spv On Dut    Device.X_ACTIONTEC_COM_RemoteLogin.Enable =0 boolean
     Sleep    15
-    ${Init_GPV}=    DoGPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=0
+    ${Init_GPV}=    Do Gpv On Dut    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=0
     Should Be True    ${Init_GPV}
 
 TR_SPV_SSH_Enabled
-    DoSPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable =1 boolean    Device.X_ACTIONTEC_COM_RemoteLogin.Port=22 unsignedInt    Device.X_ACTIONTEC_COM_RemoteLogin.Protocol=SSH string    Device.X_ACTIONTEC_COM_RemoteLogin.IdleTimeout=60 unsignedInt    Device.X_ACTIONTEC_COM_RemoteLogin.Username=admin string    Device.X_ACTIONTEC_COM_RemoteLogin.Password=1 string
+    Do Spv On Dut    Device.X_ACTIONTEC_COM_RemoteLogin.Enable =1 boolean    Device.X_ACTIONTEC_COM_RemoteLogin.Port=22 unsignedInt    Device.X_ACTIONTEC_COM_RemoteLogin.Protocol=SSH string    Device.X_ACTIONTEC_COM_RemoteLogin.IdleTimeout=60 unsignedInt    Device.X_ACTIONTEC_COM_RemoteLogin.Username=admin string    Device.X_ACTIONTEC_COM_RemoteLogin.Password=1 string
     Sleep    15
-    ${Init_GPV}=    DoGPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=1
+    ${Init_GPV}=    Do Gpv On Dut    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=1
     Should Be True    ${Init_GPV}
 
 FUN_ConfigIP
@@ -111,33 +111,61 @@ FUN_Parse WiFi_L2 Packets
     ...    ${cat_result}
 
 TR_SPV_WiFiRadio_Enable
-    DoSPV    Device.WiFi.Radio.1.Enable=1 boolean
+    [Arguments]    ${x}
+    Do Spv On Dut    Device.WiFi.Radio.${x}.Enable=1 boolean
     Sleep    15
-    ${Init_GPV}=    DoGPV    Device.WiFi.Radio.1.Enable=1
+    ${Init_GPV}=    Do Gpv On Dut    Device.WiFi.Radio.${x}.Enable=1
     Should Be True    ${Init_GPV}
 
 TR_SPV_WiFiRadio_Disable
-    DoSPV    Device.WiFi.Radio.1.Enable=0 boolean
+    [Arguments]    ${x}
+    Do Spv On Dut    Device.WiFi.Radio.${x}.Enable=0 boolean
     Sleep    15
-    ${Init_GPV}=    DoGPV    Device.WiFi.Radio.1.Enable=0
+    ${Init_GPV}=    Do Gpv On Dut    Device.WiFi.Radio.${x}.Enable=0
     Should Be True    ${Init_GPV}
 
 TR_Reboot_DUT
-    Reset DUT by jacs
+    ${rc}    Reset DUT by jacs
+    should be true    ${rc}
 
-TR_GPV_GW_Return_Value
-    [Arguments]    ${arg1}
-    ${Check_GPV}    DoGPVOnGW    ${arg1}
-    Should Be True    ${Check_GPV}
-    ${rc}=    getGPVResult    ${arg1}
-    [Return]    ${rc}
+TR_SPV_WMM_Enable
+    [Arguments]    ${x}=1
+    Do Spv On Dut    Device.WiFi.AccessPoint.${x}.WMMEnable=1 boolean    Device.WiFi.AccessPoint.${x}.UAPSDEnable=1 boolean
+    Sleep    15
+    ${Init_GPV}=    Do Gpv On Dut    Device.WiFi.AccessPoint.${x}.WMMEnable=1 boolean    Device.WiFi.AccessPoint.${x}.UAPSDEnable=1 boolean
+    Should Be True    ${Init_GPV}
 
 TR_SET_GW_DHCPLEASE_TIME
     [Arguments]    ${Time}
     TR_SPV_ON_GW    InternetGatewayDevice.LANDevice.1.LANHostConfigManagement.DHCPLeaseTime=${Time} int
     TR_GPV_ON_GW    InternetGatewayDevice.LANDevice.1.LANHostConfigManagement.DHCPLeaseTime=${Time}
-
 TR_SET_GW_DHCP
     [Arguments]    ${Value}
     TR_SPV_ON_GW    InternetGatewayDevice.LANDevice.1.LANHostConfigManagement.DHCPServerEnable=${Value} boolean
     TR_GPV_ON_GW    InternetGatewayDevice.LANDevice.1.LANHostConfigManagement.DHCPServerEnable=${Value}
+
+
+TR_SPV_2G_SSID1_ANYWPA_BOTH_CUS_KEY
+    TR_SPV    Device.WiFi.SSID.1.SSID=%{U_CUSTOM_SSID} string    Device.WiFi.AccessPoint.1.Security.ModeEnabled=WPA-WPA2-Personal string    Device.WiFi.AccessPoint.1.Security.X_ACTIONTEC_COM_WPAEncryptionMode=TKIPandAESEncryption string    Device.WiFi.AccessPoint.1.Security.X_ACTIONTEC_COM_WPA2EncryptionMode=TKIPandAESEncryption string    Device.WiFi.AccessPoint.1.Security.PreSharedKey= %{U_WIRELESS_CUSTOM_WPAPSK} string
+    TR_GPV_Check    Device.WiFi.SSID.1.SSID=%{U_CUSTOM_SSID} string    Device.WiFi.AccessPoint.1.Security.ModeEnabled=WPA-WPA2-Personal    Device.WiFi.AccessPoint.1.Security.X_ACTIONTEC_COM_WPAEncryptionMode=TKIPandAESEncryption    Device.WiFi.AccessPoint.1.Security.X_ACTIONTEC_COM_WPA2EncryptionMode=TKIPandAESEncryption    Device.WiFi.AccessPoint.1.Security.PreSharedKey= %{U_WIRELESS_CUSTOM_WPAPSK}
+
+TR_SPV_5G_SSID1_ANYWPA_BOTH_CUS_KEY
+    TR_SPV    Device.WiFi.SSID.5.SSID=%{U_CUSTOM_SSID} string    Device.WiFi.AccessPoint.5.Security.ModeEnabled=WPA-WPA2-Personal string    Device.WiFi.AccessPoint.5.Security.X_ACTIONTEC_COM_WPAEncryptionMode=TKIPandAESEncryption string    Device.WiFi.AccessPoint.5.Security.X_ACTIONTEC_COM_WPA2EncryptionMode=TKIPandAESEncryption string    Device.WiFi.AccessPoint.5.Security.PreSharedKey= %{U_WIRELESS_CUSTOM_WPAPSK} string
+    TR_GPV_Check    Device.WiFi.SSID.5.SSID=%{U_CUSTOM_SSID} string    Device.WiFi.AccessPoint.5.Security.ModeEnabled=WPA-WPA2-Personal    Device.WiFi.AccessPoint.5.Security.X_ACTIONTEC_COM_WPAEncryptionMode=TKIPandAESEncryption    Device.WiFi.AccessPoint.5.Security.X_ACTIONTEC_COM_WPA2EncryptionMode=TKIPandAESEncryption    Device.WiFi.AccessPoint.5.Security.PreSharedKey= %{U_WIRELESS_CUSTOM_WPAPSK}
+
+TR_Disable_WiFi_2G_MAC_Authentication
+    TR_SPV    Device.WiFi.AccessPoint.1.ACL.X_ACTIONTEC_COM_ACL_Enabled =0 boolean
+    TR_GPV_Check    Device.WiFi.AccessPoint.1.ACL.X_ACTIONTEC_COM_ACL_Enabled =0 boolean
+
+TR_Disable_WiFi_5G_MAC_Authentication
+    TR_SPV    Device.WiFi.AccessPoint.5.ACL.X_ACTIONTEC_COM_ACL_Enabled =0 boolean
+    TR_GPV_Check    Device.WiFi.AccessPoint.5.ACL.X_ACTIONTEC_COM_ACL_Enabled =0 boolean
+
+TR_Firmware_Upgrade
+    [Arguments]    ${arg1}
+    ${rc}    Firmware_Upgrade    ${arg1}
+    should be true    ${rc}
+
+TR_Enable_DUT_Local_SSH
+    TR_SPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=1 boolean    Device.X_ACTIONTEC_COM_RemoteLogin.Protocol=SSH string    Device.X_ACTIONTEC_COM_RemoteLogin.Username=%{U_DUT_TELNET_USER}    Device.X_ACTIONTEC_COM_RemoteLogin.Password=%{U_DUT_TELNET_PWD}
+    TR_GPV_Check    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=1 boolean    Device.X_ACTIONTEC_COM_RemoteLogin.Protocol=SSH string    Device.X_ACTIONTEC_COM_RemoteLogin.Username=%{U_DUT_TELNET_USER}

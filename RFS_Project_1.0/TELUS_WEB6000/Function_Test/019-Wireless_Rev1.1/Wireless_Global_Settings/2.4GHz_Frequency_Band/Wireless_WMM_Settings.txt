@@ -5,27 +5,29 @@ Resource          ../../../../GUI_Keyword.txt
 
 *** Test Cases ***
 RFW-T6000-12564:WMM Is Disabled: Packet Analysis
+    [Tags]    Not Verified
     #1. Disable WMM on DUT.    2. Captuer Beacon and Probe Response packets sent by DUT.
     TR_SPV    Device.WiFi.AccessPoint.1.WMMEnable=0 boolean
-    FUN_Parse WiFi_L2 Packets    wlan.fc.type_subtype == 0x08 and wlan.bssid == 00:18:01:00:7b:ab    False    #Capture Beacon
-    FUN_Parse WiFi_L2 Packets    wlan.fc.type_subtype == 0x05 and wlan.bssid == 00:18:01:00:7b:ab    False    #Capture Probe Response
+    FUN_Parse WiFi_L2 Packets    wlan.fc.type_subtype == 0x08 and wlan.bssid == ${U_WIRELESS_2G_BSSID1} and wlan_mgt.wfa.ie.type == 0x02    False    #Capture Beacon
+    FUN_Parse WiFi_L2 Packets    wlan.fc.type_subtype == 0x05 and wlan.bssid == ${U_WIRELESS_2G_BSSID1} and wlan_mgt.wfa.ie.type == 0x02    False    #Capture Probe Response
     #3. Go to check Expected Results.    Do GUI Check: WMM status can be shown correctly on corresponding Web GUI pages.
     GUI_Check_WMM_2G    ${U_DUT_BR0_IP}    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}    off
     #4. Reboot DUT.
     Comment    TR_Reboot_DUT
-    FUN_Parse WiFi_L2 Packets    wlan.fc.type_subtype == 0x08 and wlan.bssid == 00:18:01:00:7b:ab    False    #Capture Beacon
-    FUN_Parse WiFi_L2 Packets    wlan.fc.type_subtype == 0x05 and wlan.bssid == 00:18:01:00:7b:ab    False    #Capture Probe Response
+    FUN_Parse WiFi_L2 Packets    wlan.fc.type_subtype == 0x08 and wlan.bssid == ${U_WIRELESS_2G_BSSID1} and wlan_mgt.wfa.ie.type == 0x02    False    #Capture Beacon
+    FUN_Parse WiFi_L2 Packets    wlan.fc.type_subtype == 0x05 and wlan.bssid == ${U_WIRELESS_2G_BSSID1} and wlan_mgt.wfa.ie.type == 0x02    False    #Capture Probe Response
     GUI_Check_WMM_2G    ${U_DUT_BR0_IP}    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}    off
 
 RFW-T6000-12565:WMM Is Enabled: Packet Analysis
+    [Tags]    Not Verified
     #1. Disable WMM on DUT.    2. Captuer Beacon and Probe Response packets sent by DUT.
     TR_SPV    Device.WiFi.AccessPoint.1.WMMEnable=0 boolean
-    FUN_Parse WiFi_L2 Packets    wlan.fc.type_subtype == 0x08 and wlan.bssid == 00:18:01:00:7b:ab    True    #Capture Beacon
-    FUN_Parse WiFi_L2 Packets    wlan.fc.type_subtype == 0x05 and wlan.bssid == 00:18:01:00:7b:ab    True    #Capture Probe Response
+    FUN_Parse WiFi_L2 Packets    wlan.fc.type_subtype == 0x08 and wlan.bssid == ${U_WIRELESS_2G_BSSID1} and wlan_mgt.wfa.ie.type == 0x02    True    #Capture Beacon
+    FUN_Parse WiFi_L2 Packets    wlan.fc.type_subtype == 0x05 and wlan.bssid == ${U_WIRELESS_2G_BSSID1} and wlan_mgt.wfa.ie.type == 0x02    True    #Capture Probe Response
     #3. Go to check Expected Results.    Do GUI Check: WMM status can be shown correctly on corresponding Web GUI pages.
     GUI_Check_WMM_2G    ${U_DUT_BR0_IP}    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}    on
     #4. Reboot DUT.
     Comment    TR_Reboot_DUT and Retest
-    FUN_Parse WiFi_L2 Packets    wlan.fc.type_subtype == 0x08 and wlan.bssid == 00:18:01:00:7b:ab    True    #Capture Beacon
-    FUN_Parse WiFi_L2 Packets    wlan.fc.type_subtype == 0x05 and wlan.bssid == 00:18:01:00:7b:ab    True    #Capture Probe Response
+    FUN_Parse WiFi_L2 Packets    wlan.fc.type_subtype == 0x08 and wlan.bssid == ${U_WIRELESS_2G_BSSID1} and wlan_mgt.wfa.ie.type == 0x02    True    #Capture Beacon
+    FUN_Parse WiFi_L2 Packets    wlan.fc.type_subtype == 0x05 and wlan.bssid == ${U_WIRELESS_2G_BSSID1} and wlan_mgt.wfa.ie.type == 0x02    True    #Capture Probe Response
     GUI_Check_WMM_2G    ${U_DUT_BR0_IP}    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}    on

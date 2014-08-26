@@ -4,13 +4,13 @@ Resource          ../../../../../Share_Resource.txt
 Resource          ../../../../../GUI_Keyword.txt
 
 *** Test Cases ***
-RFW-T6000-12559:Channel In Use_Auto_20MHz
-    [Tags]    Verified
+RFW-T6000-12572:Channel In Use_Auto_20MHz
+    [Tags]    Not Verified
     #1. Ensure Wireless Radio is enabled in 2.4GHz band and Channel Width is set to 20MHz.    2. Ensure that Wireless Channel Selection is set to Auto.
     TR_SPV    Device.WiFi.Radio.1.Enable=1 boolean    Device.WiFi.Radio.1.OperatingChannelBandwidth=20MHz string    Device.WiFi.Radio.1.AutoChannelEnable=1 boolean
     #3. Capture Beacon packets sent by DUT in 2.4GHz band and check the current channel available in 'DS Parameter Set Information Element' in Beacon packet.
     ${TMP_GPV_CHANNEL}=    TR_GPV_Return_Value    Device.WiFi.Radio.1.Channel
-    FUN_Parse WiFi_L2 Packets    wlan.fc.type_subtype == 0x08 and wlan.bssid == ${U_WIRELESS_2G_BSSID1} and wlan_mgt.ds.current_channel == ${TMP_GPV_CHANNEL}    True
+    FUN_Parse WiFi_L2 Packets    wlan.fc.type_subtype == 0x08 and wlan.bssid == ${U_WIRELESS_5G_BSSID1} and wlan_mgt.ds.current_channel == ${TMP_GPV_CHANNEL}    True
     #4. Go to check Expected Results. Channel Info can be shown on GUI correctly.
     ${TMP_GUI_CHANNEL}=    GUI_Check_Channel_2G    ${U_DUT_BR0_IP}    ${U_DUT_HTTP_USER}    ${U_DUT_HTTP_PWD}    True
     Should Be Equal As Strings    ${TMP_GUI_CHANNEL}    ${TMP_GPV_CHANNEL}
