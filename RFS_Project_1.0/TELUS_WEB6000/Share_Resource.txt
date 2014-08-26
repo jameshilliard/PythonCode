@@ -125,7 +125,8 @@ TR_SPV_WiFiRadio_Disable
     Should Be True    ${Init_GPV}
 
 TR_Reboot_DUT
-    Reset DUT by jacs
+    ${rc}    Reset DUT by jacs
+    should be true    ${rc}
 
 TR_SPV_WMM_Enable
     [Arguments]    ${x}=1
@@ -149,3 +150,8 @@ TR_SPV_Disable_WiFi_2G_MAC_Authentication
 TR_SPV_Disable_WiFi_5G_MAC_Authentication
     TR_SPV    Device.WiFi.AccessPoint.5.ACL.X_ACTIONTEC_COM_ACL_Enabled =0 boolean
     TR_GPV_Check    Device.WiFi.AccessPoint.5.ACL.X_ACTIONTEC_COM_ACL_Enabled =0 boolean
+
+TR_Firmware_Upgrade
+    [Arguments]    ${arg1}
+    ${rc}    Firmware_Upgrade    ${arg1}
+    should be true    ${rc}
