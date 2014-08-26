@@ -1,2 +1,8 @@
+*** Settings ***
+Resource          ../../../../Variables_ENV.txt
+Resource          ../../../../Share_Resource.txt
+Resource          ../../../../GUI_Keyword.txt
+
 *** Test Cases ***
 RFW-T6000-12516:Device ID in SOAP Body
+    TR_Check Device ID in SOAP    Actiontec    001505    TELUS V2000H    CVJA2301901176

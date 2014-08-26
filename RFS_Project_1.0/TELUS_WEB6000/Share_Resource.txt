@@ -10,29 +10,29 @@ Library           ../library/TR/TR.py
 *** Keywords ***
 TR_SPV
     [Arguments]    @{SPV_arg}
-    ${Check_SPV}    Do Spv On Dut    @{SPV_arg}
+    ${Check_SPV}=    Do Spv On Dut    @{SPV_arg}
     Should Be True    ${Check_SPV}
     Sleep    15
 
 TR_GPV_Check
     [Arguments]    @{GPV_arg}
-    ${Check_GPV}    Do Gpv On Dut    @{GPV_arg}
+    ${Check_GPV}=    Do Gpv On Dut    @{GPV_arg}
     Should Be True    ${Check_GPV}
 
 TR_SPV_ON_GW
     [Arguments]    @{SPV_arg}
-    ${Check_SPV}    Do Spv On Gw    @{SPV_arg}
+    ${Check_SPV}=    Do Spv On Gw    @{SPV_arg}
     Should Be True    ${Check_SPV}
     Sleep    15
 
 TR_GPV_ON_GW
     [Arguments]    @{GPV_arg}
-    ${Check_GPV}    Do Gpv On Gw    @{GPV_arg}
+    ${Check_GPV}=    Do Gpv On Gw    @{GPV_arg}
     Should Be True    ${Check_GPV}
 
 TR_GPV_Return_Value
     [Arguments]    ${arg1}
-    ${Check_GPV}    Do Gpv On Dut    ${arg1}
+    ${Check_GPV}=    Do Gpv On Dut    ${arg1}
     Should Be True    ${Check_GPV}
     ${rc}=    Get GPV Result    ${arg1}
     [Return]    ${rc}
@@ -55,24 +55,24 @@ FUN_PingTest
     ...    PingTest | 192.168.1.254 | 4 | eth2
     ...
     ...    Arguments can be a real value or variable defined in Variables list.
-    ${rc}    ${PingResult}    Run And Return Rc And Output    ping ${destIP} -c ${count} -I ${interface}
+    ${rc}    ${PingResult}=    Run And Return Rc And Output    ping ${destIP} -c ${count} -I ${interface}
     Should Be Equal As Numbers    ${rc}    0
     Log    ${PingResult}
     Should Not Contain    ${PingResult}    , 100% packet loss
 
 FUN_GetIP
-    [Arguments]    ${interface}
+    [Arguments]    ${interface}=eth1
     [Documentation]    Use dhclient get IP address on identify interface, and return value should contain 'renewal', otherwise the keyword will not pass.
     ...
     ...    Example:
     ...
     ...    GetIP | ${U_CUSTOM_IF1}
     Run    dhclient -r ${interface}
-    ${GetIP_Result}    Run    dhclient -v ${interface}
+    ${GetIP_Result}=    Run    dhclient -v ${interface}
     Should contain    ${GetIP_Result}    renewal
 
 FUN_Release_IP
-    [Arguments]    ${interface}
+    [Arguments]    ${interface}=eth1
     [Documentation]    Release the IP by dhclient
     ...
     ...    Arguments: ${interface}
@@ -94,10 +94,10 @@ TR_SPV_SSH_Enabled
     Should Be True    ${Init_GPV}
 
 FUN_ConfigIP
-    [Arguments]    ${interface}    ${address}=192.168.1.100
-    ${rc}    Run And Return Rc    ifconfig ${interface} ${address}
+    [Arguments]    ${interface}=eth1    ${address}=192.168.1.100
+    ${rc}=    Run And Return Rc    ifconfig ${interface} ${address}
     Should Be Equal As Numbers    ${rc}    0
-    ${rc}    ${output}    Run And Return Rc And Output    ifconfig ${interface}
+    ${rc}=    ${output}    Run And Return Rc And Output    ifconfig ${interface}
     Should Contain    ${output}    ${address}
 
 FUN_Parse WiFi_L2 Packets
@@ -111,21 +111,21 @@ FUN_Parse WiFi_L2 Packets
     ...    ${cat_result}
 
 TR_SPV_WiFiRadio_Enable
-    [Arguments]    ${x}
+    [Arguments]    ${x}=1
     Do Spv On Dut    Device.WiFi.Radio.${x}.Enable=1 boolean
     Sleep    15
     ${Init_GPV}=    Do Gpv On Dut    Device.WiFi.Radio.${x}.Enable=1
     Should Be True    ${Init_GPV}
 
 TR_SPV_WiFiRadio_Disable
-    [Arguments]    ${x}
+    [Arguments]    ${x}=1
     Do Spv On Dut    Device.WiFi.Radio.${x}.Enable=0 boolean
     Sleep    15
     ${Init_GPV}=    Do Gpv On Dut    Device.WiFi.Radio.${x}.Enable=0
     Should Be True    ${Init_GPV}
 
 TR_Reboot_DUT
-    ${rc}    Reset DUT by jacs
+    ${rc}=    Reset DUT by jacs
     should be true    ${rc}
 
 TR_SPV_WMM_Enable
@@ -163,9 +163,12 @@ TR_Disable_WiFi_5G_MAC_Authentication
 
 TR_Firmware_Upgrade
     [Arguments]    ${arg1}
-    ${rc}    Firmware_Upgrade    ${arg1}
+    ${rc}=    Firmware_Upgrade    ${arg1}
     should be true    ${rc}
 
 TR_Enable_DUT_Local_SSH
     TR_SPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=1 boolean    Device.X_ACTIONTEC_COM_RemoteLogin.Protocol=SSH string    Device.X_ACTIONTEC_COM_RemoteLogin.Username=%{U_DUT_TELNET_USER}    Device.X_ACTIONTEC_COM_RemoteLogin.Password=%{U_DUT_TELNET_PWD}
     TR_GPV_Check    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=1 boolean    Device.X_ACTIONTEC_COM_RemoteLogin.Protocol=SSH string    Device.X_ACTIONTEC_COM_RemoteLogin.Username=%{U_DUT_TELNET_USER}
+
+TR_Check Device ID in SOAP
+    [Arguments]    ${Manufacturer}    ${OUI}    ${ProductClass}    ${SerialNumber}
