@@ -1,6 +1,6 @@
 *** Settings ***
 Suite Setup       TR_SPV_2G_SSID1_ANYWPA_BOTH_CUS_KEY
-Test Teardown     TR_SPV_Disable_WiFi_2G_MAC_Authentication
+Test Teardown     TR_Disable_WiFi_2G_MAC_Authentication
 Resource          ../../../../Share_Resource.txt
 
 *** Test Cases ***
@@ -54,7 +54,7 @@ Disable MAC Authentication (Deny List)
     TR_GPV_Check    Device.WiFi.AccessPoint.1.ACL.X_ACTIONTEC_COM_ACL_Enabled =1 boolean    Device.WiFi.AccessPoint.1.ACL.X_ACTIONTEC_COM_ACL_Deny_Policy =1    Device.WiFi.AccessPoint.1.ACL.X_ACTIONTEC_COM_ACL_MACList =%{U_WIRELESS_CARD_MAC}
     #ConnectSSID    ssid=%{U_CUSTOM_SSID}    key=%{U_WIRELESS_CUSTOM_WPAPSK}    bssid=%{U_WIRELESS_2G_BSSID1}    postive=False
     #[Step 2][TR Set]    Disable MAC Authentication Feature
-    TR_SPV_Disable_WiFi_2G_MAC_Authentication
+    TR_Disable_WiFi_2G_MAC_Authentication
     #[Step 3][Function Check]    The Wireless STA is able to associate with the SSID you are testing and can access WAN via DUT
     #ConnectSSID    ssid=%{U_CUSTOM_SSID}    key=%{U_WIRELESS_CUSTOM_WPAPSK}    bssid=%{U_WIRELESS_2G_BSSID1}
 
@@ -66,6 +66,6 @@ Disable MAC Authentication (Allow List)
     TR_GPV_Check    Device.WiFi.AccessPoint.1.ACL.X_ACTIONTEC_COM_ACL_Enabled =1 boolean    Device.WiFi.AccessPoint.1.ACL.X_ACTIONTEC_COM_ACL_Deny_Policy =0    Device.WiFi.AccessPoint.1.ACL.X_ACTIONTEC_COM_ACL_MACList =%{U_WIRELESS_CARD_MAC}
     #ConnectSSID    ssid=%{U_CUSTOM_SSID}    key=%{U_WIRELESS_CUSTOM_WPAPSK}    bssid=%{U_WIRELESS_2G_BSSID1}
     #[Step 2][TR Set]    Disable MAC Authentication Feature
-    TR_SPV_Disable_WiFi_2G_MAC_Authentication
+    TR_Disable_WiFi_2G_MAC_Authentication
     #[Step 3][Function Check]    The Wireless STA is able to associate with the SSID you are testing and can access WAN via DUT
     #ConnectSSID    ssid=%{U_CUSTOM_SSID}    key=%{U_WIRELESS_CUSTOM_WPAPSK}    bssid=%{U_WIRELESS_2G_BSSID1}

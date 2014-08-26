@@ -143,11 +143,11 @@ TR_SPV_5G_SSID1_ANYWPA_BOTH_CUS_KEY
     TR_SPV    Device.WiFi.SSID.5.SSID=%{U_CUSTOM_SSID} string    Device.WiFi.AccessPoint.5.Security.ModeEnabled=WPA-WPA2-Personal string    Device.WiFi.AccessPoint.5.Security.X_ACTIONTEC_COM_WPAEncryptionMode=TKIPandAESEncryption string    Device.WiFi.AccessPoint.5.Security.X_ACTIONTEC_COM_WPA2EncryptionMode=TKIPandAESEncryption string    Device.WiFi.AccessPoint.5.Security.PreSharedKey= %{U_WIRELESS_CUSTOM_WPAPSK} string
     TR_GPV_Check    Device.WiFi.SSID.5.SSID=%{U_CUSTOM_SSID} string    Device.WiFi.AccessPoint.5.Security.ModeEnabled=WPA-WPA2-Personal    Device.WiFi.AccessPoint.5.Security.X_ACTIONTEC_COM_WPAEncryptionMode=TKIPandAESEncryption    Device.WiFi.AccessPoint.5.Security.X_ACTIONTEC_COM_WPA2EncryptionMode=TKIPandAESEncryption    Device.WiFi.AccessPoint.5.Security.PreSharedKey= %{U_WIRELESS_CUSTOM_WPAPSK}
 
-TR_SPV_Disable_WiFi_2G_MAC_Authentication
+TR_Disable_WiFi_2G_MAC_Authentication
     TR_SPV    Device.WiFi.AccessPoint.1.ACL.X_ACTIONTEC_COM_ACL_Enabled =0 boolean
     TR_GPV_Check    Device.WiFi.AccessPoint.1.ACL.X_ACTIONTEC_COM_ACL_Enabled =0 boolean
 
-TR_SPV_Disable_WiFi_5G_MAC_Authentication
+TR_Disable_WiFi_5G_MAC_Authentication
     TR_SPV    Device.WiFi.AccessPoint.5.ACL.X_ACTIONTEC_COM_ACL_Enabled =0 boolean
     TR_GPV_Check    Device.WiFi.AccessPoint.5.ACL.X_ACTIONTEC_COM_ACL_Enabled =0 boolean
 
@@ -155,3 +155,7 @@ TR_Firmware_Upgrade
     [Arguments]    ${arg1}
     ${rc}    Firmware_Upgrade    ${arg1}
     should be true    ${rc}
+
+TR_Enable_DUT_Local_SSH
+    TR_SPV    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=1 boolean    Device.X_ACTIONTEC_COM_RemoteLogin.Protocol=SSH string    Device.X_ACTIONTEC_COM_RemoteLogin.Username=%{U_DUT_TELNET_USER}    Device.X_ACTIONTEC_COM_RemoteLogin.Password=%{U_DUT_TELNET_PWD}
+    TR_GPV_Check    Device.X_ACTIONTEC_COM_RemoteLogin.Enable=1 boolean    Device.X_ACTIONTEC_COM_RemoteLogin.Protocol=SSH string    Device.X_ACTIONTEC_COM_RemoteLogin.Username=%{U_DUT_TELNET_USER}
