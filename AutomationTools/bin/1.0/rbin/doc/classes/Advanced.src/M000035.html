@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>qos_add_2_ip (Advanced)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File Advanced/Advanced.rb, line 691</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">qos_add_2_ip</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">data</span>,<span class="ruby-identifier">sub_or_range</span>)
+  
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sub_or_range</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+        <span class="ruby-identifier">addr_list</span> = <span class="ruby-identifier">data</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">','</span>)
+        <span class="ruby-identifier">input_base</span> = <span class="ruby-value str">'subnet'</span>
+        <span class="ruby-identifier">select_val</span> =<span class="ruby-value str">'16'</span>
+    <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">addr_list</span> = <span class="ruby-identifier">data</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">','</span>)
+        <span class="ruby-identifier">input_base</span> = <span class="ruby-value str">'range'</span>
+        <span class="ruby-identifier">select_val</span> =<span class="ruby-value str">'2'</span>
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:debug</span>, <span class="ruby-value str">'qos_add_rule'</span>, <span class="ruby-value str">&quot;addr_list&quot;</span> <span class="ruby-operator">+</span><span class="ruby-identifier">addr_list</span>.<span class="ruby-identifier">to_s</span>)
+    
+    <span class="ruby-identifier">addr_list</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">dual_ip_data</span><span class="ruby-operator">|</span>
+      
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:debug</span>, <span class="ruby-value str">'qos_add_rule'</span>, <span class="ruby-value str">&quot;processing address&quot;</span> <span class="ruby-operator">+</span><span class="ruby-identifier">dual_ip_data</span>.<span class="ruby-identifier">to_s</span>)
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:href</span>, <span class="ruby-value str">'javascript:mimic_button(\'add: ...\', 1)'</span>).<span class="ruby-identifier">click</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'net_obj_type'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-identifier">select_val</span>)
+      <span class="ruby-identifier">ip_data</span>=<span class="ruby-identifier">dual_ip_data</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">'/'</span>)
+      
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">ip_data</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">ip_data</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+        
+         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:debug</span>, <span class="ruby-value str">'qos_add_rule'</span>, <span class="ruby-value str">&quot;set ip &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">input_base</span> <span class="ruby-operator">+</span><span class="ruby-value str">&quot;: &quot;</span> \
+                                                   <span class="ruby-operator">+</span> <span class="ruby-identifier">ip_data</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;/&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">ip_data</span>[<span class="ruby-value">1</span>])
+         <span class="ruby-identifier">str_ip_data</span> = <span class="ruby-identifier">ip_data</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">strip</span>
+         <span class="ruby-identifier">octets</span>=<span class="ruby-identifier">str_ip_data</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">'.'</span>)
+         <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-identifier">input_base</span> <span class="ruby-operator">+</span><span class="ruby-value str">'_00'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">octets</span>[<span class="ruby-value">0</span>])
+         <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-identifier">input_base</span> <span class="ruby-operator">+</span><span class="ruby-value str">'_01'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">octets</span>[<span class="ruby-value">1</span>])
+         <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-identifier">input_base</span> <span class="ruby-operator">+</span><span class="ruby-value str">'_02'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">octets</span>[<span class="ruby-value">2</span>])
+         <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-identifier">input_base</span> <span class="ruby-operator">+</span><span class="ruby-value str">'_03'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">octets</span>[<span class="ruby-value">3</span>])
+         
+         <span class="ruby-comment cmt"># set the subnet or range</span>
+         <span class="ruby-identifier">str_ip_data</span> = <span class="ruby-identifier">ip_data</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">strip</span>
+         <span class="ruby-identifier">octets</span>=<span class="ruby-identifier">str_ip_data</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">'.'</span>)
+         <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-identifier">input_base</span> <span class="ruby-operator">+</span><span class="ruby-value str">'_10'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">octets</span>[<span class="ruby-value">0</span>])
+         <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-identifier">input_base</span> <span class="ruby-operator">+</span><span class="ruby-value str">'_11'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">octets</span>[<span class="ruby-value">1</span>])
+         <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-identifier">input_base</span> <span class="ruby-operator">+</span><span class="ruby-value str">'_12'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">octets</span>[<span class="ruby-value">2</span>])
+         <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-identifier">input_base</span> <span class="ruby-operator">+</span><span class="ruby-value str">'_13'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">octets</span>[<span class="ruby-value">3</span>])
+  
+         <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>
+         
+       <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if..</span>
+          
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of each...</span>
+
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

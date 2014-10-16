@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>logout (SetPasswordAfterReset)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File Tools/SetPasswordAfterReset.rb, line 89</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">logout</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-value str">'Logging out ...'</span>
+    <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'logout'</span>).<span class="ruby-identifier">click</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span> <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">contains_text</span>(<span class="ruby-value str">'User has logged out'</span>)
+      <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">&quot;Logout failed\n&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

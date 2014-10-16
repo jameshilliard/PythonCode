@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>DoSetup_BasicSecuriySettings_wirelesson (Wireless)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File Wireless/Wireless.rb, line 214</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-constant">DoSetup_BasicSecuriySettings_wirelesson</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
+    <span class="ruby-comment cmt"># Change the SSID setting to any name or code you want</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-value str">'SSID'</span>)
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'ssid'</span>).<span class="ruby-identifier">value</span>=<span class="ruby-identifier">info</span>[<span class="ruby-value str">'SSID'</span>]
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'BasicSecuritySettings()-&gt;SSID'</span>, <span class="ruby-value str">&quot;SSID = &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">info</span>[<span class="ruby-value str">'SSID'</span>])  
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'BasicSecuritySettings()-&gt;SSID'</span>, <span class="ruby-value str">'No SSID key found in json'</span>)    
+    <span class="ruby-keyword kw">end</span>
+     
+    <span class="ruby-comment cmt"># Channel</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-value str">'Channel'</span>)
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span> [<span class="ruby-value str">'Channel'</span>]
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Automatic'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'channel'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'-1'</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'BasicSecuritySettings()-&gt;Channel'</span>, <span class="ruby-value str">&quot;Channel = &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">info</span>[<span class="ruby-value str">'Channel'</span>])
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'1'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'channel'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'1'</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'BasicSecuritySettings()-&gt;Channel'</span>, <span class="ruby-value str">&quot;Channel = &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">info</span>[<span class="ruby-value str">'Channel'</span>])        
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'2'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'channel'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'2'</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'BasicSecuritySettings()-&gt;Channel'</span>, <span class="ruby-value str">&quot;Channel = &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">info</span>[<span class="ruby-value str">'Channel'</span>])            
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'3'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'channel'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'3'</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'BasicSecuritySettings()-&gt;Channel'</span>, <span class="ruby-value str">&quot;Channel = &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">info</span>[<span class="ruby-value str">'Channel'</span>])             
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'4'</span>    
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'channel'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'4'</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'BasicSecuritySettings()-&gt;Channel'</span>, <span class="ruby-value str">&quot;Channel = &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">info</span>[<span class="ruby-value str">'Channel'</span>])             
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'5'</span> 
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'channel'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'5'</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'BasicSecuritySettings()-&gt;Channel'</span>, <span class="ruby-value str">&quot;Channel = &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">info</span>[<span class="ruby-value str">'Channel'</span>])             
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'6'</span>   
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'channel'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'6'</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'BasicSecuritySettings()-&gt;Channel'</span>, <span class="ruby-value str">&quot;Channel = &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">info</span>[<span class="ruby-value str">'Channel'</span>])             
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'7'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'channel'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'7'</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'BasicSecuritySettings()-&gt;Channel'</span>, <span class="ruby-value str">&quot;Channel = &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">info</span>[<span class="ruby-value str">'Channel'</span>])             
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'8'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'channel'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'8'</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'BasicSecuritySettings()-&gt;Channel'</span>, <span class="ruby-value str">&quot;Channel = &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">info</span>[<span class="ruby-value str">'Channel'</span>])             
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'9'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'channel'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'9'</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'BasicSecuritySettings()-&gt;Channel'</span>, <span class="ruby-value str">&quot;Channel = &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">info</span>[<span class="ruby-value str">'Channel'</span>])             
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'10'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'channel'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'10'</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'BasicSecuritySettings()-&gt;Channel'</span>, <span class="ruby-value str">&quot;Channel = &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">info</span>[<span class="ruby-value str">'Channel'</span>])             
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'11'</span>      
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'channel'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'11'</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'BasicSecuritySettings()-&gt;Channel'</span>, <span class="ruby-value str">&quot;Channel = &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">info</span>[<span class="ruby-value str">'Channel'</span>])             
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'BasicSecuritySettings()-&gt;Channel'</span>, <span class="ruby-value str">'No Channel key found in json'</span>)
+    <span class="ruby-keyword kw">end</span>
+     
+    <span class="ruby-comment cmt"># Keep my channel selection during power cycle</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-value str">'Keep my channel selection during power cycle'</span>)
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span> [<span class="ruby-value str">'Keep my channel selection during power cycle'</span>]
+        <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>
+           <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'keep_channel'</span>).<span class="ruby-identifier">set</span>
+           <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'BasicSecuritySettings()-&gt;Keep channel'</span>, <span class="ruby-value str">&quot;Keep channel = &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">info</span>[<span class="ruby-value str">'Keep my channel selection during power cycle'</span>])
+        <span class="ruby-keyword kw">else</span>
+           <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:error</span>, <span class="ruby-value str">'BasicSecuritySettings()-&gt;Keep channel'</span>, <span class="ruby-value str">'Keep channel undefined'</span>)
+        <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">else</span> 
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'BasicSecuritySettings()-&gt;Keep channel'</span>, <span class="ruby-value str">'No Keep channel key found in json'</span>)        
+    <span class="ruby-keyword kw">end</span>
+     
+    <span class="ruby-comment cmt"># Click on the button next to WEP</span>
+    <span class="ruby-comment cmt"># WEP</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-value str">'WEP'</span>)
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">radio</span>(<span class="ruby-identifier">:id</span>, <span class="ruby-value str">'wep_on'</span>).<span class="ruby-identifier">set</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'BasicSecuritySettings()-&gt;WEP'</span>, <span class="ruby-value str">&quot;WEP = &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">info</span>[<span class="ruby-value str">'WEP'</span>])   
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'BasicSecuritySettings()-&gt;WEP'</span>, <span class="ruby-value str">'No WEP key found in json'</span>)  
+    <span class="ruby-keyword kw">end</span>
+     
+    <span class="ruby-comment cmt"># Click on the button next to WEP</span>
+    <span class="ruby-comment cmt"># Off</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-value str">'Off'</span>)
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">radio</span>(<span class="ruby-identifier">:id</span>, <span class="ruby-value str">'wep_off'</span>).<span class="ruby-identifier">set</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'BasicSecuritySettings()-&gt;Off'</span>, <span class="ruby-value str">&quot;Off = &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">info</span>[<span class="ruby-value str">'Off'</span>])   
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'BasicSecuritySettings()-&gt;Off'</span>, <span class="ruby-value str">'No Off key found in json'</span>)  
+    <span class="ruby-keyword kw">end</span>
+     
+    <span class="ruby-comment cmt"># Select a WEP Key</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-value str">'Select a WEP Key'</span>)
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span> [<span class="ruby-value str">'Select a WEP Key'</span>]
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'64/40 bit'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:id</span>, <span class="ruby-value str">'wep_key_len'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'40'</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'BasicSecuritySettings()-&gt;Select a WEP Key'</span>, <span class="ruby-value str">&quot;WEP Key = &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">info</span>[<span class="ruby-value str">'Select a WEP Key'</span>])   
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'128/104 bit'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:id</span>, <span class="ruby-value str">'wep_key_len'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'104'</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'BasicSecuritySettings()-&gt;Select a WEP Key'</span>, <span class="ruby-value str">&quot;WEP Key = &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">info</span>[<span class="ruby-value str">'Select a WEP Key'</span>])   
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'BasicSecuritySettings()-&gt;Select a WEP Key'</span>, <span class="ruby-value str">'No \&quot;Select a WEP Key\&quot; found in json'</span>)      
+    <span class="ruby-keyword kw">end</span>
+     
+    <span class="ruby-comment cmt"># Hex</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-value str">'Hex'</span>)
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span> [<span class="ruby-value str">'Hex'</span>]
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:id</span>, <span class="ruby-value str">'wep_key_code'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'0'</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'BasicSecuritySettings()-&gt;Select a Key Mode'</span>, <span class="ruby-value str">'A Hex'</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">else</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'BasicSecuritySettings()-&gt;Select a Key Mode'</span>, <span class="ruby-value str">'Not a Hex'</span>)
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># ASCII</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-value str">'ASCII'</span>)
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span> [<span class="ruby-value str">'ASCII'</span>]
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:id</span>, <span class="ruby-value str">'wep_key_code'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'1'</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'BasicSecuritySettings()-&gt;Select a Key Mode'</span>, <span class="ruby-value str">'A ASCII'</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'BasicSecuritySettings()-&gt;Select a Key Mode'</span>, <span class="ruby-value str">'Not a ASCII'</span>)
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># Key Code</span>
+  
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

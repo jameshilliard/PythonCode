@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=PPTP Client
+GenericName=
+Comment=Configure and start PPTP tunnels (VPN)
+Categories=Application;SystemSetup
+Encoding=UTF-8
+Exec=pptpconfig
+Icon=
+StartupNotify=true
+Terminal=false
+Type=Application

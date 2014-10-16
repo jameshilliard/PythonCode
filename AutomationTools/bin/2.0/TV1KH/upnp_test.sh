@@ -1,0 +1,1 @@
+../common/upnp_test.sh

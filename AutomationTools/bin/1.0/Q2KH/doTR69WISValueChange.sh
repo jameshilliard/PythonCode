@@ -1,0 +1,1 @@
+../Q2K/doTR69WISValueChange.sh

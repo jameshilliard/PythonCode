@@ -1,0 +1,1 @@
+../common/tr69client.sh

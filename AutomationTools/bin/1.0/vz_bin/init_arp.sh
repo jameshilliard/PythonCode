@@ -1,0 +1,3 @@
+perl $U_COMMONBIN/clicfg.pl -c -d $G_HOST_IP1 -l $G_CURRENTLOG -u $G_HOST_USR1 -p $G_HOST_PWD1 -m "sftp> " -v "rm  /tmp/config_eth_wan.sh" -v "put  $SQAROOT/bin/1.0/vz_bin/config_eth_wan.sh  /tmp/config_eth_wan.sh" 
+perl $U_COMMONBIN/clicfg.pl -c -d $G_HOST_IP2 -l $G_CURRENTLOG -u $G_HOST_USR2 -p $G_HOST_PWD2 -m "sftp> " -v "rm  /tmp/config_eth.sh" -v "put  $SQAROOT/bin/1.0/vz_bin/config_eth.sh  /tmp/config_eth.sh" 
+perl $U_COMMONBIN/clicfg.pl -c -d $G_HOST_IP3 -l $G_CURRENTLOG -u $G_HOST_USR3 -p $G_HOST_PWD3 -m "sftp> " -v "rm  /tmp/config_eth_wan.sh" -v "put  $SQAROOT/bin/1.0/vz_bin/config_eth_wan.sh  /tmp/config_eth_wan.sh" 

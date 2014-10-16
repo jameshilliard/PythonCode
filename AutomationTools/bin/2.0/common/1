@@ -1,0 +1,72 @@
+/root/automation/bin/2.0/WECB/getdefvalue.sh version : 1.0.0
+====== The output file  : update_env
+====== The output path  : /root/automation/logs/current
+====== Get standard Testbed Infomation!
+====== get_dut_flag     : 0
+====== actual_tb_flag   : 0
+====== standard_tb_flag : 1
+====== get_all_flag     : 0
+AT_WARNING : G_HOST_IF1_1_0  is Null,WAN PC have 2 Network Card!
+ThreeCard:1
+eth0      Link encap:Ethernet  HWaddr 90:2B:34:09:44:79  
+          inet addr:192.168.10.138  Bcast:192.168.10.255  Mask:255.255.255.0
+          inet6 addr: fe80::922b:34ff:fe09:4479/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:102233 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:78514 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:26958731 (25.7 MiB)  TX bytes:20980229 (20.0 MiB)
+          Interrupt:41 Base address:0x6000 
+
+eth1      Link encap:Ethernet  HWaddr 00:10:18:1A:6E:72  
+          inet addr:192.168.1.65  Bcast:192.168.1.255  Mask:255.255.255.0
+          inet6 addr: fe80::210:18ff:fe1a:6e72/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:8497 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:17561 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:3053133 (2.9 MiB)  TX bytes:2573988 (2.4 MiB)
+          Interrupt:17 
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:91067 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:91067 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:32814847 (31.2 MiB)  TX bytes:32814847 (31.2 MiB)
+
+vmnet1    Link encap:Ethernet  HWaddr 00:50:56:C0:00:01  
+          inet addr:172.16.210.1  Bcast:172.16.210.255  Mask:255.255.255.0
+          inet6 addr: fe80::250:56ff:fec0:1/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:26 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 b)  TX bytes:0 (0.0 b)
+
+vmnet8    Link encap:Ethernet  HWaddr 00:50:56:C0:00:08  
+          inet addr:172.16.143.1  Bcast:172.16.143.255  Mask:255.255.255.0
+          inet6 addr: fe80::250:56ff:fec0:8/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:27 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 b)  TX bytes:0 (0.0 b)
+
+wlan2     Link encap:Ethernet  HWaddr E0:91:F5:19:11:D2  
+          BROADCAST MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 b)  TX bytes:0 (0.0 b)
+
+wlan2     IEEE 802.11bg  ESSID:off/any  
+          Mode:Managed  Access Point: Not-Associated   Tx-Power=0 dBm   
+          Retry  long limit:7   RTS thr:off   Fragment thr:off
+          Encryption key:off
+          Power Management:off
+          
+====== Entry function checkknownvar : Start to Check known variable!
+====== U_DUT_TELNET_USER is NULL!

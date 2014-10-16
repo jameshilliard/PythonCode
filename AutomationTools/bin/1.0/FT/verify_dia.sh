@@ -1,0 +1,1 @@
+../TV2KH/verify_dia.sh

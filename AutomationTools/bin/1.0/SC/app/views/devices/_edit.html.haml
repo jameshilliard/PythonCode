@@ -1,0 +1,7 @@
+= simple_form_for(@new_device, :url => {:action => 'create'}, :remote => true) do |f|
+  = f.input :model, :label => "Model name", :required => true
+  = f.input :aliases, :label=>"Model aliases", :as => :string, :hint => "(separate values with commas)"
+  = f.input :possible_usernames, :label=>"Possible usernames", :as => :string, :hint => "(separate values with commas)", :required => true
+  = f.input :possible_passwords, :label=>"Possible passwords", :as => :string, :hint => "(separate values with commas)", :required => true
+  = f.input :possible_ips, :label=>"Possible IP addresses", :as => :string, :hint => "(separate values with commas)", :required => true
+  = f.submit "Add Device"

@@ -1,0 +1,87 @@
+
+
+        Joe,
+
+        Tagged devices for automation:
+
+        1. Dell switch
+           SN# 5Z1BFH1
+           AEIS 004369
+
+        2. VMware Server Desktop1
+           SN# RC500KKN11084701101
+           AEIS 004370
+
+        3. HP Desktop ( SVN server)
+           SN# CNX9110185
+           APN 012102
+
+        4. Leveno Desktop (Jeremy use)
+           SN# SS09116746 SS181224*1
+           APN 012101
+
+        5. VNware Server Desktop2
+           SN# S5046AX19200443
+           AEI 004373
+   
+        6. HP Lap-top G60-237US (SHQA)
+           SN# 2CE91420DF
+ 
+        7. HP Lap-top G60-237US (SHQA)
+           SN# 2CE914CQDK
+
+        8. LG LCD  W2353VQV
+           SN# 903NDFV2S139
+           APN  012103
+
+        9. LG LCD W2353VQV
+           SN# 903NDLS2S128
+           APN 012104
+
+        10. DELL switch 5448 (#2)
+            SVC TAG: 4Q6DFH1
+            AEIS  004374
+
+        11. DELL switch 5448(#3)
+            SVC TAG: BS6DFH1
+            AEIS  004375
+
+        12. VMware #3/ Acma#1
+            SN# 905359091
+            AEIS 004376
+
+        13. HP DeskTop (logserver2)
+            SN# MXU917010X
+            APN 012105
+
+        14. LG LCD
+            SN# 904NDYG7E114
+            APN 012106
+
+        15. DELL switch 5448(#4)
+            SVC TAG: DXKHFH1
+            AEIS  004383
+
+        16. LG LCD  W2353VQV
+           SN# 905NDXQAM210
+           APN  012108
+
+        17. LG LCD W2353VQV
+           SN# 907NDSKKE086
+           APN 012112
+
+        18. VMware #4/ Acma#2
+            SN# 907361276
+            AEIS 004379
+
+        19. GatewayPC 
+            SN: 00148-112-794-164
+            APN 012110
+
+        20. GatewayPC 
+            SN: 00148-112-123-782
+            APN 012111
+
+        21. Cisco cs2610xm
+            SN# JHy0a06K1ZC
+            APN 012113

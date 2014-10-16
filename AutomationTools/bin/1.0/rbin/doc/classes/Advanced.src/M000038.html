@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>qos_scheduler (Advanced)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File Advanced/Advanced.rb, line 953</span>
+  <span class="ruby-keyword kw">def</span>  <span class="ruby-identifier">qos_scheduler</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">rules</span>)
+    
+    <span class="ruby-comment cmt">#puts 'qos_scheduler rule name is'+ rule_name</span>
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:debug</span>, <span class="ruby-value str">'qos_scheduler'</span>, <span class="ruby-value str">'called qos_scheduler'</span>)
+    <span class="ruby-identifier">rules</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sched_rule_name</span>,<span class="ruby-identifier">rule_data</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:debug</span>, <span class="ruby-value str">'qos_scheduler'</span>, <span class="ruby-value str">'doing rule'</span> <span class="ruby-operator">+</span><span class="ruby-identifier">sched_rule_name</span>)
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'schdlr_rule_name'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">sched_rule_name</span>.<span class="ruby-identifier">strip</span>)
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rule_data</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'active'</span>)
+               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rule_data</span>[<span class="ruby-value str">'active'</span>] <span class="ruby-operator">==</span><span class="ruby-value">1</span>
+                   <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">label</span>(<span class="ruby-identifier">:for</span>,<span class="ruby-value str">'is_enabling_0'</span>).<span class="ruby-identifier">click</span>
+               <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">rule_data</span>[<span class="ruby-value str">'active'</span>] <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+                   <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">label</span>(<span class="ruby-identifier">:for</span>,<span class="ruby-value str">'is_enabling_1'</span>).<span class="ruby-identifier">click</span>
+               <span class="ruby-keyword kw">end</span>
+               <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:debug</span>, <span class="ruby-value str">'qos_scheduler'</span>, <span class="ruby-value str">'doing rule'</span> <span class="ruby-operator">+</span><span class="ruby-identifier">sched_rule_name</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;active&quot;</span>)
+            <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'Add Rule Schedule'</span>).<span class="ruby-identifier">click</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rule_data</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'days'</span>)
+                <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:debug</span>, <span class="ruby-value str">'qos_scheduler'</span>, <span class="ruby-value str">'doing rule'</span> <span class="ruby-operator">+</span><span class="ruby-identifier">sched_rule_name</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;days&quot;</span>)
+                <span class="ruby-identifier">rule_data</span>[<span class="ruby-value str">'days'</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span>
+                   <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">spec</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;Monday&quot;</span>
+                      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">label</span>(<span class="ruby-identifier">:for</span>,<span class="ruby-value str">'day_mon_'</span>).<span class="ruby-identifier">click</span>
+                   <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">spec</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;Tuesday&quot;</span>
+                      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">label</span>(<span class="ruby-identifier">:for</span>,<span class="ruby-value str">'day_tue_'</span>).<span class="ruby-identifier">click</span> 
+                   <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">spec</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;Wednesday&quot;</span>
+                      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">label</span>(<span class="ruby-identifier">:for</span>,<span class="ruby-value str">'day_wed_'</span>).<span class="ruby-identifier">click</span> 
+                   <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">spec</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;Thursday&quot;</span>
+                      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">label</span>(<span class="ruby-identifier">:for</span>,<span class="ruby-value str">'day_thu_'</span>).<span class="ruby-identifier">click</span> 
+                   <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">spec</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;Friday&quot;</span>
+                      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">label</span>(<span class="ruby-identifier">:for</span>,<span class="ruby-value str">'day_fri_'</span>).<span class="ruby-identifier">click</span> 
+                   <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">spec</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;Saturday&quot;</span>
+                      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">label</span>(<span class="ruby-identifier">:for</span>,<span class="ruby-value str">'day_sat_'</span>).<span class="ruby-identifier">click</span> 
+                   <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">spec</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;Sunday&quot;</span>
+                      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">label</span>(<span class="ruby-identifier">:for</span>,<span class="ruby-value str">'day_sun_'</span>).<span class="ruby-identifier">click</span> 
+                   <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt">#end each day</span>
+                   <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:debug</span>, <span class="ruby-value str">'qos_scheduler'</span>, <span class="ruby-value str">'doing rule'</span> <span class="ruby-operator">+</span><span class="ruby-identifier">sched_rule_name</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">to_s</span>)
+                <span class="ruby-keyword kw">end</span>
+                <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rule_data</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'hours'</span>)
+                       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:debug</span>, <span class="ruby-value str">'qos_scheduler'</span>, <span class="ruby-value str">'doing rule'</span> <span class="ruby-operator">+</span><span class="ruby-identifier">sched_rule_name</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;hours&quot;</span>)
+                    <span class="ruby-identifier">rule_data</span>[<span class="ruby-value str">'hours'</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span>
+                       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:debug</span>, <span class="ruby-value str">'qos_scheduler'</span>, <span class="ruby-value str">'doing rule'</span> <span class="ruby-operator">+</span><span class="ruby-identifier">sched_rule_name</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">to_s</span>)
+                       <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'New Hours Range Entry'</span>).<span class="ruby-identifier">click</span>
+                       <span class="ruby-identifier">times</span> = <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">','</span>)
+                       <span class="ruby-identifier">start_time</span> = <span class="ruby-identifier">times</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">split</span>(<span class="ruby-value str">':'</span>)
+                       <span class="ruby-identifier">end_time</span> = <span class="ruby-identifier">times</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">split</span>(<span class="ruby-value str">':'</span>)
+                       <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'start_hour'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">start_time</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">strip</span>)
+                       <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'start_min'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">start_time</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">strip</span>)
+                       <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'end_hour'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">end_time</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">strip</span>)
+                       <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'end_min'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">end_time</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">strip</span>)
+                       <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>
+                    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end each timespec</span>
+                <span class="ruby-keyword kw">end</span>  <span class="ruby-comment cmt">#end if hours</span>
+            <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>
+            <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end if days</span>
+        <span class="ruby-keyword kw">end</span>  <span class="ruby-comment cmt"># end if active</span>
+    <span class="ruby-keyword kw">end</span>  <span class="ruby-comment cmt"># end each rule</span>
+    <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

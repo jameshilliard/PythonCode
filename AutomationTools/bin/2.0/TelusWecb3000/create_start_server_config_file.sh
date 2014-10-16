@@ -1,0 +1,1 @@
+../common/create_start_server_config_file.sh

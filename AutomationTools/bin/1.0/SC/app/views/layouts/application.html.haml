@@ -1,0 +1,44 @@
+!!!
+%html
+  %head
+    %title
+      Server Controller - #{@title}
+    = stylesheet_link_tag :all
+    = javascript_include_tag :defaults, "clock"
+    /[if IE]
+      <haml:loud> javascript_include_tag &quot;html5shiv/html5.js&quot; </haml:loud>
+    = csrf_meta_tag
+  %body{:onload => "update_clock(); #{"new Effect.Appear('notice', { duration: 0.5 }); new Effect.Fade('notice', { duration: 0.5, delay: 5 });" if flash[:notice]}"}
+    %input#clockoffset{:type => "hidden", :value => Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S%Z")}
+    #container
+      %header.title
+        = link_to raw("<h1>Server</h1><h1>Control</h1>"), root_url
+        #information
+          %p
+            = pluralize(::TestCase.queued.count, "test case")
+            (of #{::TestCase.all.count}) queued to execute across #{pluralize(TestSuite.all.count, "test suite")}.
+          %p
+            = pluralize(TestServer.running.count, "server")
+            (of #{TestServer.all.count}) are executing tests.
+          %p
+            = pluralize(TestServer.reserved.count, "server")
+            (of #{TestServer.all.count}) are reserved for manual use.
+          #clock.clock
+            %span
+            %span
+      %nav.general_nav
+        = link_to("Servers", {:controller => :test_servers, :action => :index}, :class=>is_active?("test_servers_index"))
+        = link_to("Test Suites", {:controller => :test_suites, :action => :index}, :class=>is_active?("test_suites_index"))
+        = link_to("TestLink Users", {:controller => :tl_user, :action => :index}, :class=>is_active?("tl_user_index"))
+        = link_to("Devices", {:controller => :devices, :action => :index}, :class=>is_active?("devices_index"))
+        = link_to("Connections", {:controller => :connection_types, :action => :index}, :class=>is_active?("connection_types_index"))
+        = link_to("Test Environments", {:controller => :testing_environments, :action => :index}, :class=>is_active?("testing_environments_index"))
+      #notice.notice{:style => "display:none;"}= flash[:notice] if flash[:notice]
+      .controller_content
+        = yield
+      #footer
+        %p
+          = APP_TITLE
+          v#{APP_VERSION} - #{APP_CONTACT}
+          %br/
+          = APP_COPYRIGHT

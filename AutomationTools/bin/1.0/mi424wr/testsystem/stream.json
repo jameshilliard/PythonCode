@@ -1,0 +1,18 @@
+{
+"stream_1": {
+"bandwidth": "priority 2",
+"udp": false,
+"port": 6005,
+"server_ip": "192.168.10.56",
+"server_options": "remote",
+"client_options": "local"
+},
+"stream_2": {
+"bandwidth": "priority 1",
+"udp": false,
+"port": 6007,
+"server_ip": "192.168.10.56",
+"server_options": "remote",
+"client_options": "local"
+}
+}

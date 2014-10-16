@@ -1,0 +1,24 @@
+= show_for @server do |s|
+  = s.attribute :updated_at, :format=>:short, :label => "Last update time"
+  - s.attribute :hostname, :label =>"Hostname (IP)" do
+    = "#{@server.hostname} (#{@server.ip})"
+  - s.attribute :state, :label => "Server state" do
+    = human_readable_idle(@server.state)
+  - s.association :devices do
+    - if @server.devices.empty?
+      = "No devices found"
+    - else
+      %ul.generic_list
+        - @server.devices.each do |device|
+          %li= device.model
+  = s.attribute :system_config, :if_blank => "No configuration details have been received yet."
+  - s.attribute :suite_name, :in => :test_suite, :label => "Assigned Test Suite" do
+    = @server.test_suite.nil? ? "No testing assigned" : link_to(@server.test_suite.suite_name, test_suite_path(@server.test_suite.id), {:class => 'simple_nav'})
+%nav.back_link
+  = link_to 'Back', request.headers['HTTP_REFERER']
+%nav.dump_nav
+  - unless @server.test_suite.nil?
+    = link_to("Remove Test Suite", {:controller => :test_servers, :action => :remove_test_suite, :id => @server.id})
+  = link_to "Delete Server", @server, :confirm => 'Are you sure? This will remove the server from the controller (test suites will be reassigned!)', :method => :delete
+%nav.secondary_nav
+  = link_to("Edit", {:controller => :test_servers, :action => :edit, :id => @server.id})

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>users (Advanced)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File Advanced/Advanced.rb, line 3265</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">users</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
+
+    <span class="ruby-comment cmt"># Get to the advanced page.</span>
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">goto_advanced</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
+    
+    <span class="ruby-comment cmt"># Get to the &quot;Users&quot; page.</span>
+    <span class="ruby-keyword kw">begin</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'Users'</span>).<span class="ruby-identifier">click</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'users'</span>, <span class="ruby-value str">'Reached page \'Users\'.'</span>)
+    <span class="ruby-keyword kw">rescue</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:error</span>, <span class="ruby-value str">'users'</span>, <span class="ruby-value str">'Did not reach \'Users\' page'</span>)
+      <span class="ruby-keyword kw">return</span>
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># Check the key.</span>
+    <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Full Name'</span>) <span class="ruby-operator">&amp;&amp;</span>
+         <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'User Name'</span>) ) <span class="ruby-keyword kw">then</span>
+      <span class="ruby-comment cmt"># Right,go on.</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'users'</span>,<span class="ruby-value str">'Some key NOT found.'</span>)
+      <span class="ruby-keyword kw">return</span>
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># Parse the json file</span>
+      
+    <span class="ruby-comment cmt"># Add a user here.</span>
+    <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>,<span class="ruby-value str">&quot;New User&quot;</span>).<span class="ruby-identifier">click</span>
+    
+    <span class="ruby-comment cmt"># Enter the user's information</span>
+    
+    <span class="ruby-comment cmt"># Full Name</span>
+    <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'fullname'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Full Name'</span>])
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'fullname'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Full Name'</span>])
+    
+    <span class="ruby-comment cmt"># User Name</span>
+    <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'username'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">info</span>[<span class="ruby-value str">'User Name'</span>])
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'username'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'User Name'</span>])
+    
+    <span class="ruby-comment cmt"># New Password &amp; Retype New Password</span>
+    <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:index</span>,<span class="ruby-value">3</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">info</span>[<span class="ruby-value str">'New Password'</span>])  
+    <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:index</span>,<span class="ruby-value">4</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Retype New Password'</span>])
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Password'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'New Password'</span>])
+    
+    <span class="ruby-comment cmt"># Permission</span>
+    <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Permission'</span>]
+      
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Administrator'</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'user_level'</span>).<span class="ruby-identifier">set_value</span>(<span class="ruby-value str">&quot;2&quot;</span>)
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Permissions'</span>,<span class="ruby-value str">'Administrator'</span>)
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Limited'</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'user_level'</span>).<span class="ruby-identifier">set_value</span>(<span class="ruby-value str">&quot;1&quot;</span>)
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Permissions'</span>,<span class="ruby-value str">'Limited'</span>)
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-comment cmt"># Wrong here</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Permissions'</span>,<span class="ruby-value str">'Wrong Permissions'</span>)
+      <span class="ruby-keyword kw">return</span>
+    <span class="ruby-keyword kw">end</span>  
+     
+    <span class="ruby-comment cmt"># Notification Address</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Notification Address'</span>)
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'email'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Notification Address'</span>])
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Notification Address'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Notification Address'</span>])
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># System Notify Level</span>
+    <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'System Notify Level'</span>]
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'None'</span>  
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'email_system_notify_level'</span>).<span class="ruby-identifier">set_value</span>(<span class="ruby-value str">&quot;15&quot;</span>)
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Error'</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'email_system_notify_level'</span>).<span class="ruby-identifier">set_value</span>(<span class="ruby-value str">&quot;3&quot;</span>)
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Warning'</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'email_system_notify_level'</span>).<span class="ruby-identifier">set_value</span>(<span class="ruby-value str">&quot;4&quot;</span>)
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Information'</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'email_system_notify_level'</span>).<span class="ruby-identifier">set_value</span>(<span class="ruby-value str">&quot;6&quot;</span>)
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-comment cmt"># Wrong here</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'users'</span>,<span class="ruby-value str">'Some key NOT found in System Notify Level.'</span>)
+      <span class="ruby-keyword kw">return</span>           
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># System Notify Level</span>
+    <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Security Notify Level'</span>]
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'None'</span>  
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'email_security_notify_level'</span>).<span class="ruby-identifier">set_value</span>(<span class="ruby-value str">&quot;15&quot;</span>)
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Error'</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'email_security_notify_level'</span>).<span class="ruby-identifier">set_value</span>(<span class="ruby-value str">&quot;3&quot;</span>)
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Warning'</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'email_security_notify_level'</span>).<span class="ruby-identifier">set_value</span>(<span class="ruby-value str">&quot;4&quot;</span>)
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Information'</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'email_security_notify_level'</span>).<span class="ruby-identifier">set_value</span>(<span class="ruby-value str">&quot;6&quot;</span>)
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-comment cmt"># Wrong here</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'users'</span>,<span class="ruby-value str">'Some key NOT found in System Notify Level.'</span>)
+      <span class="ruby-keyword kw">return</span>           
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># Apply the new user.</span>
+    <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>,<span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>
+    
+    <span class="ruby-comment cmt"># Jump out an &quot;attention&quot; message?</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value str">'Attention'</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>,<span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># Close</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value str">'Close'</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>,<span class="ruby-value str">'Close'</span>).<span class="ruby-identifier">click</span>
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Users'</span>,<span class="ruby-value str">'SUCCESS'</span>)
+    
+    <span class="ruby-keyword kw">return</span>   
+     
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

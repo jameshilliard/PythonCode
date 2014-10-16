@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>remote_administration (Advanced)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File Advanced/Advanced.rb, line 3502</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remote_administration</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
+
+    <span class="ruby-comment cmt"># Get to the advanced page.</span>
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">goto_advanced</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
+    
+    <span class="ruby-comment cmt"># Get to the &quot;Remote Administration&quot; page.</span>
+    <span class="ruby-keyword kw">begin</span>
+      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'Remote Administration'</span>).<span class="ruby-identifier">click</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'Remote Administration'</span>, <span class="ruby-value str">'Reached page \'Remote Administration\'.'</span>)
+    <span class="ruby-keyword kw">rescue</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:error</span>, <span class="ruby-value str">'Remote Administration'</span>, <span class="ruby-value str">'Did not reach \'Remote Administration\' page'</span>)
+      <span class="ruby-keyword kw">return</span>
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># Check the key.</span>
+    <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'section'</span>) <span class="ruby-operator">&amp;&amp;</span>
+         <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'subsection'</span>) ) <span class="ruby-keyword kw">then</span>
+      <span class="ruby-comment cmt"># Right,go on.</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'local_administration'</span>,<span class="ruby-value str">'Some key NOT found.'</span>)
+      <span class="ruby-keyword kw">return</span>
+    <span class="ruby-keyword kw">end</span>  
+    
+    <span class="ruby-comment cmt"># Parse the json file.</span>
+    
+    <span class="ruby-comment cmt"># &quot;Using Primary Telnet Port&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Using Primary Telnet Port'</span>)
+      
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Using Primary Telnet Port'</span>]
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Using Primary Telnet Port&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'is_telnet_primary'</span>).<span class="ruby-identifier">set</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Using Primary Telnet Port'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Using Primary Telnet Port'</span>])
+ 
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        
+        <span class="ruby-comment cmt"># Clear &quot;Using Primary Telnet Port&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'is_telnet_primary'</span>).<span class="ruby-identifier">clear</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Using Primary Telnet Port'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Using Primary Telnet Port'</span>])
+        
+      <span class="ruby-keyword kw">else</span>
+        
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'remote_administration'</span>,<span class="ruby-value str">'Did NOT find the value in \'Using Primary Telnet Port\'.'</span>)
+        <span class="ruby-keyword kw">return</span>
+        
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+      
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if </span>
+
+    <span class="ruby-comment cmt"># &quot;Using Secondary Telnet Port&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Using Secondary Telnet Port'</span>)
+      
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Using Secondary Telnet Port'</span>]
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Using Secondary Telnet Port&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'is_telnet_secondary'</span>).<span class="ruby-identifier">set</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Using Secondary Telnet Port'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Using Secondary Telnet Port'</span>])
+ 
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        
+        <span class="ruby-comment cmt"># Clear &quot;Using Secondary Telnet Port&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'is_telnet_secondary'</span>).<span class="ruby-identifier">clear</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Using Secondary Telnet Port'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Using Secondary Telnet Port'</span>])
+        
+      <span class="ruby-keyword kw">else</span>
+        
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'remote_administration'</span>,<span class="ruby-value str">'Did NOT find the value in \'Using Secondary Telnet Port\'.'</span>)
+        <span class="ruby-keyword kw">return</span>
+        
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+      
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if </span>
+
+    <span class="ruby-comment cmt"># &quot;Using Secure Telnet over SSL Port&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Using Secure Telnet over SSL Port'</span>)
+      
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Using Secure Telnet over SSL Port'</span>]
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Using Secure Telnet over SSL Port&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'is_telnet_ssl'</span>).<span class="ruby-identifier">set</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Using Secure Telnet over SSL Port'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Using Secure Telnet over SSL Port'</span>])
+ 
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        
+        <span class="ruby-comment cmt"># Clear &quot;Using Secure Telnet over SSL Port&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'is_telnet_ssl'</span>).<span class="ruby-identifier">clear</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Using Secure Telnet over SSL Port'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Using Secure Telnet over SSL Port'</span>])
+        
+      <span class="ruby-keyword kw">else</span>
+        
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'remote_administration'</span>,<span class="ruby-value str">'Did NOT find the value in \'Using Secure Telnet over SSL Port\'.'</span>)
+        <span class="ruby-keyword kw">return</span>
+        
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+      
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if </span>
+
+    <span class="ruby-comment cmt"># &quot;Using Primary HTTP Port&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Using Primary HTTP Port'</span>)
+      
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Using Primary HTTP Port'</span>]
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Using Primary HTTP Port&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'is_http_primary'</span>).<span class="ruby-identifier">set</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Using Primary HTTP Port'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Using Primary HTTP Port'</span>])
+ 
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        
+        <span class="ruby-comment cmt"># Clear &quot;Using Primary HTTP Port&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'is_http_primary'</span>).<span class="ruby-identifier">clear</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Using Primary HTTP Port'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Using Primary HTTP Port'</span>])
+        
+      <span class="ruby-keyword kw">else</span>
+        
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'remote_administration'</span>,<span class="ruby-value str">'Did NOT find the value in \'Using Primary HTTP Port\'.'</span>)
+        <span class="ruby-keyword kw">return</span>
+        
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+      
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if </span>
+
+    <span class="ruby-comment cmt"># &quot;Using Secondary HTTP Port&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Using Secondary HTTP Port'</span>)
+      
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Using Secondary HTTP Port'</span>]
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Using Secondary HTTP Port&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'is_http_secondary'</span>).<span class="ruby-identifier">set</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Using Secondary HTTP Port'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Using Secondary HTTP Port'</span>])
+ 
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        
+        <span class="ruby-comment cmt"># Clear &quot;Using Secondary HTTP Port&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'is_http_secondary'</span>).<span class="ruby-identifier">clear</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Using Secondary HTTP Port'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Using Secondary HTTP Port'</span>])
+        
+      <span class="ruby-keyword kw">else</span>
+        
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'remote_administration'</span>,<span class="ruby-value str">'Did NOT find the value in \'Using Secondary HTTP Port\'.'</span>)
+        <span class="ruby-keyword kw">return</span>
+        
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+      
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if </span>
+
+    <span class="ruby-comment cmt"># &quot;Using Primary HTTPS Port&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Using Primary HTTPS Port'</span>)
+      
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Using Primary HTTPS Port'</span>]
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Using Primary HTTPS Port&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'is_https_primary'</span>).<span class="ruby-identifier">set</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Using Primary HTTPS Port'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Using Primary HTTPS Port'</span>])
+ 
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        
+        <span class="ruby-comment cmt"># Clear &quot;Using Primary HTTPS Port&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'is_https_primary'</span>).<span class="ruby-identifier">clear</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Using Primary HTTPS Port'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Using Primary HTTPS Port'</span>])
+        
+      <span class="ruby-keyword kw">else</span>
+        
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'remote_administration'</span>,<span class="ruby-value str">'Did NOT find the value in \'Using Primary HTTPS Port\'.'</span>)
+        <span class="ruby-keyword kw">return</span>
+        
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+      
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if </span>
+
+    <span class="ruby-comment cmt"># &quot;Using Secondary HTTPS Port&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Using Secondary HTTPS Port'</span>)
+      
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Using Secondary HTTPS Port'</span>]
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Using Secondary HTTPS Port&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'is_https_secondary'</span>).<span class="ruby-identifier">set</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Using Secondary HTTPS Port'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Using Secondary HTTPS Port'</span>])
+ 
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        
+        <span class="ruby-comment cmt"># Clear &quot;Using Secondary HTTPS Port&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'is_https_secondary'</span>).<span class="ruby-identifier">clear</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Using Secondary HTTPS Port'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Using Secondary HTTPS Port'</span>])
+        
+      <span class="ruby-keyword kw">else</span>
+        
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'remote_administration'</span>,<span class="ruby-value str">'Did NOT find the value in \'Using Secondary HTTPS Port\'.'</span>)
+        <span class="ruby-keyword kw">return</span>
+        
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+      
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if </span>
+
+    <span class="ruby-comment cmt"># &quot;Allow Incoming WAN ICMP Echo Requests&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Allow Incoming WAN ICMP Echo Requests'</span>)
+      
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Allow Incoming WAN ICMP Echo Requests'</span>]
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Allow Incoming WAN ICMP Echo Requests&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'is_diagnostics_icmp'</span>).<span class="ruby-identifier">set</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Allow Incoming WAN ICMP Echo Requests'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Allow Incoming WAN ICMP Echo Requests'</span>])
+ 
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        
+        <span class="ruby-comment cmt"># Clear &quot;Allow Incoming WAN ICMP Echo Requests&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'is_diagnostics_icmp'</span>).<span class="ruby-identifier">clear</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Allow Incoming WAN ICMP Echo Requests'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Allow Incoming WAN ICMP Echo Requests'</span>])
+        
+      <span class="ruby-keyword kw">else</span>
+        
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'remote_administration'</span>,<span class="ruby-value str">'Did NOT find the value in \'Allow Incoming WAN ICMP Echo Requests\'.'</span>)
+        <span class="ruby-keyword kw">return</span>
+        
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+      
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if </span>
+
+    <span class="ruby-comment cmt"># &quot;Allow Incoming WAN UDP Traceroute Queries&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Allow Incoming WAN UDP Traceroute Queries'</span>)
+      
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Allow Incoming WAN UDP Traceroute Queries'</span>]
+      
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>
+        
+        <span class="ruby-comment cmt"># Set &quot;Allow Incoming WAN UDP Traceroute Queries&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'is_diagnostics_traceroute'</span>).<span class="ruby-identifier">set</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Allow Incoming WAN UDP Traceroute Queries'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Allow Incoming WAN UDP Traceroute Queries'</span>])
+ 
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
+        
+        <span class="ruby-comment cmt"># Clear &quot;Allow Incoming WAN UDP Traceroute Queries&quot;</span>
+        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'is_diagnostics_traceroute'</span>).<span class="ruby-identifier">clear</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Allow Incoming WAN UDP Traceroute Queries'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Allow Incoming WAN UDP Traceroute Queries'</span>])
+        
+      <span class="ruby-keyword kw">else</span>
+        
+        <span class="ruby-comment cmt"># Wrong here</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'remote_administration'</span>,<span class="ruby-value str">'Did NOT find the value in \'Allow Incoming WAN UDP Traceroute Queries\'.'</span>)
+        <span class="ruby-keyword kw">return</span>
+        
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
+      
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if    </span>
+    
+    <span class="ruby-comment cmt"># Apply for the change</span>
+    <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>,<span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>
+    
+    <span class="ruby-comment cmt"># Output the result.</span>
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">&quot;Set remote administration&quot;</span>,<span class="ruby-value str">'SUCCESS'</span>)
+    
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

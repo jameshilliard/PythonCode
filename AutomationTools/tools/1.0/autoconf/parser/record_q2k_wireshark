@@ -1,0 +1,663 @@
+No.     Time        Source                Destination           Protocol Info
+     39 32.491058   192.168.1.100         192.168.1.1           HTTP     GET /advancedsetup_schedulingaccess.html HTTP/1.1
+
+Frame 39 (472 bytes on wire, 472 bytes captured)
+    Arrival Time: May  5, 2011 10:24:51.753306000
+    [Time delta from previous captured frame: 0.034747000 seconds]
+    [Time delta from previous displayed frame: 32.491058000 seconds]
+    [Time since reference or first frame: 32.491058000 seconds]
+    Frame Number: 39
+    Frame Length: 472 bytes
+    Capture Length: 472 bytes
+    [Frame is marked: False]
+    [Protocols in frame: eth:ip:tcp:http]
+    [Coloring Rule Name: HTTP]
+    [Coloring Rule String: http || tcp.port == 80]
+Ethernet II, Src: 00:ee:ee:01:ab:22 (00:ee:ee:01:ab:22), Dst: Actionte_fa:7b:68 (00:15:05:fa:7b:68)
+    Destination: Actionte_fa:7b:68 (00:15:05:fa:7b:68)
+        Address: Actionte_fa:7b:68 (00:15:05:fa:7b:68)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+    Source: 00:ee:ee:01:ab:22 (00:ee:ee:01:ab:22)
+        Address: 00:ee:ee:01:ab:22 (00:ee:ee:01:ab:22)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+    Type: IP (0x0800)
+Internet Protocol, Src: 192.168.1.100 (192.168.1.100), Dst: 192.168.1.1 (192.168.1.1)
+    Version: 4
+    Header length: 20 bytes
+    Differentiated Services Field: 0x00 (DSCP 0x00: Default; ECN: 0x00)
+        0000 00.. = Differentiated Services Codepoint: Default (0x00)
+        .... ..0. = ECN-Capable Transport (ECT): 0
+        .... ...0 = ECN-CE: 0
+    Total Length: 458
+    Identification: 0x6fc8 (28616)
+    Flags: 0x04 (Don't Fragment)
+        0... = Reserved bit: Not set
+        .1.. = Don't fragment: Set
+        ..0. = More fragments: Not set
+    Fragment offset: 0
+    Time to live: 128
+    Protocol: TCP (0x06)
+    Header checksum: 0x05b0 [correct]
+        [Good: True]
+        [Bad : False]
+    Source: 192.168.1.100 (192.168.1.100)
+    Destination: 192.168.1.1 (192.168.1.1)
+Transmission Control Protocol, Src Port: 23141 (23141), Dst Port: http (80), Seq: 1, Ack: 1, Len: 418
+    Source port: 23141 (23141)
+    Destination port: http (80)
+    Sequence number: 1    (relative sequence number)
+    [Next sequence number: 419    (relative sequence number)]
+    Acknowledgement number: 1    (relative ack number)
+    Header length: 20 bytes
+    Flags: 0x18 (PSH, ACK)
+        0... .... = Congestion Window Reduced (CWR): Not set
+        .0.. .... = ECN-Echo: Not set
+        ..0. .... = Urgent: Not set
+        ...1 .... = Acknowledgment: Set
+        .... 1... = Push: Set
+        .... .0.. = Reset: Not set
+        .... ..0. = Syn: Not set
+        .... ...0 = Fin: Not set
+    Window size: 17520
+    Checksum: 0x67fb [correct]
+        [Good Checksum: True]
+        [Bad Checksum: False]
+Hypertext Transfer Protocol
+    GET /advancedsetup_schedulingaccess.html HTTP/1.1\r\n
+        Request Method: GET
+        Request URI: /advancedsetup_schedulingaccess.html
+        Request Version: HTTP/1.1
+    Host: 192.168.1.1\r\n
+    User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:2.0.1) Gecko/20100101 Firefox/4.0.1\r\n
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\r\n
+    Accept-Language: zh-cn,en-us;q=0.7,en;q=0.3\r\n
+    Accept-Encoding: gzip, deflate\r\n
+    Accept-Charset: GB2312,utf-8;q=0.7,*;q=0.7\r\n
+    Keep-Alive: 115\r\n
+    Connection: keep-alive\r\n
+    Referer: http://192.168.1.1/\r\n
+    \r\n
+
+No.     Time        Source                Destination           Protocol Info
+    724 49.043783   192.168.1.100         192.168.1.1           HTTP     GET /advancedsetup_nat.html HTTP/1.1
+
+Frame 724 (494 bytes on wire, 494 bytes captured)
+    Arrival Time: May  5, 2011 10:25:08.306031000
+    [Time delta from previous captured frame: 0.005315000 seconds]
+    [Time delta from previous displayed frame: 16.552725000 seconds]
+    [Time since reference or first frame: 49.043783000 seconds]
+    Frame Number: 724
+    Frame Length: 494 bytes
+    Capture Length: 494 bytes
+    [Frame is marked: False]
+    [Protocols in frame: eth:ip:tcp:http]
+    [Coloring Rule Name: HTTP]
+    [Coloring Rule String: http || tcp.port == 80]
+Ethernet II, Src: 00:ee:ee:01:ab:22 (00:ee:ee:01:ab:22), Dst: Actionte_fa:7b:68 (00:15:05:fa:7b:68)
+    Destination: Actionte_fa:7b:68 (00:15:05:fa:7b:68)
+        Address: Actionte_fa:7b:68 (00:15:05:fa:7b:68)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+    Source: 00:ee:ee:01:ab:22 (00:ee:ee:01:ab:22)
+        Address: 00:ee:ee:01:ab:22 (00:ee:ee:01:ab:22)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+    Type: IP (0x0800)
+Internet Protocol, Src: 192.168.1.100 (192.168.1.100), Dst: 192.168.1.1 (192.168.1.1)
+    Version: 4
+    Header length: 20 bytes
+    Differentiated Services Field: 0x00 (DSCP 0x00: Default; ECN: 0x00)
+        0000 00.. = Differentiated Services Codepoint: Default (0x00)
+        .... ..0. = ECN-Capable Transport (ECT): 0
+        .... ...0 = ECN-CE: 0
+    Total Length: 480
+    Identification: 0x7278 (29304)
+    Flags: 0x04 (Don't Fragment)
+        0... = Reserved bit: Not set
+        .1.. = Don't fragment: Set
+        ..0. = More fragments: Not set
+    Fragment offset: 0
+    Time to live: 128
+    Protocol: TCP (0x06)
+    Header checksum: 0x02ea [correct]
+        [Good: True]
+        [Bad : False]
+    Source: 192.168.1.100 (192.168.1.100)
+    Destination: 192.168.1.1 (192.168.1.1)
+Transmission Control Protocol, Src Port: 23180 (23180), Dst Port: http (80), Seq: 1, Ack: 1, Len: 440
+    Source port: 23180 (23180)
+    Destination port: http (80)
+    Sequence number: 1    (relative sequence number)
+    [Next sequence number: 441    (relative sequence number)]
+    Acknowledgement number: 1    (relative ack number)
+    Header length: 20 bytes
+    Flags: 0x18 (PSH, ACK)
+        0... .... = Congestion Window Reduced (CWR): Not set
+        .0.. .... = ECN-Echo: Not set
+        ..0. .... = Urgent: Not set
+        ...1 .... = Acknowledgment: Set
+        .... 1... = Push: Set
+        .... .0.. = Reset: Not set
+        .... ..0. = Syn: Not set
+        .... ...0 = Fin: Not set
+    Window size: 17520
+    Checksum: 0x6bb5 [correct]
+        [Good Checksum: True]
+        [Bad Checksum: False]
+Hypertext Transfer Protocol
+    GET /advancedsetup_nat.html HTTP/1.1\r\n
+        Request Method: GET
+        Request URI: /advancedsetup_nat.html
+        Request Version: HTTP/1.1
+    Host: 192.168.1.1\r\n
+    User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:2.0.1) Gecko/20100101 Firefox/4.0.1\r\n
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\r\n
+    Accept-Language: zh-cn,en-us;q=0.7,en;q=0.3\r\n
+    Accept-Encoding: gzip, deflate\r\n
+    Accept-Charset: GB2312,utf-8;q=0.7,*;q=0.7\r\n
+    Keep-Alive: 115\r\n
+    Connection: keep-alive\r\n
+    Referer: http://192.168.1.1/advancedsetup_schedulingaccess.html\r\n
+    \r\n
+
+No.     Time        Source                Destination           Protocol Info
+    785 56.211320   192.168.1.100         192.168.1.1           HTTP     POST /natcfg.cmd HTTP/1.1 (application/x-www-form-urlencoded)
+
+Frame 785 (584 bytes on wire, 584 bytes captured)
+    Arrival Time: May  5, 2011 10:25:15.473568000
+    [Time delta from previous captured frame: 0.001606000 seconds]
+    [Time delta from previous displayed frame: 7.167537000 seconds]
+    [Time since reference or first frame: 56.211320000 seconds]
+    Frame Number: 785
+    Frame Length: 584 bytes
+    Capture Length: 584 bytes
+    [Frame is marked: False]
+    [Protocols in frame: eth:ip:tcp:http:data-text-lines]
+    [Coloring Rule Name: HTTP]
+    [Coloring Rule String: http || tcp.port == 80]
+Ethernet II, Src: 00:ee:ee:01:ab:22 (00:ee:ee:01:ab:22), Dst: Actionte_fa:7b:68 (00:15:05:fa:7b:68)
+    Destination: Actionte_fa:7b:68 (00:15:05:fa:7b:68)
+        Address: Actionte_fa:7b:68 (00:15:05:fa:7b:68)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+    Source: 00:ee:ee:01:ab:22 (00:ee:ee:01:ab:22)
+        Address: 00:ee:ee:01:ab:22 (00:ee:ee:01:ab:22)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+    Type: IP (0x0800)
+Internet Protocol, Src: 192.168.1.100 (192.168.1.100), Dst: 192.168.1.1 (192.168.1.1)
+    Version: 4
+    Header length: 20 bytes
+    Differentiated Services Field: 0x00 (DSCP 0x00: Default; ECN: 0x00)
+        0000 00.. = Differentiated Services Codepoint: Default (0x00)
+        .... ..0. = ECN-Capable Transport (ECT): 0
+        .... ...0 = ECN-CE: 0
+    Total Length: 570
+    Identification: 0x72b1 (29361)
+    Flags: 0x04 (Don't Fragment)
+        0... = Reserved bit: Not set
+        .1.. = Don't fragment: Set
+        ..0. = More fragments: Not set
+    Fragment offset: 0
+    Time to live: 128
+    Protocol: TCP (0x06)
+    Header checksum: 0x0257 [correct]
+        [Good: True]
+        [Bad : False]
+    Source: 192.168.1.100 (192.168.1.100)
+    Destination: 192.168.1.1 (192.168.1.1)
+Transmission Control Protocol, Src Port: 23183 (23183), Dst Port: http (80), Seq: 1, Ack: 1, Len: 530
+    Source port: 23183 (23183)
+    Destination port: http (80)
+    Sequence number: 1    (relative sequence number)
+    [Next sequence number: 531    (relative sequence number)]
+    Acknowledgement number: 1    (relative ack number)
+    Header length: 20 bytes
+    Flags: 0x18 (PSH, ACK)
+        0... .... = Congestion Window Reduced (CWR): Not set
+        .0.. .... = ECN-Echo: Not set
+        ..0. .... = Urgent: Not set
+        ...1 .... = Acknowledgment: Set
+        .... 1... = Push: Set
+        .... .0.. = Reset: Not set
+        .... ..0. = Syn: Not set
+        .... ...0 = Fin: Not set
+    Window size: 17520
+    Checksum: 0xa8aa [correct]
+        [Good Checksum: True]
+        [Bad Checksum: False]
+Hypertext Transfer Protocol
+    POST /natcfg.cmd HTTP/1.1\r\n
+        Request Method: POST
+        Request URI: /natcfg.cmd
+        Request Version: HTTP/1.1
+    Host: 192.168.1.1\r\n
+    User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:2.0.1) Gecko/20100101 Firefox/4.0.1\r\n
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\r\n
+    Accept-Language: zh-cn,en-us;q=0.7,en;q=0.3\r\n
+    Accept-Encoding: gzip, deflate\r\n
+    Accept-Charset: GB2312,utf-8;q=0.7,*;q=0.7\r\n
+    Keep-Alive: 115\r\n
+    Connection: keep-alive\r\n
+    Referer: http://192.168.1.1/advancedsetup_nat.html\r\n
+    Content-Type: application/x-www-form-urlencoded\r\n
+    Content-Length: 45
+    \r\n
+Line-based text data: application/x-www-form-urlencoded
+    enblNat=1&needthankyou=advancedsetup_nat.html
+
+No.     Time        Source                Destination           Protocol Info
+    805 57.566598   192.168.1.100         192.168.1.1           HTTP     GET /cmdthankyou_real.html HTTP/1.1
+
+Frame 805 (468 bytes on wire, 468 bytes captured)
+    Arrival Time: May  5, 2011 10:25:16.828846000
+    [Time delta from previous captured frame: 0.127830000 seconds]
+    [Time delta from previous displayed frame: 1.355278000 seconds]
+    [Time since reference or first frame: 57.566598000 seconds]
+    Frame Number: 805
+    Frame Length: 468 bytes
+    Capture Length: 468 bytes
+    [Frame is marked: False]
+    [Protocols in frame: eth:ip:tcp:http]
+    [Coloring Rule Name: HTTP]
+    [Coloring Rule String: http || tcp.port == 80]
+Ethernet II, Src: 00:ee:ee:01:ab:22 (00:ee:ee:01:ab:22), Dst: Actionte_fa:7b:68 (00:15:05:fa:7b:68)
+    Destination: Actionte_fa:7b:68 (00:15:05:fa:7b:68)
+        Address: Actionte_fa:7b:68 (00:15:05:fa:7b:68)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+    Source: 00:ee:ee:01:ab:22 (00:ee:ee:01:ab:22)
+        Address: 00:ee:ee:01:ab:22 (00:ee:ee:01:ab:22)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+    Type: IP (0x0800)
+Internet Protocol, Src: 192.168.1.100 (192.168.1.100), Dst: 192.168.1.1 (192.168.1.1)
+    Version: 4
+    Header length: 20 bytes
+    Differentiated Services Field: 0x00 (DSCP 0x00: Default; ECN: 0x00)
+        0000 00.. = Differentiated Services Codepoint: Default (0x00)
+        .... ..0. = ECN-Capable Transport (ECT): 0
+        .... ...0 = ECN-CE: 0
+    Total Length: 454
+    Identification: 0x72d7 (29399)
+    Flags: 0x04 (Don't Fragment)
+        0... = Reserved bit: Not set
+        .1.. = Don't fragment: Set
+        ..0. = More fragments: Not set
+    Fragment offset: 0
+    Time to live: 128
+    Protocol: TCP (0x06)
+    Header checksum: 0x02a5 [correct]
+        [Good: True]
+        [Bad : False]
+    Source: 192.168.1.100 (192.168.1.100)
+    Destination: 192.168.1.1 (192.168.1.1)
+Transmission Control Protocol, Src Port: 23185 (23185), Dst Port: http (80), Seq: 1, Ack: 1, Len: 414
+    Source port: 23185 (23185)
+    Destination port: http (80)
+    Sequence number: 1    (relative sequence number)
+    [Next sequence number: 415    (relative sequence number)]
+    Acknowledgement number: 1    (relative ack number)
+    Header length: 20 bytes
+    Flags: 0x18 (PSH, ACK)
+        0... .... = Congestion Window Reduced (CWR): Not set
+        .0.. .... = ECN-Echo: Not set
+        ..0. .... = Urgent: Not set
+        ...1 .... = Acknowledgment: Set
+        .... 1... = Push: Set
+        .... .0.. = Reset: Not set
+        .... ..0. = Syn: Not set
+        .... ...0 = Fin: Not set
+    Window size: 17520
+    Checksum: 0xd19c [correct]
+        [Good Checksum: True]
+        [Bad Checksum: False]
+Hypertext Transfer Protocol
+    GET /cmdthankyou_real.html HTTP/1.1\r\n
+        Request Method: GET
+        Request URI: /cmdthankyou_real.html
+        Request Version: HTTP/1.1
+    Host: 192.168.1.1\r\n
+    User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:2.0.1) Gecko/20100101 Firefox/4.0.1\r\n
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\r\n
+    Accept-Language: zh-cn,en-us;q=0.7,en;q=0.3\r\n
+    Accept-Encoding: gzip, deflate\r\n
+    Accept-Charset: GB2312,utf-8;q=0.7,*;q=0.7\r\n
+    Keep-Alive: 115\r\n
+    Connection: keep-alive\r\n
+    Referer: http://192.168.1.1/natcfg.cmd\r\n
+    \r\n
+
+No.     Time        Source                Destination           Protocol Info
+    810 57.655778   192.168.1.100         192.168.1.1           HTTP     GET /cmdthankyou_hide.html HTTP/1.1
+
+Frame 810 (468 bytes on wire, 468 bytes captured)
+    Arrival Time: May  5, 2011 10:25:16.918026000
+    [Time delta from previous captured frame: 0.088473000 seconds]
+    [Time delta from previous displayed frame: 0.089180000 seconds]
+    [Time since reference or first frame: 57.655778000 seconds]
+    Frame Number: 810
+    Frame Length: 468 bytes
+    Capture Length: 468 bytes
+    [Frame is marked: False]
+    [Protocols in frame: eth:ip:tcp:http]
+    [Coloring Rule Name: HTTP]
+    [Coloring Rule String: http || tcp.port == 80]
+Ethernet II, Src: 00:ee:ee:01:ab:22 (00:ee:ee:01:ab:22), Dst: Actionte_fa:7b:68 (00:15:05:fa:7b:68)
+    Destination: Actionte_fa:7b:68 (00:15:05:fa:7b:68)
+        Address: Actionte_fa:7b:68 (00:15:05:fa:7b:68)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+    Source: 00:ee:ee:01:ab:22 (00:ee:ee:01:ab:22)
+        Address: 00:ee:ee:01:ab:22 (00:ee:ee:01:ab:22)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+    Type: IP (0x0800)
+Internet Protocol, Src: 192.168.1.100 (192.168.1.100), Dst: 192.168.1.1 (192.168.1.1)
+    Version: 4
+    Header length: 20 bytes
+    Differentiated Services Field: 0x00 (DSCP 0x00: Default; ECN: 0x00)
+        0000 00.. = Differentiated Services Codepoint: Default (0x00)
+        .... ..0. = ECN-Capable Transport (ECT): 0
+        .... ...0 = ECN-CE: 0
+    Total Length: 454
+    Identification: 0x72dc (29404)
+    Flags: 0x04 (Don't Fragment)
+        0... = Reserved bit: Not set
+        .1.. = Don't fragment: Set
+        ..0. = More fragments: Not set
+    Fragment offset: 0
+    Time to live: 128
+    Protocol: TCP (0x06)
+    Header checksum: 0x02a0 [correct]
+        [Good: True]
+        [Bad : False]
+    Source: 192.168.1.100 (192.168.1.100)
+    Destination: 192.168.1.1 (192.168.1.1)
+Transmission Control Protocol, Src Port: 23186 (23186), Dst Port: http (80), Seq: 1, Ack: 1, Len: 414
+    Source port: 23186 (23186)
+    Destination port: http (80)
+    Sequence number: 1    (relative sequence number)
+    [Next sequence number: 415    (relative sequence number)]
+    Acknowledgement number: 1    (relative ack number)
+    Header length: 20 bytes
+    Flags: 0x18 (PSH, ACK)
+        0... .... = Congestion Window Reduced (CWR): Not set
+        .0.. .... = ECN-Echo: Not set
+        ..0. .... = Urgent: Not set
+        ...1 .... = Acknowledgment: Set
+        .... 1... = Push: Set
+        .... .0.. = Reset: Not set
+        .... ..0. = Syn: Not set
+        .... ...0 = Fin: Not set
+    Window size: 17520
+    Checksum: 0xb28a [correct]
+        [Good Checksum: True]
+        [Bad Checksum: False]
+Hypertext Transfer Protocol
+    GET /cmdthankyou_hide.html HTTP/1.1\r\n
+        Request Method: GET
+        Request URI: /cmdthankyou_hide.html
+        Request Version: HTTP/1.1
+    Host: 192.168.1.1\r\n
+    User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:2.0.1) Gecko/20100101 Firefox/4.0.1\r\n
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\r\n
+    Accept-Language: zh-cn,en-us;q=0.7,en;q=0.3\r\n
+    Accept-Encoding: gzip, deflate\r\n
+    Accept-Charset: GB2312,utf-8;q=0.7,*;q=0.7\r\n
+    Keep-Alive: 115\r\n
+    Connection: keep-alive\r\n
+    Referer: http://192.168.1.1/natcfg.cmd\r\n
+    \r\n
+
+No.     Time        Source                Destination           Protocol Info
+    875 59.973750   192.168.1.100         192.168.1.1           HTTP     POST /natcfg.cmd HTTP/1.1 (application/x-www-form-urlencoded)
+
+Frame 875 (546 bytes on wire, 546 bytes captured)
+    Arrival Time: May  5, 2011 10:25:19.235998000
+    [Time delta from previous captured frame: 0.089567000 seconds]
+    [Time delta from previous displayed frame: 2.317972000 seconds]
+    [Time since reference or first frame: 59.973750000 seconds]
+    Frame Number: 875
+    Frame Length: 546 bytes
+    Capture Length: 546 bytes
+    [Frame is marked: False]
+    [Protocols in frame: eth:ip:tcp:http:data-text-lines]
+    [Coloring Rule Name: HTTP]
+    [Coloring Rule String: http || tcp.port == 80]
+Ethernet II, Src: 00:ee:ee:01:ab:22 (00:ee:ee:01:ab:22), Dst: Actionte_fa:7b:68 (00:15:05:fa:7b:68)
+    Destination: Actionte_fa:7b:68 (00:15:05:fa:7b:68)
+        Address: Actionte_fa:7b:68 (00:15:05:fa:7b:68)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+    Source: 00:ee:ee:01:ab:22 (00:ee:ee:01:ab:22)
+        Address: 00:ee:ee:01:ab:22 (00:ee:ee:01:ab:22)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+    Type: IP (0x0800)
+Internet Protocol, Src: 192.168.1.100 (192.168.1.100), Dst: 192.168.1.1 (192.168.1.1)
+    Version: 4
+    Header length: 20 bytes
+    Differentiated Services Field: 0x00 (DSCP 0x00: Default; ECN: 0x00)
+        0000 00.. = Differentiated Services Codepoint: Default (0x00)
+        .... ..0. = ECN-Capable Transport (ECT): 0
+        .... ...0 = ECN-CE: 0
+    Total Length: 532
+    Identification: 0x730a (29450)
+    Flags: 0x04 (Don't Fragment)
+        0... = Reserved bit: Not set
+        .1.. = Don't fragment: Set
+        ..0. = More fragments: Not set
+    Fragment offset: 0
+    Time to live: 128
+    Protocol: TCP (0x06)
+    Header checksum: 0x0224 [correct]
+        [Good: True]
+        [Bad : False]
+    Source: 192.168.1.100 (192.168.1.100)
+    Destination: 192.168.1.1 (192.168.1.1)
+Transmission Control Protocol, Src Port: 23188 (23188), Dst Port: http (80), Seq: 1, Ack: 1, Len: 492
+    Source port: 23188 (23188)
+    Destination port: http (80)
+    Sequence number: 1    (relative sequence number)
+    [Next sequence number: 493    (relative sequence number)]
+    Acknowledgement number: 1    (relative ack number)
+    Header length: 20 bytes
+    Flags: 0x18 (PSH, ACK)
+        0... .... = Congestion Window Reduced (CWR): Not set
+        .0.. .... = ECN-Echo: Not set
+        ..0. .... = Urgent: Not set
+        ...1 .... = Acknowledgment: Set
+        .... 1... = Push: Set
+        .... .0.. = Reset: Not set
+        .... ..0. = Syn: Not set
+        .... ...0 = Fin: Not set
+    Window size: 17520
+    Checksum: 0xc18f [correct]
+        [Good Checksum: True]
+        [Bad Checksum: False]
+Hypertext Transfer Protocol
+    POST /natcfg.cmd HTTP/1.1\r\n
+        Request Method: POST
+        Request URI: /natcfg.cmd
+        Request Version: HTTP/1.1
+    Host: 192.168.1.1\r\n
+    User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:2.0.1) Gecko/20100101 Firefox/4.0.1\r\n
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\r\n
+    Accept-Language: zh-cn,en-us;q=0.7,en;q=0.3\r\n
+    Accept-Encoding: gzip, deflate\r\n
+    Accept-Charset: GB2312,utf-8;q=0.7,*;q=0.7\r\n
+    Keep-Alive: 115\r\n
+    Connection: keep-alive\r\n
+    Referer: http://192.168.1.1/cmdthankyou_hide.html\r\n
+    Content-Type: application/x-www-form-urlencoded\r\n
+    Content-Length: 9
+    \r\n
+Line-based text data: application/x-www-form-urlencoded
+    enblNat=1
+
+No.     Time        Source                Destination           Protocol Info
+    889 63.703216   192.168.1.100         192.168.1.1           HTTP     GET /advancedsetup_nat.html HTTP/1.1
+
+Frame 889 (480 bytes on wire, 480 bytes captured)
+    Arrival Time: May  5, 2011 10:25:22.965464000
+    [Time delta from previous captured frame: 0.048063000 seconds]
+    [Time delta from previous displayed frame: 3.729466000 seconds]
+    [Time since reference or first frame: 63.703216000 seconds]
+    Frame Number: 889
+    Frame Length: 480 bytes
+    Capture Length: 480 bytes
+    [Frame is marked: False]
+    [Protocols in frame: eth:ip:tcp:http]
+    [Coloring Rule Name: HTTP]
+    [Coloring Rule String: http || tcp.port == 80]
+Ethernet II, Src: 00:ee:ee:01:ab:22 (00:ee:ee:01:ab:22), Dst: Actionte_fa:7b:68 (00:15:05:fa:7b:68)
+    Destination: Actionte_fa:7b:68 (00:15:05:fa:7b:68)
+        Address: Actionte_fa:7b:68 (00:15:05:fa:7b:68)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+    Source: 00:ee:ee:01:ab:22 (00:ee:ee:01:ab:22)
+        Address: 00:ee:ee:01:ab:22 (00:ee:ee:01:ab:22)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+    Type: IP (0x0800)
+Internet Protocol, Src: 192.168.1.100 (192.168.1.100), Dst: 192.168.1.1 (192.168.1.1)
+    Version: 4
+    Header length: 20 bytes
+    Differentiated Services Field: 0x00 (DSCP 0x00: Default; ECN: 0x00)
+        0000 00.. = Differentiated Services Codepoint: Default (0x00)
+        .... ..0. = ECN-Capable Transport (ECT): 0
+        .... ...0 = ECN-CE: 0
+    Total Length: 466
+    Identification: 0x7338 (29496)
+    Flags: 0x04 (Don't Fragment)
+        0... = Reserved bit: Not set
+        .1.. = Don't fragment: Set
+        ..0. = More fragments: Not set
+    Fragment offset: 0
+    Time to live: 128
+    Protocol: TCP (0x06)
+    Header checksum: 0x0238 [correct]
+        [Good: True]
+        [Bad : False]
+    Source: 192.168.1.100 (192.168.1.100)
+    Destination: 192.168.1.1 (192.168.1.1)
+Transmission Control Protocol, Src Port: 23190 (23190), Dst Port: http (80), Seq: 1, Ack: 1, Len: 426
+    Source port: 23190 (23190)
+    Destination port: http (80)
+    Sequence number: 1    (relative sequence number)
+    [Next sequence number: 427    (relative sequence number)]
+    Acknowledgement number: 1    (relative ack number)
+    Header length: 20 bytes
+    Flags: 0x18 (PSH, ACK)
+        0... .... = Congestion Window Reduced (CWR): Not set
+        .0.. .... = ECN-Echo: Not set
+        ..0. .... = Urgent: Not set
+        ...1 .... = Acknowledgment: Set
+        .... 1... = Push: Set
+        .... .0.. = Reset: Not set
+        .... ..0. = Syn: Not set
+        .... ...0 = Fin: Not set
+    Window size: 17520
+    Checksum: 0x7d7e [correct]
+        [Good Checksum: True]
+        [Bad Checksum: False]
+Hypertext Transfer Protocol
+    GET /advancedsetup_nat.html HTTP/1.1\r\n
+        Request Method: GET
+        Request URI: /advancedsetup_nat.html
+        Request Version: HTTP/1.1
+    Host: 192.168.1.1\r\n
+    User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:2.0.1) Gecko/20100101 Firefox/4.0.1\r\n
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\r\n
+    Accept-Language: zh-cn,en-us;q=0.7,en;q=0.3\r\n
+    Accept-Encoding: gzip, deflate\r\n
+    Accept-Charset: GB2312,utf-8;q=0.7,*;q=0.7\r\n
+    Keep-Alive: 115\r\n
+    Connection: keep-alive\r\n
+    Referer: http://192.168.1.1/cmdthankyou_real.html\r\n
+    \r\n
+
+No.     Time        Source                Destination           Protocol Info
+   1131 68.856630   192.168.1.100         192.168.1.1           HTTP     GET /advancedsetup_nat.html HTTP/1.1
+
+Frame 1131 (480 bytes on wire, 480 bytes captured)
+    Arrival Time: May  5, 2011 10:25:28.118878000
+    [Time delta from previous captured frame: 0.002220000 seconds]
+    [Time delta from previous displayed frame: 5.153414000 seconds]
+    [Time since reference or first frame: 68.856630000 seconds]
+    Frame Number: 1131
+    Frame Length: 480 bytes
+    Capture Length: 480 bytes
+    [Frame is marked: False]
+    [Protocols in frame: eth:ip:tcp:http]
+    [Coloring Rule Name: HTTP]
+    [Coloring Rule String: http || tcp.port == 80]
+Ethernet II, Src: 00:ee:ee:01:ab:22 (00:ee:ee:01:ab:22), Dst: Actionte_fa:7b:68 (00:15:05:fa:7b:68)
+    Destination: Actionte_fa:7b:68 (00:15:05:fa:7b:68)
+        Address: Actionte_fa:7b:68 (00:15:05:fa:7b:68)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+    Source: 00:ee:ee:01:ab:22 (00:ee:ee:01:ab:22)
+        Address: 00:ee:ee:01:ab:22 (00:ee:ee:01:ab:22)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+    Type: IP (0x0800)
+Internet Protocol, Src: 192.168.1.100 (192.168.1.100), Dst: 192.168.1.1 (192.168.1.1)
+    Version: 4
+    Header length: 20 bytes
+    Differentiated Services Field: 0x00 (DSCP 0x00: Default; ECN: 0x00)
+        0000 00.. = Differentiated Services Codepoint: Default (0x00)
+        .... ..0. = ECN-Capable Transport (ECT): 0
+        .... ...0 = ECN-CE: 0
+    Total Length: 466
+    Identification: 0x7362 (29538)
+    Flags: 0x04 (Don't Fragment)
+        0... = Reserved bit: Not set
+        .1.. = Don't fragment: Set
+        ..0. = More fragments: Not set
+    Fragment offset: 0
+    Time to live: 128
+    Protocol: TCP (0x06)
+    Header checksum: 0x020e [correct]
+        [Good: True]
+        [Bad : False]
+    Source: 192.168.1.100 (192.168.1.100)
+    Destination: 192.168.1.1 (192.168.1.1)
+Transmission Control Protocol, Src Port: 23192 (23192), Dst Port: http (80), Seq: 1, Ack: 1, Len: 426
+    Source port: 23192 (23192)
+    Destination port: http (80)
+    Sequence number: 1    (relative sequence number)
+    [Next sequence number: 427    (relative sequence number)]
+    Acknowledgement number: 1    (relative ack number)
+    Header length: 20 bytes
+    Flags: 0x18 (PSH, ACK)
+        0... .... = Congestion Window Reduced (CWR): Not set
+        .0.. .... = ECN-Echo: Not set
+        ..0. .... = Urgent: Not set
+        ...1 .... = Acknowledgment: Set
+        .... 1... = Push: Set
+        .... .0.. = Reset: Not set
+        .... ..0. = Syn: Not set
+        .... ...0 = Fin: Not set
+    Window size: 17520
+    Checksum: 0x7ed1 [correct]
+        [Good Checksum: True]
+        [Bad Checksum: False]
+Hypertext Transfer Protocol
+    GET /advancedsetup_nat.html HTTP/1.1\r\n
+        Request Method: GET
+        Request URI: /advancedsetup_nat.html
+        Request Version: HTTP/1.1
+    Host: 192.168.1.1\r\n
+    User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:2.0.1) Gecko/20100101 Firefox/4.0.1\r\n
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\r\n
+    Accept-Language: zh-cn,en-us;q=0.7,en;q=0.3\r\n
+    Accept-Encoding: gzip, deflate\r\n
+    Accept-Charset: GB2312,utf-8;q=0.7,*;q=0.7\r\n
+    Keep-Alive: 115\r\n
+    Connection: keep-alive\r\n
+    Referer: http://192.168.1.1/cmdthankyou_real.html\r\n
+    \r\n

@@ -1,0 +1,6 @@
+{
+"rule_name": {
+ "section": "wireless-wps",
+ "set": "-disable"
+}
+}

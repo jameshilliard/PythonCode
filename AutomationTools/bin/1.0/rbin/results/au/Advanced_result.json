@@ -1,0 +1,24 @@
+{
+  "6000_Advanced": {
+    "Info": {
+      "Users": "Reached page 'Users'.",
+      "Add new user": "Succeeded",
+      "Permissions": "Administrator",
+      "username": "qa1",
+      "fullname": "shqa",
+      "Password": "123qwe",
+      "Goto Advanced": "Reached the main 'Advanced' page"
+    }
+  },
+  "9999_logout": {
+    "Info": {
+      "logout": "success",
+      "main": "Reached main page"
+    }
+  },
+  "0000_login": {
+    "Info": {
+      "main": "Successfully logged in"
+    }
+  }
+}

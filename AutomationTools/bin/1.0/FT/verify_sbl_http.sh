@@ -1,0 +1,1 @@
+../Q2K/verify_sbl_http.sh

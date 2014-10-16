@@ -1,0 +1,79 @@
+##############################################################################
+# Custom compare issues
+# [DUT]
+#Check the result of GPV
+#check result of GPV
+#searchoperation.pl
+#custom_compare.sh
+[C|c]heck .* the result of GPV
+##############################################################################
+# Motive report error
+# [DUT]
+Action status: Failure -- Expiration Timeout
+Action status: Failure -- Session Timeout
+!Login failed :: too many connection resets
+!Queue maximum wait time hit. Aborting
+9003 : Invalid arguments
+9005 : Invalid parameter name
+
+##############################################################################
+# TR98 data model error
+# [DUT]
+can NOT get the type of
+
+
+##############################################################################
+# tcpdump capture failed ,need to debug
+# [AT]
+no packet captured
+
+
+######################
+# Wireless ,can not connected
+######################
+
+# always SCAN/ASSOIATING, can not enter COMPLETED status
+# [Pending]
+expected COMPLETED
+
+# scan failed
+# [Pending]
+scan \w* failed
+
+# connected, but can not get IP by dhclient
+connected to DUT, but can NOT fetch IP by dhclient
+
+# wireless client connect to DUT failed
+restarting wpa_supplicant timeout
+
+##################
+# DUT's Issues
+##################
+# ping DUT's LAN failed,maybe crashed
+# [DUT]
+make sure LANPC connected to DUT
+make sure DUT connected to WAN
+
+# can not GUI set DUT.
+# [DUT]
+configure DUT failed , please check your settings ..
+
+# The Wireless Security GUI Setup is failed
+# []
+client setting does not match the server setting
+##############################################################################
+# TR69 auto register failed
+# [Pending]
+TR069 auto registration failed
+
+# Some resource file lost
+# [AT]
+File is not exist
+#[AT]
+post file .* not existed
+##############################################################################
+
+
+
+
+

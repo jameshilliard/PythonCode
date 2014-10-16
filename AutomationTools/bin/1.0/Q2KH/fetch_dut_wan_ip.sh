@@ -1,0 +1,1 @@
+../common/fetch_dut_wan_ip.sh

@@ -1,0 +1,84 @@
+2006-08-21 add command line start
+
+	- add version of pptp to debug log [Cameron]
+	- add command line start, stop and status options [DiVerdi]
+	- call setsid() to prevent process group kill hitting parent [Cameron]
+
+2006-04-10 fix resolv.conf undo
+
+	- do not undo routes added to tunnel interface [Cameron]
+	- do not cease processing undo list if error occurs [Cameron]
+
+2006-02-22 added resolvconf support
+
+	- fix modinfo probe to use either ppp_mppe or ppp_mppe_mppc [Cameron]
+	- add support for resolvconf [King]
+
+2006-02-14 mostly trivial fixes
+
+	- replace route to server instead of adding it [McNair]
+	- allow start and stop after connection goes away [Ross]
+	- probe ppp-compress-18 instead of ppp_mppe
+
+2004-07-22 released
+
+2004-06-19 released
+
+2004-05-19 package rename and php upgrade release
+
+	- fix PHP-GTK pipe difficulties (no obvious output change)
+	- fix screen lockup on ping command
+	- replace rather than delete and add route in all-to-tunnel mode
+	- re-layout routing tab in GUI
+	- change list heading to "PPTP Client Tunnel List"
+	- change main window name to "pptpconfig"
+	- add refuse-eap option in encryption tab
+	- rework tooltips for clarity and technical accuracy
+	- rename to pptpconfig to comply with PHP license conditions
+
+2004-06-05 fedora core 2 compatibility release
+
+	- add a route to the tunnel server to try to avoid loops
+	- add more diagnosis info and save-as tunnel log
+	- compatibility fix for Fedora Core 2, resolv.conf in /var/run/ppp
+	- additional options for resolv.conf
+	- all to tunnel incorrectly deleted the default route
+
+2004-01-02 bug fix of fifth beta release
+
+	- prevent killing of process group if pid file is zeroed by user
+	- remove byte and packet counter highlighting to fix memory leak
+
+2003-07-31 bug fix of fifth beta release
+
+	- add temporary debugging code for list status updates,
+	- restore default route to public interface after tunnel down,
+	- make pptp-options feature work,
+	- add 'dump' option to 'debug' mode, for problem reporting.
+
+2003-05-05 fifth beta release
+
+	- NOTE: tunnels may need to be updated once before starting,
+	  due to a change in the file names used.
+
+	- show revision of program on status bar at start,
+	- accept blanks in tunnel name,
+	- enforce network routes in CIDR format,
+	- prevent tunnel window appearing beneath main window,
+	- accept mixed case tunnel names,
+	- double-click to start a tunnel,
+	- enter after selecting a tunnel will start it,
+	- fix loss of pppd standard error stream, include on log window,
+
+2003-04-11 fifth beta release with user interface cleanup, tunnel status
+
+2003-04-01 fourth beta release with config reset, autostart, icons, ping
+
+2003-01-31 third beta release with basic DNS capability
+
+2003-01-21 bug fix of second beta release
+
+2003-01-07 second beta release with routing capability
+
+2002-12-09 early beta release
+

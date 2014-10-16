@@ -1,0 +1,830 @@
+config_file_save>Test advance page\'s config file download
+config_file_upload>Test advance page\'s config file upload with the valid file
+invalid_config_file_upload>Test advance page\'s config file upload with the invalid file
+tc_06010000002>Test advanced diagnostic ( ping from BHR to available WAN pc)
+tc_06010000001_nolanip>Test advanced diagnostic ( ping from BHR to UNavailable LAN pc)
+tc_06010000002_nowanip>Test advanced diagnostic ( ping from BHR to UNavailable WAN pc)
+tc_changewanip_coax_06019000010>Verify if the hostname can get dynamic IP via coax interface; 
+tc_changewanip_pppoe2_06019000012>Verify if the hostname can get dynamic IP via PPPoE 2 interface; 
+tc_checkhostname_06019000001>Verify if the hostname can not be set to " " as normal;
+tc_checkhostname_06019000002>Verify if the hostname can not be set to "#@$%.dyndns.org" as normal;
+tc_checkhostname_06019000003>verify if the invalid hostname "_(a).dyndns.org" can be set as normal;
+tc_checkhostname_06019000004>Verify if the hostname can not be set to 
+tc_checkhostname_06019000005>Verify if the hostname can not be set to "{*}.dyndns.org " as normal;
+tc_checkhostname_06019000006>Verify if the hostname can not be set to "+|\.dyndns.org" as normal;
+tc_checkhostname_06019000007>Verify if the hostname can not be set to "[~!].dyndns.org " as normal;
+tc_checkhostname_06019000008>Verify if the hostname can not be set to "0123456789012345678901234567890123456789012345678901234567890123" as normal;
+tc_mailexchange_ether_06019000024>Verify if dynamic DNS is work as normal with Mail Exchange
+tc_mailexchange_ether_06019000025>Verify if dynamic DNS is work as normal with Backup MX
+tc_mailexchange_ether_06019000026>Verify if dynamic DNS is work as normal with mail offline
+tc_multiHostName_06019000020>Verify how many hostnames ddns can support, default value is set to 100;
+tc_multiHostName_06019000021>Verify if dynamic DNS supports multi-hostname with same provider;
+tc_multiHostName_06019000022>Verify if dynamic DNS supports multi-hostname with different provider;
+tc_wildcard_ether_06019000023>Verify the dynamic DNS is work as normal with wildcard;
+tc_changewanip_ether_06019000009>Verify if the hostname can get dynamic IP via ethernet interface; 
+tc_changewanip_pppoe_06019000011>Verify if the hostname can get dynamic IP via PPPoE interface; 
+tc_06010000001>Test advanced diagnostic ( ping from BHR to available LAN pc)
+tc_06020000002>Test the advanced page \'s DNS Server with Host Name as testname in wan interface
+tc_dat_03050000001>test date and time\'s default time zone
+tc_dat_03050000002>test date and time\'s other time zone with valid input value
+tc_dat_03050000003>test date and time\'s other time zone with invalid input value
+tc_dat_03050000004>test daylight save time
+tc_dat_03050000005>test daylight save time with valid value
+tc_dat_03050000006>test daylight save time with invalid value
+tc_dat_03050000007>test the clock setting with valid value
+tc_dat_03050000008>test set time with invalid input value
+tc_dat_03050000009>test date and time\'s sync time from internet use nip
+tc_dat_03050000010>test date and time\'s sync time from internet auto sync
+tc_dat_03050000011>test date and time\'s sync time from internet with invalid ntp address
+tc_dat_03050000012>test date and time\'s sync time from internet with 100 server urls
+tc_dat_03050000013>test date and time\'s sync time from internet use tod protocol and syn now
+tc_dat_03050000014>test date and time\'s sync time from internet auto sync on tod protocol
+tc_dat_init>Test page adt table
+tc_06071000001>Test advanced page\'s IP Address Distribution--Network (Home/Office)
+tc_06071000002>Test advanced page\'s IP Address Distribution--Network (Home/Office)--with C type Address
+tc_06071000003>Test advanced page\'s IP Address Distribution--Network (Home/Office)--with B type Address
+tc_06071000004>Test advanced page\'s IP Address Distribution--Network (Home/Office)--with B type Address
+tc_06071000005>Test advanced page\'s IP Address Distribution--Network (Home/Office)--with A type Address
+tc_06071000006>Test advanced page\'s IP Address Distribution--Network (Home/Office)--with A type Address
+tc_06071000007>Test advanced page\'s IP Address Distribution--Network (Home/Office)--with A type Address
+tc_06071000037>Test advanced page\'s IP Address Distribution--Network (Home/Office)--with C type Address
+tc_06071000038>Test advanced page\'s IP Address Distribution--Network (Home/Office)--with B type Address
+tc_06071000039>Test advanced page\'s IP Address Distribution--Network (Home/Office)--with B type Address
+tc_06071000040>Test advanced page\'s IP Address Distribution--Network (Home/Office)--with A type Address
+tc_06071000041>Test advanced page\'s IP Address Distribution--Network (Home/Office)--with A type Address
+tc_06071000042>Test advanced page\'s IP Address Distribution--Network (Home/Office)--with A type Address
+tc_06071000091>Test advanced page\'s IP Address Distribution--Network (Home/Office)--with C type Address--hostname
+tc_06071000092>Test advanced page\'s IP Address Distribution--Network (Home/Office)--with B type Address--hostname
+tc_06071000093>Test advanced page\'s IP Address Distribution--Network (Home/Office)--with B type Address--hostname
+tc_06071000094>Test advanced page\'s IP Address Distribution--Network (Home/Office)--with A type Address--hostname
+tc_06071000095>Test advanced page\'s IP Address Distribution--Network (Home/Office)--with A type Address--hostname
+tc_06071000096>Test advanced page\'s IP Address Distribution--Network (Home/Office)--with A type Address--hostname
+tc_06071000097>Test advanced page\'s IP Address Distribution--Network (Home/Office)--with C type Address--hostname
+tc_06071000098>Test advanced page\'s IP Address Distribution--Network (Home/Office)--with B type Address--hostname
+tc_06071000099>Test advanced page\'s IP Address Distribution--Network (Home/Office)--with B type Address--hostname
+tc_06071000100>Test advanced page\'s IP Address Distribution--Network (Home/Office)--with A type Address--hostname
+tc_06071000101>Test advanced page\'s IP Address Distribution--Network (Home/Office)--with C type Address--hostname
+tc_06071000102>Test advanced page\'s IP Address Distribution--Network (Home/Office)--with C type Address--hostname
+tc_06071000103>Test advanced page\'s IP Address Distribution--Network (Home/Office)--with C type Address--hostname
+tc_06071000104>Test advanced page\'s IP Address Distribution--Network (Home/Office)--with B type Address--hostname
+tc_06071000105>Test advanced page\'s IP Address Distribution--Network (Home/Office)--with B type Address--hostname
+tc_06071000106>Test advanced page\'s IP Address Distribution--Network (Home/Office)--with A type Address--hostname
+tc_06071000107>Test advanced page\'s IP Address Distribution--Network (Home/Office)--with A type Address--hostname
+tc_06071000108>Test advanced page\'s IP Address Distribution--Network (Home/Office)--with A type Address--hostname
+tc_dynlease_0001>Test Status is Active after PC3(Lan PC) acquires ip
+tc_dynlease_0002>Test DHCP connection list is removed after PC3(Lan PC) release ip after 1 min
+tc_dynlease_0003>Test DHCP entry still exists after 1 min even if to delete it on DUT
+tc_dynlease_0004>Test Status is Active after PC3(Lan PC) acquires ip specifying hostname-shqa
+tc_dynlease_0005>Test DHCP connection list is removed after PC3(Lan PC) release ip after 2 min with specifying hostname-shqa
+tc_dynlease_0006>Test DHCP entry still exists after 1 min even if to delete it on DUT(specify a hostname to dhcp client)
+tc_dynlease_0007>Test Status is Active, the hostname is changed after PC3(Lan PC) re-acquires ip with specifying a hostname before first leasttime expires
+tc_dynlease_0008>Test PC3(Lan PC) acquires ip with specifying shqa as hostname, PC4(Wan PC) acquires ip with same hostname-shqa
+tc_dynlease_0009>Test PC3(Lan PC) acquires ip with specifying shqa as hostname, PC4(Wan PC) acquires ip without specify a hostname
+tc_staticlease_0001>Test lease time type change to Static of PC3(Lan PC)
+tc_staticlease_0002>Test Status is Expired after 1 min on PC3(Lan PC)
+tc_staticlease_0003>Test PC3(Lan PC) acquires IP with specifying different hostname
+tc_staticlease_0004>Test no duplicated hostname between PC3(Lan PC) and PC4(Wan PC)
+tc_staticlease_0005>Test PC3(Lan PC) hostname is shqa and PC4(Wan PC) is like new-host
+tc_staticlease_0006>Test Static DHCP Connection of PC3(Lan PC) will be removed if to set it as Dynamic and release it
+tc_newstatic_0001>Test duplicated hostname cannot be added in Static DHCP Connection
+tc_newstatic_0002>Test duplicated hostname cannot be added in Static DHCP Connection between two lan pc
+tc_newstatic_0003>Test duplicated hostname cannot be added in Static DHCP Connection between lan pc and wan pc
+tc_newstatic_0004>Add 244 new static dhcp connection list
+tc_acl_0001>Test Allow as MAC Filtering Mode, the dhcp client is PC3
+tc_acl_0002>Test Deny as MAC Filtering Mode, the dhcp client is PC3
+tc_acl_0003>Add 244 new access control list
+tc_disableall_06016000001>Test all advanced local administration CLOSED ports
+tc_port23_06016000002>Test all advanced local administration CLOSED ports with exception port 23 ON
+tc_port8023_06016000003>Test all advanced local administration CLOSED ports with exception port 8023 ON
+tc_port992_06016000004>Test all advanced local administration CLOSED ports with exception port 992 ON
+tc_06013000005>Test page [06013000005]: 000005 -- AMC
+tc_06013000006>Test page [06013000006]: 000006 -- AMC
+tc_06013000007>Test page [06013000007]: 000007 -- AMC
+tc_06013000008>Test page [06013000008]: 000008 -- AMC
+tc_06013000001>Test page [06013000001]: 000001 -- AMC
+tc_06013000002>Test page [06013000002]: 000002 -- AMC
+tc_06013000003>Test page [06013000003]: 000003 -- AMC
+tc_06013000004>Test page [06013000004]: 000004 -- AMC
+tc_disableall_06017000001>Test if all ports are still opened if they were turned off
+tc_icmpecho_06017000009>Test Wan ICMP enable option
+tc_port23_06017000002>Verify if port 23 is accessible after being enabled
+tc_port443_06017000007>Verify the WAN Remote port 443 availability
+tc_port80_06017000005>Verify the WAN Remote port 80 availability
+tc_port8023_06017000003>Test functionality of  Remote Secondary Telnet port
+tc_port8080_06017000006>Verify the WAN Remote port 8080 availability
+tc_port8443_06017000008>Verify the WAN Remote port 8443 availability
+tc_port992_06017000004>Verify Remote WAN port 992
+tc_udptraceroute_06017000010>Test Remote WAN UDP traceroute port 53
+restore_default_save>Test advance page\'s restore default save config file
+restore_default>Test advance page\'s restore default page restore default
+tc_init_arptable>Test page arp table
+tc_arptable_03014000001>test advaced page\'s arp table with two lan pc use 1 interface
+tc_arptable_03014000002>test advaced page\'s arp table with two lan pc use 2 interface
+tc_arptable_03014000003>test advaced page\'s arp table with two lan pc use 100 interface
+tc_arptable_03014000004>test advaced page\'s arp table with two wan pc use 1 interface
+tc_arptable_03014000005>test advaced page\'s arp table with two wan pc use 2 interface
+tc_arptable_03014000006>test advaced page\'s arp table with two wan pc use 100 interface
+reboot_router>Test advance page\'s reboot router
+tc_mailcapacity_06041003900>Verify  the mini capacity when the value of email notification be set to 1 percent
+tc_mailcapacity_06041003901>Verify  the mini capacity when the value of email notification be set to 100 percent
+tc_mailcapacity_06041003902>Verify  the mini capacity when the value of email notification be set to 0 percent
+tc_mailcapacity_06041003903>Verify  the mini capacity when the value of email notification be set to 0.1 percent
+tc_mailcapacity_06041003904>Verify  the mini capacity when the value of email notification be set to -1 percent
+tc_mailcapacity_06041003905>Verify  the mini capacity when the value of email notification be set to 101 percent
+tc_logbuf_06041003906>Verify the setting of log buf is valid when the value of buf be set to 1 kB
+tc_logbuf_06041003907>Verify the setting of log buf is valid when the value of buf be set to 256 kB
+tc_logbuf_06041003908>Verify the setting of log buf is valid when the value of buf be set to 0 kB
+tc_logbuf_06041003909>Verify the setting of log buf is valid when the value of buf be set to 0.1 kB
+tc_logbuf_06041003910>Verify the setting of log buf is valid when the value of buf be set to -1 kB
+tc_logbuf_06041003911>Verify the setting of log buf is valid when the value of buf be set to 257 kB
+tc_rmsyslog_06041003912>Verify if there are information message of log in LAN PC when enable remote local logserver
+tc_rmsyslog_06041003913>Verify if there are information message of log in LAN PC when enable remote local logserver
+tc_rmsyslog_06041003914>Verify if there are ERROR message of log in LAN PC when enable remote local logserver
+tc_rmsyslog_06041003915>Verify if there are information message of log in WAN PC when enable remote local logserver
+tc_rmsyslog_06041003916>Verify if there are information message of log in WAN PC when enable remote local logserver
+tc_rmsyslog_06041003917>Verify if there are information message of log in WAN PC when enable remote local logserver
+tc_secmailcapacity_06041003918>Verify  the mini capacity when the value of security email notification be set to 1 percent
+tc_secmailcapacity_06041003919>Verify  the mini capacity when the value of security email notification be set to 100 percent
+tc_secmailcapacity_06041003920>Verify  the mini capacity when the value of security email notification be set to 0 percent
+tc_secmailcapacity_06041003921>Verify  the mini capacity when the value of security email notification be set to 0.1 percent
+tc_secmailcapacity_06041003922>Verify  the mini capacity when the value of security email notification be set to -1 percent
+tc_secmailcapacity_06041003923>Verify  the mini capacity when the value of security email notification be set to 101 percent
+tc_seclogbuf_06041003924>Verify the setting of sec log buf is valid when the value of buf be set to 1 kB
+tc_seclogbuf_06041003925>Verify the setting of sec log buf is valid when the value of buf be set to 256 kB
+tc_seclogbuf_06041003926>Verify the setting of sec log buf is valid when the value of buf be set to 0 kB
+tc_seclogbuf_06041003927>Verify the setting of sec log buf is valid when the value of buf be set to 0.1 kB
+tc_seclogbuf_06041003928>Verify the setting of sec log buf is valid when the value of buf be set to -1 kB
+tc_seclogbuf_06041003929>Verify the setting of sec log buf is valid when the value of buf be set to 257 kB
+tc_rmsecsyslog_06041003930>Verify if there are information message of security log in LAN PC when enable remote local logserver
+tc_rmsecsyslog_06041003931>Verify if there are information message of security log in LAN PC when enable remote local logserver
+tc_rmsecsyslog_06041003933>Verify if there are information message of security log in WAN PC when enable remote local logserver
+tc_rmsecsyslog_06041003934>Verify if there are information message of security log in WAN PC when enable remote local logserver
+tc_httpport_06041003900>Test primary and secondary http management port cannot both be set as same(80)
+tc_httpport_06041003901>Test http port as primary prot is 80 and the secondary port is 8080
+tc_httpport_06041003902>Test http port as primary prot is 65535 and the secondary port is 8080
+tc_httpport_06041003903>Test http port as primary prot is 1 and the secondary port is 1024
+tc_httpsport_06041003904>Test primary and secondary https management port cannot both be set as same(443)
+tc_httpsport_06041003905>Test https port as primary prot is 443 and the secondary port is 8443
+tc_httpsport_06041003906>Test https port as primary prot is 65535 and the secondary port is 8443
+tc_httpsport_06041003907>Test https port as primary prot is 1 and the secondary port is 1024
+tc_telport_06041003849>Verify the telnet port as primary prot is 23 and the secondary port is 8023
+tc_telport_06041003850>Verify the telnet port as primary prot is 24 and the secondary port is 8023
+tc_telport_06041003851>Verify the telnet port as primary prot is 23 and the secondary port is 8024
+tc_telport_06041003852>Verify the telnet port as primary prot is 23 and the secondary port is 8024
+tc_telport_06041003853>Verify if the telnet primary prot as 24 and the secondary port as 8024 is work as normal;
+tc_logdisable_06041003908>Verify if there is not log info when disable log service;
+tc_logenable_06041003907>Verify if there is log info when enable log service;
+tc_ses60_06041004100>Test Session Lifetime will be expired after 60 Secs
+tc_ses7200_06041004101>Test Session Lifetime 7200 is acceptable
+tc_ses59_06041004102>Test Session Lifetime will not accept 59 Secs
+tc_ses7201_06041004103>Test Session Lifetime doesn\'t accept 7201 Secs
+tc_autorefresh_06041000001>Test advace system setting page the auto refresh system monitor page is on
+tc_autorefresh_06041000002>Test advace system setting page the auto refresh system monitor page is off
+tc_promptpasswd_06041000003>Test Prompt Password is on
+tc_promptpasswd_06041000004>Test Prompt Password is off
+tc_changewarn_06041000005>Test Warn User Before Configuration Changes on
+tc_changewarn_06041000006>Test Warn User Before Configuration Changes on
+tc_httpport_06041003841>Test primary and secondary http management port cannot both be set as same(80)
+tc_httpport_06041003842>Test http port as primary prot is 80 and the secondary port is 8080
+tc_httpport_06041003843>Test http port as primary prot is 65535 and the secondary port is 8080
+tc_httpport_06041003844>Test http port as primary prot is 1 and the secondary port is 1024
+tc_httpsport_06041003845>Test primary and secondary https management port cannot both be set as same(443)
+tc_httpsport_06041003846>Test https port as primary prot is 443 and the secondary port is 8443
+tc_httpsport_06041003847>Test https port as primary prot is 65535 and the secondary port is 8443
+tc_httpsport_06041003848>Test https port as primary prot is 1 and the secondary port is 1024
+tc_defroutename_06041004200>Test default Wireless Broadband Router\'s Hostname
+tc_routename_06041004201>Test SHQA Wireless Broadband Router\'s Hostname
+tc_defdomain_06041004202>Test Default Local Domain Name
+tc_domain_06041004203>Test Default Local Domain Name
+tc_user_0001>Test advance page\'s user page add a administrator user
+tc_user_0002>Test advance page\'s user page add a administrator user with invalid name
+tc_user_0003>Test advance page\'s user page add a administrator user with invalid password
+tc_user_0004>Test advance page\'s user page add a limited user
+tc_user_0005>Test advance page\'s user page add a limited user with invalid name
+tc_user_0006>Test advance page\'s user page add a Limited user with invalid password
+tc_user_0007>Test advance page\'s user page add a administrator user then change to a limited
+tc_user_0008>Test advance page\'s user page add a limited user then change to administrator
+tc_user_0009>Test advance page\'s user page add a limited user then delete the admin
+tc_user_0010>Test advance page\'s user page delete the admin
+tc_user_0011>Test advance page\'s user page change the admin to limited
+tc_dhcpclient_03006000809>BHR2 acts as a DHCP client on wan side. Not to override subnet mask
+tc_dhcpclient_03006000810>BHR2 acts as a DHCP client on wan side. To override C subnet mask
+tc_dhcpclient_03006000811>BHR2 acts as a DHCP client on wan side. To override B subnet mask
+tc_dhcpclient_03006000812>BHR2 acts as a DHCP client on wan side. To override A subnet mask
+tc_dhcpdisable_03006000825>To disable DHCP service on WAN Ether interface
+tc_dhcprelay_03006000819>To test WAN Ether dhcp relay in C class subnet mask
+tc_dhcprelay_03006000820>To test WAN Ether dhcp relay in B class subnet mask
+tc_dhcprelay_03006000821>To test WAN Ether dhcp relay in A class subnet mask
+tc_dhcprelay_03006000822>To test WAN Ether dhcp relay in A class subnet mask
+tc_dhcprelay_03006000823>To test WAN Ether dhcp relay in B class subnet mask
+tc_dhcprelay_03006000824>To test WAN Ether dhcp relay in C class subnet mask
+tc_dhcprelaynapt_03006000819>To test WAN Ether dhcp relay in C class subnet mask
+tc_dhcprelaynapt_03006000820>To test WAN Ether dhcp relay in B class subnet mask
+tc_dhcprelaynapt_03006000821>To test WAN Ether dhcp relay in A class subnet mask
+tc_dhcprelaynapt_03006000822>To test WAN Ether dhcp relay in A class subnet mask
+tc_dhcprelaynapt_03006000823>To test WAN Ether dhcp relay in B class subnet mask
+tc_dhcprelaynapt_03006000824>To test WAN Ether dhcp relay in C class subnet mask
+tc_dhcpserver_03006000813>To start DHCP service on BHR2 wan ether interface in C subnet
+tc_dhcpserver_03006000814>To start DHCP service on BHR2 wan ether interface in B subnet
+tc_dhcpserver_03006000815>To start DHCP service on BHR2 wan ether interface in B subnet
+tc_dhcpserver_03006000816>To start DHCP service on BHR2 wan ether interface in A subnet
+tc_dhcpserver_03006000817>To start DHCP service on BHR2 wan ether interface in A subnet
+tc_dhcpserver_03006000818>To start DHCP service on BHR2 wan ether interface in A subnet
+tc_dnsserver_03006000844>To test Primary DNS setting on WAN Ether
+tc_dnsserver_03006000845>To test Primary DNS setting on WAN Ether
+tc_dnsserver_03006000846>To test Primary DNS setting on WAN Ether
+tc_dnsserver_03006000847>To test Primary DNS setting on WAN Ether
+tc_hostname_03006000826>To start DHCP service on BHR2 wan coax interface in C subnet.Both BHR2 and client pc not provide host name
+tc_hostname_03006000827>To start DHCP service on BHR2 wan coax interface in B subnet.Both BHR2 and client pc not provide host name
+tc_hostname_03006000828>To start DHCP service on BHR2 wan coax interface in B subnet.Both BHR2 and client pc not provide host name
+tc_hostname_03006000829>To start DHCP service on BHR2 wan coax interface in C subnet.Both BHR2 and client pc not provide host name
+tc_hostname_03006000830>To start DHCP service on BHR2 wan coax interface in C subnet.Both BHR2 and client pc not provide host name
+tc_hostname_03006000831>To start DHCP service on BHR2 wan coax interface in C subnet.Both BHR2 and client pc not provide host name
+tc_hostname_03006000832>To start DHCP service on BHR2 wan coax interface in C subnet.BHR2 provide host name but client pc not
+tc_hostname_03006000833>To start DHCP service on BHR2 wan coax interface in B subnet.BHR2 provide host name but client pc not
+tc_hostname_03006000834>To start DHCP service on BHR2 wan coax interface in B subnet.BHR2 provide host name but client pc not
+tc_hostname_03006000835>To start DHCP service on BHR2 wan coax interface in A subnet.BHR2 provide host name but client pc not
+tc_hostname_03006000836>To start DHCP service on BHR2 wan coax interface in A subnet.BHR2 provide host name but client pc not
+tc_hostname_03006000837>To start DHCP service on BHR2 wan coax interface in A subnet.BHR2 provide host name but client pc not
+tc_hostname_03006000838>To start DHCP service on BHR2 wan coax interface in C subnet. Both of BHR2 and client PC provide host name
+tc_hostname_03006000839>To start DHCP service on BHR2 wan coax interface in B subnet. Both of BHR2 and client PC provide host name
+tc_hostname_03006000840>To start DHCP service on BHR2 wan coax interface in B subnet. Both of BHR2 and client PC provide host name
+tc_hostname_03006000841>To start DHCP service on BHR2 wan coax interface in A subnet.client PC provide host name but BHR2 not
+tc_hostname_03006000842>To start DHCP service on BHR2 wan coax interface in A subnet.client PC provide host name but BHR2 not
+tc_hostname_03006000843>To start DHCP service on BHR2 wan coax interface in A subnet.client PC provide host name but BHR2 not
+tc_autoDetection_03006001080>To test Wan Coax,verify it is work as normal when setting Auto Detection off;
+tc_autoDetection_03006001081>To test Wan Coax,verify it is work as normal when setting Auto Detection off;
+tc_autoDetection_03006001082>To test Wan Coax,verify it is work as normal when setting Auto Detection on;
+tc_autoDetection_03006001083>To test Wan Coax,verify it is work as normal when setting Auto Detection on;
+tc_autoDetection_03006001084>To test Wan Coax,verify it is work as normal when setting Auto Detection off;
+tc_autoDetection_03006001085>To test Wan Coax,verify it is work as normal when setting Auto Detection on;
+tc_autoDetection_03006001086>To test Wan Coax,verify it is work as normal when setting Auto Detection off;
+tc_dhcpwancoax_invaildleasetime_03006001050>To start DHCP service on BHR2 Lan ether interface, verify lease time "!" sec is valid
+tc_dhcpwancoax_invaildleasetime_03006001051>To start DHCP service on BHR2 Lan ether interface, verify lease time "@" sec is valid
+tc_dhcpwancoax_invaildleasetime_03006001052>To start DHCP service on BHR2 Lan ether interface, verify lease time "#" sec is valid
+tc_dhcpwancoax_invaildleasetime_03006001053>To start DHCP service on BHR2 Lan ether interface, verify lease time "$" sec is valid
+tc_dhcpwancoax_invaildleasetime_03006001054>To start DHCP service on BHR2 Lan ether interface, verify lease time "%" sec is valid
+tc_dhcpwancoax_invaildleasetime_03006001055>To start DHCP service on BHR2 Lan ether interface, verify lease time "^" sec is valid
+tc_dhcpwancoax_invaildleasetime_03006001056>To start DHCP service on BHR2 Lan ether interface, verify lease time "&amp;" sec is valid
+tc_dhcpwancoax_invaildleasetime_03006001057>To start DHCP service on BHR2 Lan ether interface, verify lease time "*" sec is valid
+tc_dhcpwancoax_invaildleasetime_03006001058>To start DHCP service on BHR2 Lan ether interface, verify lease time "(" sec is valid
+tc_dhcpwancoax_invaildleasetime_03006001059>To start DHCP service on BHR2 Lan ether interface, verify lease time ")" sec is valid
+tc_dhcpwancoax_invaildleasetime_03006001060>To start DHCP service on BHR2 Lan ether interface, verify lease time "-" sec is valid
+tc_dhcpwancoax_invaildleasetime_03006001061>To start DHCP service on BHR2 Lan ether interface, verify lease time "+" sec is valid
+tc_dhcpwancoax_invaildleasetime_03006001062>To start DHCP service on BHR2 Lan ether interface, verify lease time "|" sec is valid
+tc_dhcpwancoax_invaildleasetime_03006001063>To start DHCP service on BHR2 Lan ether interface, verify lease time "[" sec is valid
+tc_dhcpwancoax_invaildleasetime_03006001064>To start DHCP service on BHR2 Lan ether interface, verify lease time ":" sec is valid
+tc_dhcpwancoax_invaildleasetime_03006001065>To start DHCP service on BHR2 Lan ether interface, verify lease time ";" sec is valid
+tc_dhcpwancoax_invaildleasetime_03006001066>To start DHCP service on BHR2 Lan ether interface, verify lease time "\'" sec is valid
+tc_dhcpwancoax_invaildleasetime_03006001067>To start DHCP service on BHR2 Lan ether interface, verify lease time "
+tc_dhcpwancoax_invaildleasetime_03006001068>To start DHCP service on BHR2 Lan ether interface, verify lease time "?" sec is valid
+tc_dhcpwancoax_invaildleasetime_03006001069>To start DHCP service on BHR2 Lan ether interface, verify lease time "/" sec is valid
+tc_dhcpwancoax_invaildleasetime_03006001070>To start DHCP service on BHR2 Lan ether interface, verify lease time "." sec is valid
+tc_dhcpwancoax_invaildleasetime_03006001071>To start DHCP service on BHR2 Lan ether interface, verify lease time "~" sec is valid
+tc_dhcpwancoax_invaildleasetime_03006001072>To start DHCP service on BHR2 Lan ether interface, verify lease time "=" sec is valid
+tc_dhcpwancoax_invaildleasetime_03006001073>To start DHCP service on BHR2 Lan ether interface, verify lease time "_" sec is valid
+tc_dhcpwancoax_invaildleasetime_03006001074>To start DHCP service on BHR2 Lan ether interface, verify lease time "automation" sec is valid
+tc_dhcpwancoax_invaildleasetime_03006001075>To start DHCP service on BHR2 Lan ether interface, verify lease time "0" sec is valid
+tc_dhcpwancoax_invaildleasetime_03006001076>To start DHCP service on BHR2 Lan ether interface, verify lease time "43201" sec is valid
+tc_dhcpwancoax_invaildleasetime_03006001077>To start DHCP service on BHR2 Lan ether interface, verify lease time "-1" sec is valid
+tc_dhcpwancoax_invaildleasetime_03006001078>To start DHCP service on BHR2 Lan ether interface, verify lease time "43200" sec is valid
+tc_dhcpwancoax_leasetime43200_aclass1>To start DHCP service on BHR2 wan coax interface, verify lease time 43200sec is valid
+tc_dhcpwancoax_leasetime43200_aclass2>To start DHCP service on BHR2 wan coax interface, verify lease time 43200sec is valid
+tc_dhcpwancoax_leasetime43200_aclass3>To start DHCP service on BHR2 wan coax interface, verify lease time 43200sec is valid
+tc_dhcpwancoax_leasetime43200_bclass1>To start DHCP service on BHR2 wan coax interface, verify lease time 43200sec is valid
+tc_dhcpwancoax_leasetime43200_bclass2>To start DHCP service on BHR2 wan coax interface, verify lease time 43200sec is valid
+tc_dhcpwancoax_leasetime43200_cclass>To start DHCP service on BHR2 wan coax interface, verify lease time 43200sec is valid
+tc_dhcpwancoax_leasetime_aclass1>To start DHCP service on BHR2 wan coax interface, verify lease time 1sec is valid
+tc_dhcpwancoax_leasetime_aclass2>To start DHCP service on BHR2 wan coax interface, verify lease time 1sec is valid
+tc_dhcpwancoax_leasetime_aclass3>To start DHCP service on BHR2 wan coax interface, verify lease time 1sec is valid
+tc_dhcpwancoax_leasetime_bclass1>To start DHCP service on BHR2 wan coax interface, verify lease time 1sec is valid
+tc_dhcpwancoax_leasetime_bclass2>To start DHCP service on BHR2 wan coax interface, verify lease time 1sec is valid
+tc_dhcpwancoax_leasetime_cclass>To start DHCP service on BHR2 wan coax interface, verify lease time 1sec is valid
+tc_dhcpclient_03005000831>BHR2 acts as a DHCP client on wan side. Not to override subnet mask
+tc_dhcpclient_03005000832>BHR2 acts as a DHCP client on wan side. To override C subnet mask
+tc_dhcpclient_03005000833>BHR2 acts as a DHCP client on wan side. To override B subnet mask
+tc_dhcpclient_03005000834>BHR2 acts as a DHCP client on wan side. To override A subnet mask
+tc_dhcprelay_03005000807>To test WAN Ether dhcp relay in C class subnet mask
+tc_dhcprelay_03005000808>To test WAN Ether dhcp relay in B class subnet mask
+tc_dhcprelay_03005000809>To test WAN Ether dhcp relay in B class subnet mask
+tc_dhcprelay_03005000810>To test WAN Ether dhcp relay in A class subnet mask
+tc_dhcprelay_03005000811>To test WAN Ether dhcp relay in A class subnet mask
+tc_dhcprelay_03005000812>To test WAN Ether dhcp relay in A class subnet mask
+tc_dhcprelay_napt_03005000807>To test WAN Ether dhcp relay in C class subnet mask
+tc_dhcprelay_napt_03005000808>To test WAN Ether dhcp relay in B class subnet mask
+tc_dhcprelay_napt_03005000809>To test WAN Ether dhcp relay in A class subnet mask
+tc_dhcprelay_napt_03005000810>To test WAN Ether dhcp relay in A class subnet mask
+tc_dhcprelay_napt_03005000811>To test WAN Ether dhcp relay in B class subnet mask
+tc_dhcprelay_napt_03005000812>To test WAN Ether dhcp relay in C class subnet mask
+tc_disabledhcp_03005000800>To disable DHCP service on WAN Ether interface
+tc_dnsserver_03005000835>To test Primary DNS setting on WAN Ether
+tc_dnsserver_03005000836>To test Secondary DNS setting on WAN Ether
+tc_dnsserver_03005000837>To test Primary DNS setting on WAN Ether with a invaild domain name
+tc_dnsserver_03005000838>To test Secondary DNS setting on WAN Ether with a invaild domain name
+tc_enabledhcp_03005000801>To start DHCP service on BHR2 wan ether interface in C subnet
+tc_enabledhcp_03005000802>To start DHCP service on BHR2 wan ether interface in B subnet
+tc_enabledhcp_03005000803>To start DHCP service on BHR2 wan ether interface in B subnet
+tc_enabledhcp_03005000804>To start DHCP service on BHR2 wan ether interface in A subnet
+tc_enabledhcp_03005000805>To start DHCP service on BHR2 wan ether interface in A subnet
+tc_enabledhcp_03005000806>To start DHCP service on BHR2 wan ether interface in A subnet
+tc_hostname_03005000819>To start DHCP service on BHR2 wan ether interface in C subnet. BHR2 provides hostname, however client PC does not
+tc_hostname_03005000820>To start DHCP service on BHR2 wan ether interface in B subnet. BHR2 provides hostname, however client PC does not
+tc_hostname_03005000821>To start DHCP service on BHR2 wan ether interface in B subnet. BHR2 provides hostname, however client PC does not
+tc_hostname_03005000822>To start DHCP service on BHR2 wan ether interface in A subnet. BHR2 provides hostname, however client PC does not
+tc_hostname_03005000823>To start DHCP service on BHR2 wan ether interface in A subnet. BHR2 provides hostname, however client PC does not
+tc_hostname_03005000824>To start DHCP service on BHR2 wan ether interface in A subnet. BHR2 provides hostname, however client PC does not
+tc_hostname_03005000825>To start DHCP service on BHR2 wan ether interface in C subnet. Both of BHR2 and client PC provide host name
+tc_hostname_03005000826>To start DHCP service on BHR2 wan ether interface in B subnet. Both of BHR2 and client PC provide host name
+tc_hostname_03005000827>To start DHCP service on BHR2 wan ether interface in B subnet. Both of BHR2 and client PC provide host name
+tc_hostname_03005000828>To start DHCP service on BHR2 wan ether interface in A subnet. Both of BHR2 and client PC provide host name
+tc_hostname_03005000829>To start DHCP service on BHR2 wan ether interface in A subnet. Both of BHR2 and client PC provide host name
+tc_hostname_03005000830>To start DHCP service on BHR2 wan ether interface in A subnet. Both of BHR2 and client PC provide host name
+tc_nohostname_03005000813>To start DHCP service on BHR2 wan ether interface in C subnet. BHR2 does not provide hostname, however client PC does not
+tc_nohostname_03005000814>To start DHCP service on BHR2 wan ether interface in B subnet. BHR2 does not provide hostname, however client PC does not
+tc_nohostname_03005000815>To start DHCP service on BHR2 wan ether interface in B subnet. BHR2 does not provide hostname, however client PC does not
+tc_nohostname_03005000816>To start DHCP service on BHR2 wan ether interface in A subnet. BHR2 does not provide hostname, however client PC does not
+tc_nohostname_03005000817>To start DHCP service on BHR2 wan ether interface in A subnet. BHR2 does not provide hostname, however client PC does not
+tc_nohostname_03005000818>To start DHCP service on BHR2 wan ether interface in A subnet. BHR2 does not provide hostname, however client PC does not
+tc_dhcpwaneth_invaildleasetime_03005001050>To start DHCP service on BHR2 Lan ether interface, verify lease time "!" sec is valid
+tc_dhcpwaneth_invaildleasetime_03005001051>To start DHCP service on BHR2 Lan ether interface, verify lease time "@" sec is valid
+tc_dhcpwaneth_invaildleasetime_03005001052>To start DHCP service on BHR2 Lan ether interface, verify lease time "#" sec is valid
+tc_dhcpwaneth_invaildleasetime_03005001053>To start DHCP service on BHR2 Lan ether interface, verify lease time "$" sec is valid
+tc_dhcpwaneth_invaildleasetime_03005001054>To start DHCP service on BHR2 Lan ether interface, verify lease time "%" sec is valid
+tc_dhcpwaneth_invaildleasetime_03005001055>To start DHCP service on BHR2 Lan ether interface, verify lease time "^" sec is valid
+tc_dhcpwaneth_invaildleasetime_03005001056>To start DHCP service on BHR2 Lan ether interface, verify lease time "&amp;" sec is valid
+tc_dhcpwaneth_invaildleasetime_03005001057>To start DHCP service on BHR2 Lan ether interface, verify lease time "*" sec is valid
+tc_dhcpwaneth_invaildleasetime_03005001058>To start DHCP service on BHR2 Lan ether interface, verify lease time "(" sec is valid
+tc_dhcpwaneth_invaildleasetime_03005001059>To start DHCP service on BHR2 Lan ether interface, verify lease time ")" sec is valid
+tc_dhcpwaneth_invaildleasetime_03005001060>To start DHCP service on BHR2 Lan ether interface, verify lease time "-" sec is valid
+tc_dhcpwaneth_invaildleasetime_03005001061>To start DHCP service on BHR2 Lan ether interface, verify lease time "+" sec is valid
+tc_dhcpwaneth_invaildleasetime_03005001062>To start DHCP service on BHR2 Lan ether interface, verify lease time "|" sec is valid
+tc_dhcpwaneth_invaildleasetime_03005001063>To start DHCP service on BHR2 Lan ether interface, verify lease time "[" sec is valid
+tc_dhcpwaneth_invaildleasetime_03005001064>To start DHCP service on BHR2 Lan ether interface, verify lease time ":" sec is valid
+tc_dhcpwaneth_invaildleasetime_03005001065>To start DHCP service on BHR2 Lan ether interface, verify lease time ";" sec is valid
+tc_dhcpwaneth_invaildleasetime_03005001066>To start DHCP service on BHR2 Lan ether interface, verify lease time "\'" sec is valid
+tc_dhcpwaneth_invaildleasetime_03005001067>To start DHCP service on BHR2 Lan ether interface, verify lease time "
+tc_dhcpwaneth_invaildleasetime_03005001068>To start DHCP service on BHR2 Lan ether interface, verify lease time "?" sec is valid
+tc_dhcpwaneth_invaildleasetime_03005001069>To start DHCP service on BHR2 Lan ether interface, verify lease time "/" sec is valid
+tc_dhcpwaneth_invaildleasetime_03005001070>To start DHCP service on BHR2 Lan ether interface, verify lease time "." sec is valid
+tc_dhcpwaneth_invaildleasetime_03005001071>To start DHCP service on BHR2 Lan ether interface, verify lease time "~" sec is valid
+tc_dhcpwaneth_invaildleasetime_03005001072>To start DHCP service on BHR2 Lan ether interface, verify lease time "=" sec is valid
+tc_dhcpwaneth_invaildleasetime_03005001073>To start DHCP service on BHR2 Lan ether interface, verify lease time "_" sec is valid
+tc_dhcpwaneth_invaildleasetime_03005001074>To start DHCP service on BHR2 Lan ether interface, verify lease time "automation" sec is valid
+tc_dhcpwaneth_invaildleasetime_03005001075>To start DHCP service on BHR2 Lan ether interface, verify lease time "0" sec is valid
+tc_dhcpwaneth_invaildleasetime_03005001076>To start DHCP service on BHR2 Lan ether interface, verify lease time "43201" sec is valid
+tc_dhcpwaneth_invaildleasetime_03005001077>To start DHCP service on BHR2 Lan ether interface, verify lease time "-1" sec is valid
+tc_dhcpwaneth_invaildleasetime_03005001078>To start DHCP service on BHR2 Lan ether interface, verify lease time "43200" sec is valid
+tc_dhcpwaneth_leasetime_cclass>To start DHCP service with C class on BHR2 wan coax interface, verify lease time 1sec is valid
+tc_dhcpwaneth_leasetime_bclass1>To start DHCP service with B class on BHR2 wan ether interface, verify lease time 1sec is valid
+tc_dhcpwaneth_leasetime_bclass2>To start DHCP service with B class on BHR2 wan ether interface, verify lease time 1sec is valid
+tc_dhcpwaneth_leasetime_aclass1>To start DHCP service with A class on BHR2 wan ether interface, verify lease time 1sec is valid
+tc_dhcpwaneth_leasetime_aclass2>To start DHCP service with A class on BHR2 wan ether interface, verify lease time 1sec is valid
+tc_dhcpwaneth_leasetime_aclass3>To start DHCP service with A class on BHR2 wan ether interface, verify lease time 1sec is valid
+tc_dhcpwaneth_leasetime43200_cclass>To start DHCP service on BHR2 wan ether interface, verify lease time 1sec is valid
+tc_dhcpwaneth_leasetime43200_bclass1>To start DHCP service on BHR2 wan ether interface, verify lease time 43200sec is valid
+tc_dhcpwaneth_leasetime43200_bclass2>To start DHCP service on BHR2 wan ether interface, verify lease time 43200sec is valid
+tc_dhcpwaneth_leasetime43200_aclass1>To start DHCP service on BHR2 wan ether interface, verify lease time 43200sec is valid
+tc_dhcpwaneth_leasetime43200_aclass2>To start DHCP service on BHR2 wan ether interface, verify lease time 43200sec is valid
+tc_dhcpwaneth_leasetime43200_aclass3>To start DHCP service on BHR2 wan ether interface, verify lease time 43200sec is valid
+tc_mtu_laneth_wancoax_03001001080>Test Mtu lan_eth automatic --
+tc_mtu_laneth_wancoax_03001001081>Test Mtu lan_eth automatic --
+tc_mtu_laneth_wancoax_03001001082>Test Mtu lan_eth automatic --
+tc_mtu_laneth_wancoax_03001001083>Test Mtu lan_eth manual value 68 --
+tc_mtu_laneth_wancoax_03001001084>Test Mtu lan_eth manual value 68 --
+tc_mtu_laneth_wancoax_03001001085>Test Mtu lan_eth mtu = 68 --
+tc_mtu_laneth_wancoax_03001001086>Test Mtu lan_eth manual value 256 --
+tc_mtu_laneth_wancoax_03001001087>Test Mtu lan_eth manual value 256 --
+tc_mtu_laneth_wancoax_03001001088>Test Mtu lan_eth mtu = 256 --
+tc_mtu_laneth_wancoax_03001001089>Test Mtu lan_eth manual value 512 --
+tc_mtu_laneth_wancoax_03001001090>Test Mtu lan_eth manual value 512 --
+tc_mtu_laneth_wancoax_03001001091>Test Mtu lan_eth mtu = 512 --
+tc_mtu_laneth_wancoax_03001001092>Test Mtu lan_eth manual value 1500 --
+tc_mtu_laneth_wancoax_03001001093>Test Mtu lan_eth manual value 1500 --
+tc_mtu_laneth_wancoax_03001001094>Test Mtu lan_eth mtu = 1500 --
+tc_mtu_laneth_wancoax_03001001095>Test Mtu lan_eth automatic --
+tc_mtu_laneth_wancoax_03001001096>Test Mtu lan_eth automatic --
+tc_mtu_laneth_wancoax_03001001097>Test Mtu lan_eth automatic --
+tc_mtu_laneth_wancoax_03001001098>Test Mtu lan_eth automatic --
+tc_mtu_laneth_wancoax_03001001099>Test Mtu lan_eth automatic --
+tc_mtu_laneth_wancoax_03001001100>Test Mtu lan_eth automatic --
+tc_mtu_laneth_wancoax_03001001101>Test Mtu lan_eth automatic --
+tc_mtu_laneth_wancoax_03001001102>Test Mtu lan_eth automatic --
+tc_mtu_laneth_wancoax_03001001103>Test Mtu lan_eth automatic --
+tc_mtu_laneth_wancoax_03001001104>Test Mtu lan_eth automatic --
+tc_mtu_laneth_wancoax_03001001105>Test Mtu lan_eth automatic --
+tc_mtu_laneth_wancoax_03001001106>Test Mtu lan_eth automatic --
+tc_mtu_laneth_wancoax_03001001107>Test Mtu lan_eth manual mtu=1500 --
+tc_mtu_laneth_wancoax_03001001108>Test Mtu lan_eth manual mtu=1500 --
+tc_mtu_laneth_wancoax_03001001109>Test Mtu lan_eth manual mtu=1500 --
+tc_mtu_laneth_wancoax_03001001110>Test Mtu lan_eth manual mtu=512 --
+tc_mtu_laneth_wancoax_03001001111>Test Mtu lan_eth manual mtu=512 --
+tc_mtu_laneth_wancoax_03001001112>Test Mtu lan_eth manual mtu=512 --
+tc_mtu_laneth_wancoax_03001001113>Test Mtu lan_eth manual mtu=256 --
+tc_mtu_laneth_wancoax_03001001114>Test Mtu lan_eth manual mtu=256 --
+tc_mtu_laneth_wancoax_03001001115>Test Mtu lan_eth manual mtu=256 --
+tc_mtu_laneth_wancoax_03001001116>Test Mtu lan_eth manual mtu=68 --
+tc_mtu_laneth_wancoax_03001001117>Test Mtu lan_eth manual mtu=68 --
+tc_mtu_laneth_wancoax_03001001118>Test Mtu lan_eth manual mtu=68 --
+tc_mtu_lancoax_waneth_03001001040>Test Mtu lan_coax automatic --
+tc_mtu_lancoax_waneth_03001001041>Test Mtu lan_coax automatic --
+tc_mtu_lancoax_waneth_03001001042>Test Mtu lan_coax automatic --
+tc_mtu_lancoax_waneth_03001001043>Test Mtu lan_coax manual value 68 --
+tc_mtu_lancoax_waneth_03001001044>Test Mtu lan_coax manual value 68 --
+tc_mtu_lancoax_waneth_03001001045>Test Mtu lan_coax mtu = 68 --
+tc_mtu_lancoax_waneth_03001001046>Test Mtu lan_coax manual value 256 --
+tc_mtu_lancoax_waneth_03001001047>Test Mtu lan_coax manual value 256 --
+tc_mtu_lancoax_waneth_03001001048>Test Mtu lan_coax mtu = 256 --
+tc_mtu_lancoax_waneth_03001001049>Test Mtu lan_coax manual value 512 --
+tc_mtu_lancoax_waneth_03001001050>Test Mtu lan_coax manual value 512 --
+tc_mtu_lancoax_waneth_03001001051>Test Mtu lan_coax mtu = 512 --
+tc_mtu_lancoax_waneth_03001001052>Test Mtu lan_coax manual value 1500 --
+tc_mtu_lancoax_waneth_03001001053>Test Mtu lan_coax manual value 1500 --
+tc_mtu_lancoax_waneth_03001001054>Test Mtu lan_coax mtu = 1500 --
+tc_mtu_lancoax_waneth_03001001055>Test Mtu lan_coax automatic --
+tc_mtu_lancoax_waneth_03001001056>Test Mtu lan_coax automatic --
+tc_mtu_lancoax_waneth_03001001057>Test Mtu lan_coax automatic --
+tc_mtu_lancoax_waneth_03001001058>Test Mtu lan_coax automatic --
+tc_mtu_lancoax_waneth_03001001059>Test Mtu lan_coax automatic --
+tc_mtu_lancoax_waneth_03001001060>Test Mtu lan_coax automatic --
+tc_mtu_lancoax_waneth_03001001061>Test Mtu lan_coax automatic --
+tc_mtu_lancoax_waneth_03001001062>Test Mtu lan_coax automatic --
+tc_mtu_lancoax_waneth_03001001063>Test Mtu lan_coax automatic --
+tc_mtu_lancoax_waneth_03001001064>Test Mtu lan_coax automatic --
+tc_mtu_lancoax_waneth_03001001065>Test Mtu lan_coax automatic --
+tc_mtu_lancoax_waneth_03001001066>Test Mtu lan_coax automatic --
+tc_mtu_lancoax_waneth_03001001067>Test Mtu lan_coax manual mtu=1500 --
+tc_mtu_lancoax_waneth_03001001068>Test Mtu lan_coax manual mtu=1500 --
+tc_mtu_lancoax_waneth_03001001069>Test Mtu lan_coax manual mtu=1500 --
+tc_mtu_lancoax_waneth_03001001070>Test Mtu lan_coax manual mtu=512 --
+tc_mtu_lancoax_waneth_03001001071>Test Mtu lan_coax manual mtu=512 --
+tc_mtu_lancoax_waneth_03001001072>Test Mtu lan_coax manual mtu=512 --
+tc_mtu_lancoax_waneth_03001001073>Test Mtu lan_coax manual mtu=256 --
+tc_mtu_lancoax_waneth_03001001074>Test Mtu lan_coax manual mtu=256 --
+tc_mtu_lancoax_waneth_03001001075>Test Mtu lan_coax manual mtu=256 --
+tc_mtu_lancoax_waneth_03001001076>Test Mtu lan_coax manual mtu=68 --
+tc_mtu_lancoax_waneth_03001001077>Test Mtu lan_coax manual mtu=68 --
+tc_mtu_lancoax_waneth_03001001078>Test Mtu lan_coax manual mtu=68 --
+tc_channel_notshark_03004005657_enablepwd>To test Lan Coax, Channel set as Automatic, with default channel passwd
+tc_channel_notshark_03004005658_enablepwd>To test Lan Coax, Channel set as 1150MHz, with default channel passwd
+tc_channel_notshark_03004005659_enablepwd>To test Lan Coax, Channel set as 1200MHz, with default channel passwd
+tc_channel_notshark_03004005660_enablepwd>To test Lan Coax, Channel set as 1250MHz, with default channel passwd
+tc_channel_notshark_03004005661_enablepwd>To test Lan Coax, Channel set as 1300MHz, with default channel passwd
+tc_channel_notshark_03004005662_enablepwd>To test Lan Coax, Channel set as 1350MHz, with default channel passwd
+tc_channel_notshark_03004005663_enablepwd>To test Lan Coax, Channel set as 1400MHz, with default channel passwd
+tc_channel_notshark_03004005664_enablepwd>To test Lan Coax, Channel set as 1450MHz, with default channel passwd
+tc_channel_notshark_03004005665_enablepwd>To test Lan Coax, Channel set as 1500MHz, with default channel passwd
+tc_channel_autodut_1_enablepwd>To test Lan Coax, Channel set as Automatic, ECB as 1150MHz, with default channel passwd
+tc_channel_autodut_2_enablepwd>To test Lan Coax, Channel set as Automatic, ECB as 1200MHz, with default channel passwd
+tc_channel_autodut_3_enablepwd>To test Lan Coax, Channel set as Automatic, ECB as 1250MHz, with default channel passwd
+tc_channel_autodut_4_enablepwd>To test Lan Coax, Channel set as Automatic, ECB as 1300MHz, with default channel passwd
+tc_channel_autodut_5_enablepwd>To test Lan Coax, Channel set as Automatic, ECB as 1350MHz, with default channel passwd
+tc_channel_autodut_6_enablepwd>To test Lan Coax, Channel set as Automatic, ECB as 1400MHz, with default channel passwd
+tc_channel_autodut_7_enablepwd>To test Lan Coax, Channel set as Automatic, ECB as 1450MHz, with default channel passwd
+tc_channel_autodut_8_enablepwd>To test Lan Coax, Channel set as Automatic, ECB as 1500MHz, with default channel passwd
+tc_channel_ecbdut_1_enablepwd>To test Lan Coax, Channel set as 1150MHz, ECB as Automatically, with default channel passwd
+tc_channel_ecbdut_2_enablepwd>To test Lan Coax, Channel set as 1200MHz, ECB as Automatically, with default channel passwd
+tc_channel_ecbdut_3_enablepwd>To test Lan Coax, Channel set as 1250MHz, ECB as Automatically, with default channel passwd
+tc_channel_ecbdut_4_enablepwd>To test Lan Coax, Channel set as 1300MHz, ECB as Automatically, with default channel passwd
+tc_channel_ecbdut_5_enablepwd>To test Lan Coax, Channel set as 1350MHz, ECB as Automatically, with default channel passwd
+tc_channel_ecbdut_6_enablepwd>To test Lan Coax, Channel set as 1400MHz, ECB as Automatically, with default channel passwd
+tc_channel_ecbdut_7_enablepwd>To test Lan Coax, Channel set as 1450MHz, ECB as Automatically, with default channel passwd
+tc_channel_ecbdut_8_enablepwd>To test Lan Coax, Channel set as 1500MHz, ECB as Automatically, with default channel passwd
+tc_channel_dut1150_1_enablepwd>To test Lan Coax, Channel set as 1150MHz, ECB as 1200MHz, with default channel passwd
+tc_channel_dut1150_2_enablepwd>To test Lan Coax, Channel set as 1150MHz, ECB as 1250MHz, with default channel passwd
+tc_channel_dut1150_3_enablepwd>To test Lan Coax, Channel set as 1150MHz, ECB as 1300MHz, with default channel passwd
+tc_channel_dut1150_4_enablepwd>To test Lan Coax, Channel set as 1150MHz, ECB as 1350MHz, with default channel passwd
+tc_channel_dut1150_5_enablepwd>To test Lan Coax, Channel set as 1150MHz, ECB as 1400MHz, with default channel passwd
+tc_channel_dut1150_6_enablepwd>To test Lan Coax, Channel set as 1150MHz, ECB as 1450MHz, with default channel passwd
+tc_channel_dut1150_7_enablepwd>To test Lan Coax, Channel set as 1150MHz, ECB as 1500MHz, with default channel passwd
+tc_channel_dut1200_1_enablepwd>To test Lan Coax, Channel set as 1200MHz, ECB as 1150MHz, with default channel passwd
+tc_channel_dut1200_2_enablepwd>To test Lan Coax, Channel set as 1200MHz, ECB as 1250MHz, with default channel passwd
+tc_channel_dut1200_3_enablepwd>To test Lan Coax, Channel set as 1200MHz, ECB as 1300MHz, with default channel passwd
+tc_channel_dut1200_4_enablepwd>To test Lan Coax, Channel set as 1200MHz, ECB as 1350MHz, with default channel passwd
+tc_channel_dut1200_5_enablepwd>To test Lan Coax, Channel set as 1200MHz, ECB as 1400MHz, with default channel passwd
+tc_channel_dut1200_6_enablepwd>To test Lan Coax, Channel set as 1200MHz, ECB as 1450MHz, with default channel passwd
+tc_channel_dut1200_7_enablepwd>To test Lan Coax, Channel set as 1200MHz, ECB as 1500MHz, with default channel passwd
+tc_channel_dut1250_1_enablepwd>To test Lan Coax, Channel set as 1250MHz, ECB as 1150MHz, with default channel passwd
+tc_channel_dut1250_2_enablepwd>To test Lan Coax, Channel set as 1250MHz, ECB as 1200MHz, with default channel passwd
+tc_channel_dut1250_3_enablepwd>To test Lan Coax, Channel set as 1250MHz, ECB as 1300MHz, with default channel passwd
+tc_channel_dut1250_4_enablepwd>To test Lan Coax, Channel set as 1250MHz, ECB as 1350MHz, with default channel passwd
+tc_channel_dut1250_5_enablepwd>To test Lan Coax, Channel set as 1250MHz, ECB as 1400MHz, with default channel passwd
+tc_channel_dut1250_6_enablepwd>To test Lan Coax, Channel set as 1250MHz, ECB as 1450MHz, with default channel passwd
+tc_channel_dut1250_7_enablepwd>To test Lan Coax, Channel set as 1250MHz, ECB as 1500MHz, with default channel passwd
+tc_channel_dut1300_1_enablepwd>To test Lan Coax, Channel set as 1300MHz, ECB as 1150MHz, with default channel passwd
+tc_channel_dut1300_2_enablepwd>To test Lan Coax, Channel set as 1300MHz, ECB as 1200MHz, with default channel passwd
+tc_channel_dut1300_3_enablepwd>To test Lan Coax, Channel set as 1300MHz, ECB as 1250MHz, with default channel passwd
+tc_channel_dut1300_4_enablepwd>To test Lan Coax, Channel set as 1300MHz, ECB as 1350MHz, with default channel passwd
+tc_channel_dut1300_5_enablepwd>To test Lan Coax, Channel set as 1300MHz, ECB as 1400MHz, with default channel passwd
+tc_channel_dut1300_6_enablepwd>To test Lan Coax, Channel set as 1300MHz, ECB as 1450MHz, with default channel passwd
+tc_channel_dut1300_7_enablepwd>To test Lan Coax, Channel set as 1300MHz, ECB as 1500MHz, with default channel passwd
+tc_channel_dut1350_1_enablepwd>To test Lan Coax, Channel set as 1350MHz, ECB as 1150MHz, with default channel passwd
+tc_channel_dut1350_2_enablepwd>To test Lan Coax, Channel set as 1350MHz, ECB as 1200MHz, with default channel passwd
+tc_channel_dut1350_3_enablepwd>To test Lan Coax, Channel set as 1350MHz, ECB as 1250MHz, with default channel passwd
+tc_channel_dut1350_4_enablepwd>To test Lan Coax, Channel set as 1350MHz, ECB as 1300MHz, with default channel passwd
+tc_channel_dut1350_5_enablepwd>To test Lan Coax, Channel set as 1350MHz, ECB as 1400MHz, with default channel passwd
+tc_channel_dut1350_6_enablepwd>To test Lan Coax, Channel set as 1350MHz, ECB as 1450MHz, with default channel passwd
+tc_channel_dut1350_7_enablepwd>To test Lan Coax, Channel set as 1350MHz, ECB as 1500MHz, with default channel passwd
+tc_channel_dut1400_1_enablepwd>To test Lan Coax, Channel set as 1400MHz, ECB as 1150MHz, with default channel passwd
+tc_channel_dut1400_2_enablepwd>To test Lan Coax, Channel set as 1400MHz, ECB as 1200MHz, with default channel passwd
+tc_channel_dut1400_3_enablepwd>To test Lan Coax, Channel set as 1400MHz, ECB as 1250MHz, with default channel passwd
+tc_channel_dut1400_4_enablepwd>To test Lan Coax, Channel set as 1400MHz, ECB as 1300MHz, with default channel passwd
+tc_channel_dut1400_5_enablepwd>To test Lan Coax, Channel set as 1400MHz, ECB as 1350MHz, with default channel passwd
+tc_channel_dut1400_6_enablepwd>To test Lan Coax, Channel set as 1400MHz, ECB as 1450MHz, with default channel passwd
+tc_channel_dut1400_7_enablepwd>To test Lan Coax, Channel set as 1400MHz, ECB as 1500MHz, with default channel passwd
+tc_channel_dut1450_1_enablepwd>To test Lan Coax, Channel set as 1450MHz, ECB as 1150MHz, with default channel passwd
+tc_channel_dut1450_2_enablepwd>To test Lan Coax, Channel set as 1450MHz, ECB as 1200MHz, with default channel passwd
+tc_channel_dut1450_3_enablepwd>To test Lan Coax, Channel set as 1450MHz, ECB as 1250MHz, with default channel passwd
+tc_channel_dut1450_4_enablepwd>To test Lan Coax, Channel set as 1450MHz, ECB as 1300MHz, with default channel passwd
+tc_channel_dut1450_5_enablepwd>To test Lan Coax, Channel set as 1450MHz, ECB as 1350MHz, with default channel passwd
+tc_channel_dut1450_6_enablepwd>To test Lan Coax, Channel set as 1450MHz, ECB as 1400MHz, with default channel passwd
+tc_channel_dut1450_7_enablepwd>To test Lan Coax, Channel set as 1450MHz, ECB as 1500MHz, with default channel passwd
+tc_channel_dut1500_1_enablepwd>To test Lan Coax, Channel set as 1500MHz, ECB as 1150MHz, with default channel passwd
+tc_channel_dut1500_2_enablepwd>To test Lan Coax, Channel set as 1500MHz, ECB as 1200MHz, with default channel passwd
+tc_channel_dut1500_3_enablepwd>To test Lan Coax, Channel set as 1500MHz, ECB as 1250MHz, with default channel passwd
+tc_channel_dut1500_4_enablepwd>To test Lan Coax, Channel set as 1500MHz, ECB as 1300MHz, with default channel passwd
+tc_channel_dut1500_5_enablepwd>To test Lan Coax, Channel set as 1500MHz, ECB as 1350MHz, with default channel passwd
+tc_channel_dut1500_6_enablepwd>To test Lan Coax, Channel set as 1500MHz, ECB as 1400MHz, with default channel passwd
+tc_channel_dut1500_7_enablepwd>To test Lan Coax, Channel set as 1500MHz, ECB as 1450MHz, with default channel passwd
+tc_channel_notshark_03004005657>To test Lan Coax, Channel set as Automatic
+tc_channel_notshark_03004005658>To test Lan Coax, Channel set as 1150MHz
+tc_channel_notshark_03004005659>To test Lan Coax, Channel set as 1200MHz
+tc_channel_notshark_03004005660>To test Lan Coax, Channel set as 1250MHz
+tc_channel_notshark_03004005661>To test Lan Coax, Channel set as 1300MHz
+tc_channel_notshark_03004005662>To test Lan Coax, Channel set as 1350MHz
+tc_channel_notshark_03004005663>To test Lan Coax, Channel set as 1400MHz
+tc_channel_notshark_03004005664>To test Lan Coax, Channel set as 1450MHz
+tc_channel_notshark_03004005665>To test Lan Coax, Channel set as 1500MHz
+tc_channel_autodut_1>To test Lan Coax, Channel set as Automatic, ECB as 1150MHz
+tc_channel_autodut_2>To test Lan Coax, Channel set as Automatic, ECB as 1200MHz
+tc_channel_autodut_3>To test Lan Coax, Channel set as Automatic, ECB as 1250MHz
+tc_channel_autodut_4>To test Lan Coax, Channel set as Automatic, ECB as 1300MHz
+tc_channel_autodut_5>To test Lan Coax, Channel set as Automatic, ECB as 1350MHz
+tc_channel_autodut_6>To test Lan Coax, Channel set as Automatic, ECB as 1400MHz
+tc_channel_autodut_7>To test Lan Coax, Channel set as Automatic, ECB as 1450MHz
+tc_channel_autodut_8>To test Lan Coax, Channel set as Automatic, ECB as 1500MHz
+tc_channel_ecbdut_1>To test Lan Coax, Channel set as 1150MHz, ECB as Automatically
+tc_channel_ecbdut_2>To test Lan Coax, Channel set as 1200MHz, ECB as Automatically
+tc_channel_ecbdut_3>To test Lan Coax, Channel set as 1250MHz, ECB as Automatically
+tc_channel_ecbdut_4>To test Lan Coax, Channel set as 1300MHz, ECB as Automatically
+tc_channel_ecbdut_5>To test Lan Coax, Channel set as 1350MHz, ECB as Automatically
+tc_channel_ecbdut_6>To test Lan Coax, Channel set as 1400MHz, ECB as Automatically
+tc_channel_ecbdut_7>To test Lan Coax, Channel set as 1450MHz, ECB as Automatically
+tc_channel_ecbdut_8>To test Lan Coax, Channel set as 1500MHz, ECB as Automatically
+tc_channel_dut1150_1>To test Lan Coax, Channel set as 1150MHz, ECB as 1200MHz
+tc_channel_dut1150_2>To test Lan Coax, Channel set as 1150MHz, ECB as 1250MHz
+tc_channel_dut1150_3>To test Lan Coax, Channel set as 1150MHz, ECB as 1300MHz
+tc_channel_dut1150_4>To test Lan Coax, Channel set as 1150MHz, ECB as 1350MHz
+tc_channel_dut1150_5>To test Lan Coax, Channel set as 1150MHz, ECB as 1400MHz
+tc_channel_dut1150_6>To test Lan Coax, Channel set as 1150MHz, ECB as 1450MHz
+tc_channel_dut1150_7>To test Lan Coax, Channel set as 1150MHz, ECB as 1500MHz
+tc_channel_dut1200_1>To test Lan Coax, Channel set as 1200MHz, ECB as 1150MHz
+tc_channel_dut1200_2>To test Lan Coax, Channel set as 1200MHz, ECB as 1250MHz
+tc_channel_dut1200_3>To test Lan Coax, Channel set as 1200MHz, ECB as 1300MHz
+tc_channel_dut1200_4>To test Lan Coax, Channel set as 1200MHz, ECB as 1350MHz
+tc_channel_dut1200_5>To test Lan Coax, Channel set as 1200MHz, ECB as 1400MHz
+tc_channel_dut1200_6>To test Lan Coax, Channel set as 1200MHz, ECB as 1450MHz
+tc_channel_dut1200_7>To test Lan Coax, Channel set as 1200MHz, ECB as 1500MHz
+tc_channel_dut1250_1>To test Lan Coax, Channel set as 1250MHz, ECB as 1150MHz
+tc_channel_dut1250_2>To test Lan Coax, Channel set as 1250MHz, ECB as 1200MHz
+tc_channel_dut1250_3>To test Lan Coax, Channel set as 1250MHz, ECB as 1300MHz
+tc_channel_dut1250_4>To test Lan Coax, Channel set as 1250MHz, ECB as 1350MHz
+tc_channel_dut1250_5>To test Lan Coax, Channel set as 1250MHz, ECB as 1400MHz
+tc_channel_dut1250_6>To test Lan Coax, Channel set as 1250MHz, ECB as 1450MHz
+tc_channel_dut1250_7>To test Lan Coax, Channel set as 1250MHz, ECB as 1500MHz
+tc_channel_dut1300_1>To test Lan Coax, Channel set as 1300MHz, ECB as 1150MHz
+tc_channel_dut1300_2>To test Lan Coax, Channel set as 1300MHz, ECB as 1200MHz
+tc_channel_dut1300_3>To test Lan Coax, Channel set as 1300MHz, ECB as 1250MHz
+tc_channel_dut1300_4>To test Lan Coax, Channel set as 1300MHz, ECB as 1350MHz
+tc_channel_dut1300_5>To test Lan Coax, Channel set as 1300MHz, ECB as 1400MHz
+tc_channel_dut1300_6>To test Lan Coax, Channel set as 1300MHz, ECB as 1450MHz
+tc_channel_dut1300_7>To test Lan Coax, Channel set as 1300MHz, ECB as 1500MHz
+tc_channel_dut1350_1>To test Lan Coax, Channel set as 1350MHz, ECB as 1150MHz
+tc_channel_dut1350_2>To test Lan Coax, Channel set as 1350MHz, ECB as 1200MHz
+tc_channel_dut1350_3>To test Lan Coax, Channel set as 1350MHz, ECB as 1250MHz
+tc_channel_dut1350_4>To test Lan Coax, Channel set as 1350MHz, ECB as 1300MHz
+tc_channel_dut1350_5>To test Lan Coax, Channel set as 1350MHz, ECB as 1400MHz
+tc_channel_dut1350_6>To test Lan Coax, Channel set as 1350MHz, ECB as 1450MHz
+tc_channel_dut1350_7>To test Lan Coax, Channel set as 1350MHz, ECB as 1500MHz
+tc_channel_dut1400_1>To test Lan Coax, Channel set as 1400MHz, ECB as 1150MHz
+tc_channel_dut1400_2>To test Lan Coax, Channel set as 1400MHz, ECB as 1200MHz
+tc_channel_dut1400_3>To test Lan Coax, Channel set as 1400MHz, ECB as 1250MHz
+tc_channel_dut1400_4>To test Lan Coax, Channel set as 1400MHz, ECB as 1300MHz
+tc_channel_dut1400_5>To test Lan Coax, Channel set as 1400MHz, ECB as 1350MHz
+tc_channel_dut1400_6>To test Lan Coax, Channel set as 1400MHz, ECB as 1450MHz
+tc_channel_dut1400_7>To test Lan Coax, Channel set as 1400MHz, ECB as 1500MHz
+tc_channel_dut1450_1>To test Lan Coax, Channel set as 1450MHz, ECB as 1150MHz
+tc_channel_dut1450_2>To test Lan Coax, Channel set as 1450MHz, ECB as 1200MHz
+tc_channel_dut1450_3>To test Lan Coax, Channel set as 1450MHz, ECB as 1250MHz
+tc_channel_dut1450_4>To test Lan Coax, Channel set as 1450MHz, ECB as 1300MHz
+tc_channel_dut1450_5>To test Lan Coax, Channel set as 1450MHz, ECB as 1350MHz
+tc_channel_dut1450_6>To test Lan Coax, Channel set as 1450MHz, ECB as 1400MHz
+tc_channel_dut1450_7>To test Lan Coax, Channel set as 1450MHz, ECB as 1500MHz
+tc_channel_dut1500_1>To test Lan Coax, Channel set as 1500MHz, ECB as 1150MHz
+tc_channel_dut1500_2>To test Lan Coax, Channel set as 1500MHz, ECB as 1200MHz
+tc_channel_dut1500_3>To test Lan Coax, Channel set as 1500MHz, ECB as 1250MHz
+tc_channel_dut1500_4>To test Lan Coax, Channel set as 1500MHz, ECB as 1300MHz
+tc_channel_dut1500_5>To test Lan Coax, Channel set as 1500MHz, ECB as 1350MHz
+tc_channel_dut1500_6>To test Lan Coax, Channel set as 1500MHz, ECB as 1400MHz
+tc_channel_dut1500_7>To test Lan Coax, Channel set as 1500MHz, ECB as 1450MHz
+set_default_time>Set Default Time
+tc_dhcplaneth_leasetime>tc_dhcp_03001000867.xml>Test my network page\'s IP Address Distribution--Network (Home/Office)--Disable
+tc_dhcp_03001000868>Test my network page\'s IP Address Distribution--Network (Home/Office)--with C type Address
+tc_dhcp_03001000869>Test my network page\'s IP Address Distribution--Network (Home/Office)--with B type Address
+tc_dhcp_03001000870>Test my network page\'s IP Address Distribution--Network (Home/Office)--with B type Address
+tc_dhcp_03001000871>Test my network page\'s IP Address Distribution--Network (Home/Office)--with A type Address
+tc_dhcp_03001000872>Test my network page\'s IP Address Distribution--Network (Home/Office)--with A type Address
+tc_dhcp_03001000873>Test my network page\'s IP Address Distribution--Network (Home/Office)--with A type Address
+tc_dhcp_03001000874>Test LAN Ether DHCP relay with C type Address
+tc_dhcp_03001000875>Test LAN Ether DHCP relay with B subnet
+tc_dhcp_03001000876>Test LAN Ether DHCP relay with B subnet
+tc_dhcp_03001000877>Test LAN Ether DHCP relay with A subnet
+tc_dhcp_03001000878>Test LAN Ether DHCP relay with A subnet
+tc_dhcp_03001000879>Test LAN Ether DHCP relay with A subnet
+tc_dhcpclient_03001000908>Test LAN Ether DHCP client enabled, not to override subnet mask
+tc_dhcpclient_03001000909>Test LAN Ether DHCP client enabled, oeverride subnet mask with C subnet
+tc_dhcpclient_03001000910>Test LAN Ether DHCP client enabled, oeverride subnet mask with B subnet
+tc_dhcpclient_03001000911>Test LAN Ether DHCP client enabled, oeverride subnet mask with A subnet
+tc_dnsserver_03001000906>Test my network page\'s DNS Server--Network (Home/Office)
+tc_dnsserver_03001000907>Test my network page\'s DNS Server--Network (Home/Office)
+tc_dnsserver_03001000912>Test my network page\'s DNS Server--Network (Home/Office) with invalid urls
+tc_dnsserver_03001000913>Test my network page\'s DNS Server--Network (Home/Office) with invalid urls
+tc_hostname_03001000880>Test my network page\'s IP Address Distribution--Network (Home/Office)--with C type Address
+tc_hostname_03001000881>Test my network page\'s IP Address Distribution--Network (Home/Office)--with B type Address
+tc_hostname_03001000882>Test my network page\'s IP Address Distribution--Network (Home/Office)--with B type Address
+tc_hostname_03001000883>Test my network page\'s IP Address Distribution--Network (Home/Office)--with A type Address
+tc_hostname_03001000884>Test my network page\'s IP Address Distribution--Network (Home/Office)--with A type Address
+tc_hostname_03001000885>Test my network page\'s IP Address Distribution--Network (Home/Office)--with A type Address
+tc_hostname_03001000886>Test my network page\'s IP Address Distribution--Network (Home/Office)--with C type Address
+tc_hostname_03001000887>Test my network page\'s IP Address Distribution--Network (Home/Office)--with B type Address
+tc_hostname_03001000888>Test my network page\'s IP Address Distribution--Network (Home/Office)--with B type Address
+tc_hostname_03001000889>Test my network page\'s IP Address Distribution--Network (Home/Office)--with A type Address
+tc_hostname_03001000890>Test my network page\'s IP Address Distribution--Network (Home/Office)--with A type Address
+tc_hostname_03001000891>Test my network page\'s IP Address Distribution--Network (Home/Office)--with A type Address
+tc_hostname_03001000892>Test my network page\'s IP Address Distribution--Network (Home/Office)--with C type Address
+tc_hostname_03001000893>Test my network page\'s IP Address Distribution--Network (Home/Office)--with B type Address
+tc_hostname_03001000894>Test my network page\'s IP Address Distribution--Network (Home/Office)--with B type Address
+tc_hostname_03001000895>Test my network page\'s IP Address Distribution--Network (Home/Office)--with A type Address
+tc_hostname_03001000896>Test my network page\'s IP Address Distribution--Network (Home/Office)--with A type Address
+tc_hostname_03001000897>Test my network page\'s IP Address Distribution--Network (Home/Office)--with A type Address
+tc_mtu_03001001000>Test Mtu lan_eth automatic --
+tc_mtu_03001001001>Test Mtu lan_eth automatic --
+tc_mtu_03001001002>Test Mtu lan_eth automatic --
+tc_mtu_03001001006>Test Mtu lan_eth manual value 256 --
+tc_mtu_03001001007>Test Mtu lan_eth manual value 256 --
+tc_mtu_03001001008>Test Mtu lan_eth mtu = 256 --
+tc_mtu_03001001009>Test Mtu lan_eth manual value 512 --
+tc_mtu_03001001010>Test Mtu lan_eth manual value 512 --
+tc_mtu_03001001011>Test Mtu lan_eth mtu = 512 --
+tc_mtu_03001001012>Test Mtu lan_eth manual value 1500 --
+tc_mtu_03001001013>Test Mtu lan_eth manual value 1500 --
+tc_mtu_03001001014>Test Mtu lan_eth mtu = 1500 --
+tc_mtu_03001001015>Test Mtu lan_eth automatic --
+tc_mtu_03001001016>Test Mtu lan_eth automatic --
+tc_mtu_03001001017>Test Mtu lan_eth automatic --
+tc_mtu_03001001018>Test Mtu lan_eth automatic --
+tc_mtu_03001001019>Test Mtu lan_eth automatic --
+tc_mtu_03001001020>Test Mtu lan_eth automatic --
+tc_mtu_03001001021>Test Mtu lan_eth automatic --
+tc_mtu_03001001022>Test Mtu lan_eth automatic --
+tc_mtu_03001001023>Test Mtu lan_eth automatic --
+tc_mtu_03001001024>Test Mtu lan_eth automatic --
+tc_mtu_03001001025>Test Mtu lan_eth automatic --
+tc_mtu_03001001026>Test Mtu lan_eth automatic --
+tc_mtu_03001001027>Test Mtu lan_eth manual mtu=1500 --
+tc_mtu_03001001028>Test Mtu lan_eth manual mtu=1500 --
+tc_mtu_03001001029>Test Mtu lan_eth manual mtu=1500 --
+tc_mtu_03001001030>Test Mtu lan_eth manual mtu=512 --
+tc_mtu_03001001031>Test Mtu lan_eth manual mtu=512 --
+tc_mtu_03001001032>Test Mtu lan_eth manual mtu=512 --
+tc_mtu_03001001033>Test Mtu lan_eth manual mtu=256 --
+tc_mtu_03001001034>Test Mtu lan_eth manual mtu=256 --
+tc_mtu_03001001035>Test Mtu lan_eth manual mtu=256 --
+tc_dhcplaneth_invaildleasetime_03001001050>To start DHCP service on BHR2 Lan ether interface, verify lease time "!" sec is invalid
+tc_dhcplaneth_invaildleasetime_03001001051>To start DHCP service on BHR2 Lan ether interface, verify lease time "@" sec is ininvalid
+tc_dhcplaneth_invaildleasetime_03001001052>To start DHCP service on BHR2 Lan ether interface, verify lease time "#" sec is invalid
+tc_dhcplaneth_invaildleasetime_03001001053>To start DHCP service on BHR2 Lan ether interface, verify lease time "$" sec is invalid
+tc_dhcplaneth_invaildleasetime_03001001054>To start DHCP service on BHR2 Lan ether interface, verify lease time "%" sec is invalid
+tc_dhcplaneth_invaildleasetime_03001001055>To start DHCP service on BHR2 Lan ether interface, verify lease time "^" sec is invalid
+tc_dhcplaneth_invaildleasetime_03001001056>To start DHCP service on BHR2 Lan ether interface, verify lease time "&amp;" sec is invalid
+tc_dhcplaneth_invaildleasetime_03001001057>To start DHCP service on BHR2 Lan ether interface, verify lease time "*" sec is invalid
+tc_dhcplaneth_invaildleasetime_03001001058>To start DHCP service on BHR2 Lan ether interface, verify lease time "(" sec is invalid
+tc_dhcplaneth_invaildleasetime_03001001059>To start DHCP service on BHR2 Lan ether interface, verify lease time ")" sec is invalid
+tc_dhcplaneth_invaildleasetime_03001001060>To start DHCP service on BHR2 Lan ether interface, verify lease time "-" sec is invalid
+tc_dhcplaneth_invaildleasetime_03001001061>To start DHCP service on BHR2 Lan ether interface, verify lease time "+" sec is invalid
+tc_dhcplaneth_invaildleasetime_03001001062>To start DHCP service on BHR2 Lan ether interface, verify lease time "|" sec is invalid
+tc_dhcplaneth_invaildleasetime_03001001063>To start DHCP service on BHR2 Lan ether interface, verify lease time "[" sec is invalid
+tc_dhcplaneth_invaildleasetime_03001001064>To start DHCP service on BHR2 Lan ether interface, verify lease time ":" sec is invalid
+tc_dhcplaneth_invaildleasetime_03001001065>To start DHCP service on BHR2 Lan ether interface, verify lease time ";" sec is invalid
+tc_dhcplaneth_invaildleasetime_03001001066>To start DHCP service on BHR2 Lan ether interface, verify lease time "\'" sec is invalid
+tc_dhcplaneth_invaildleasetime_03001001067>To start DHCP service on BHR2 Lan ether interface, verify lease time "
+tc_dhcplaneth_invaildleasetime_03001001068>To start DHCP service on BHR2 Lan ether interface, verify lease time "?" sec is invalid
+tc_dhcplaneth_invaildleasetime_03001001069>To start DHCP service on BHR2 Lan ether interface, verify lease time "/" sec is invalid
+tc_dhcplaneth_invaildleasetime_03001001070>To start DHCP service on BHR2 Lan ether interface, verify lease time "." sec is invalid
+tc_dhcplaneth_invaildleasetime_03001001071>To start DHCP service on BHR2 Lan ether interface, verify lease time "~" sec is invalid
+tc_dhcplaneth_invaildleasetime_03001001072>To start DHCP service on BHR2 Lan ether interface, verify lease time "=" sec is invalid
+tc_dhcplaneth_invaildleasetime_03001001073>To start DHCP service on BHR2 Lan ether interface, verify lease time "_" sec is invalid
+tc_dhcplaneth_invaildleasetime_03001001074>To start DHCP service on BHR2 Lan ether interface, verify lease time "automation" sec is invalid
+tc_dhcplaneth_invaildleasetime_03001001075>To start DHCP service on BHR2 Lan ether interface, verify lease time "0" sec is invalid
+tc_dhcplaneth_invaildleasetime_03001001076>To start DHCP service on BHR2 Lan ether interface, verify lease time "43201" sec is invalid
+tc_dhcplaneth_invaildleasetime_03001001077>To start DHCP service on BHR2 Lan ether interface, verify lease time "-1" sec is invalid
+tc_dhcplaneth_invaildleasetime_03001001078>To start DHCP service on BHR2 Lan ether interface, verify lease time "43200" sec is invalid
+tc_dhcplaneth_leasetime43200_aclass1>To start DHCP service on BHR2 Lan ether interface, verify lease time 43200sec is valid
+tc_dhcplaneth_leasetime43200_aclass2>To start DHCP service on BHR2 Lan ether interface, verify lease time 43200sec is valid
+tc_dhcplaneth_leasetime43200_aclass3>To start DHCP service on BHR2 Lan ether interface, verify lease time 43200sec is valid
+tc_dhcplaneth_leasetime43200_bclass1>To start DHCP service on BHR2 Lan ether interface, verify lease time 43200sec is valid
+tc_dhcplaneth_leasetime43200_bclass2>To start DHCP service on BHR2 Lan ether interface, verify lease time 43200sec is valid
+tc_dhcplaneth_leasetime43200_cclass>To start DHCP service on BHR2 Lan ether interface, verify lease time 43200sec is valid
+tc_dhcplaneth_leasetime_aclass1>To start DHCP service on BHR2 Lan ether interface, verify lease time 1sec is valid
+tc_dhcplaneth_leasetime_aclass2>To start DHCP service on BHR2 Lan ether interface, verify lease time 1sec is valid
+tc_dhcplaneth_leasetime_aclass3>To start DHCP service on BHR2 Lan ether interface, verify lease time 1sec is valid
+tc_dhcplaneth_leasetime_bclass1>To start DHCP service on BHR2 Lan ether interface, verify lease time 1sec is valid
+tc_dhcplaneth_leasetime_bclass2>To start DHCP service on BHR2 Lan ether interface, verify lease time 1sec is valid
+tc_dhcplaneth_leasetime_cclass>To start DHCP service on BHR2 Lan ether interface, verify lease time 1sec is valid
+tc_pc_05001000001> create rule to block one URL(www.test1.com) and verify,then delete rule and verify again.
+tc_pc_05001000002>create rule to block one keyword test2 and verify,then delete rule and verify again.
+tc_pc_05001000003>create rule to block one URL(www.test1.com) and one keyword (test3) and verify,then delete rule and verify again.
+tc_pc_05001000004>create rule to allow one URL(www.test1.com) and verify,then delete rule and verify again.
+tc_pc_05001000005>create rule to allow one keyword(test2) and verify,then delete rule and verify again.
+tc_pc_05001000006>create rule to allow one URL(www.test1.com) and one keyword (test3) and verify,then delete rule and verify again.
+tc_pc_05001000007>create rule to block all Internet access and verify,then delete rule and verify again.
+tc_pc_05001000008>create rule to block all Internet access and verify,then delete rule and verify again.
+tc_pc_05001000011>test parental control\'s website with 50 and 51 characters length and 18 urls
+tc_pc_05001000012>test parental control\'s keyword with 50 and 51 characters length and 45 keywords 
+tc_pc_05001000013>the rule is Inactive in the time rules;create rule to block one URL(www.test1.com) and one keyword (test3) and verify,then delete rule and verify again.
+tc_pc_05001000014>create rule to allow one URL(www.test1.com) and verify,then delete rule and verify again.;and the rule is Inactive in the scheduled time
+tc_pc_05001000015>test the rule name with specail characters and the max length 64 character;create rule to allow one keyword(test2) and verify,then delete rule and verify again.
+tc_pc_05001000016> test 44 websites as 10.10.20.1--
+tc_pc_05001000017>the rule is Inactive in the schedule time ,create rule to block all Internet access and verify,then delete rule and verify again.
+tc_pc_05001000021>PC1 block two URL at 2:00am-4:00am,PC3 block two URL at 3:00am-5:00am
+tc_pc_05001000022>PC1 block three URL at 12:00pm-1:00am,PC3 allow three URL at 3:45pm-5:15pm
+tc_pc_05001000023>PC1 block three keywords at 12:00am-12:00pm,PC3 block ALL at 11:15am-5:45pm
+tc_pc_05001000024>PC1 block ALL at 12:00pm-1:00pm,PC3 allow two URL and two keywords at 3:30pm-12:00am
+tc_pc_05001000025>PC1 block ALL at 12:00pm-1:00pm,PC3 allow two URL and two keywords at 3:30pm-12:00am
+tc_pc_05001000031>PC1 block two URLs at 2:00am-4:00am,PC3 block two URLs at 3:00am-5:00am,change Time Zone to Alaska_Time, then delete all rules
+tc_pc_05001000032>PC1 block two URLs at 2:00am-4:00am,PC3 block two URLs at 3:00am-5:00am,change Time Zone to Central_Time, then delete all rules
+tc_pc_05001000033>PC1 block two URLs at 2:00am-4:00am,PC3 block two URLs at 3:00am-5:00am,change Time Zone to Greenwish_Mean_Time, then delete all rules
+tc_pc_05001000034>PC1 block two URLs at 2:00am-4:00am,PC3 block two URLs at 3:00am-5:00am,change Time Zone to Hawaii_Time, then delete all rules
+tc_pc_05001000035>PC1 block two URLs at 2:00am-4:00am,PC3 block two URLs at 3:00am-5:00am,change Time Zone Mountain_Time, then delete all rules
+tc_pc_05001000036>PC1 block two URLs at 2:00am-4:00am,PC3 block two URLs at 3:00am-5:00am,change Time Zone to Pacific_Time, then delete all rules
+tc_pc_05001000037>PC1 block two URLs at 2:00am-4:00am,PC3 block two URLs at 3:00am-5:00am,change Time Zone to other, then delete all rules
+tc_pc_05001000038>PC1 block three URLs ACTIVE at 12:00pm-1:00am,PC3 allow three keyword INACTIVE at 3:45pm-5:15pm,then change PC1 to INACTIVE and PC3 to ACTIVE,then delete rule for PC3 ONLY
+tc_pc_05001000039>PC1 blcok three keywords 12:00am-12:00pm on Monday,Tuesday,PC3 block All at 11:15am-5:45pm on Friday, Sunday,then delete keyword test1 on PC1 ONLY
+tc_pc_05001000040>PC1 allow two URLs and two keywords at 12:00pm-1:00pm on Monday, Tuesday,PC3 block ALL at 3:30pm-12:00am on Tuesday,Wednesday, Friday,then delete keyword test3 on PC1 ONLY
+tc_pc_05001000041>PC1 allow two URL and two keywords at 12:00pm-1:00pm all week, PC3 block All on Tuesday,Thursday and Saturday, then delete keyword tst4 on PC1 ONLY
+tc_pc_05001000042> PC1 allow all week and PC3 block on Tuesday, Thursday and Saturday,then change PC1 to allow on Wednesday,Thursday and PC3 to block ALL week,then delete rule for PC1
+tc_autoip_03008000001>set DUT as pppoe client  to Obtain an IP Address Automatically 
+tc_autoip_03008000002>set DUT as pppoe client  to Obtain an IP Address Automatically 
+tc_autoip_03008000003>set DUT as pppoe client  to Obtain an IP Address Automatically with override A class
+tc_autoip_03008000004>set DUT as pppoe client  to Obtain an IP Address Automatically with override A class
+tc_autoip_03008000005>set DUT as pppoe client  to Obtain an IP Address Automatically with override B class
+tc_autoip_03008000006>set DUT as pppoe client  to Obtain an IP Address Automatically with override B class
+tc_autoip_03008000007>set DUT as pppoe client  to Obtain an IP Address Automatically with override C class
+tc_autoip_03008000008>set DUT as pppoe client  to Obtain an IP Address Automatically with override C class
+tc_manualip_03008000009>DUT acts as pppoe client and sets IP address manually 
+tc_manualip_03008000010>DUT acts as pppoe client and sets IP address manually 
+tc_manualip_03008000011>DUT acts as pppoe client and sets IP address manually with override A class subnet
+tc_manualip_03008000012>DUT acts as pppoe client and sets IP address manually with override A class subnet
+tc_manualip_03008000013>DUT acts as pppoe client and sets IP address manually with override B class subnet
+tc_manualip_03008000014>DUT acts as pppoe client and sets IP address manually with override B class subnet
+tc_manualip_03008000015>DUT acts as pppoe client and sets IP address manually with override C class subnet
+tc_manualip_03008000016>DUT acts as pppoe client and sets IP address manually with override C class subnet
+tc_autodns_03008000017>set DUT as pppoe client to Obtain a DNS Server IP Address Automatically 
+tc_autodns_03008000018>set DUT as pppoe client to Obtain a DNS Server IP Address Automatically 
+tc_autodns_03008000019>set DUT as pppoe client to Obtain a DNS Server IP Address Automatically 
+tc_autodns_03008000020>set DUT as pppoe client to Obtain a DNS Server IP Address Automatically 
+tc_autodns_03008000021>set DUT as pppoe client to Obtain a DNS Server IP Address Automatically 
+tc_autodns_03008000022>set DUT as pppoe client to Obtain a DNS Server IP Address Automatically 
+tc_manualdns_03008000023>set DUT as pppoe client and set DNS Server IP Addresses Manually 
+tc_manualdns_03008000024>set DUT as pppoe client and set DNS Server IP Addresses Manually 
+tc_manualdns_03008000025>set DUT as pppoe client to set DNS Server IP Addresses Manually 
+tc_manualdns_03008000026>set DUT as pppoe client and set DNS Server IP Addresses Manually 
+tc_manualdns_03008000027>set DUT as pppoe client and set DNS Server IP Addresses Manually 
+tc_manualdns_03008000028>set DUT as pppoe client and set DNS Server IP Addresses Manually 
+tc_autoip_03007000001>set DUT as pppoe client  to Obtain an IP Address Automatically 
+tc_autoip_03007000002>set DUT as pppoe client  to Obtain an IP Address Automatically 
+tc_autoip_03007000003>set DUT as pppoe client  to Obtain an IP Address Automatically with override A class
+tc_autoip_03007000004>set DUT as pppoe client  to Obtain an IP Address Automatically with override A class
+tc_autoip_03007000005>set DUT as pppoe client  to Obtain an IP Address Automatically with override B class
+tc_autoip_03007000006>set DUT as pppoe client  to Obtain an IP Address Automatically with override B class
+tc_autoip_03007000007>set DUT as pppoe client  to Obtain an IP Address Automatically with override C class
+tc_autoip_03007000008>set DUT as pppoe client  to Obtain an IP Address Automatically with override C class
+tc_manualip_03007000009>DUT acts as pppoe client and sets IP address manually 
+tc_manualip_03007000010>DUT acts as pppoe client and sets IP address manually 
+tc_manualip_03007000011>DUT acts as pppoe client and sets IP address manually with override A class subnet
+tc_manualip_03007000012>DUT acts as pppoe client and sets IP address manually with override A class subnet
+tc_manualip_03007000013>DUT acts as pppoe client and sets IP address manually with override B class subnet
+tc_manualip_03007000014>DUT acts as pppoe client and sets IP address manually with override B class subnet
+tc_manualip_03007000015>DUT acts as pppoe client and sets IP address manually with override C class subnet
+tc_manualip_03007000016>DUT acts as pppoe client and sets IP address manually with override C class subnet
+tc_autodns_03007000017>set DUT as pppoe client to Obtain a DNS Server IP Address Automatically 
+tc_autodns_03007000018>set DUT as pppoe client to Obtain a DNS Server IP Address Automatically 
+tc_autodns_03007000019>set DUT as pppoe client to Obtain a DNS Server IP Address Automatically 
+tc_autodns_03007000020>set DUT as pppoe client to Obtain a DNS Server IP Address Automatically 
+tc_autodns_03007000021>set DUT as pppoe client to Obtain a DNS Server IP Address Automatically 
+tc_autodns_03007000022>set DUT as pppoe client to Obtain a DNS Server IP Address Automatically 
+tc_manualdns_03007000023>set DUT as pppoe client and set DNS Server IP Addresses Manually 
+tc_manualdns_03007000024>set DUT as pppoe client and set DNS Server IP Addresses Manually 
+tc_manualdns_03007000025>set DUT as pppoe client to set DNS Server IP Addresses Manually 
+tc_manualdns_03007000026>set DUT as pppoe client and set DNS Server IP Addresses Manually 
+tc_manualdns_03007000027>set DUT as pppoe client and set DNS Server IP Addresses Manually 
+tc_manualdns_03007000028>set DUT as pppoe client and set DNS Server IP Addresses Manually 

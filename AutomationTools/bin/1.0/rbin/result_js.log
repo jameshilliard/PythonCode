@@ -1,0 +1,23 @@
+{
+  "000000_login": {
+    "Info": {
+      "main": "Successfully logged in"
+    }
+  },
+  "9999_logout": {
+    "Info": {
+      "logout": "success",
+      "main": "Reached main page"
+    }
+  },
+  "000002_WS": {
+    "Info": {
+      "main": "Reached main page"
+    }
+  },
+  "000001_WS": {
+    "Info": {
+      "main": "Reached main page"
+    }
+  }
+}

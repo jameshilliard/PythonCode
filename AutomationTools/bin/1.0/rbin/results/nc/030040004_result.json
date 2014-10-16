@@ -1,0 +1,27 @@
+{
+  "9999_logout": {
+    "Info": {
+      "logout": "success",
+      "main": "Reached main page"
+    }
+  },
+  "0000_login": {
+    "Info": {
+      "main": "Successfully logged in"
+    }
+  },
+  "0004_NC": {
+    "Info": {
+      "DoSetup_Coax()->CM Ratio": "No CM Ratio key found",
+      "DoSetup_Coax()->Network": "Network = Network (Home\/Office)",
+      "DoSetup_Coax()->Channel": "Channel = Automatic",
+      "DoSetup_Coax()->MTU": "MTU = Automatic",
+      "DoSetup_Coax()->Privacy": "Privacy=off",
+      "main": "Reached main page",
+      "DoSetup_Coax()->Password": "No Password key found"
+    },
+    "result_info": {
+      "DoSetup_Coax()->Apply": "Coax Properties setup sucessful"
+    }
+  }
+}

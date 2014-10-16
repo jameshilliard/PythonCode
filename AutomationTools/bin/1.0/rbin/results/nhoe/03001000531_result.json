@@ -1,0 +1,24 @@
+{
+  "000531_NHOE": {
+    "Info": {
+      "main": "Reached main page"
+    },
+    "Error": {
+      "NetworkConnections()": "Did not reach Network Connections page",
+      "My Network": "did not reach page"
+    }
+  },
+  "9999_logout": {
+    "Info": {
+      "main": "Reached main page"
+    },
+    "Error": {
+      "logout": "failed"
+    }
+  },
+  "000000_login": {
+    "Info": {
+      "main": "Reached main page"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>device_initialize_WAN (ECB_LAN_WAN_MOCA)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File Tools/ECB_LAN_WAN_MOCA.rb, line 89</span>
+<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">device_initialize_WAN</span>     
+  <span class="ruby-comment cmt"># 9 is 1000MHz for BHR2 LAN MoCA</span>
+  <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>, <span class="ruby-value str">'fs_channel'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'9'</span>) 
+  <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">button</span>(<span class="ruby-identifier">:value</span>, <span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>   
+  <span class="ruby-identifier">puts</span> <span class="ruby-value str">'ECB is working in WAN MoCA (1000MHz)'</span>
+  <span class="ruby-identifier">sleep</span> <span class="ruby-value">1</span>
+<span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

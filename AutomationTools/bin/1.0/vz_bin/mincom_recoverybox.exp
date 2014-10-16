@@ -1,0 +1,30 @@
+#! /usr/bin/expect 
+# Composed by Hugo 03-20-209
+# This tool is used to reset BHR2 box to factory settings 
+# in minicom. 
+
+set timeout -1
+
+spawn minicom
+
+send "admin\n"
+send "admin1\n"
+
+expect {
+	"Username:*" {
+		send "admin\n"
+		exp_continue
+	}
+	"Password:*" {
+		send "admin1\n"
+		exp_continue
+	}
+	"Wireless Broadband*" {
+		send "system restore_factory_settings\n"
+	}
+}
+
+send "\001"
+send "Q\n"
+
+expect eof

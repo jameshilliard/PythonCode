@@ -1,0 +1,1 @@
+../common/acquirePortMappingIndex.sh

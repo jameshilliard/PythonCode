@@ -1,0 +1,1 @@
+../common/generate_tcdocs.pl

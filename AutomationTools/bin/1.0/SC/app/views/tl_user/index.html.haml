@@ -1,0 +1,6 @@
+#current_users
+  = render(:partial => "list", :locals => { :tl_users => @tl_users })
+#edit_tl_user.edit_tl_user
+  = render(:partial => "edit", :locals => { :new_user => @new_user } )
+%nav.secondary_nav
+  = link_to "Force Results Push", {:action => :force_results_push}, :method => :post

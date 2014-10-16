@@ -1,0 +1,1 @@
+../common/wifi_wpa_config.sh

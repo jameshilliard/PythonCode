@@ -1,0 +1,1 @@
+../Q2K/verify_effected_config.sh

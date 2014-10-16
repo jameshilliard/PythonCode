@@ -1,0 +1,31 @@
+%table
+  %tr
+    %th.sortable= sortthis("index","model", "Model Name")
+    %th Device Aliases
+    %th Usernames
+    %th Passwords
+    %th IPs
+    %th Actions
+  - devices.each do |device|
+    %tr.device{:id => device.id}
+      %td.device_type= device.model
+      %td.aliases
+        %ul.project_list
+          - device.aliases.each do |p|
+            %li= p
+      %td.usernames
+        %ul.project_list
+          - device.possible_usernames.each do |p|
+            %li= p
+      %td.passwords
+        %ul.project_list
+          - device.possible_passwords.each do |p|
+            %li= p
+      %td.ip_addresses
+        %ul.project_list
+          - device.possible_ips.each do |p|
+            %li= p
+      %td.actions
+        %nav.action_buttons
+          = link_to(image_tag(ACTION_EDIT,:border=>0), {:action => "edit", :id=>device.id}, :remote=>true)
+          = link_to(image_tag(ACTION_DELETE,:border=>0), {:action => "destroy", :id=>device.id}, :remote=>true)
