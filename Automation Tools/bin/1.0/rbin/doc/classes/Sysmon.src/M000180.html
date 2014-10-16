@@ -1,164 +1,0 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!DOCTYPE html 
-     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html>
-<head>
-  <title>igmp_proxy (Sysmon)</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
-</head>
-<body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File Sysmon/Sysmon.rb, line 1056</span>
-  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">igmp_proxy</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">info</span>) 
-    
-    <span class="ruby-comment cmt"># Will under the default &quot;IGMP Proxy&quot; page.</span>
-    <span class="ruby-comment cmt"># Check</span>
-    <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">include?</span><span class="ruby-value str">'IGMP Host Multicast Group Summary'</span>
-      <span class="ruby-comment cmt"># Not in this page.</span>
-      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'IGMP Proxy'</span>,<span class="ruby-value str">'Did NOT get the \'IGMP Proxy\' page.'</span>)
-      <span class="ruby-keyword kw">return</span>
-    <span class="ruby-keyword kw">end</span>    
-    
-    <span class="ruby-comment cmt"># Parse the json file.</span>
-    
-    <span class="ruby-identifier">iPageFlag</span> = <span class="ruby-value">1</span> <span class="ruby-comment cmt"># flag of the page</span>
-
-    <span class="ruby-comment cmt"># &quot;IGMP Host Multicast Group Summary&quot;</span>
-    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'IGMP Host Multicast Group Summary'</span>)
-      
-      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'IGMP Host Multicast Group Summary'</span>]
-      
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>
-        
-        <span class="ruby-comment cmt"># Set &quot;IGMP Host Multicast Group Summary&quot;</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:href</span>,<span class="ruby-value str">'javascript:mimic_button(\'btn_tab_goto: 9071..\', 1)'</span>).<span class="ruby-identifier">click</span>
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'IGMP Host Multicast Group Summary'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'IGMP Host Multicast Group Summary'</span>])
-        <span class="ruby-identifier">iPageFlag</span> = <span class="ruby-value">1</span>
- 
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
-        
-        <span class="ruby-comment cmt"># Clear &quot;IGMP Host Multicast Group Summary&quot;</span>
-        <span class="ruby-comment cmt"># Do nothing.</span>
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'IGMP Host Multicast Group Summary'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'IGMP Host Multicast Group Summary'</span>])
-        
-      <span class="ruby-keyword kw">else</span>
-        
-        <span class="ruby-comment cmt"># Wrong here</span>
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'IGMP Proxy'</span>,<span class="ruby-value str">'Did NOT find the value in \'IGMP Host Multicast Group Summary\'.'</span>)
-        <span class="ruby-keyword kw">return</span>
-        
-      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
-      
-    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if </span>
-
-    <span class="ruby-comment cmt"># &quot;IGMP Host Multicast Group Stats&quot;</span>
-    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'IGMP Host Multicast Group Stats'</span>)
-      
-      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'IGMP Host Multicast Group Stats'</span>]
-      
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'on'</span>
-        
-        <span class="ruby-comment cmt"># Set &quot;IGMP Host Multicast Group Stats&quot;</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:href</span>,<span class="ruby-value str">'javascript:mimic_button(\'btn_tab_goto: 9072..\', 1)'</span>).<span class="ruby-identifier">click</span>
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'IGMP Host Multicast Group Stats'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'IGMP Host Multicast Group Stats'</span>])
-        <span class="ruby-identifier">iPageFlag</span> = <span class="ruby-value">2</span>
- 
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'off'</span>
-        
-        <span class="ruby-comment cmt"># Clear &quot;IGMP Host Multicast Group Stats&quot;</span>
-        <span class="ruby-comment cmt"># Do nothing.</span>
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'IGMP Host Multicast Group Stats'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'IGMP Host Multicast Group Stats'</span>])
-        
-      <span class="ruby-keyword kw">else</span>
-        
-        <span class="ruby-comment cmt"># Wrong here</span>
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'IGMP Proxy'</span>,<span class="ruby-value str">'Did NOT find the value in \'IGMP Host Multicast Group Stats\'.'</span>)
-        <span class="ruby-keyword kw">return</span>
-        
-      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
-      
-    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if  </span>
-    
-    <span class="ruby-comment cmt"># Output the result here.</span>
-
-    <span class="ruby-comment cmt"># Find the table.</span>
-    <span class="ruby-identifier">sTable</span> = <span class="ruby-keyword kw">false</span>
-    <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">tables</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
-      <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">t</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value str">'Index'</span> <span class="ruby-keyword kw">and</span> 
-           <span class="ruby-identifier">t</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value str">'Interface'</span> <span class="ruby-keyword kw">and</span>
-           ( <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value str">'IGMP Host Multicast Group Stats'</span>) <span class="ruby-keyword kw">and</span>
-           ( <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value str">'IGMP Host Multicast Group Summary'</span>) <span class="ruby-keyword kw">and</span>
-           <span class="ruby-identifier">t</span>.<span class="ruby-identifier">row_count</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">1</span> )<span class="ruby-keyword kw">then</span>
-        <span class="ruby-identifier">sTable</span> = <span class="ruby-identifier">t</span>
-        <span class="ruby-keyword kw">break</span>
-      <span class="ruby-keyword kw">end</span>
-    <span class="ruby-keyword kw">end</span>
-    
-    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sTable</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">false</span>
-      <span class="ruby-comment cmt"># Wrong here</span>
-      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'IGMP Proxy'</span>,<span class="ruby-value str">'Did NOT find the target table.'</span>)
-      <span class="ruby-keyword kw">return</span>
-    <span class="ruby-keyword kw">end</span>
-    
-    <span class="ruby-identifier">iFlag</span> = <span class="ruby-value">0</span>
-    <span class="ruby-identifier">strEntry</span> = <span class="ruby-value str">&quot;&quot;</span>
-    
-    <span class="ruby-comment cmt"># Find the row</span>
-    <span class="ruby-identifier">sTable</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">row</span><span class="ruby-operator">|</span>
-      
-      <span class="ruby-identifier">iFlag</span> = <span class="ruby-identifier">iFlag</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
-      
-      <span class="ruby-comment cmt"># not for first line</span>
-      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">iFlag</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
-        <span class="ruby-keyword kw">next</span>
-      <span class="ruby-keyword kw">end</span>
-      <span class="ruby-identifier">strEntry</span> = <span class="ruby-value str">&quot;IGMP List&quot;</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">iFlag</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>).<span class="ruby-identifier">to_s</span>
-      
-      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">iPageFlag</span>
-        
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value">1</span>
-        
-        <span class="ruby-comment cmt"># Output in to the result.</span>
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">strEntry</span>,<span class="ruby-value str">'Name'</span>,<span class="ruby-value str">'IGMP Host Multicast Group Summary'</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">strEntry</span>,<span class="ruby-value str">'Index'</span>,<span class="ruby-identifier">row</span>[<span class="ruby-value">1</span>])
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">strEntry</span>,<span class="ruby-value str">'Interface'</span>,<span class="ruby-identifier">row</span>[<span class="ruby-value">2</span>])
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">strEntry</span>,<span class="ruby-value str">'Multicast Group'</span>,<span class="ruby-identifier">row</span>[<span class="ruby-value">3</span>])
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">strEntry</span>,<span class="ruby-value str">'Filter Mode'</span>,<span class="ruby-identifier">row</span>[<span class="ruby-value">4</span>])
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">strEntry</span>,<span class="ruby-value str">'Source List'</span>,<span class="ruby-identifier">row</span>[<span class="ruby-value">5</span>])
-           
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value">2</span>
-        
-        <span class="ruby-comment cmt"># Output in to the result.</span>
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">strEntry</span>,<span class="ruby-value str">'Name'</span>,<span class="ruby-value str">'IGMP Host Multicast Group Stats'</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">strEntry</span>,<span class="ruby-value str">'Index'</span>,<span class="ruby-identifier">row</span>[<span class="ruby-value">1</span>])
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">strEntry</span>,<span class="ruby-value str">'Interface'</span>,<span class="ruby-identifier">row</span>[<span class="ruby-value">2</span>])
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">strEntry</span>,<span class="ruby-value str">'Multicast Group'</span>,<span class="ruby-identifier">row</span>[<span class="ruby-value">3</span>])
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">strEntry</span>,<span class="ruby-value str">'Last Report Time'</span>,<span class="ruby-identifier">row</span>[<span class="ruby-value">4</span>])
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">strEntry</span>,<span class="ruby-value str">'Total Time'</span>,<span class="ruby-identifier">row</span>[<span class="ruby-value">5</span>])  
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">strEntry</span>,<span class="ruby-value str">'Total Joins'</span>,<span class="ruby-identifier">row</span>[<span class="ruby-value">6</span>]) 
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">strEntry</span>,<span class="ruby-value str">'Total Leaves'</span>,<span class="ruby-identifier">row</span>[<span class="ruby-value">7</span>])         
-        
-      <span class="ruby-keyword kw">else</span>
-        
-        <span class="ruby-comment cmt"># Wrong here</span>
-        <span class="ruby-comment cmt"># The programe self has some problems</span>
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'IGMP Proxy'</span>,<span class="ruby-value str">'Wrong program logistics.'</span>)
-        <span class="ruby-keyword kw">return</span>
-      
-      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
-      
-    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of each       </span>
- 
-    <span class="ruby-comment cmt"># Close the window</span>
-    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">include?</span><span class="ruby-value str">'Close'</span>
-      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>,<span class="ruby-value str">'Close'</span>).<span class="ruby-identifier">click</span>
-    <span class="ruby-keyword kw">end</span>
-
-    <span class="ruby-comment cmt"># Output the result</span>
-    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:Result_Info</span>,<span class="ruby-value str">'IGMP Proxy'</span>,<span class="ruby-value str">'SUCCESS'</span>)   
-    
-  <span class="ruby-keyword kw">end</span></pre>
-</body>
-</html>

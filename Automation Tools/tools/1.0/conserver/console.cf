@@ -1,5 +1,0 @@
-config * {
-        master localhost;
-# uses conserver from /etc/services, so you should check that it's there
-       port 782;
-}

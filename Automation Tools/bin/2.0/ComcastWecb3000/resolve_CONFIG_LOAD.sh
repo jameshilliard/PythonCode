@@ -1,1 +1,0 @@
-../common/resolve_CONFIG_LOAD.sh

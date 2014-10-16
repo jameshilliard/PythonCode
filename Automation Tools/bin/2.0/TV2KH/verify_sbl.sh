@@ -1,1 +1,0 @@
-../common/verify_sbl.sh

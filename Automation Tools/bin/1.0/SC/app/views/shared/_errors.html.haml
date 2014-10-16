@@ -1,7 +1,0 @@
-- if current_object.errors.any?
-  %h2
-    = pluralize(current_object.errors.count, "error")
-    prohibited this #{object_name} from being saved:
-  %ul
-    - current_object.errors.full_messages.each do |msg|
-      %li= msg

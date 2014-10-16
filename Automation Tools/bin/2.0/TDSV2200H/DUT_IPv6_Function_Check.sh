@@ -1,1 +1,0 @@
-../common/DUT_IPv6_Function_Check.sh

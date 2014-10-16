@@ -1,235 +1,0 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!DOCTYPE html 
-     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html>
-<head>
-  <title>port_configuration (Advanced)</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
-</head>
-<body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File Advanced/Advanced.rb, line 5427</span>
-  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">port_configuration</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
-
-    <span class="ruby-comment cmt"># Get to the advanced page.</span>
-    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">goto_advanced</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
-    
-    <span class="ruby-comment cmt"># Get to the &quot;Port Configuration&quot; page.</span>
-    <span class="ruby-keyword kw">begin</span>
-      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'Port Configuration'</span>).<span class="ruby-identifier">click</span>
-      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'Port Configuration'</span>, <span class="ruby-value str">'Reached page \'Port Configuration\'.'</span>)
-    <span class="ruby-keyword kw">rescue</span>
-      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:error</span>, <span class="ruby-value str">'Port Configuration'</span>, <span class="ruby-value str">'Did not reach \'Port Configuration\' page'</span>)
-      <span class="ruby-keyword kw">return</span>
-    <span class="ruby-keyword kw">end</span>
-    
-    <span class="ruby-comment cmt"># Check the key.</span>
-    <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'section'</span>) <span class="ruby-operator">&amp;&amp;</span>
-         <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'subsection'</span>) ) <span class="ruby-keyword kw">then</span>
-      <span class="ruby-comment cmt"># Right,go on.</span>
-    <span class="ruby-keyword kw">else</span>
-      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'local_administration'</span>,<span class="ruby-value str">'Some key NOT found.'</span>)
-      <span class="ruby-keyword kw">return</span>
-    <span class="ruby-keyword kw">end</span> 
-    
-    <span class="ruby-comment cmt"># parse the json file.</span>
-    
-    <span class="ruby-comment cmt"># &quot;Port1&quot;</span>
-    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Port1'</span>)
-      
-      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Port1'</span>]
-      
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Auto'</span>
-        
-        <span class="ruby-comment cmt"># Set &quot;Auto&quot;</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'port_name_0'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;0&quot;</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Port1'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Port1'</span>])
- 
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'10 Half Duplex'</span>
-        
-        <span class="ruby-comment cmt"># Set &quot;10 Half Duplex&quot;</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'port_name_0'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;1&quot;</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Port1'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Port1'</span>])
-        
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'10 Full Duplex'</span>
-        
-        <span class="ruby-comment cmt"># Set &quot;10 Full Duplex&quot;</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'port_name_0'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;2&quot;</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Port1'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Port1'</span>])
-        
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'100 Half Duplex'</span>
-        
-        <span class="ruby-comment cmt"># Set &quot;100 Half Duplex&quot;</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'port_name_0'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;3&quot;</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Port1'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Port1'</span>])
-               
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'100 Full Deplex'</span>
-        
-        <span class="ruby-comment cmt"># Set &quot;100 Full Duplex&quot;</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'port_name_0'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;4&quot;</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Port1'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Port1'</span>])
-        
-      <span class="ruby-keyword kw">else</span>
-        
-        <span class="ruby-comment cmt"># Wrong here</span>
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'port_configuration'</span>,<span class="ruby-value str">'Did NOT find the value in \'Port1\'.'</span>)
-        <span class="ruby-keyword kw">return</span>
-        
-      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
-      
-    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if  </span>
-
-    <span class="ruby-comment cmt"># &quot;Port2&quot;</span>
-    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Port2'</span>)
-      
-      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Port2'</span>]
-      
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Auto'</span>
-        
-        <span class="ruby-comment cmt"># Set &quot;Auto&quot;</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'port_name_1'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;0&quot;</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Port2'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Port2'</span>])
- 
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'10 Half Duplex'</span>
-        
-        <span class="ruby-comment cmt"># Set &quot;10 Half Duplex&quot;</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'port_name_1'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;1&quot;</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Port2'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Port2'</span>])
-        
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'10 Full Duplex'</span>
-        
-        <span class="ruby-comment cmt"># Set &quot;10 Full Duplex&quot;</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'port_name_1'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;2&quot;</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Port2'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Port2'</span>])
-        
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'100 Half Duplex'</span>
-        
-        <span class="ruby-comment cmt"># Set &quot;100 Half Duplex&quot;</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'port_name_1'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;3&quot;</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Port2'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Port2'</span>])
-               
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'100 Full Deplex'</span>
-        
-        <span class="ruby-comment cmt"># Set &quot;100 Full Duplex&quot;</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'port_name_1'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;4&quot;</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Port2'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Port2'</span>])
-        
-      <span class="ruby-keyword kw">else</span>
-        
-        <span class="ruby-comment cmt"># Wrong here</span>
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'port_configuration'</span>,<span class="ruby-value str">'Did NOT find the value in \'Port2\'.'</span>)
-        <span class="ruby-keyword kw">return</span>
-        
-      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
-      
-    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if    </span>
-    
-    <span class="ruby-comment cmt"># &quot;Port3&quot;</span>
-    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Port3'</span>)
-      
-      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Port3'</span>]
-      
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Auto'</span>
-        
-        <span class="ruby-comment cmt"># Set &quot;Auto&quot;</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'port_name_2'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;0&quot;</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Port3'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Port3'</span>])
- 
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'10 Half Duplex'</span>
-        
-        <span class="ruby-comment cmt"># Set &quot;10 Half Duplex&quot;</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'port_name_2'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;1&quot;</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Port3'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Port3'</span>])
-        
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'10 Full Duplex'</span>
-        
-        <span class="ruby-comment cmt"># Set &quot;10 Full Duplex&quot;</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'port_name_2'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;2&quot;</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Port3'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Port3'</span>])
-        
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'100 Half Duplex'</span>
-        
-        <span class="ruby-comment cmt"># Set &quot;100 Half Duplex&quot;</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'port_name_2'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;3&quot;</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Port3'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Port3'</span>])
-               
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'100 Full Deplex'</span>
-        
-        <span class="ruby-comment cmt"># Set &quot;100 Full Duplex&quot;</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'port_name_2'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;4&quot;</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Port3'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Port3'</span>])
-        
-      <span class="ruby-keyword kw">else</span>
-        
-        <span class="ruby-comment cmt"># Wrong here</span>
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'port_configuration'</span>,<span class="ruby-value str">'Did NOT find the value in \'Port3\'.'</span>)
-        <span class="ruby-keyword kw">return</span>
-        
-      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
-      
-    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if </span>
-
-    <span class="ruby-comment cmt"># &quot;Port4&quot;</span>
-    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Port4'</span>)
-      
-      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Port4'</span>]
-      
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Auto'</span>
-        
-        <span class="ruby-comment cmt"># Set &quot;Auto&quot;</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'port_name_3'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;0&quot;</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Port4'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Port4'</span>])
- 
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'10 Half Duplex'</span>
-        
-        <span class="ruby-comment cmt"># Set &quot;10 Half Duplex&quot;</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'port_name_3'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;1&quot;</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Port4'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Port4'</span>])
-        
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'10 Full Duplex'</span>
-        
-        <span class="ruby-comment cmt"># Set &quot;10 Full Duplex&quot;</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'port_name_3'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;2&quot;</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Port4'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Port4'</span>])
-        
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'100 Half Duplex'</span>
-        
-        <span class="ruby-comment cmt"># Set &quot;100 Half Duplex&quot;</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'port_name_3'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;3&quot;</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Port4'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Port4'</span>])
-               
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'100 Full Deplex'</span>
-        
-        <span class="ruby-comment cmt"># Set &quot;100 Full Duplex&quot;</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'port_name_3'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;4&quot;</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Port4'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Port4'</span>])
-        
-      <span class="ruby-keyword kw">else</span>
-        
-        <span class="ruby-comment cmt"># Wrong here</span>
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'port_configuration'</span>,<span class="ruby-value str">'Did NOT find the value in \'Port4\'.'</span>)
-        <span class="ruby-keyword kw">return</span>
-        
-      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
-      
-    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if  </span>
-    
-    <span class="ruby-comment cmt"># Apply for the change</span>
-    <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>,<span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>
-    
-    <span class="ruby-comment cmt"># Making change will cause the &quot;Attention&quot; page.</span>
-    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">include?</span><span class="ruby-value str">'Attention'</span>
-      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>,<span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>
-      
-      <span class="ruby-comment cmt"># Wait for 30 seconds</span>
-      <span class="ruby-identifier">sleep</span> <span class="ruby-value">30</span>
-    <span class="ruby-keyword kw">end</span>
-
-    <span class="ruby-comment cmt"># Output the result</span>
-    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Port Configuration'</span>,<span class="ruby-value str">'SUCCESS'</span>)
-    
-  <span class="ruby-keyword kw">end</span></pre>
-</body>
-</html>

@@ -1,3 +1,0 @@
-[D-BUS Service]
-Name=com.actiontec.automation
-Exec=/root/automation/tools/2.0/ATE/db_agent.py -s

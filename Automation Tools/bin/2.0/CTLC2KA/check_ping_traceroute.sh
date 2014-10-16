@@ -1,1 +1,0 @@
-../common/check_ping_traceroute.sh

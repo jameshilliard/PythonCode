@@ -1,7 +1,0 @@
-connect http://192.168.10.12:30005 qacafe qacafe123 NONE
-wait
-rpc InformResponse MaxEnvelopes=1
-wait
-set_params InternetGatewayDevice.ManagementServer.URL=http://6.0.0.1:1234
-wait
-rpc0

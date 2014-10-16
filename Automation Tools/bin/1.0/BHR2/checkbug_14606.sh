@@ -1,1 +1,0 @@
-../TV2KH/checkbug_14606.sh

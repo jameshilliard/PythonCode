@@ -1,1 +1,0 @@
-../common/scan_DUT_port.sh

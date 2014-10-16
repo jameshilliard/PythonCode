@@ -1,1 +1,0 @@
-../Q2K/tbcfg.pl

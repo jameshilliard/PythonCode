@@ -1,1 +1,0 @@
-../common/scan_result_parse.sh

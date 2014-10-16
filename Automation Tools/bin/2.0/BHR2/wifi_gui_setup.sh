@@ -1,1 +1,0 @@
-../common/wifi_gui_setup.sh

@@ -1,1 +1,0 @@
-../motiveTR/mainmotive.rb

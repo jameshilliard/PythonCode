@@ -1,1 +1,0 @@
-../TV2KH/modify_portforw.sh

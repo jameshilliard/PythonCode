@@ -1,1 +1,0 @@
-../Q2K/check_default_gateway.sh

@@ -1,46 +1,0 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!DOCTYPE html 
-     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html>
-<head>
-  <title>saveoutput (BasicUtility)</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
-</head>
-<body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File BasicUtility.rb, line 139</span>
-  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">saveoutput</span>(<span class="ruby-identifier">resultjsonfile_path_name</span>)
-    <span class="ruby-identifier">lines</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">pretty_generate</span>(<span class="ruby-ivar">@out</span>)
-    <span class="ruby-identifier">dirname</span>=<span class="ruby-identifier">resultjsonfile_path_name</span>
-    <span class="ruby-comment cmt"># filename=&quot;result_json.log&quot;</span>
- <span class="ruby-comment cmt">#   dirname=File.dirname(resultjsonfile_path_name)</span>
-  <span class="ruby-comment cmt">#  filename=File.basename(resultjsonfile_path_name)</span>
-    <span class="ruby-identifier">print</span> <span class="ruby-node">&quot;#{dirname}-- #{filename}&quot;</span>
-<span class="ruby-comment cmt">#    if dirname=='/' or FileTest::exist?(@logs+dirname) </span>
-<span class="ruby-comment cmt">#    if dirname=='/' or FileTest::exist?(dirname) </span>
-<span class="ruby-comment cmt">#      oname = @logs +resultjsonfile_path_name</span>
-<span class="ruby-comment cmt">#      oname = resultjsonfile_path_name+'/'+filename</span>
-<span class="ruby-comment cmt">#    else </span>
-      <span class="ruby-comment cmt">#      oname = @logs +resultjsonfile_path_name</span>
-<span class="ruby-comment cmt">#      Dir.mkdir(@logs+dirname)</span>
-<span class="ruby-comment cmt">#      print &quot;Make directory #{dirname}&quot;</span>
-<span class="ruby-comment cmt">#      Dir.mkdir(dirname)</span>
-      <span class="ruby-identifier">oname</span> = <span class="ruby-identifier">resultjsonfile_path_name</span>
-<span class="ruby-comment cmt">#    end</span>
-    <span class="ruby-identifier">print</span> <span class="ruby-node">&quot;oname=#{oname}&quot;</span>
-    <span class="ruby-keyword kw">begin</span>
-      <span class="ruby-identifier">f</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">oname</span>, <span class="ruby-value str">'w'</span>)
-      <span class="ruby-identifier">lines</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
-        <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">line</span>)
-        <span class="ruby-identifier">puts</span> <span class="ruby-identifier">line</span>
-      <span class="ruby-keyword kw">end</span>
-      <span class="ruby-identifier">f</span>.<span class="ruby-identifier">close</span>
-    <span class="ruby-keyword kw">rescue</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-value str">'Error: could not write JSON output file'</span>
-      <span class="ruby-identifier">exit</span> <span class="ruby-value">-2</span>
-    <span class="ruby-keyword kw">end</span>
-  <span class="ruby-keyword kw">end</span></pre>
-</body>
-</html>

@@ -1,233 +1,0 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!DOCTYPE html 
-     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html>
-<head>
-  <title>qos_prototype (Advanced)</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
-</head>
-<body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File Advanced/Advanced.rb, line 1465</span>
-  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">qos_prototype</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
-
-    <span class="ruby-comment cmt"># Get to the advanced page.</span>
-    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">goto_advanced</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
-    
-    <span class="ruby-comment cmt"># Get to the Quality of Service(Qos) page.</span>
-    <span class="ruby-keyword kw">begin</span>
-      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'Quality of Service(QoS)'</span>).<span class="ruby-identifier">click</span>
-      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'Qos'</span>, <span class="ruby-value str">'Reached page Qos'</span>)
-    <span class="ruby-keyword kw">rescue</span>
-      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:error</span>, <span class="ruby-value str">'Qos'</span>, <span class="ruby-value str">'Did not reach Qos page'</span>)
-      <span class="ruby-keyword kw">return</span>
-    <span class="ruby-keyword kw">end</span>
-    
-    <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'action'</span>]
-      
-    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'set'</span>
-        
-      <span class="ruby-comment cmt"># ------------ Begin of Traffic Shaping --------------</span>
-        
-      <span class="ruby-comment cmt"># Define a device array which is used in traffic shapping.</span>
-      <span class="ruby-comment cmt"># Note: This Array MUST correspond with the Web page ID!</span>
-      <span class="ruby-comment cmt">#       So this code is NOT robust, Whenever the web page </span>
-      <span class="ruby-comment cmt">#       has been changed, you MUST revise this arry.</span>
-   
-      <span class="ruby-comment cmt"># Go to the advanced page.</span>
-      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">goto_advanced</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
-  
-      <span class="ruby-comment cmt"># Go to the qos page.</span>
-      <span class="ruby-keyword kw">begin</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'Quality of Service(QoS)'</span>).<span class="ruby-identifier">click</span>
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'Qos'</span>, <span class="ruby-value str">'Reached page Qos'</span>)
-      <span class="ruby-keyword kw">rescue</span>
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:error</span>, <span class="ruby-value str">'Qos'</span>, <span class="ruby-value str">'Did not reach Qos page'</span>)
-        <span class="ruby-keyword kw">return</span>
-      <span class="ruby-keyword kw">end</span>
-          
-      <span class="ruby-comment cmt"># Go to the &quot;Traffic Shaping&quot; page.</span>
-      <span class="ruby-keyword kw">begin</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:href</span>,<span class="ruby-value str">'javascript:mimic_button(\'btn_tab_goto: 9056..\', 1)'</span>).<span class="ruby-identifier">click</span>
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Traffic Shaping'</span>,<span class="ruby-value str">'Reached page: Traffic Priority'</span>)
-      <span class="ruby-keyword kw">rescue</span>
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Traffic Shaping'</span>,<span class="ruby-value str">'Did not reach the page'</span>)
-        <span class="ruby-keyword kw">return</span>
-      <span class="ruby-keyword kw">end</span>
-        
-      <span class="ruby-identifier">qosDevice</span>=[<span class="ruby-value str">&quot;network&quot;</span>,
-                  <span class="ruby-value str">&quot;ethernet&quot;</span>,
-                  <span class="ruby-value str">&quot;broadband_ethernet&quot;</span>,
-                  <span class="ruby-value str">&quot;coax&quot;</span>,
-                  <span class="ruby-value str">&quot;broadband_coax&quot;</span>,
-                  <span class="ruby-value str">&quot;wireless&quot;</span>,
-                  <span class="ruby-value str">&quot;wan_pppoe&quot;</span>,
-                  <span class="ruby-value str">&quot;wan_pppoe2&quot;</span>,
-                  <span class="ruby-value str">&quot;default_lan&quot;</span>,
-                  <span class="ruby-value str">&quot;default_wan&quot;</span>,
-                  <span class="ruby-value str">&quot;default_DMZ&quot;</span>,
-                  <span class="ruby-value str">&quot;all&quot;</span>]
-      
-      <span class="ruby-comment cmt"># Do Traffic Shapping.</span>
-      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-value str">&quot;traffic_shaping&quot;</span>)
-        
-        <span class="ruby-comment cmt"># Enter the Traffic Shaping configuration.</span>
-        <span class="ruby-identifier">devGroup</span> = <span class="ruby-identifier">info</span>[<span class="ruby-value str">&quot;traffic_shaping&quot;</span>].<span class="ruby-identifier">sort</span>
-        
-        <span class="ruby-comment cmt"># Traverse the device group.</span>
-        <span class="ruby-comment cmt"># Mind: the parameter name is specified.</span>
-        <span class="ruby-identifier">devGroup</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">id</span>,<span class="ruby-identifier">data</span><span class="ruby-operator">|</span>
-          
-          <span class="ruby-comment cmt"># &quot;data&quot; is one device </span>
-          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">data</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'device'</span>)
-            <span class="ruby-identifier">devName</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'device'</span>]
-          <span class="ruby-keyword kw">end</span>
-  
-          <span class="ruby-comment cmt"># Check the device name.</span>
-          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">qosDevice</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">devName</span>)
-            <span class="ruby-comment cmt"># OK</span>
-            <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'QoSDevice'</span>, <span class="ruby-value str">'Found the device'</span>)
-          <span class="ruby-keyword kw">else</span>
-            <span class="ruby-comment cmt"># There is no device as refered.</span>
-            <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'QoSDevice'</span>,<span class="ruby-value str">'Not found the device'</span>)
-          <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if</span>
-          
-          <span class="ruby-comment cmt"># Is there already exists?</span>
-          <span class="ruby-comment cmt"># Note: Need to add code here. </span>
-          
-          <span class="ruby-comment cmt"># Call the function to add the traffic shaping.</span>
-          <span class="ruby-comment cmt"># Note: Now, we get the page of traffic shaping.</span>
-          <span class="ruby-identifier">qos_add_traffic_shaping</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">data</span>,<span class="ruby-identifier">info</span>)
-          
-        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of devGroup.each...</span>
-        
-      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if info.key...</span>
-      
-      <span class="ruby-comment cmt"># ------------- End of Traffic Shaping ---------------</span>
-
-    
-      <span class="ruby-comment cmt"># ************* Begin of Traffic Priority *************</span>
-      
-      <span class="ruby-comment cmt"># Define a rule array for traffic priority</span>
-      <span class="ruby-comment cmt"># Note: This Array MUST correspond with the Web page ID!</span>
-      <span class="ruby-comment cmt">#       So this code is NOT robust, Whenever the web page </span>
-      <span class="ruby-comment cmt">#       has been changed, you MUST revise this arry.</span>
-      <span class="ruby-identifier">qos_keys</span>=[<span class="ruby-value str">&quot;network_input&quot;</span>,
-                <span class="ruby-value str">&quot;ethernet_input&quot;</span>,
-                <span class="ruby-value str">&quot;broadband_ethernet_input&quot;</span>,
-                <span class="ruby-value str">&quot;coax_input&quot;</span>,
-                <span class="ruby-value str">&quot;broadband_coax_input&quot;</span>,
-                <span class="ruby-value str">&quot;wireless_input&quot;</span>,
-                <span class="ruby-value str">&quot;network_output&quot;</span>,
-                <span class="ruby-value str">&quot;ethernet_output&quot;</span>,
-                <span class="ruby-value str">&quot;broadband_ethernet_output&quot;</span>,
-                <span class="ruby-value str">&quot;coax_output&quot;</span>,
-                <span class="ruby-value str">&quot;broadband_coax_output&quot;</span>,
-                <span class="ruby-value str">&quot;wireless_output&quot;</span>]
-                
-      <span class="ruby-comment cmt"># Traverse this array list.</span>
-      <span class="ruby-identifier">qos_keys</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">qkey</span><span class="ruby-operator">|</span>
-        
-          <span class="ruby-comment cmt"># &quot;qkey&quot; now is a rule name. </span>
-        
-          <span class="ruby-comment cmt"># Get to the advanced page.</span>
-          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">goto_advanced</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
-  
-          <span class="ruby-comment cmt"># Get to the qos page.</span>
-          <span class="ruby-keyword kw">begin</span>
-            <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'Quality of Service(QoS)'</span>).<span class="ruby-identifier">click</span>
-            <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'Qos'</span>, <span class="ruby-value str">'Reached page Qos'</span>)
-          <span class="ruby-keyword kw">rescue</span>
-            <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:error</span>, <span class="ruby-value str">'Qos'</span>, <span class="ruby-value str">'Did not reach Qos page'</span>)
-            <span class="ruby-keyword kw">return</span>
-          <span class="ruby-keyword kw">end</span>
-          
-          <span class="ruby-comment cmt"># Go to the &quot;Traffic Priority&quot; page.</span>
-          <span class="ruby-keyword kw">begin</span>
-            <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:href</span>,<span class="ruby-value str">'javascript:mimic_button(\'btn_tab_goto: 9053..\', 1)'</span>).<span class="ruby-identifier">click</span>
-            <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Traffic Priority'</span>,<span class="ruby-value str">'Reached page: Traffic Priority'</span>)
-          <span class="ruby-keyword kw">rescue</span>
-            <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Traffic Priority'</span>,<span class="ruby-value str">'Did not reach the page'</span>)
-            <span class="ruby-keyword kw">return</span>
-          <span class="ruby-keyword kw">end</span>
-          
-          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-identifier">qkey</span>) <span class="ruby-comment cmt"># Is there a device named as qkey?</span>
-            
-                 <span class="ruby-identifier">idx</span> = <span class="ruby-identifier">qos_keys</span>.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">qkey</span>) <span class="ruby-comment cmt"># index of the qkey</span>
-                 <span class="ruby-identifier">rule_group</span> = <span class="ruby-identifier">info</span>[<span class="ruby-identifier">qkey</span>] <span class="ruby-comment cmt"># the device part</span>
-                 
-                 <span class="ruby-comment cmt"># Clean the existent rules.</span>
-                 <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rule_group</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'clean'</span>)
-                   
-                     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rule_group</span>[<span class="ruby-value str">'clean'</span>] <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
-                       
-                        <span class="ruby-comment cmt"># Mind:The debug information can't be output except the debug model.</span>
-                        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:debug</span>, <span class="ruby-value str">'qos_add'</span>, <span class="ruby-value str">'found clean'</span>)
-                        <span class="ruby-identifier">sleep</span> <span class="ruby-value">5</span>
-                        <span class="ruby-comment cmt">#regx=Regexp.new 'javascript:mimic_button(\'remove: '+idx.to_s+'%5F'</span>
-                        <span class="ruby-identifier">regx</span>=<span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span> <span class="ruby-value str">'remove: '</span><span class="ruby-operator">+</span><span class="ruby-identifier">idx</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-value str">'%5F'</span>
-                        <span class="ruby-comment cmt">#puts regx.to_s</span>
-                        <span class="ruby-keyword kw">while</span> <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:href</span>, <span class="ruby-identifier">regx</span>).<span class="ruby-identifier">exists?</span>
-                        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:debug</span>, <span class="ruby-value str">'qos_add'</span>, <span class="ruby-value str">'removing link'</span>)
-                        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:href</span>, <span class="ruby-identifier">regx</span>).<span class="ruby-identifier">click</span>
-                        <span class="ruby-identifier">sleep</span> <span class="ruby-value">5</span>
-                        <span class="ruby-keyword kw">end</span>
-                        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:debug</span>, <span class="ruby-value str">'qos_add'</span>, <span class="ruby-value str">'done cleaning'</span>)
-                        
-                    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if rule_group['clean']...</span>
-                    
-                 <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of rule_group.has...</span>
-                 
-                 <span class="ruby-comment cmt"># Add the rules.</span>
-                 <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rule_group</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Rules'</span>)
-                   
-                     <span class="ruby-identifier">rule_list</span>=<span class="ruby-identifier">rule_group</span>[<span class="ruby-value str">'Rules'</span>].<span class="ruby-identifier">sort</span> <span class="ruby-comment cmt"># rule list array</span>
-                     
-                     <span class="ruby-identifier">rule_list</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">rule_id</span>,<span class="ruby-identifier">data</span><span class="ruby-operator">|</span>
-                     
-                          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">data</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'task'</span>)
-                            
-                            <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">data</span>[<span class="ruby-value str">'task'</span>]                                                          
-                              
-                            <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'add'</span>
-                                    <span class="ruby-identifier">regx</span>=<span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span> <span class="ruby-value str">'remove: '</span><span class="ruby-operator">+</span><span class="ruby-identifier">idx</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-value str">'%5F'</span><span class="ruby-operator">+</span><span class="ruby-identifier">rule_id</span>
-                                    <span class="ruby-keyword kw">if</span>  <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:href</span>, <span class="ruby-identifier">regx</span>).<span class="ruby-identifier">exists?</span>
-                                        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:debug</span>, <span class="ruby-value str">'qos_add'</span>, <span class="ruby-identifier">qkey</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-value str">' rule id '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">rule_id</span> <span class="ruby-operator">+</span> <span class="ruby-value str">' exists and cannont be added again'</span>)
-                                        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:error</span>, <span class="ruby-value str">'qos_add'</span>, <span class="ruby-identifier">qkey</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-value str">' rule id '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">rule_id</span> <span class="ruby-operator">+</span> <span class="ruby-value str">' exists and cannont be added again'</span>)
-                                    <span class="ruby-keyword kw">else</span>
-                                        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:href</span>, <span class="ruby-value str">'javascript:mimic_button(\'add: '</span><span class="ruby-operator">+</span><span class="ruby-identifier">idx</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-value str">'%5F..\', 1)'</span>).<span class="ruby-identifier">click</span>
-                                       <span class="ruby-comment cmt">#self.msg(rule_name, :info, qkey +'-'+rule_id, 'adding rule '+ rule_id)</span>
-                                       <span class="ruby-identifier">qos_add_rule</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">rule_id</span>,<span class="ruby-identifier">data</span>,<span class="ruby-identifier">qkey</span>)
-                                   <span class="ruby-keyword kw">end</span>
-                                   
-                              
-                            <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'delete'</span>
-                              
-                            <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'edit'</span>
-                              
-                            <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'move_up'</span>
-                              
-                            <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'move_down'</span>
-                              
-                              
-                            <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case...</span>
-                            
-                          <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if...</span>
-                          
-                     <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of rule.list.each...</span>
-                     
-                 <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of rule_group.has_key?...</span>
-                 
-           <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of info.key?...</span>
-           
-       <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of qos_keys.each...</span>
-       
-       <span class="ruby-comment cmt"># ************* End of Traffic Priority ****************</span>
-         
-    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case info['action']...</span>
-        
-  <span class="ruby-keyword kw">end</span></pre>
-</body>
-</html>

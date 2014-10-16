@@ -1,1 +1,0 @@
-../common/setup_local_telnet.sh

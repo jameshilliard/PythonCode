@@ -1,1 +1,0 @@
-../Q2K/restore_dhcp.sh

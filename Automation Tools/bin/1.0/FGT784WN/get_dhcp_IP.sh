@@ -1,1 +1,0 @@
-../SV1KH/get_dhcp_IP.sh

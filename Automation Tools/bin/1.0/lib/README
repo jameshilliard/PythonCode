@@ -1,3 +1,0 @@
-each vendor directory (cisco...) should contain a version of the cfg_ap
-script which knows how to configure a given vendor's AP(s).
-

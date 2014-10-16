@@ -1,1 +1,0 @@
-../q2000/get_DUT_localtime.sh

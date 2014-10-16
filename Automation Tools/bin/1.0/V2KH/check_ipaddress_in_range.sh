@@ -1,1 +1,0 @@
-../vz_bin/check_ipaddress_in_range.sh

@@ -1,3 +1,0 @@
-ruby /root/actiontec/automation//bin/1.0/mi424wr//configDevice.rb $G_DUMMY -o /tmp/enable_telnet.log -f  /root/actiontec/automation//platform/1.0/verizon2/testcases/common/json/enableTelnet.json  -d 3  -u admin -p admin1 -i 192.168.1.1/24 
-ruby  /root/actiontec/automation//bin/1.0/vz_bin/fw-upgrade.rb -f /root/actiontec/automation//download/MI424WR-GEN2.rmt -d 192.168.1.1 -u admin -p admin1
-# Version of firefox : Mozilla Firefox 3.5.3pre, Copyright (c) 1998 - 2009 mozilla.org

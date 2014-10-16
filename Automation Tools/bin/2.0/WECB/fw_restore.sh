@@ -1,1 +1,0 @@
-../common/fw_restore.sh

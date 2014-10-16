@@ -1,1 +1,0 @@
-../TV2KH/loop_wget.sh

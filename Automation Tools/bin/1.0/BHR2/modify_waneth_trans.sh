@@ -1,1 +1,0 @@
-../TV2KH/modify_waneth_trans.sh

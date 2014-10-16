@@ -1,1 +1,0 @@
-../common/freeMem.sh

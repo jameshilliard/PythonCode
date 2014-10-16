@@ -1,1 +1,0 @@
-../common/wireless_connect_DUT.sh

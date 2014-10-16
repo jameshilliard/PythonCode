@@ -1,1 +1,0 @@
-../common/verifyDutWanConnected.sh

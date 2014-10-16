@@ -1,1 +1,0 @@
-../SV1KH/checkTelnetPort_V1k.tcl

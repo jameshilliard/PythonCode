@@ -1,1 +1,0 @@
-../Q1K/get_DUT_WAN_IP.sh

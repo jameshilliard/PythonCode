@@ -1,1 +1,0 @@
-../q2000/check_default_gateway.sh

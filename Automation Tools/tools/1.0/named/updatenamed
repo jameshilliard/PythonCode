@@ -1,7 +1,0 @@
-#!/bin/bash
-cp -f /var/named/chroot/var/named/*.zone $SQAROOT/tools/1.0/named/.
-cp -f /etc/named.conf $SQAROOT/tools/1.0/named/.
-cp -f /etc/dhcpd.conf $SQAROOT/tools/1.0/named/.
-cd $SQAROOT/tools/1.0/named/
-svn status
-svn commit -m "update new entries"

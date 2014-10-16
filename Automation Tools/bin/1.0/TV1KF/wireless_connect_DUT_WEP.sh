@@ -1,1 +1,0 @@
-../q2000/wireless_connect_DUT_WEP.sh

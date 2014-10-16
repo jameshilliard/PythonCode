@@ -1,1 +1,0 @@
-../TV2KH/modify_RGU.sh

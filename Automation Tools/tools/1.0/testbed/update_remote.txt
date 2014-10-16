@@ -1,6 +1,0 @@
-rm -rf junk
-mkdir junk
-cd junk
-svn co svn://svn/svnroot/QA/automation
-tar -xvf ~/update.tar 
-perl update/bin/1.0/common/update_nosvn.pl -f -s update -d automation > update.out

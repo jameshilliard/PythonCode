@@ -1,1 +1,0 @@
-../TV2KH/verify_sbl_http_test.sh

@@ -1,1 +1,0 @@
-../Q2K/getPortIndex.sh

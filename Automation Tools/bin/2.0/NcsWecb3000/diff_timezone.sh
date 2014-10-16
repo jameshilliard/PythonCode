@@ -1,1 +1,0 @@
-../common/diff_timezone.sh

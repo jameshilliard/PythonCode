@@ -1,1 +1,0 @@
-../TV2KH/NIC_MAC_for_post.sh

@@ -1,1 +1,0 @@
-../SV1KH/changeValueofRecord.sh

@@ -1,1 +1,0 @@
-echo "AT_ERROR : this tool is Invalid!";exit 1

@@ -1,1 +1,0 @@
-../TV2KH/multi_search_opr.sh

@@ -1,1 +1,0 @@
-../Q2K/check_DNS.sh

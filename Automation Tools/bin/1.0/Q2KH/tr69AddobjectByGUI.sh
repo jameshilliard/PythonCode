@@ -1,1 +1,0 @@
-../Q2K/tr69AddobjectByGUI.sh

@@ -1,1 +1,0 @@
-../Q2K/doTR69LANDeviceValueChange.sh

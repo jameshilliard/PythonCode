@@ -1,1 +1,0 @@
-../common/wifi_connect_DUT.sh

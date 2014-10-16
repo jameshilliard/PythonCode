@@ -1,1 +1,0 @@
-../common/restore_and_prepareWAN.sh

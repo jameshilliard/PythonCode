@@ -1,1 +1,0 @@
-../V1K/doWirelessReplace.sh

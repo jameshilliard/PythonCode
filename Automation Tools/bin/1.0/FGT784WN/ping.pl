@@ -1,1 +1,0 @@
-../SV1KH/ping.pl

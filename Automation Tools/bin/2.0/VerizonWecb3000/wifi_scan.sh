@@ -1,1 +1,0 @@
-../common/wifi_scan.sh

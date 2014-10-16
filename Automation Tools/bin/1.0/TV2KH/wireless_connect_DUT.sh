@@ -1,1 +1,0 @@
-../Q2K/wireless_connect_DUT.sh

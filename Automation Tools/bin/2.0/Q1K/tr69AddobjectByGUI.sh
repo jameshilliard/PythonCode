@@ -1,1 +1,0 @@
-../common/tr69AddobjectByGUI.sh

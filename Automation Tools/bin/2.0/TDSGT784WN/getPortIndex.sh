@@ -1,1 +1,0 @@
-../common/getPortIndex.sh

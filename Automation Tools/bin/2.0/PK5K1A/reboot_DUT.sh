@@ -1,1 +1,0 @@
-../common/reboot_DUT.sh

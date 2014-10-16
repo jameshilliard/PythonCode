@@ -1,1 +1,0 @@
-../common/checkDependencyCase.sh

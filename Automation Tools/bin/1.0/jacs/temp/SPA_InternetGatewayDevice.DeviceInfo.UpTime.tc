@@ -1,7 +1,0 @@
-listen 1234
-connect http://192.168.10.34:4567/1fc7a5a7-f140-4718-8e84-137ae0a93bbc actiontec actiontec NONE
-wait
-set_attribs InternetGatewayDevice.LANDevice.1.WLANConfiguration.7.SSID true 0 0 "None"
-wait
-rpc0
-quit

@@ -1,1 +1,0 @@
-../common/acquireDefaultConnectionService_jacs.sh

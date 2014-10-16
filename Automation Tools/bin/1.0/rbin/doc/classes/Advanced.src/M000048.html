@@ -1,277 +1,0 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!DOCTYPE html 
-     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html>
-<head>
-  <title>qos_add_traffic_shaping_temp (Advanced)</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
-</head>
-<body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File Advanced/Advanced.rb, line 2446</span>
-  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">qos_add_traffic_shaping_temp</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">info</span>)
-    
-    <span class="ruby-comment cmt"># Note: now under the &quot;Add Device Traffic Shaping&quot; page.</span>
-    <span class="ruby-comment cmt"># Confirm it.</span>
-    <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value str">'Add Device Traffic Shaping'</span>
-      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'QoS Add Traffic Shaping'</span>,<span class="ruby-value str">'Did not reach the page'</span>)
-      <span class="ruby-keyword kw">return</span>
-    <span class="ruby-keyword kw">end</span>
-    
-    <span class="ruby-comment cmt"># Choose the device.</span>
-    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'page'</span>)
-      
-      <span class="ruby-comment cmt"># Note: This name should be correspondent with the web.</span>
-      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'page'</span>]   
-        
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;network&quot;</span>  
-        <span class="ruby-keyword kw">begin</span>
-          <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'sym_qos_traffic_device_combo'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'br0'</span>)
-        <span class="ruby-keyword kw">rescue</span>
-          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Traffic Shaping'</span>,<span class="ruby-value str">'No such device.'</span>)
-          <span class="ruby-keyword kw">return</span>
-        <span class="ruby-keyword kw">end</span>
-        
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;ethernet&quot;</span> 
-        <span class="ruby-keyword kw">begin</span>
-         <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'sym_qos_traffic_device_combo'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'eth0'</span>)      
-        <span class="ruby-keyword kw">rescue</span>
-          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Traffic Shaping'</span>,<span class="ruby-value str">'No such device.'</span>)
-          <span class="ruby-keyword kw">return</span>
-        <span class="ruby-keyword kw">end</span>        
-             
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;broadband_ethernet&quot;</span> 
-        <span class="ruby-keyword kw">begin</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'sym_qos_traffic_device_combo'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'eth1'</span>)              
-        <span class="ruby-keyword kw">rescue</span>
-          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Traffic Shaping'</span>,<span class="ruby-value str">'No such device.'</span>)
-          <span class="ruby-keyword kw">return</span>
-        <span class="ruby-keyword kw">end</span>     
-        
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;coax&quot;</span>
-        <span class="ruby-keyword kw">begin</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'sym_qos_traffic_device_combo'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'clink0'</span>)
-        <span class="ruby-keyword kw">rescue</span>
-          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Traffic Shaping'</span>,<span class="ruby-value str">'No such device.'</span>)
-          <span class="ruby-keyword kw">return</span>
-        <span class="ruby-keyword kw">end</span>     
-        
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;broadband_coax&quot;</span>
-        <span class="ruby-keyword kw">begin</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'sym_qos_traffic_device_combo'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'clink1'</span>)
-        <span class="ruby-keyword kw">rescue</span>
-          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Traffic Shaping'</span>,<span class="ruby-value str">'No such device.'</span>)
-          <span class="ruby-keyword kw">return</span>
-        <span class="ruby-keyword kw">end</span>  
-        
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;wireless&quot;</span>
-        <span class="ruby-keyword kw">begin</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'sym_qos_traffic_device_combo'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'ath0'</span>)
-        <span class="ruby-keyword kw">rescue</span>
-          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Traffic Shaping'</span>,<span class="ruby-value str">'No such device.'</span>)
-          <span class="ruby-keyword kw">return</span>
-        <span class="ruby-keyword kw">end</span>   
-        
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;wan_pppoe&quot;</span>
-        <span class="ruby-keyword kw">begin</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'sym_qos_traffic_device_combo'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'ppp0'</span>)
-        <span class="ruby-keyword kw">rescue</span>
-          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Traffic Shaping'</span>,<span class="ruby-value str">'No such device.'</span>)
-          <span class="ruby-keyword kw">return</span>
-        <span class="ruby-keyword kw">end</span>   
-        
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;wan_pppoe2&quot;</span>
-        <span class="ruby-keyword kw">begin</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'sym_qos_traffic_device_combo'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'ppp1'</span>)
-        <span class="ruby-keyword kw">rescue</span>
-          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Traffic Shaping'</span>,<span class="ruby-value str">'No such device.'</span>)
-          <span class="ruby-keyword kw">return</span>
-        <span class="ruby-keyword kw">end</span>  
-        
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;default_lan&quot;</span>
-        <span class="ruby-keyword kw">begin</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'sym_qos_traffic_device_combo'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'Default LAN'</span>)
-        <span class="ruby-keyword kw">rescue</span>
-          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Traffic Shaping'</span>,<span class="ruby-value str">'No such device.'</span>)
-          <span class="ruby-keyword kw">return</span>
-        <span class="ruby-keyword kw">end</span>          
-        
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;default_wan&quot;</span>
-        <span class="ruby-keyword kw">begin</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'sym_qos_traffic_device_combo'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'Default WAN'</span>)
-        <span class="ruby-keyword kw">rescue</span>
-          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Traffic Shaping'</span>,<span class="ruby-value str">'No such device.'</span>)
-          <span class="ruby-keyword kw">return</span>
-        <span class="ruby-keyword kw">end</span>  
-        
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;default_DMZ&quot;</span>
-        <span class="ruby-keyword kw">begin</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'sym_qos_traffic_device_combo'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'Default DMZ'</span>)
-        <span class="ruby-keyword kw">rescue</span>
-          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Traffic Shaping'</span>,<span class="ruby-value str">'No such device.'</span>)
-          <span class="ruby-keyword kw">return</span>
-        <span class="ruby-keyword kw">end</span>   
-        
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;all&quot;</span>
-        <span class="ruby-keyword kw">begin</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'sym_qos_traffic_device_combo'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'All Devices'</span>)
-        <span class="ruby-keyword kw">rescue</span>
-          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Traffic Shaping'</span>,<span class="ruby-value str">'No such device.'</span>)
-          <span class="ruby-keyword kw">return</span>
-        <span class="ruby-keyword kw">end</span>    
-        
-      <span class="ruby-keyword kw">else</span>
-        <span class="ruby-comment cmt"># Whenever come here, there is something wrong with the program.</span>
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Add Device'</span>,<span class="ruby-value str">'Device name unmatched.'</span>)
-        <span class="ruby-keyword kw">return</span>
-      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
-      
-      <span class="ruby-comment cmt">#Go to the 'Edit Device Traffic Shaping page'.</span>
-      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>,<span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>
-      <span class="ruby-comment cmt"># Confirm it.</span>
-      <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value str">'Tx Traffic Shaping'</span>
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'QoS Add Traffic Shaping'</span>,<span class="ruby-value str">'Did not reach the page'</span>)
-        <span class="ruby-keyword kw">return</span>
-      <span class="ruby-keyword kw">end</span>
-      
-    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if</span>
-    
-    <span class="ruby-comment cmt"># Edit Device Traffic Shaping</span>
-    
-    <span class="ruby-comment cmt"># Setup the Tx bandwidth.</span>
-    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Tx Bandwidth'</span>)
-      
-      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Tx Bandwidth'</span>]
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;Unlimited&quot;</span>
-        <span class="ruby-comment cmt"># Unlimited  </span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'qos_tx_shaping_bandwidth_mode'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'2'</span>)
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Specify'</span>
-        <span class="ruby-comment cmt"># Specify</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'qos_tx_shaping_bandwidth_mode'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'0'</span>)
-      <span class="ruby-keyword kw">else</span>
-        <span class="ruby-comment cmt"># Wrong here.</span>
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'QoS add traffic priority'</span>,<span class="ruby-value str">'No such Tx bandwith option'</span>)
-      <span class="ruby-keyword kw">end</span>
-         
-    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if if...</span>
-    
-    <span class="ruby-comment cmt"># &quot;Tx Kbps&quot;</span>
-    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Tx Kbps'</span>)
-      
-      <span class="ruby-comment cmt"># Fill in the bandwidth value</span>
-      <span class="ruby-comment cmt"># *** Note: ***</span>
-      <span class="ruby-comment cmt"># Here you MUST wait until the new page come out, so to confirm it.</span>
-      <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value str">'Kbps'</span>
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'QoS set bandwidth'</span>,<span class="ruby-value str">'Did not fill in the bandwidth'</span>)
-        <span class="ruby-keyword kw">return</span>
-      <span class="ruby-keyword kw">end</span>
-      
-      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'sym_qos_shaping_tx_bandwidth'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Tx Kbps'</span>])
-    
-    <span class="ruby-keyword kw">end</span>
-  
-    <span class="ruby-comment cmt"># &quot;TCP Serialization&quot;</span>
-    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'TCP Serialization'</span>)
-      
-      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'TCP Serialization'</span>]
-      
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Enabled'</span>
-        
-        <span class="ruby-comment cmt"># Set &quot;TCP Serialization&quot;</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'sym_qos_shaping_tcp_ser_combo'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;2&quot;</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'TCP Serialization'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'TCP Serialization'</span>])
- 
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Disabled'</span>
-        
-        <span class="ruby-comment cmt"># Clear &quot;TCP Serialization&quot;</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'sym_qos_shaping_tcp_ser_combo'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;0&quot;</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'TCP Serialization'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'TCP Serialization'</span>])
-        
-      <span class="ruby-keyword kw">else</span>
-        
-        <span class="ruby-comment cmt"># Wrong here</span>
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Qos Traffic Shaping'</span>,<span class="ruby-value str">'Did NOT find the value in \'TCP Serialization\'.'</span>)
-        <span class="ruby-keyword kw">return</span>
-        
-      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
-      
-    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if   </span>
-
-    <span class="ruby-comment cmt"># &quot;Queue Policy&quot;</span>
-    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Queue Policy'</span>)
-      
-      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Queue Policy'</span>]
-      
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Class Based'</span>
-        
-        <span class="ruby-comment cmt"># Set &quot;Class Based&quot;</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'sym_qos_shaping_queue_policy_combo'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;0&quot;</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Queue Policy'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Queue Policy'</span>])
- 
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Strict Priority'</span>
-        
-        <span class="ruby-comment cmt"># Set &quot;Strict Priority&quot;</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'sym_qos_shaping_queue_policy_combo'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;1&quot;</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Queue Policy'</span>,<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Queue Policy'</span>])
-        
-      <span class="ruby-keyword kw">else</span>
-        
-        <span class="ruby-comment cmt"># Wrong here</span>
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Qos Traffic Shaping'</span>,<span class="ruby-value str">'Did NOT find the value in \'Queue Policy\'.'</span>)
-        <span class="ruby-keyword kw">return</span>
-        
-      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of case</span>
-      
-    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if  </span>
-
-    <span class="ruby-comment cmt"># Setup the Rx bandwidth.</span>
-    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Rx Bandwidth'</span>)
-      
-      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'Rx Bandwidth'</span>]
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;Unlimited&quot;</span>
-        <span class="ruby-comment cmt"># Unlimited  </span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'qos_rx_shaping_bandwidth_mode'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'2'</span>)
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Specify'</span>
-        <span class="ruby-comment cmt"># Specify</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'qos_rx_shaping_bandwidth_mode'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'0'</span>)
-      <span class="ruby-keyword kw">else</span>
-        <span class="ruby-comment cmt"># Wrong here.</span>
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'QoS add traffic priority'</span>,<span class="ruby-value str">'No such Rx bandwith option'</span>)
-      <span class="ruby-keyword kw">end</span>
-         
-    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># end of if if...</span>
-    
-    <span class="ruby-comment cmt"># &quot;Rx Kbps&quot;</span>
-    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'Rx Kbps'</span>)
-      
-      <span class="ruby-comment cmt"># Fill in the bandwidth value</span>
-      <span class="ruby-comment cmt"># *** Note: ***</span>
-      <span class="ruby-comment cmt"># Here you MUST wait until the new page come out, so to confirm it.</span>
-      <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value str">'Kbps'</span>
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'QoS set bandwidth'</span>,<span class="ruby-value str">'Did not fill in the bandwidth'</span>)
-        <span class="ruby-keyword kw">return</span>
-      <span class="ruby-keyword kw">end</span>
-      
-      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">:name</span>,<span class="ruby-value str">'sym_qos_shaping_rx_bandwidth'</span>).<span class="ruby-identifier">set</span>(<span class="ruby-identifier">info</span>[<span class="ruby-value str">'Rx Kbps'</span>])
-    
-    <span class="ruby-keyword kw">end</span> 
-   
-    <span class="ruby-comment cmt"># Apply for the change.</span>
-    <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>,<span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>
-    <span class="ruby-comment cmt"># Confirm it.</span>
-    <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value str">'DSCP Settings'</span>
-      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'Add one traffic shapping'</span>,<span class="ruby-value str">'Did not succeed.'</span>)
-      <span class="ruby-keyword kw">return</span>
-    <span class="ruby-keyword kw">end</span>
-    
-    <span class="ruby-comment cmt"># Apply</span>
-    <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>,<span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>
-    
-    <span class="ruby-comment cmt"># Output one message to confirm one traffic shaping.</span>
-    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'Add one traffic shapping'</span>,<span class="ruby-value str">'OK'</span>)
-    
-  <span class="ruby-keyword kw">end</span></pre>
-</body>
-</html>

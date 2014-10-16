@@ -1,1 +1,0 @@
-../TV2KH/check_iperf.sh

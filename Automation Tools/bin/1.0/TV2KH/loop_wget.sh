@@ -1,1 +1,0 @@
-../common/loop_wget.sh

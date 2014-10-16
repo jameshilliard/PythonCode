@@ -1,128 +1,0 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!DOCTYPE html 
-     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html>
-<head>
-  <title>igmp (Advanced)</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
-</head>
-<body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File Advanced/Advanced.rb, line 150</span>
-  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">igmp</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
-
-    <span class="ruby-comment cmt"># Go to the advanced page</span>
-    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">goto_advanced</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">info</span>)
-    
-    <span class="ruby-comment cmt"># Get to the &quot;Diagnostics&quot; page.</span>
-    <span class="ruby-keyword kw">begin</span>
-      <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>, <span class="ruby-value str">'IGMP Proxy'</span>).<span class="ruby-identifier">click</span>
-      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'Go to \'IGMP Proxy\' page'</span>, <span class="ruby-value str">'Done!'</span>)
-    <span class="ruby-keyword kw">rescue</span>
-      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:error</span>, <span class="ruby-value str">'Go to \'IGMP Proxy\' page'</span>, <span class="ruby-value str">'Wrong!'</span>)
-      <span class="ruby-keyword kw">return</span>
-    <span class="ruby-keyword kw">end</span>    
-     
-    <span class="ruby-comment cmt"># Check for the keys</span>
-    <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'section'</span>) <span class="ruby-operator">&amp;&amp;</span>
-         <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'subsection'</span>) ) <span class="ruby-keyword kw">then</span>
-      <span class="ruby-comment cmt"># Right,go on.</span>
-    <span class="ruby-keyword kw">else</span>
-      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'igmp'</span>,<span class="ruby-value str">'Some key NOT found.'</span>)
-      <span class="ruby-keyword kw">return</span>
-    <span class="ruby-keyword kw">end</span>   
-    
-    <span class="ruby-comment cmt"># &quot;IGMP Proxy (Enable/Disable)&quot;</span>
-    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'IGMP Proxy (Enable/Disable)'</span>)
-      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'IGMP Proxy (Enable/Disable)'</span>]
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Enabled'</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:id</span>, <span class="ruby-value str">'sym_igmp_proxy_config'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'1'</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'IGMP Proxy (Enable/Disable)'</span>, <span class="ruby-value str">'Enabled'</span>)
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Disabled'</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:id</span>, <span class="ruby-value str">'sym_igmp_proxy_config'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">'0'</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'IGMP Proxy (Enable/Disable)'</span>, <span class="ruby-value str">'Disabled'</span>)
-      <span class="ruby-keyword kw">else</span>
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:error</span>, <span class="ruby-value str">'igmp proxy'</span>, <span class="ruby-value str">'unknown option'</span>)
-        <span class="ruby-keyword kw">return</span>
-      <span class="ruby-keyword kw">end</span>
-    <span class="ruby-keyword kw">end</span>  
-    
-   <span class="ruby-comment cmt"># IGMPv1, IGMPv2 or IGMPv3?</span>
-    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'IGMP Proxy Querier Version'</span>)
-      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">info</span>[<span class="ruby-value str">'IGMP Proxy Querier Version'</span>]
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'IGMPv1'</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:id</span>, <span class="ruby-value str">'sym_igmp_proxy_qcm'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;1&quot;</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'IGMP Proxy Querier Version'</span>, <span class="ruby-value str">'IGMPv1'</span>)
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'IGMPv2'</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:id</span>, <span class="ruby-value str">'sym_igmp_proxy_qcm'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;2&quot;</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'IGMP Proxy Querier Version'</span>, <span class="ruby-value str">'IGMPv2'</span>)
-      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'IGMPv3'</span>
-        <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">:id</span>, <span class="ruby-value str">'sym_igmp_proxy_qcm'</span>).<span class="ruby-identifier">select_value</span>(<span class="ruby-value str">&quot;3&quot;</span>)
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:info</span>, <span class="ruby-value str">'IGMP Proxy Querier Version'</span>, <span class="ruby-value str">'IGMPv3'</span>)
-      <span class="ruby-keyword kw">else</span>
-        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>, <span class="ruby-identifier">:error</span>, <span class="ruby-value str">'IGMP Proxy Querier Version'</span>, <span class="ruby-value str">'unknown version'</span>)
-      <span class="ruby-keyword kw">end</span>
-    <span class="ruby-keyword kw">end</span>  
-    
-    <span class="ruby-comment cmt"># Output the result in page.</span>
-    
-    <span class="ruby-comment cmt"># Find the table.</span>
-    <span class="ruby-identifier">sTable</span> = <span class="ruby-keyword kw">false</span>
-    <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">tables</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
-      <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">t</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value str">'Upstream Interface'</span> <span class="ruby-keyword kw">and</span>
-           <span class="ruby-identifier">t</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value str">'Upstream Multicast Filtering'</span> <span class="ruby-keyword kw">and</span> 
-           ( <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value str">'IGMP Proxy Querier Version'</span>) <span class="ruby-keyword kw">and</span>
-           <span class="ruby-identifier">t</span>.<span class="ruby-identifier">row_count</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span> )<span class="ruby-keyword kw">then</span>
-        <span class="ruby-identifier">sTable</span> = <span class="ruby-identifier">t</span>
-        <span class="ruby-keyword kw">break</span>
-      <span class="ruby-keyword kw">end</span>
-    <span class="ruby-keyword kw">end</span>
-    
-    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sTable</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">false</span>
-      <span class="ruby-comment cmt"># Wrong here</span>
-      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:error</span>,<span class="ruby-value str">'IGMP Proxy'</span>,<span class="ruby-value str">'Did NOT find the target table.'</span>)
-      <span class="ruby-keyword kw">return</span>
-    <span class="ruby-keyword kw">end</span>
-    
-    <span class="ruby-identifier">i</span> = <span class="ruby-value">0</span>
-    <span class="ruby-comment cmt"># Find the row</span>
-    <span class="ruby-identifier">sTable</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">row</span><span class="ruby-operator">|</span>
-      
-      <span class="ruby-comment cmt"># not for first line</span>
-      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">row</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">include?</span><span class="ruby-value str">'Upstream Multicast Filtering'</span> <span class="ruby-keyword kw">then</span>
-        <span class="ruby-keyword kw">next</span>
-      <span class="ruby-keyword kw">end</span>
-      
-      <span class="ruby-comment cmt"># not for second line</span>
-      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">row</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">include?</span><span class="ruby-value str">'Upstream Interface'</span> <span class="ruby-keyword kw">then</span>
-        <span class="ruby-keyword kw">next</span>
-      <span class="ruby-keyword kw">end</span>      
-      
-      <span class="ruby-comment cmt"># not for last line</span>
-      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">row</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">include?</span><span class="ruby-value str">'New Multicast Address'</span> <span class="ruby-keyword kw">then</span>
-        <span class="ruby-keyword kw">next</span>
-      <span class="ruby-keyword kw">end</span>
-      
-      <span class="ruby-identifier">i</span> = <span class="ruby-identifier">i</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>
-      <span class="ruby-identifier">strUpstreamInterface</span> = <span class="ruby-value str">&quot;Upstream Interface&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">to_s</span>
-      <span class="ruby-identifier">strMulticastAddress</span> = <span class="ruby-value str">&quot;Multicast Address&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">to_s</span>
-      <span class="ruby-identifier">strIPSubnet</span> = <span class="ruby-value str">&quot;IP Subnet&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">to_s</span>
-      
-      <span class="ruby-comment cmt"># Find the cell</span>
-      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-identifier">strUpstreamInterface</span>,<span class="ruby-identifier">row</span>[<span class="ruby-value">1</span>])
-      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-identifier">strMulticastAddress</span>,<span class="ruby-identifier">row</span>[<span class="ruby-value">2</span>])
-      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-identifier">strIPSubnet</span>,<span class="ruby-identifier">row</span>[<span class="ruby-value">3</span>])
-      
-    <span class="ruby-keyword kw">end</span>
-    
-    <span class="ruby-comment cmt"># Apply for the change.</span>
-    <span class="ruby-ivar">@ff</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:text</span>,<span class="ruby-value str">'Apply'</span>).<span class="ruby-identifier">click</span>
-    
-    <span class="ruby-comment cmt"># Output the result.</span>
-    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">rule_name</span>,<span class="ruby-identifier">:info</span>,<span class="ruby-value str">'IGMP Proxy'</span>,<span class="ruby-value str">'SUCCESS'</span>)    
-    
-  <span class="ruby-keyword kw">end</span></pre>
-</body>
-</html>

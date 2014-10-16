@@ -1,1 +1,0 @@
-../SV1KH/check_default_gateway.sh

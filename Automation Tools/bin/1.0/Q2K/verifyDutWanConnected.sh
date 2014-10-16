@@ -1,1 +1,0 @@
-../TV2KH/verifyDutWanConnected.sh

@@ -1,8 +1,0 @@
-#testcase_list
-  = render :partial => 'list', :object => @testcases
-%nav.back_link
-  = link_to "Back to Test Suites", test_suites_path
-%nav.dump_nav
-  = link_to "Dump All Tests", {:action => :dump_testcases}, :confirm => 'Are you sure? This will destroy all test cases and suites from the controller!', :method => :delete
-%nav.secondary_nav
-  = link_to "Force Update", {:action => :force_update_all_users}, :method => :post

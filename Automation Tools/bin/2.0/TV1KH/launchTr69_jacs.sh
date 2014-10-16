@@ -1,1 +1,0 @@
-../common/launchTr69_jacs.sh

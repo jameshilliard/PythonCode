@@ -1,3 +1,0 @@
-cd ~/junk
-perl automation/bin/1.0/common/clicfg.pl  -d $1 -i 22  -f automation/tools/1.0/tbsetup/update_remote.txt
-

@@ -1,1 +1,0 @@
-../common/multi_search_in_file.sh

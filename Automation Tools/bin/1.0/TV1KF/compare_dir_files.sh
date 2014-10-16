@@ -1,1 +1,0 @@
-../Q2K/compare_dir_files.sh

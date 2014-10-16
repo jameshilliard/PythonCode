@@ -1,6 +1,0 @@
-#current_projects
-  = render(:partial => "list", :locals => { :tl_projects => @tl_projects })
-#edit_tl_project.edit_tl_project
-  = render(:partial => "edit", :locals => { :new_project => @new_project } )
-%nav.back_link
-  = link_to 'Back', request.headers['HTTP_REFERER']

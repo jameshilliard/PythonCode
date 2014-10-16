@@ -1,1 +1,0 @@
-../common/DUT_GUIUpgrade_Firmware.sh

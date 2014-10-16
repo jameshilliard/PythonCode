@@ -1,1 +1,0 @@
-../common/IPv6_ENV_Prepare.sh
