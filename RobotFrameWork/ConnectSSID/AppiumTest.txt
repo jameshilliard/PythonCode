@@ -2,8 +2,8 @@
 Library           AppiumLibrary
 
 *** Variables ***
-${ssid}           ChinaNet-ysl
-${password}       yeshunling
+${ssid}           TELUS0079-2.4G
+${password}       yjjjznnmrz
 
 *** Test Cases ***
 testcase-01
@@ -26,6 +26,7 @@ AppiumDemo-02
     click element    xpath=//android.widget.TextView[contains(@text,'Wi‑Fi')]
     tap    xpath=//android.widget.Switch[contains(@text,'OFF')]
     sleep    10
+    scroll
     comment    //android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout/android.widget.ListView/android.widget.TextView[0]");
     click element    xpath=//android.widget.TextView[contains(@text,'${ssid}')]
     Input Text    id=com.android.settings:id/password_layout    ${password}
@@ -34,6 +35,40 @@ AppiumDemo-02
     Comment    Press Keycode    4
     sleep    5
     Click Button    Connect
-    sleep    5
+    sleep    20
     Page Should Contain Element    xpath=//android.widget.TextView[contains(@text,'Connected')]
     LogSource
+    click element    xpath=//android.widget.TextView[contains(@text,'${ssid}')]
+    sleep    20
+    comment    id=com.android.settings:id/info
+    Get Current Context
+    Get Contexts
+    shake
+    Comment    Click Button    Forget
+    Comment    tap    xpath=//android.widget.Switch[contains(@text,'ON')]
+
+AppiumDemo-samsung
+    AppiumLibrary.Open Application    http://192.168.1.12:4723/wd/hub    platformName=Android    platformVersion=4.4    deviceName=lge-nexus    appActivity=Settings    appPackage=com.android.settings
+    sleep    5
+    LogSource
+    Comment    click element    xpath=/android.widget.FrameLayout[0]/android.view.View[0]/android.widget.FrameLayout[1]/android.widget.LinearLayout[0]/android.widget.LinearLayout[0]/android.widget.LinearLayout[0]/android.widget.ListView[0]/android.widget.LinearLayout[1]
+    Comment    page should contain element    xpath=//android.widget.FrameLayout/android.view.View/android.widget.FrameLayout[1]/android.widget.ListView
+    click element    id=com.android.settings:id/wifi_settings
+    Comment    click element    xpath=//android.widget.TextView[contains(@text,'Wi‑Fi')]
+    tap    xpath=//android.widget.Switch[contains(@text,'OFF')]
+    sleep    10
+    comment    //android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout/android.widget.ListView/android.widget.TextView[0]");
+    click element    xpath=//android.widget.TextView[contains(@text,'${ssid}')]
+    Input Text    id=com.android.settings:id/password    ${password}
+    Comment    Hide Keyboard
+    go Back
+    Comment    Press Keycode    4
+    sleep    5
+    Click Button    Connect
+    sleep    20
+    Page Should Contain Element    xpath=//android.widget.TextView[contains(@text,'Connected')]
+    LogSource
+    click element    xpath=//android.widget.TextView[contains(@text,'${ssid}')]
+    sleep    20
+    Click Button    Forget
+    tap    xpath=//android.widget.Switch[contains(@text,'ON')]
