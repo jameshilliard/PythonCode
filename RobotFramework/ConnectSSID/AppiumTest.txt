@@ -1,0 +1,69 @@
+*** Settings ***
+Library           AppiumLibrary
+
+*** Variables ***
+${ssid}           TELUS0079-2.4G
+${password}       yjjjznnmrz
+
+*** Test Cases ***
+testcase-01
+    Open Browser    http://www.baidu.com
+    sleep    5
+    Close Browser
+    MyTest
+
+AppiumDemo-01
+    AppiumLibrary.Open Application    http://localhost:4723/wd/hub    platformName=Android    platformVersion=5.0.1    deviceName=Nexus_5_API_21_x86    appActivity=Settings    appPackage=com.android.settings
+    Comment    deviceName=Nexus_5_API_21_x86
+    Click Element    id=idandroid:id/switchWidget
+
+AppiumDemo-02
+    AppiumLibrary.Open Application    http://192.168.8.6:4723/wd/hub    platformName=Android    platformVersion=4.4    deviceName=lge-nexus    appActivity=Settings    appPackage=com.android.settings
+    sleep    5
+    LogSource
+    Comment    click element    xpath=/android.widget.FrameLayout[0]/android.view.View[0]/android.widget.FrameLayout[1]/android.widget.LinearLayout[0]/android.widget.LinearLayout[0]/android.widget.LinearLayout[0]/android.widget.ListView[0]/android.widget.LinearLayout[1]
+    Comment    page should contain element    xpath=//android.widget.FrameLayout/android.view.View/android.widget.FrameLayout[1]/android.widget.ListView
+    click element    xpath=//android.widget.TextView[contains(@text,'Wi‑Fi')]
+    tap    xpath=//android.widget.Switch[contains(@text,'OFF')]
+    sleep    10
+    comment    //android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout/android.widget.ListView/android.widget.TextView[0]");
+    click element    xpath=//android.widget.TextView[contains(@text,'${ssid}')]
+    Input Text    id=com.android.settings:id/password_layout    ${password}
+    Comment    Hide Keyboard
+    go Back
+    Comment    Press Keycode    4
+    sleep    5
+    Click Button    Connect
+    sleep    20
+    Page Should Contain Element    xpath=//android.widget.TextView[contains(@text,'Connected')]
+    LogSource
+    click element    xpath=//android.widget.TextView[contains(@text,'${ssid}')]
+    sleep    20
+    Click Button    Forget
+    tap    xpath=//android.widget.Switch[contains(@text,'ON')]
+
+AppiumDemo-samsung
+    AppiumLibrary.Open Application    http://192.168.1.12:4723/wd/hub    platformName=Android    platformVersion=4.4    deviceName=lge-nexus    appActivity=Settings    appPackage=com.android.settings
+    sleep    5
+    LogSource
+    Comment    click element    xpath=/android.widget.FrameLayout[0]/android.view.View[0]/android.widget.FrameLayout[1]/android.widget.LinearLayout[0]/android.widget.LinearLayout[0]/android.widget.LinearLayout[0]/android.widget.ListView[0]/android.widget.LinearLayout[1]
+    Comment    page should contain element    xpath=//android.widget.FrameLayout/android.view.View/android.widget.FrameLayout[1]/android.widget.ListView
+    click element    id=com.android.settings:id/wifi_settings
+    Comment    click element    xpath=//android.widget.TextView[contains(@text,'Wi‑Fi')]
+    tap    xpath=//android.widget.Switch[contains(@text,'OFF')]
+    sleep    10
+    comment    //android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout/android.widget.ListView/android.widget.TextView[0]");
+    click element    xpath=//android.widget.TextView[contains(@text,'${ssid}')]
+    Input Text    id=com.android.settings:id/password    ${password}
+    Comment    Hide Keyboard
+    go Back
+    Comment    Press Keycode    4
+    sleep    5
+    Click Button    Connect
+    sleep    20
+    Page Should Contain Element    xpath=//android.widget.TextView[contains(@text,'Connected')]
+    LogSource
+    click element    xpath=//android.widget.TextView[contains(@text,'${ssid}')]
+    sleep    20
+    Click Button    Forget
+    tap    xpath=//android.widget.Switch[contains(@text,'ON')]
