@@ -2,12 +2,14 @@
 Library           Selenium2Library
 Library           AppiumLibrary
 Library           Collections
+Library           MyLibrary
 
 *** Test Cases ***
 test
     Open Browser    http://www.baidu.com
     sleep    5
     Close All Browsers
+    Mytest
 
 Appium-Demo
     Comment    Open Application    http://localhost:4723/wd/hub    platformName=android    platformVersion=5.0.1    deviceName=nexus5    app=E:/AndroidCode/AndroidDemoProject.apk
