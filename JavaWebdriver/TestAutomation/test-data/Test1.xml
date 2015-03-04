@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<common>
+		<inputValue>test</inputValue>		
+	</common>
+	<testLogin>
+		<username>test1</username>
+		<password>123456</password>
+	</testLogin>
+	<testLogin>
+		<username>test2</username>
+		<password>123456</password>
+		<inputValue>input2</inputValue>		
+	</testLogin>
+</data>

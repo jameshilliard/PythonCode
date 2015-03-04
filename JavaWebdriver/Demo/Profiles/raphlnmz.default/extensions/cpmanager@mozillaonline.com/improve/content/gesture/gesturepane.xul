@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE overlay SYSTEM "chrome://cmimprove/locale/gesture-options.dtd">
+
+<overlay
+  id="improve-gesture-options-prefpane"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+  <prefpane id="gesturepane">
+    <preferences>
+      <preference id="b-enablegesture" name="extensions.cmimprove.gesture.enabled" type="bool"/>
+    </preferences>
+    <vbox>
+      <checkbox id="c-enablegesture" preference="b-enablegesture" label="&c-enablegesture.label;"/>
+    </vbox>
+  </prefpane>
+</overlay>

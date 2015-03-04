@@ -1,0 +1,332 @@
+{
+  "reminders": [{
+    "addon_id":"browser",
+    "btn_id":"star-button",
+    "type":"tip",
+    "platform":"",
+    "times":1,
+    "desc":"收藏网页？点这里！\u003Cbr /\u003E一键收藏当前网页，Ctrl+B则可打开书签侧栏、对已经收藏的网页进行整理\u003Cbr /\u003E",
+    "url":""
+  }, {
+    "addon_id":"browser",
+    "btn_id":"bookmarks-menu-button",
+    "type":"tip",
+    "platform":"",
+    "times":1,
+    "desc":"收藏网页？点这里！\u003Cbr /\u003E一键收藏当前网页，Ctrl+B则可打开书签侧栏、对已经收藏的网页进行整理\u003Cbr /\u003E",
+    "url":""
+  }, {
+    "addon_id":"commonfix@mozillaonline.com",
+    "btn_id":"widget:commonfix@mozillaonline.com-commonfix",
+    "type":"tip",
+    "platform":"WINNT",
+    "times":1,
+    "desc":"浏览器遇到问题？点这里！\u003Cbr /\u003E帮您方便的一键修复大部分浏览器使用中的常见问题，也可以针对您所遇到的问题选择手动修复\u003Cbr /\u003E",
+    "url":""
+  }, {
+    "addon_id":"wx-assistant@mozillaonline.com",
+    "btn_id":"wx-notifier",
+    "type":"tip",
+    "platform":"",
+    "times":1,
+    "desc":"微信控？点这里！\u003Cbr /\u003E一键打开微信网页版，及时的未读消息提醒和新消息桌面提醒，帮您更方便的使用微信网页版\u003Cbr /\u003E",
+    "url":""
+  }, {
+    "addon_id":"easyscreenshot@mozillaonline.com",
+    "btn_id":"ce_easyscreenshot",
+    "type":"tip",
+    "platform":"",
+    "times":1,
+    "desc":"网页截屏？点这里！\u003Cbr /\u003E提供三种不同的截图方式和编辑功能，让您更方便的截取当前网页\u003Cbr /\u003E",
+    "url":""
+  }, {
+    "addon_id":"personas@christopher.beard",
+    "btn_id":"personas-toolbar-button",
+    "type":"tip",
+    "platform":"",
+    "times":1,
+    "desc":"更换皮肤？点这里！\u003Cbr /\u003E立即给你的浏览器挑选皮肤，实时预览、一键生效\u003Cbr /\u003E",
+    "url":""
+  }, {
+    "addon_id":"weibo@mozillaonline.com",
+    "btn_id":"widget:weibo@mozillaonline.com-show-mozblogger-btn",
+    "type":"tip",
+    "platform":"",
+    "times":1,
+    "desc":"微博控？点这里！\u003Cbr /\u003E用火狐更方便的查看、发表、评论、转发微博，并接收到更新通知。\u003Cbr /\u003E",
+    "url":""
+  }, {
+    "addon_id":"share_all_cn@mozillaonline.com",
+    "btn_id":"share-all-cn-bar",
+    "type":"tip",
+    "platform":"",
+    "times":1,
+    "desc":"发微博，分享到QQ、人人？点这里！\u003Cbr /\u003E将网页链接或图片直接分享到QQ、人人或新浪微博，任何时候都可实现一键分享\u003Cbr /\u003E",
+    "url":""
+  }, {
+    "addon_id":"quicklaunch@mozillaonline.com",
+    "btn_id":"quickluanch-addonbar",
+    "type":"tip",
+    "platform":"",
+    "times":1,
+    "desc":"快捷调用？点这里！\u003Cbr /\u003E一键打开记事本、计算器、画图等系统程序，还有截图等常用操作\u003Cbr /\u003E",
+    "url":""
+  }, {
+    "addon_id":"quicklaunch@mozillaonline.com",
+    "btn_id":"quickluanch-addonbar-item",
+    "type":"tip",
+    "platform":"",
+    "times":1,
+    "desc":"快捷调用？点这里！\u003Cbr /\u003E一键打开记事本、计算器、画图等系统程序，还有截图等常用操作\u003Cbr /\u003E",
+    "url":""
+  }, {
+    "addon_id":"jid1-huBxmAuJy1zlLw@jetpack",
+    "addon_name":"快读",
+    "type":"addon",
+    "platform":"",
+    "times":1,
+    "title":"",
+    "desc":"智能获取网页全文并提取精华，帮助您快速阅读长新闻、长文章。",
+    "xpi_url":"https://addons.mozilla.org/firefox/downloads/file/269406/addon-0.30-fx.xpi",
+    "url":"https://addons.mozilla.org/firefox/addon/wwssummary/"
+  }, {
+    "mime_type":"application/mozilla-ccbnetsign-plugin",
+    "plugin_name":"建设银行“E路护航”安全组件",
+    "type":"plugin_install",
+    "platform":"WINNT",
+    "times":1,
+    "title":"",
+    "desc":"您需要安装建设银行“E路护航”安全组件，以确保正常使用当前网站提供的全部功能",
+    "plugin_url":"http://www.ccb.com/cn/html1/office/ebank/dzb/subject/12/docs/security/CCB_E_Setup_Total_20140819_x32.exe",
+    "url":"http://mozilla.com.cn/plugin/6-ccb_E/",
+    "minimal_version":""
+  }, {
+    "short_name":"online_payment_promote_ccb",
+    "type":"text",
+    "platform":"WINNT",
+    "times":1,
+    "title":"建议使用中国建设银行网银进行支付操作",
+    "desc":"建设银行网银已经全面支持火狐，您可以在火狐浏览器中使用建行网银流畅地完成全部支付操作，并保证账户的安全。",
+    "learnmore_url":"http://mozilla.com.cn/post/21562/"
+  }, {
+    "short_name":"offlintab_readonly_notice",
+    "type":"text",
+    "platform":"",
+    "times":1,
+    "title":"新标签页已修复",
+    "desc":"新标签页数据被损坏，已为您修复使用默认数据。如需进一步修复，请直接联系我们：info\u002Dcn@mozilla.com 或 新浪微博 @火狐 或 拨打客服电话(010)85325679",
+    "learnmore_url":"http://mozilla.com.cn/addon/126-ce-quick-dial/"
+  }],
+  "rules": [{
+    "trigger": "window",
+    "domain": "mail.163.com",
+    "regexp": "http://[a\u002Dz0\u002D9]+\u005C.mail\u005C.163\u005C.com/js\u005Cd/main\u005C.jsp.+",
+    "reminder_ids": ["mailnotifier@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "mail.126.com",
+    "regexp": "http://[a\u002Dz0\u002D9]+\u005C.mail\u005C.126\u005C.com/js\u005Cd/main\u005C.jsp.+",
+    "reminder_ids": ["mailnotifier@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "mail.yeah.com",
+    "regexp": "http://[a\u002Dz0\u002D9]+\u005C.mail\u005C.yeah\u005C.com/js\u005Cd/main\u005C.jsp.+",
+    "reminder_ids": ["mailnotifier@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "ibsbjstar.ccb.com.cn",
+    "regexp": "https://ibsbjstar\u005C.ccb\u005C.com\u005C.cn/app/V\u005Cd+/CN/STY\u005Cd+/login\u005C.jsp",
+    "reminder_ids": ["application/mozilla-ccbnetsign-plugin__plugin_install"]
+  }, {
+    "trigger": "window",
+    "domain": "payment.360buy.com",
+    "regexp": "http://payment\u005C.360buy\u005C.com/bank/payment_orderselect\u005C.aspx\u005C?id\u003D\u005Cd+",
+    "reminder_ids": ["online_payment_promote_ccb"]
+  }, {
+    "trigger": "window",
+    "domain": "cashier.alipay.com",
+    "regexp": "https://cashier\u005C.alipay\u005C.com/standard/payment/cashier\u005C.htm\u005C?",
+    "reminder_ids": ["online_payment_promote_ccb"]
+  }, {
+    "trigger": "window",
+    "domain": "t.qq.com",
+    "regexp": "http://t\u005C.qq\u005C.com/.+",
+    "reminder_ids": ["weibo@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "mozilla.com.cn",
+    "regexp": "http://mozilla\u005C.com\u005C.cn/post/\u005Cd+",
+    "reminder_ids": ["commonfix@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "en.wikipedia.org",
+    "regexp": "http://en\u005C.wikipedia\u005C.org/wiki/.+",
+    "reminder_ids": ["youdao-translate@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "www.nytimes.com",
+    "regexp": "http://www\u005C.nytimes\u005C.com/\u005Cd{4}/\u005Cd{2}/\u005Cd{2}/.+",
+    "reminder_ids": ["youdao-translate@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "developer.mozilla.org",
+    "regexp": "https://developer\u005C.mozilla\u005C.org/en\u002DUS/.+",
+    "reminder_ids": ["youdao-translate@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "hacks.mozilla.org",
+    "regexp": "https://hacks\u005C.mozilla\u005C.org/.+",
+    "reminder_ids": ["youdao-translate@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "planet.mozilla.org",
+    "regexp": "http://planet\u005C.mozilla\u005C.org/.+",
+    "reminder_ids": ["youdao-translate@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "stackoverflow.com",
+    "regexp": "http://stackoverflow\u005C.com/questions/\u005Cd+/.+",
+    "reminder_ids": ["youdao-translate@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "api.jquery.com",
+    "regexp": "http://api\u005C.jquery\u005C.com/.+",
+    "reminder_ids": ["youdao-translate@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "wiki.python.org",
+    "regexp": "http://wiki\u005C.python\u005C.org/moin/.+",
+    "reminder_ids": ["youdao-translate@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "www.quora.com",
+    "regexp": "http://www\u005C.quora\u005C.com/.+",
+    "reminder_ids": ["youdao-translate@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "microsoft.com",
+    "regexp": "http://\u005Cw+\u005C.microsoft\u005C.com/en\u002Dus/.+",
+    "reminder_ids": ["youdao-translate@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "getfirebug.com",
+    "regexp": "https://getfirebug\u005C.com/.+",
+    "reminder_ids": ["youdao-translate@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "www.amazon.com",
+    "regexp": "http://www\u005C.amazon\u005C.com/.+",
+    "reminder_ids": ["youdao-translate@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "www.ebay.com",
+    "regexp": "http://www\u005C.ebay\u005C.com/.+",
+    "reminder_ids": ["youdao-translate@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "wx.qq.com",
+    "regexp": "^https://wx\u005C.qq\u005C.com/",
+    "reminder_ids": ["wx-assistant@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "taobao.com",
+    "regexp": "^http://.*\u005C.taobao\u005C.com/.*",
+    "reminder_ids": ["shopping@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "tmall.com",
+    "regexp": "^http://.*\u005C.tmall\u005C.com/.*",
+    "reminder_ids": ["shopping@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "jd.com",
+    "regexp": "^http://.*\u005C.jd\u005C.com/.*",
+    "reminder_ids": ["shopping@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "amazon.cn",
+    "regexp": "^http://.*\u005C.amazon\u005C.cn/.*",
+    "reminder_ids": ["shopping@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "suning.com",
+    "regexp": "^http://.*\u005C.suning\u005C.com/.*",
+    "reminder_ids": ["shopping@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "yixun.com",
+    "regexp": "^http://.*\u005C.yixun\u005C.com/.*",
+    "reminder_ids": ["shopping@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "yhd.com",
+    "regexp": "^http://.*\u005C.yhd\u005C.com/.*",
+    "reminder_ids": ["shopping@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "dangdang.com",
+    "regexp": "^http://.*\u005C.dangdang\u005C.com/.*",
+    "reminder_ids": ["shopping@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "paipai.com",
+    "regexp": "^http://.*\u005C.paipai\u005C.com/.*",
+    "reminder_ids": ["shopping@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "smzdm.com",
+    "regexp": "^http://.*\u005C.smzdm\u005C.com/.*",
+    "reminder_ids": ["shopping@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "weibo.com",
+    "regexp": "http://weibo\u005C.com/.+",
+    "reminder_ids": ["weibo@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "mail.10086.cn",
+    "regexp": "https?://mail\u005C.10086\u005C.cn/$",
+    "reminder_ids": ["mailnotifier@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "mail.qq.com",
+    "regexp": "https://mail\u005C.qq\u005C.com/(cgi\u002Dbin/loginpage)?$",
+    "reminder_ids": ["mailnotifier@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "mail.google.com",
+    "regexp": "https://mail\u005C.google\u005C.com/mail",
+    "reminder_ids": ["mailnotifier@mozillaonline.com"]
+  }, {
+    "trigger": "window",
+    "domain": "offlintab.firefoxchina.cn",
+    "regexp": "^http://offlintab\u005C.firefoxchina\u005C.cn/readonly\u005C.html$",
+    "reminder_ids": ["offlintab_readonly_notice"]
+  }, {
+    "trigger": "window",
+    "domain": "163.com",
+    "regexp": "http://[a\u002Dz]+\u005C.163\u005C.com/\u005Cd{2}/\u005Cd{4}/\u005Cd{2}/[A\u002DZ0\u002D9]{16,}\u005C.html",
+    "reminder_ids": ["jid1-huBxmAuJy1zlLw@jetpack"]
+  }, {
+    "trigger": "window",
+    "domain": "sina.com.cn",
+    "regexp": "http://[a\u002Dz]+\u005C.sina\u005C.com\u005C.cn/[a\u002Dz]/[\u005Cd]{4}\u002D\u005Cd{2}\u002D\u005Cd{2}/\u005Cd{9,}\u005C.shtml",
+    "reminder_ids": ["jid1-huBxmAuJy1zlLw@jetpack"]
+  }, {
+    "trigger": "window",
+    "domain": "firefox.ynet.com",
+    "regexp": "http://\u005Cw+\u005C.firefox\u005C.ynet\u005C.com/3\u005C.1/\u005Cd{4}/\u005Cd{2}/\u005Cd{7}\u005C.html",
+    "reminder_ids": ["jid1-huBxmAuJy1zlLw@jetpack"]
+  }, {
+    "trigger": "window",
+    "domain": "firefox.news.cn",
+    "regexp": "http://\u005Cw+\u005C.firefox\u005C.news\u005C.cn/\u005Cd{2}/\u005Cd{4}/\u005Cd{2}/\u005Cw+\u005C.html",
+    "reminder_ids": ["jid1-huBxmAuJy1zlLw@jetpack"]
+  }],
+  "consts": {
+    "later_wait_days": 3,
+    "max_daily_addon": 1,
+    "close_multiple": 5,
+    "max_close_count": 5
+  }
+}

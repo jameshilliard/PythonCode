@@ -1,0 +1,15 @@
+商品名称:
+  type:xpath
+  value:"//div[@class='cell p-quantity' and @for-stock='for-stock-%s']/parent::div//div[@class='p-name']/a"
+商品价格:
+  type:xpath
+  value:"//div[@class='cell p-quantity' and @for-stock='for-stock-%s']/parent::div//span[@class='price']"
+勾选商品:
+  type:xpath
+  value:"//div[@class='cell p-quantity' and @for-stock='for-stock-%s']/parent::div//input[@class='checkbox']"
+删除商品:
+  type:xpath
+  value:"//div[@class='cell p-quantity' and @for-stock='for-stock-%s']/parent::div//a[@class='cart-remove']"
+确定删除:
+  type:xpath
+  value:"//div[@class='thickcon']//a[@id='btnRemoveConfirm']"

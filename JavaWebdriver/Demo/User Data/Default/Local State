@@ -1,0 +1,76 @@
+{
+   "app_list": {
+      "app_launch_count": 0,
+      "last_app_launch_ping": "13061433600000000",
+      "last_launch_ping": "13061433600000000",
+      "launch_count": 0
+   },
+   "hardware_acceleration_mode_previous": true,
+   "local_state": {
+      "multiple_profile_prefs_version": 7
+   },
+   "policy": {
+      "last_statistics_update": "13061460488225977"
+   },
+   "profile": {
+      "info_cache": {
+         "Default": {
+            "active_time": 1416986929.634698,
+            "avatar_icon": "chrome://theme/IDR_PROFILE_AVATAR_26",
+            "background_apps": false,
+            "is_ephemeral": false,
+            "is_omitted_from_profile_list": false,
+            "is_using_default_avatar": true,
+            "is_using_default_name": true,
+            "managed_user_id": "",
+            "name": "第 1 位用户",
+            "user_name": ""
+         }
+      },
+      "last_active_profiles": [ "Default" ],
+      "last_used": "Default"
+   },
+   "shutdown": {
+      "num_processes": 0,
+      "num_processes_slow": 0,
+      "type": 0
+   },
+   "uninstall_metrics": {
+      "installation_date2": "1416980962",
+      "launch_count": "1",
+      "page_load_count": "10"
+   },
+   "user_experience_metrics": {
+      "client_id2": "51C3D97B-7FED-4C08-8972-D1299D76D1F8",
+      "client_id_timestamp": "1416980962",
+      "low_entropy_source2": 1961,
+      "session_id": 0,
+      "stability": {
+         "child_process_crash_count": 0,
+         "crash_count": 0,
+         "debugger_not_present": 1,
+         "execution_phase": 500,
+         "exited_cleanly": false,
+         "extension_renderer_crash_count": 0,
+         "incomplete_session_end_count": 0,
+         "launch_count": 1,
+         "launch_time_sec": "1416986888",
+         "page_load_count": 10,
+         "plugin_stats2": [ {
+            "crashes": 0,
+            "instances": 0,
+            "launches": 1,
+            "loading_errors": 0,
+            "name": "Shockwave Flash"
+         } ],
+         "renderer_crash_count": 0,
+         "renderer_hang_count": 0,
+         "session_end_completed": true,
+         "stats_buildtime": "1415960981",
+         "stats_version": "39.0.2171.65"
+      }
+   },
+   "was": {
+      "restarted": false
+   }
+}

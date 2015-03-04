@@ -1,0 +1,9 @@
+login_link:
+  type:css
+  value:"#loginbar a:nth-of-type(1)"
+手机数码京东通信:
+  type:xpath
+  value:"//div[@id='_JD_ALLSORT']//span//a[@href='http://shouji.jd.com/']"
+手机品类入口:
+  type:xpath
+  value:"//div[@id='_JD_ALLSORT']//a[@href='http://list.jd.com/9987-653-655.html']"

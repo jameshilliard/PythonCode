@@ -1,0 +1,21 @@
+商品筛选华为:
+  type:xpath
+  value:"//div[@class='tabcon show-logo']//a[@title='华为（HUAWEI）']"
+商品价格筛选:
+  type:xpath
+  value:"//div[@class='a-values']//a[text()='800-1299']"
+商品颜色筛选:
+  type:xpath
+  value:"//div[@class='a-values']//a[text()='黑色']"
+商品类型筛选:
+  type:xpath
+  value:"//div[@id='filter']//a[contains(text(),'京东配送')]"
+第一个商品:
+  type:xpath
+  value:"//div[@id='plist']//li[1]//img"
+商品名称:
+  type:xpath
+  value:"//div[@id='plist']//li[1]//div[@class='p-name']/a"
+商品价格:
+  type:xpath
+  value:"//div[@id='plist']//li[1]//div[@class='p-price']/strong"

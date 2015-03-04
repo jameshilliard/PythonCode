@@ -1,0 +1,8 @@
+<!ENTITY prefs.options "Options">
+
+<!ENTITY safeflag.keepYourBrowserSafe "Firefox keeps you safe!" >
+<!ENTITY safeflag.safeJudgedByGoogle "Safe Browsing" >
+<!ENTITY safeflag.safeDescription "According to Google safe browsing service, the site you are visiting is safe." >
+<!ENTITY safeflag.unSafeJudgedByGoogle "Dangerous web site warining!" >
+<!ENTITY safeflag.unSafeDescription "According to Google safe browsing service, the site you are visiting is dangerous." >
+

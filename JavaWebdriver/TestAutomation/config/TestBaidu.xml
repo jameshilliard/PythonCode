@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<common>
+		<百度链接>http://www.baidu.com</百度链接>
+	</common>
+	<testUI>
+		<description>test demo for 1</description>				
+	</testUI>	
+	<testUI>
+		<description>test demo for 2</description>				
+	</testUI>	
+</data>

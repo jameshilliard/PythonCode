@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<overlay id="cehomepage-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<script type="application/x-javascript" src="chrome://cehomepage/content/history.js" />
+	<stringbundleset>
+		<stringbundle id="CEHPHistoryStrings" src="chrome://ntab/locale/overlay.properties"/>
+	</stringbundleset>
+</overlay>

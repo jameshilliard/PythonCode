@@ -1,0 +1,293 @@
+Generated File. Do not edit.
+
+[HEADER]
+Version|0.17|$
+Arch|x86-msvc|$
+
+[PLUGINS]
+NPSWF32_15_0_0_239.dll|$
+C:\Windows\SysWOW64\Macromed\Flash\NPSWF32_15_0_0_239.dll|$
+15.0.0.239|$
+1416975621775|0|0|0|$
+Shockwave Flash 15.0 r0|$
+Shockwave Flash|$
+2
+0|application/x-shockwave-flash|Adobe Flash movie|swf|$
+1|application/futuresplash|FutureSplash movie|spl|$
+npGoogleUpdate3.dll|$
+C:\Program Files (x86)\Google\Update\1.3.25.11\npGoogleUpdate3.dll|$
+1.3.25.11|$
+1416186326712|0|0|0|$
+Google Update|$
+Google Update|$
+2
+0|application/x-vnd.google.update3webcontrol.3|||$
+1|application/x-vnd.google.oneclickctrl.9|||$
+npBDExNP.dll|$
+C:\Program Files (x86)\Common Files\Baidu\BDWebAdapter\2.0.175.0\npBDExNP.dll|$
+2.0.175.0|$
+1415872775000|0|0|0|$
+百度网页启动组件NP插件模块|$
+百度网页启动组件|$
+1
+0|application/baiduexpert-npplugin|||$
+npFunshion.dll|$
+C:\Users\zhangfei\funshion\funshiontools\npFunshion.dll|$
+1.0.0.0|$
+1415848114520|0|0|0|$
+Funshion|$
+Funshion|$
+1
+0|application/funshion-player-plugin|This plug-in is transfer of Funshion Player when opening funshion.com in a web page with Firefox.|dll|$
+NPSWF32_15_0_0_223.dll|$
+C:\Windows\SysWOW64\Macromed\Flash\NPSWF32_15_0_0_223.dll|$
+15.0.0.223|$
+1415769625503|0|0|0|$
+Shockwave Flash 15.0 r0|$
+Shockwave Flash|$
+2
+0|application/x-shockwave-flash|Adobe Flash movie|swf|$
+1|application/futuresplash|FutureSplash movie|spl|$
+npBDSoftHelperPlug.dll|$
+C:\Users\zhangfei\AppData\Roaming\baidu\BaiduRJDownloader1.3\1.3.0.387\npBDSoftHelperPlug.dll|$
+1.3.0.387|$
+1415727006000|0|0|0|$
+baidu soft center helper npapi plugin|$
+百度软件中心助手|$
+1
+0|application/np-bdsofthelperplug|npBDSoftHelperPlug.dll||$
+npAliSecCtrl.dll|$
+C:\Program Files (x86)\alipay\aliedit\4.4.0.3419\npAliSecCtrl.dll|$
+2.0.1.0|$
+1411887266000|0|0|0|$
+Alipay Security Control|$
+Alipay Security Control 3|$
+1
+0|application/x-alisecctrl-plugin|npAliSecCtrl.dll|*|$
+npAlipaydhc.dll|$
+C:\Program Files (x86)\alipay\aliedit\4.4.0.3419\npAlipaydhc.dll|$
+1.0.6.0|$
+1411887264000|0|0|0|$
+Alipay Internet Health Control|$
+Alipay Security Payment Client Suit|$
+1
+0|application/x-aliinethealth-plugin|npAliInetHealth.dll|*|$
+npjp2.dll|$
+C:\Program Files (x86)\Java\jre7\bin\plugin2\npjp2.dll|$
+10.67.2.1|$
+1410828152649|0|0|0|$
+Next Generation Java Plug-in 10.67.2 for Mozilla browsers|$
+Java(TM) Platform SE 7 U67|$
+38
+0|application/x-java-applet|Java Applet||$
+1|application/x-java-bean|JavaBeans||$
+2|application/x-java-vm|||$
+3|application/x-java-applet;version=1.1.1|||$
+4|application/x-java-bean;version=1.1.1|||$
+5|application/x-java-applet;version=1.1|||$
+6|application/x-java-bean;version=1.1|||$
+7|application/x-java-applet;version=1.2|||$
+8|application/x-java-bean;version=1.2|||$
+9|application/x-java-applet;version=1.1.3|||$
+10|application/x-java-bean;version=1.1.3|||$
+11|application/x-java-applet;version=1.1.2|||$
+12|application/x-java-bean;version=1.1.2|||$
+13|application/x-java-applet;version=1.3|||$
+14|application/x-java-bean;version=1.3|||$
+15|application/x-java-applet;version=1.2.2|||$
+16|application/x-java-bean;version=1.2.2|||$
+17|application/x-java-applet;version=1.2.1|||$
+18|application/x-java-bean;version=1.2.1|||$
+19|application/x-java-applet;version=1.3.1|||$
+20|application/x-java-bean;version=1.3.1|||$
+21|application/x-java-applet;version=1.4|||$
+22|application/x-java-bean;version=1.4|||$
+23|application/x-java-applet;version=1.4.1|||$
+24|application/x-java-bean;version=1.4.1|||$
+25|application/x-java-applet;version=1.4.2|||$
+26|application/x-java-bean;version=1.4.2|||$
+27|application/x-java-applet;version=1.5|||$
+28|application/x-java-bean;version=1.5|||$
+29|application/x-java-applet;version=1.6|||$
+30|application/x-java-bean;version=1.6|||$
+31|application/x-java-applet;version=1.7|||$
+32|application/x-java-bean;version=1.7|||$
+33|application/x-java-applet;jpi-version=1.7.0_67|||$
+34|application/x-java-bean;jpi-version=1.7.0_67|||$
+35|application/x-java-vm-npruntime|||$
+36|application/x-java-applet;deploy=10.67.2|||$
+37|application/x-java-applet;javafx=2.2.67|||$
+npdeployJava1.dll|$
+C:\Program Files (x86)\Java\jre7\bin\dtplugin\npdeployJava1.dll|$
+10.67.2.1|$
+1410828152298|0|0|0|$
+NPRuntime Script Plug-in Library for Java(TM) Deploy|$
+Java Deployment Toolkit 7.0.670.1|$
+1
+0|application/java-deployment-toolkit|||$
+npactivex.dll|$
+C:\Program Files (x86)\Common Files\Tencent\Npchrome\npactivex.dll|$
+5.0.1.2|$
+1410491452547|0|0|0|$
+Tencent QQ CPHelper plugin for Chrome|$
+Tencent QQ|$
+1
+0|application/qscall-plugin|DLL|dll|$
+npalicdo.dll|$
+C:\Users\zhangfei\AppData\Roaming\alipay\cf\npalicdo.dll|$
+1.0.0.4|$
+1409716928000|0|0|0|$
+npalicdo|$
+npalicdo plugin|$
+1
+0|application/npalicdo|npalicdo|dll|$
+npQzoneMusic.dll|$
+C:\Program Files (x86)\Tencent\QQMusic\QzoneMusic\npQzoneMusic.dll|$
+9.51.3079.830|$
+1409378120000|0|0|0|$
+QQMusic|$
+QQMusic|$
+1
+0|application/tecent-qzonemusic-plugin|This plug-in is transfers of QzoneMusic when opening Qzone in a web page with Firefox.|rts|$
+npSSOAxCtrlForPTLogin.dll|$
+C:\Program Files (x86)\Common Files\Tencent\TXSSO\1.2.2.86\Bin\npSSOAxCtrlForPTLogin.dll|$
+1.0.1.15|$
+1409227030000|0|0|0|$
+QQ QuickLogin Helper|$
+Tencent SSO Platform|$
+1
+0|application/nptxsso|TXSSO||$
+npfennecinstaller.dll|$
+C:\Users\zhangfei\AppData\Roaming\Mozilla\Firefox\Profiles\raphlnmz.default\extensions\fennecinstaller@mozillaonline.com\plugins\npfennecinstaller.dll|$
+1.0.0.1|$
+1405592740000|0|0|1|$
+npmonito Dynamic Link Library|$
+npmonito Dynamic Link Library|$
+1
+0|application/android-device-monitor|||$
+npalidcp.dll|$
+C:\Program Files (x86)\alipay\aliedit\4.4.0.3419\npalidcp.dll|$
+1.0.0.1|$
+1404391014000|0|0|0|$
+npalidcp|$
+Alipay webmod control|$
+1
+0|application/alidcp|npalidcp| |$
+npaliedit.dll|$
+C:\Program Files (x86)\alipay\aliedit\4.4.0.3419\npaliedit.dll|$
+1.3.0.2|$
+1404391014000|0|0|0|$
+npaliedit|$
+Alipay security control|$
+1
+0|application/aliedit|npaliedit| |$
+npitunes.dll|$
+C:\Program Files (x86)\iTunes\Mozilla Plugins\npitunes.dll|$
+1.0.1.1|$
+1399320800000|0|0|0|$
+iTunes Detector Plug-in|$
+iTunes Application Detector|$
+1
+0|application/itunes-plugin|This plug-in detects the presence of iTunes when opening iTunes Store URLs in a web page with Firefox.||$
+npXFMiniDLPlugin.dll|$
+C:\Program Files (x86)\Common Files\Tencent\QQMiniDL\60\Browser\npXFMiniDLPlugin.dll|$
+1.4.50.400|$
+1398413128000|0|0|0|$
+QQMiniDL Plugin|$
+QQMiniDL Plugin|$
+1
+0|application/npxf-qqminidl|npXFPlug|dll|$
+np360MMPlugIn.dll|$
+C:\Program Files (x86)\360\360safe\MobileMgr\np360MMPlugIn.dll|$
+2.4.0.1100|$
+1398335656000|0|0|0|$
+360MMPlugin|$
+360MMPlugin|$
+1
+0|application/x360mmplugin|360MMPlugin.dll|dll|$
+npaxlogin.dll|$
+C:\Program Files (x86)\360\360safe\Utils\npaxlogin.dll|$
+1.0.0.1007|$
+1398162484000|0|0|0|$
+360安全卫士 快速登录|$
+360安全卫士 快速登录|$
+1
+0|application/mozilla-npqihooquicklogin|||$
+npcoba32.dll|$
+C:\Users\zhangfei\AppData\Roaming\Mozilla\Firefox\Profiles\raphlnmz.default\extensions\coba@mozilla.com.cn\plugins\npcoba32.dll|$
+1.0.0.1|$
+1392271068000|0|0|1|$
+COBA Plugin DLL|$
+China Online Banking Assistant|$
+1
+0|application/coba||*|$
+npQQPhotoDrawEx.dll|$
+C:\Program Files (x86)\Tencent\Qzone\npQQPhotoDrawEx.dll|$
+2.47.312.813|$
+1376385610000|0|0|0|$
+npQQPhotoDrawEx Module|$
+npQQPhotoDrawEx|$
+1
+0|application/tencent-qqphotodrawex2-plugin||rts|$
+npQQMailWebKit.dll|$
+C:\Program Files (x86)\QQMailPlugin\npQQMailWebKit.dll|$
+1.0.0.22|$
+1366877940000|0|0|0|$
+QQMail plugin for WebKit #1.0.0.22|$
+QQMail Plugin|$
+2
+0|application/x-tencent-qmail-webkit|QQMailPlugin for webkit||$
+1|application/x-tencent-qmail|QQMailPlugin for webkit||$
+nptxftnWebKit.dll|$
+C:\Program Files (x86)\QQMailPlugin\nptxftnWebKit.dll|$
+1.0.0.4|$
+1365408134000|0|0|0|$
+Tencent FTN plug-in|$
+Tencent FTN plug-in|$
+1
+0|application/txftn-webkit|nptxftn||$
+NPCMBEdit.dll|$
+C:\Windows\system32\NPCMBEdit.dll|$
+1.0.0.2|$
+1340763624000|0|0|0|$
+China Merchants Bank Edit|$
+CMBEdit Plugin|$
+1
+0|application/x-cmbedit|cmbedit||$
+NPComBrg701.dll|$
+C:\Windows\system32\itruscert\NPComBrg701.dll|$
+1.0.2011.701|$
+1311580150000|0|0|0|$
+iTrusPTA&XEnroll hwPTA,IEnroll,UKeyInstalls for FireFox,version=1.0.0.2|$
+iTrusChina iTrusPTA,XEnroll,iEnroll,hwPTA,UKeyInstalls Firefox Plugin|$
+6
+0|application/pta.itruspta.version.1|PTA|*|$
+1|application/cenroll.cenroll.version.1|CEnroll||$
+2|application/itrusenroll.certenroll.version.1|IEnroll||$
+3|application/hwpta.itrushwpta|hwPTA||$
+4|application/hwwdkey.installwdkey|hwWDkey||$
+5|application/hwepass2001.installepass2001|HwEpass2001||$
+NPSPWRAP.DLL|$
+C:\PROGRA~2\MICROS~1\Office14\NPSPWRAP.DLL|$
+14.0.4761.1000|$
+1269433358000|0|0|0|$
+The plug-in allows you to open and edit files using Microsoft Office applications|$
+Microsoft Office 2010|$
+1
+0|application/x-sharepoint|SharePoint Plug-in for Firefox||$
+NPAUTHZ.DLL|$
+C:\PROGRA~2\MICROS~1\Office14\NPAUTHZ.DLL|$
+14.0.4730.1010|$
+1263044538000|0|0|0|$
+Office Authorization plug-in for NPAPI browsers|$
+Microsoft Office 2010|$
+1
+0|application/x-msoffice14|14.0.4730.1010|*|$
+
+[INVALID]
+C:\Windows\system32\npmproxy.dll|$
+1247534171654|$
+C:\Program Files (x86)\alipay\aliedit\4.4.0.3419\npAliSecCtrl64.dll|$
+1411887266000|$
+C:\Program Files (x86)\alipay\aliedit\4.4.0.3419\npAlipaydhc64.dll|$
+1411887264000|$

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="2" passed="2">
+  <reporter-output>
+    <line>
+      <![CDATA[2014-12-20 01:18:25 : test1]]>
+    </line>
+    <line>
+      <![CDATA[2014-12-20 01:18:25 : 123456]]>
+    </line>
+    <line>
+      <![CDATA[2014-12-20 01:18:25 : test]]>
+    </line>
+    <line>
+      <![CDATA[2014-12-20 01:18:25 : http://www.jd.com]]>
+    </line>
+    <line>
+      <![CDATA[2014-12-20 01:18:25 : test2]]>
+    </line>
+    <line>
+      <![CDATA[2014-12-20 01:18:25 : 123456]]>
+    </line>
+    <line>
+      <![CDATA[2014-12-20 01:18:25 : input2]]>
+    </line>
+    <line>
+      <![CDATA[2014-12-20 01:18:25 : http://www.jd.com]]>
+    </line>
+  </reporter-output>
+  <suite name="Suite" duration-ms="436" started-at="2014-12-19T17:18:25Z" finished-at="2014-12-19T17:18:25Z">
+    <groups>
+    </groups>
+    <test name="Test" duration-ms="436" started-at="2014-12-19T17:18:25Z" finished-at="2014-12-19T17:18:25Z">
+      <class name="com.test.testcases.Test1">
+        <test-method status="PASS" signature="initialDriver()[pri:0, instance:com.test.testcases.Test1@d70d7a]" name="initialDriver" is-config="true" duration-ms="16" started-at="2014-12-20T01:18:25Z" finished-at="2014-12-20T01:18:25Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialDriver -->
+        <test-method status="PASS" signature="testLogin(java.util.Map)[pri:0, instance:com.test.testcases.Test1@d70d7a]" name="testLogin" duration-ms="63" started-at="2014-12-20T01:18:25Z" data-provider="providerMethod" finished-at="2014-12-20T01:18:25Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{username=test1, inputValue=test, password=123456, url=http://www.jd.com}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[2014-12-20 01:18:25 : test1]]>
+            </line>
+            <line>
+              <![CDATA[2014-12-20 01:18:25 : 123456]]>
+            </line>
+            <line>
+              <![CDATA[2014-12-20 01:18:25 : test]]>
+            </line>
+            <line>
+              <![CDATA[2014-12-20 01:18:25 : http://www.jd.com]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- testLogin -->
+        <test-method status="PASS" signature="testLogin(java.util.Map)[pri:0, instance:com.test.testcases.Test1@d70d7a]" name="testLogin" duration-ms="15" started-at="2014-12-20T01:18:25Z" data-provider="providerMethod" finished-at="2014-12-20T01:18:25Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{username=test2, inputValue=input2, password=123456, url=http://www.jd.com}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[2014-12-20 01:18:25 : test2]]>
+            </line>
+            <line>
+              <![CDATA[2014-12-20 01:18:25 : 123456]]>
+            </line>
+            <line>
+              <![CDATA[2014-12-20 01:18:25 : input2]]>
+            </line>
+            <line>
+              <![CDATA[2014-12-20 01:18:25 : http://www.jd.com]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- testLogin -->
+        <test-method status="PASS" signature="closeDriver()[pri:0, instance:com.test.testcases.Test1@d70d7a]" name="closeDriver" is-config="true" duration-ms="0" started-at="2014-12-20T01:18:25Z" finished-at="2014-12-20T01:18:25Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeDriver -->
+      </class> <!-- com.test.testcases.Test1 -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
+</testng-results>

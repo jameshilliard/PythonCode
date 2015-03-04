@@ -1,0 +1,2127 @@
+
+<meta http-equiv="Cache-Control" content="no-store"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
+
+
+
+
+
+
+
+<form id="pagerForm" method="post" onsubmit="return navTabSearch(this);" action="app/search">
+	<input type="hidden" name="catagory" value="0" />
+	<input type="hidden" name="channel" value="0" />
+	<input type="hidden" name="pubStatus" value="" />
+	<input type="hidden" name="name" value="" />
+	<input type="hidden" name="orderField" value="id" />
+	<input type="hidden" name="orderDirection" value="desc" />
+	<input type="hidden" name="pageNum" value="1" />
+    <input type="hidden" name="numPerPage" value="50" />
+
+</form>
+
+<div class="pageHeader">
+	<form rel="pagerForm" method="post" onsubmit="return navTabSearch(this);" action="app/search" >
+
+			<div class="unit">
+				<label>应用名称：</label>
+				<input type="text" name="name" maxlength="128" value=""/>
+
+				<label>应用分类：</label>
+				<select class="select" name="catagory" style="width:133px">
+					<option value="0">选择分类</option>
+					
+						<option value="1"  >电影</option>
+					
+						<option value="2"  >游戏</option>
+					
+						<option value="3"  >教育</option>
+					
+						<option value="4"  >视频</option>
+					
+						<option value="6"  >亲子</option>
+					
+						<option value="7"  >生活</option>
+					
+						<option value="8"  >电视剧</option>
+					
+						<option value="17"  >内置</option>
+					
+				</select>
+
+				<label>应用频道：</label>
+				<select class="select" name="channel" style="width:133px">
+					<option value="0">选择分类</option>
+					
+						<option value="1"  >推荐</option>
+					
+						<option value="6"  >其它</option>
+					
+						<option value="5"  >生活</option>
+					
+						<option value="4"  >教育</option>
+					
+						<option value="2"  >影音</option>
+					
+						<option value="3"  >游戏</option>
+					
+				</select>
+
+				<label>应用状态：</label>
+				<select class="select" name="pubStatus" style="width:133px">
+					<option value=""  >所有</option>
+					<option value="T"  >待发布</option>
+					<option value="P"  >已发布</option>
+					<option value="N"  >已下架</option>
+				</select>
+				<button type="submit" name="searchBtn" id="searchId">查询</button>
+			</div>
+
+	</form>
+</div>
+
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="app/add" target="navTab" mask="true" rel="addApp"><span>新增应用</span></a></li>
+		</ul>
+	</div>
+	<table class="table" width="100%" layoutH="110" nowrapTD="false" >
+		<thead>
+			<tr>
+				<th width="20" orderField="id"  class="desc"  >ID</th>
+				<th width="80" >名称</th>
+				<th width="50" >版本名称</th>
+				<th width="40" orderField="pkg_size"  >包的大小</th>
+				<th width="80" orderField="pub_time"  >发布时间</th>
+				<th width="40" >发布状态</th>
+				<th width="80" >应用简介</th>
+				<th width="50" >应用分类</th>
+				<th width="50" >应用频道</th>
+				<th width="50" >修改人</th>
+				<th width="80" >修改时间</th>
+				<th width="150" >操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+				<tr>
+					<td>1197</td>
+					<td>优酷</td>
+					<td>4.1.2</td>
+					<td>21.14M</td>
+					<td></td>
+					<td>
+						
+							待发布
+							
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="aaa">aaa</div></td>
+					<td>
+						教育
+					</td>
+					<td>
+						生活
+					</td>
+					
+						
+						
+							<td>郝宁</td>
+						
+					
+					<td>
+						
+					</td>
+					<td>
+						
+							
+							
+								<a class="btnEdit" href="app/update/1197" target="navtab" title="编辑">编辑</a>
+								<a class="btnSelect" href="app/publish/1197" target="ajaxTodo" title="发布应用">发布</a>
+								<a class="btnDel" href="app/unpublish/1197" target="ajaxTodo" title="下架应用">下架</a>
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1196</td>
+					<td>Straight</td>
+					<td>1.3.2</td>
+					<td>6.24M</td>
+					<td></td>
+					<td>
+						
+							待发布
+							
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="ASDASFD">ASDASFD</div></td>
+					<td>
+						教育
+					</td>
+					<td>
+						生活
+					</td>
+					
+						
+						
+							<td>魏永林</td>
+						
+					
+					<td>
+						
+					</td>
+					<td>
+						
+							
+							
+								<a class="btnEdit" href="app/update/1196" target="navtab" title="编辑">编辑</a>
+								<a class="btnSelect" href="app/publish/1196" target="ajaxTodo" title="发布应用">发布</a>
+								<a class="btnDel" href="app/unpublish/1196" target="ajaxTodo" title="下架应用">下架</a>
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1195</td>
+					<td>万年历</td>
+					<td>1.0.5</td>
+					<td>3.04M</td>
+					<td></td>
+					<td>
+						
+							待发布
+							
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="asdsadf">asdsadf</div></td>
+					<td>
+						生活
+					</td>
+					<td>
+						教育
+					</td>
+					
+						
+						
+							<td>魏永林</td>
+						
+					
+					<td>
+						
+					</td>
+					<td>
+						
+							
+							
+								<a class="btnEdit" href="app/update/1195" target="navtab" title="编辑">编辑</a>
+								<a class="btnSelect" href="app/publish/1195" target="ajaxTodo" title="发布应用">发布</a>
+								<a class="btnDel" href="app/unpublish/1195" target="ajaxTodo" title="下架应用">下架</a>
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1194</td>
+					<td>优酷</td>
+					<td>4.2.1</td>
+					<td>22.18M</td>
+					<td></td>
+					<td>
+						
+							待发布
+							
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="for youku">for youku</div></td>
+					<td>
+						教育
+					</td>
+					<td>
+						生活
+					</td>
+					
+						
+						
+							<td>张飞</td>
+						
+					
+					<td>
+						
+					</td>
+					<td>
+						
+							
+							
+								<a class="btnEdit" href="app/update/1194" target="navtab" title="编辑">编辑</a>
+								<a class="btnSelect" href="app/publish/1194" target="ajaxTodo" title="发布应用">发布</a>
+								<a class="btnDel" href="app/unpublish/1194" target="ajaxTodo" title="下架应用">下架</a>
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1193</td>
+					<td>波克斗地主</td>
+					<td>3.07</td>
+					<td>16.5M</td>
+					<td>2014-10-15 09:51:33</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="asdf">asdf</div></td>
+					<td>
+						教育
+					</td>
+					<td>
+						生活
+					</td>
+					
+						
+							<td>魏永林</td>
+						
+						
+					
+					<td>
+						
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1193" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1193" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1192</td>
+					<td>腾讯电视游戏</td>
+					<td>1.0.73</td>
+					<td>2.3M</td>
+					<td></td>
+					<td>
+						
+							待发布
+							
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="asdf">asdf</div></td>
+					<td>
+						游戏
+					</td>
+					<td>
+						其它
+					</td>
+					
+						
+						
+							<td>魏永林</td>
+						
+					
+					<td>
+						
+					</td>
+					<td>
+						
+							
+							
+								<a class="btnEdit" href="app/update/1192" target="navtab" title="编辑">编辑</a>
+								<a class="btnSelect" href="app/publish/1192" target="ajaxTodo" title="发布应用">发布</a>
+								<a class="btnDel" href="app/unpublish/1192" target="ajaxTodo" title="下架应用">下架</a>
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1191</td>
+					<td>春雨医生</td>
+					<td>5.4.2</td>
+					<td>8.11M</td>
+					<td></td>
+					<td>
+						
+							待发布
+							
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="dsftedg">dsftedg</div></td>
+					<td>
+						教育
+					</td>
+					<td>
+						生活
+					</td>
+					
+						
+						
+							<td>魏永林</td>
+						
+					
+					<td>
+						
+					</td>
+					<td>
+						
+							
+							
+								<a class="btnEdit" href="app/update/1191" target="navtab" title="编辑">编辑</a>
+								<a class="btnSelect" href="app/publish/1191" target="ajaxTodo" title="发布应用">发布</a>
+								<a class="btnDel" href="app/unpublish/1191" target="ajaxTodo" title="下架应用">下架</a>
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1190</td>
+					<td>波克斗地主</td>
+					<td>3.07</td>
+					<td>16.5M</td>
+					<td></td>
+					<td>
+						
+							
+							
+							已下架
+						
+					</td>
+					<td><div style="text-overflow:true;" title="asdfas">asdfas</div></td>
+					<td>
+						教育
+					</td>
+					<td>
+						生活
+					</td>
+					
+						
+							<td>魏永林</td>
+						
+						
+					
+					<td>
+						
+					</td>
+					<td>
+						
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1189</td>
+					<td>优酷</td>
+					<td>4.1.2</td>
+					<td>21.14M</td>
+					<td></td>
+					<td>
+						
+							待发布
+							
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="for youku">for youku</div></td>
+					<td>
+						教育
+					</td>
+					<td>
+						生活
+					</td>
+					
+						
+						
+							<td>张飞</td>
+						
+					
+					<td>
+						
+					</td>
+					<td>
+						
+							
+							
+								<a class="btnEdit" href="app/update/1189" target="navtab" title="编辑">编辑</a>
+								<a class="btnSelect" href="app/publish/1189" target="ajaxTodo" title="发布应用">发布</a>
+								<a class="btnDel" href="app/unpublish/1189" target="ajaxTodo" title="下架应用">下架</a>
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1188</td>
+					<td>测试升级应用</td>
+					<td>1.2</td>
+					<td>0.79M</td>
+					<td>2014-10-10 17:32:19</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="测试升级应用，专门用于升级测试。测试升级应用，专门用于升级测试。测试升级应用，专门用于升级测试。测试升级应用，专门用于升级测试。测试升级应用，专门用于升级测试。测试升级应用，专门用于升级测试。">测试升级应用，专门用于升级测试。测试升级应用，专门用于升级测试。测试升级应用，专门用于升级测试。测试升级应用，专门用于升级测试。测试升级应用，专门用于升级测试。测试升级应用，专门用于升级测试。</div></td>
+					<td>
+						生活
+					</td>
+					<td>
+						生活
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-10 20:11:36
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1188" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1188" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1186</td>
+					<td>万花筒视频</td>
+					<td>1.2820</td>
+					<td>10.3M</td>
+					<td>2014-10-10 17:21:44</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="万花筒视频是专为家庭电视设计的最简单好用的Android大屏幕应用。">万花筒视频是专为家庭电视设计的最简单好用的Android大屏幕应用。</div></td>
+					<td>
+						电影
+					</td>
+					<td>
+						生活
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-10 17:21:40
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1186" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1186" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1185</td>
+					<td>超级回看</td>
+					<td>1.0.0.15</td>
+					<td>1.99M</td>
+					<td>1969-12-02 08:01:43</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="看电视必备的30天回看软件，让你不错过任何一个电视节目。">看电视必备的30天回看软件，让你不错过任何一个电视节目。</div></td>
+					<td>
+						内置
+					</td>
+					<td>
+						其它
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-10 15:56:56
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1185" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1185" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1184</td>
+					<td>泰捷视频</td>
+					<td>2.8.4</td>
+					<td>14.34M</td>
+					<td>2014-02-27 01:09:30</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="泰捷视频/泰捷视频TV版，装机必备的免费直播与点播软件！">泰捷视频/泰捷视频TV版，装机必备的免费直播与点播软件！</div></td>
+					<td>
+						内置
+					</td>
+					<td>
+						其它
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 16:19:45
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1184" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1184" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1183</td>
+					<td>讯飞电视语点</td>
+					<td>3.1.8.29940</td>
+					<td>7.76M</td>
+					<td>2014-01-16 07:05:42</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="飞语点是一款语音对话助理工具，类似于苹果上面的siri软件。你可以叫他帮你打电话、发信息给某人、打开任意手机上的软件、天气查询、航班查询、周边查询如银行酒店餐馆等等。">飞语点是一款语音对话助理工具，类似于苹果上面的siri软件。你可以叫他帮你打电话、发信息给某人、打开任意手机上的软件、天气查询、航班查询、周边查询如银行酒店餐馆等等。</div></td>
+					<td>
+						内置
+					</td>
+					<td>
+						其它
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 16:19:57
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1183" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1183" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1182</td>
+					<td>空鼠模拟</td>
+					<td>3.0</td>
+					<td>4.06M</td>
+					<td>2014-01-16 07:05:42</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="本地应用：空鼠模拟">本地应用：空鼠模拟</div></td>
+					<td>
+						内置
+					</td>
+					<td>
+						其它
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 16:20:36
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1182" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1182" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1181</td>
+					<td>迈乐乐推</td>
+					<td>2.0-20140611</td>
+					<td>2.98M</td>
+					<td>2007-12-01 08:08:00</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="本地应用：迈乐乐推">本地应用：迈乐乐推</div></td>
+					<td>
+						内置
+					</td>
+					<td>
+						其它
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 16:21:23
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1181" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1181" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1180</td>
+					<td>本地音乐</td>
+					<td>1.4</td>
+					<td>0.66M</td>
+					<td>2007-12-01 08:08:00</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="本地应用：本地音乐">本地应用：本地音乐</div></td>
+					<td>
+						内置
+					</td>
+					<td>
+						其它
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 16:22:16
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1180" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1180" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1179</td>
+					<td>文件管理</td>
+					<td>1.2</td>
+					<td>0.59M</td>
+					<td>2007-12-01 08:08:00</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="本地应用：文件管理">本地应用：文件管理</div></td>
+					<td>
+						内置
+					</td>
+					<td>
+						其它
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 16:22:56
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1179" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1179" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1178</td>
+					<td>iTV应用商城</td>
+					<td>1.1.0</td>
+					<td>2.66M</td>
+					<td>2014-01-16 07:05:41</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="本地应用：iTV应用商城">本地应用：iTV应用商城</div></td>
+					<td>
+						内置
+					</td>
+					<td>
+						其它
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 16:23:21
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1178" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1178" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1177</td>
+					<td>语音遥控</td>
+					<td>1.0</td>
+					<td>0.91M</td>
+					<td>2014-02-16 07:05:03</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="本地应用：语音遥控">本地应用：语音遥控</div></td>
+					<td>
+						内置
+					</td>
+					<td>
+						其它
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 16:24:42
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1177" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1177" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1176</td>
+					<td>搜狗输入法TV版</td>
+					<td>1.1.0</td>
+					<td>6.65M</td>
+					<td>2007-12-01 08:08:00</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="本地应用：搜狗输入法TV版">本地应用：搜狗输入法TV版</div></td>
+					<td>
+						内置
+					</td>
+					<td>
+						其它
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 16:25:15
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1176" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1176" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1175</td>
+					<td>高清播放器</td>
+					<td>1.0</td>
+					<td>10.8M</td>
+					<td>2014-03-01 10:09:04</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="本地应用：高清播放器">本地应用：高清播放器</div></td>
+					<td>
+						内置
+					</td>
+					<td>
+						其它
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 16:26:29
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1175" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1175" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1174</td>
+					<td>远程下载</td>
+					<td>1.0</td>
+					<td>5.1M</td>
+					<td>2014-03-01 10:09:55</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="本地应用：远程下载">本地应用：远程下载</div></td>
+					<td>
+						内置
+					</td>
+					<td>
+						其它
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 16:27:06
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1174" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1174" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1173</td>
+					<td>网络电台</td>
+					<td>1.0</td>
+					<td>9.35M</td>
+					<td>2007-12-01 08:08:00</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="本地应用：网络电台">本地应用：网络电台</div></td>
+					<td>
+						内置
+					</td>
+					<td>
+						其它
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 16:27:35
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1173" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1173" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1172</td>
+					<td>游戏中心</td>
+					<td>MIBOX_1.1.46_20140328</td>
+					<td>2.58M</td>
+					<td>2014-08-25 07:08:15</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="本地应用：游戏中心">本地应用：游戏中心</div></td>
+					<td>
+						内置
+					</td>
+					<td>
+						其它
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 16:28:14
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1172" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1172" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1171</td>
+					<td>文件管理器</td>
+					<td>4.0</td>
+					<td>0.38M</td>
+					<td>2014-03-21 01:01:27</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="本地应用：文件管理器">本地应用：文件管理器</div></td>
+					<td>
+						内置
+					</td>
+					<td>
+						其它
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 16:29:09
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1171" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1171" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1170</td>
+					<td>小米盒子</td>
+					<td>1.0</td>
+					<td>11.93M</td>
+					<td>2014-03-01 10:09:39</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="本地应用：小米盒子">本地应用：小米盒子</div></td>
+					<td>
+						内置
+					</td>
+					<td>
+						其它
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 16:25:50
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1170" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1170" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1169</td>
+					<td>云相册</td>
+					<td>1.0</td>
+					<td>1.86M</td>
+					<td>2014-03-01 10:09:41</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="本地应用：云相册">本地应用：云相册</div></td>
+					<td>
+						内置
+					</td>
+					<td>
+						其它
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 16:23:59
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1169" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1169" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1168</td>
+					<td>卡拉开唱</td>
+					<td>3.1.1</td>
+					<td>23.0M</td>
+					<td>2014-09-10 00:00:00</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="卡拉开唱，客厅里的KTV，父母孩子的好伙伴！ 一款可让您尽情畅享 2万多首超高清MV、演唱会等视频内容的家庭娱乐型应用，并能让每位家庭成员充分享受“私人定制”般的 K 歌包厢体验。">卡拉开唱，客厅里的KTV，父母孩子的好伙伴！ 一款可让您尽情畅享 2万多首超高清MV、演唱会等视频内容的家庭娱乐型应用，并能让每位家庭成员充分享受“私人定制”般的 K 歌包厢体验。</div></td>
+					<td>
+						生活
+					</td>
+					<td>
+						生活
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 11:53:26
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1168" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1168" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1167</td>
+					<td>郑多燕減肥操</td>
+					<td>2.0.1</td>
+					<td>0.6M</td>
+					<td>2014-08-13 00:00:00</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="该程序包含了郑多燕减肥操系列视频的全集，点击即播，方便快捷，支持智能电视，智能机顶盒。只需每天30分钟，就可一个月减掉20斤，堪称！姑凉们，还在等什么，马上下载郑多燕减肥操！适用于安卓智能机顶盒和智能电视，目前亲测的设备有小米盒子，乐视盒子，海美迪，开博尔，海信，创维，TCL电视。">该程序包含了郑多燕减肥操系列视频的全集，点击即播，方便快捷，支持智能电视，智能机顶盒。只需每天30分钟，就可一个月减掉20斤，堪称！姑凉们，还在等什么，马上下载郑多燕减肥操！适用于安卓智能机顶盒和智能电视，目前亲测的设备有小米盒子，乐视盒子，海美迪，开博尔，海信，创维，TCL电视。</div></td>
+					<td>
+						生活
+					</td>
+					<td>
+						生活
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 11:53:59
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1167" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1167" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1166</td>
+					<td>快说语音电视</td>
+					<td>1.1.9</td>
+					<td>16.4M</td>
+					<td>2014-09-19 00:00:00</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="快说语音助手TV版是由快说打造的，基于语音操控的电视机软件。支持电视直播、在线视频、音乐点播、本地应用调用、娱乐聊天、网络搜索等功能。1秒速换台，说出想看的电视台名称，快说帮你立即播放。语音搜片，想搜索什么节目，告诉快说就搞定，ta来帮你找到你需要的。">快说语音助手TV版是由快说打造的，基于语音操控的电视机软件。支持电视直播、在线视频、音乐点播、本地应用调用、娱乐聊天、网络搜索等功能。1秒速换台，说出想看的电视台名称，快说帮你立即播放。语音搜片，想搜索什么节目，告诉快说就搞定，ta来帮你找到你需要的。</div></td>
+					<td>
+						生活
+					</td>
+					<td>
+						生活
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 11:54:46
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1166" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1166" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1164</td>
+					<td>VST全聚合</td>
+					<td>2.2.7</td>
+					<td>15.0M</td>
+					<td>2014-09-19 00:00:00</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="VST全聚合是一套全新的全媒体聚合客户端软件（启动器），是华人用户数最多的聚合平台软件，集合视频点播、网络直播、电视回播、应用程序、我的设置于一身，聚合了国内主流的十八个视频网站的内容。">VST全聚合是一套全新的全媒体聚合客户端软件（启动器），是华人用户数最多的聚合平台软件，集合视频点播、网络直播、电视回播、应用程序、我的设置于一身，聚合了国内主流的十八个视频网站的内容。</div></td>
+					<td>
+						电影
+					</td>
+					<td>
+						生活
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 11:56:27
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1164" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1164" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1163</td>
+					<td>一键清理</td>
+					<td>2.1</td>
+					<td>487.0M</td>
+					<td>2014-09-19 00:00:00</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="一款针对智能电视而生的加速器，适用于各种安卓智能电视。小巧、方便，只需要轻轻点击，瞬间释放内存，解决卡顿烦恼，给您自由自在的电视体验空间，让您看电视更流畅、玩游戏更爽。">一款针对智能电视而生的加速器，适用于各种安卓智能电视。小巧、方便，只需要轻轻点击，瞬间释放内存，解决卡顿烦恼，给您自由自在的电视体验空间，让您看电视更流畅、玩游戏更爽。</div></td>
+					<td>
+						生活
+					</td>
+					<td>
+						生活
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 12:02:25
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1163" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1163" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1162</td>
+					<td>迅雷电视助手</td>
+					<td>1.3.1</td>
+					<td>0.6M</td>
+					<td>2014-08-13 00:00:00</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="【手机端新增功能】手机一秒变遥控，应用管理一步到位！【盒子控必备】迅雷电视助手电视端，全球首创，配合手机端，自动识别并连接你的智能电视！支持小米盒子、小米电视、乐视盒子、乐视电视、海美迪、开博尔、天猫魔盒、创维高清盒子、华数、美如画盒子等多品牌型号的智能电视和盒子。小米盒子和创维盒子，切回系统home页会中断连接，可以使用手机端的迅雷电视助手重新打开电视端。">【手机端新增功能】手机一秒变遥控，应用管理一步到位！【盒子控必备】迅雷电视助手电视端，全球首创，配合手机端，自动识别并连接你的智能电视！支持小米盒子、小米电视、乐视盒子、乐视电视、海美迪、开博尔、天猫魔盒、创维高清盒子、华数、美如画盒子等多品牌型号的智能电视和盒子。小米盒子和创维盒子，切回系统home页会中断连接，可以使用手机端的迅雷电视助手重新打开电视端。</div></td>
+					<td>
+						电影
+					</td>
+					<td>
+						生活
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 12:04:44
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1162" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1162" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1161</td>
+					<td>UC浏览器</td>
+					<td>14.10</td>
+					<td>11.8M</td>
+					<td>2014-09-19 00:00:00</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="国内第一款自主内核TV浏览器！【智能排版优化】U3内核优化排版，字体更大更清晰。【超清大片来袭】流畅、高清、超清，客厅瞬间变影院。">国内第一款自主内核TV浏览器！【智能排版优化】U3内核优化排版，字体更大更清晰。【超清大片来袭】流畅、高清、超清，客厅瞬间变影院。</div></td>
+					<td>
+						生活
+					</td>
+					<td>
+						生活
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 11:58:49
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1161" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1161" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1160</td>
+					<td>乐学空中英语</td>
+					<td>1.1.3</td>
+					<td>21.0M</td>
+					<td>2014-08-08 00:00:00</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="乐学空中英语是面向世界各地正在学习英语的华人，更强调口语交际的培养，词汇量相对较少，以简单会话为主。跟着视频轻松学英语。">乐学空中英语是面向世界各地正在学习英语的华人，更强调口语交际的培养，词汇量相对较少，以简单会话为主。跟着视频轻松学英语。</div></td>
+					<td>
+						教育
+					</td>
+					<td>
+						教育
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 11:31:52
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1160" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1160" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1159</td>
+					<td>空中幼儿园</td>
+					<td>1.2.9</td>
+					<td>32.0M</td>
+					<td>2014-09-12 00:00:00</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="空中幼儿园完全为您的小宝宝量身打造，逐步培养小朋友各学习阶段的认知发展能力，各种互动学习课程，加上品德故事，让孩子的学习生活丰富起来。">空中幼儿园完全为您的小宝宝量身打造，逐步培养小朋友各学习阶段的认知发展能力，各种互动学习课程，加上品德故事，让孩子的学习生活丰富起来。</div></td>
+					<td>
+						教育
+					</td>
+					<td>
+						教育
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 11:33:08
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1159" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1159" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1158</td>
+					<td>乐学故事书</td>
+					<td>3.0.7</td>
+					<td>14.0M</td>
+					<td>2014-09-10 00:00:00</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="乐学故事书针对3~8岁儿童，通过寓教于乐故事书的形式，让小朋友在看电视的过程中，学习到知识，培养良好行为；故事内容从三字经到经典国外童话，都是精选了适合该年龄段儿童的内容，小孩看着开心，家长用的放心。">乐学故事书针对3~8岁儿童，通过寓教于乐故事书的形式，让小朋友在看电视的过程中，学习到知识，培养良好行为；故事内容从三字经到经典国外童话，都是精选了适合该年龄段儿童的内容，小孩看着开心，家长用的放心。</div></td>
+					<td>
+						教育
+					</td>
+					<td>
+						教育
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 11:33:48
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1158" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1158" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1157</td>
+					<td>才智小天地</td>
+					<td>2.0</td>
+					<td>0.6M</td>
+					<td>2014-09-19 00:00:00</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="“才智小天地”是专注于0~8岁儿童成长的中国儿童教育与娱乐品牌，由华东师范大学学前教育专家组牵头组成超过100人的研发团队进行产品设计与制作。">“才智小天地”是专注于0~8岁儿童成长的中国儿童教育与娱乐品牌，由华东师范大学学前教育专家组牵头组成超过100人的研发团队进行产品设计与制作。</div></td>
+					<td>
+						教育
+					</td>
+					<td>
+						教育
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 11:34:45
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1157" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1157" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1156</td>
+					<td>启智有声书</td>
+					<td>2.0.0</td>
+					<td>13.5M</td>
+					<td>2014-09-19 00:00:00</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="宝贝爱上阅读，从启智有声书开始；启智有声书，宝贝的阅读启蒙老师；2014妈妈育儿、亲子互动必备APP；0-12岁宝宝最适宜的绘本阅读平台。">宝贝爱上阅读，从启智有声书开始；启智有声书，宝贝的阅读启蒙老师；2014妈妈育儿、亲子互动必备APP；0-12岁宝宝最适宜的绘本阅读平台。</div></td>
+					<td>
+						教育
+					</td>
+					<td>
+						教育
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 11:35:40
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1156" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1156" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1155</td>
+					<td>乐学名师课堂</td>
+					<td>2.2.4</td>
+					<td>26.8M</td>
+					<td>2014-09-19 00:00:00</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="名师课堂依托北大附中附小等资源，汇聚100多名师，结合新课程标准倾心为广大学生打造网络名师同步课堂，让学生们坐在家里就能走进名师课堂。">名师课堂依托北大附中附小等资源，汇聚100多名师，结合新课程标准倾心为广大学生打造网络名师同步课堂，让学生们坐在家里就能走进名师课堂。</div></td>
+					<td>
+						教育
+					</td>
+					<td>
+						教育
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 11:38:48
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1155" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1155" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1154</td>
+					<td>小小直升机</td>
+					<td>1.0</td>
+					<td>11.0M</td>
+					<td>2014-09-22 00:00:00</td>
+					<td>
+						
+							
+							
+							已下架
+						
+					</td>
+					<td><div style="text-overflow:true;" title="小小直升机Hello Copter 画风很可爱的横版飞行类休闲游戏，易于操作，玩家需要驾驶一座小小的直升飞机进行移动，避开空中的女巫和猪，拯救并释放被困的鸟的孩子。">小小直升机Hello Copter 画风很可爱的横版飞行类休闲游戏，易于操作，玩家需要驾驶一座小小的直升飞机进行移动，避开空中的女巫和猪，拯救并释放被困的鸟的孩子。</div></td>
+					<td>
+						
+					</td>
+					<td>
+						游戏
+					</td>
+					
+						
+						
+							<td></td>
+						
+					
+					<td>
+						
+					</td>
+					<td>
+						
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1153</td>
+					<td>急速赛车</td>
+					<td>1.1.0</td>
+					<td>2.0M</td>
+					<td>2014-09-21 00:00:00</td>
+					<td>
+						
+							
+							
+							已下架
+						
+					</td>
+					<td><div style="text-overflow:true;" title="这是我玩过的最经典的最真实的赛车游戏，发挥出你的想象看看你到底能让赛车漂移到什么程度！">这是我玩过的最经典的最真实的赛车游戏，发挥出你的想象看看你到底能让赛车漂移到什么程度！</div></td>
+					<td>
+						
+					</td>
+					<td>
+						游戏
+					</td>
+					
+						
+						
+							<td></td>
+						
+					
+					<td>
+						
+					</td>
+					<td>
+						
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1152</td>
+					<td>植物大战僵尸2</td>
+					<td>1.0.1</td>
+					<td>11.0M</td>
+					<td>2014-09-25 00:00:00</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="《植物大战僵尸2》是一款极富策略性的小游戏，可怕的僵尸即将入侵，唯一的防御方式就是栽种植物。植物大战僵尸2集成了即时战略、塔防御战和卡片收集等要素。游戏创意独特，操作感极好，游戏画面唯美可爱，音效协调。">《植物大战僵尸2》是一款极富策略性的小游戏，可怕的僵尸即将入侵，唯一的防御方式就是栽种植物。植物大战僵尸2集成了即时战略、塔防御战和卡片收集等要素。游戏创意独特，操作感极好，游戏画面唯美可爱，音效协调。</div></td>
+					<td>
+						游戏
+					</td>
+					<td>
+						游戏
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 14:12:27
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1152" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1152" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1151</td>
+					<td>斗地主</td>
+					<td>3.02.03</td>
+					<td>20.0M</td>
+					<td>2014-09-20 00:00:00</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="斗地主是一种纸牌游戏，同时是一种智力体育运动。适当的进行棋牌等一些娱乐性活动，能够开发人的思维。玩斗地主能充分展现个人才能与技巧，甚至是一种心理素质的锻炼。">斗地主是一种纸牌游戏，同时是一种智力体育运动。适当的进行棋牌等一些娱乐性活动，能够开发人的思维。玩斗地主能充分展现个人才能与技巧，甚至是一种心理素质的锻炼。</div></td>
+					<td>
+						游戏
+					</td>
+					<td>
+						游戏
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 14:11:48
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1151" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1151" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1150</td>
+					<td>2048</td>
+					<td>1.8.0</td>
+					<td>0.6M</td>
+					<td>2014-09-20 00:00:00</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="一款有意思的算术小游戏，虽然是简单的加法运算，但是要将小数字累加到2048也不是一件容易的事，要注意的是，只有相同的数字才可以累加。想试试吗？">一款有意思的算术小游戏，虽然是简单的加法运算，但是要将小数字累加到2048也不是一件容易的事，要注意的是，只有相同的数字才可以累加。想试试吗？</div></td>
+					<td>
+						游戏
+					</td>
+					<td>
+						游戏
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 14:10:51
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1150" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1150" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1149</td>
+					<td>加加游戏社区</td>
+					<td>7-1</td>
+					<td>6.2M</td>
+					<td>2014-08-13 00:00:00</td>
+					<td>
+						
+							
+							
+							已下架
+						
+					</td>
+					<td><div style="text-overflow:true;" title="《运动加加 Online》是一款由运智互动最新出品的“智能电视体感游戏”，并荣获中国智能电视产业联盟2014年度最受欢迎电视应用产品。运动加加系列产品打造全家人一起的游戏，遵循“在一起，更精彩”的理念，为家庭娱乐而生。运动加加是运动与娱乐的完美结合，通过体感操作，在智能电视上模拟了大量体育运动，如羽毛球，网球，田径运动等。通过智能手机或体感手柄可以轻松方便的进行各类游戏。让全家人在娱乐中得到锻炼与欢笑。 ">《运动加加 Online》是一款由运智互动最新出品的“智能电视体感游戏”，并荣获中国智能电视产业联盟2014年度最受欢迎电视应用产品。运动加加系列产品打造全家人一起的游戏，遵循“在一起，更精彩”的理念，为家庭娱乐而生。运动加加是运动与娱乐的完美结合，通过体感操作，在智能电视上模拟了大量体育运动，如羽毛球，网球，田径运动等。通过智能手机或体感手柄可以轻松方便的进行各类游戏。让全家人在娱乐中得到锻炼与欢笑。 </div></td>
+					<td>
+						
+					</td>
+					<td>
+						游戏
+					</td>
+					
+						
+						
+							<td></td>
+						
+					
+					<td>
+						
+					</td>
+					<td>
+						
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1148</td>
+					<td>石头游戏</td>
+					<td>1.0.2</td>
+					<td>4.6M</td>
+					<td>2014-09-09 00:00:00</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="石头游戏专注于电视平台，致力于为电视游戏爱好者打造最专业、快捷、流畅的游戏体验，为玩家提供最“好玩”的电视游戏。平台已经上线几十款国内外大作，内容涵盖大型网游、精品单机、休闲益智、街机游戏等，款款都经过严格测试，无需设置，无需适配，下载就能玩到High！">石头游戏专注于电视平台，致力于为电视游戏爱好者打造最专业、快捷、流畅的游戏体验，为玩家提供最“好玩”的电视游戏。平台已经上线几十款国内外大作，内容涵盖大型网游、精品单机、休闲益智、街机游戏等，款款都经过严格测试，无需设置，无需适配，下载就能玩到High！</div></td>
+					<td>
+						游戏
+					</td>
+					<td>
+						游戏
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 14:10:09
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1148" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1148" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1147</td>
+					<td>爱游戏</td>
+					<td>5.1.3</td>
+					<td>3.0M</td>
+					<td>2014-09-19 00:00:00</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="爱游戏TV游戏中心是国内第一家提供正版智能电视游戏的专业游戏平台，用户可以用过爱游戏TV游戏中心下载到精品大作、遥控器游戏、体感游戏等电视游戏。">爱游戏TV游戏中心是国内第一家提供正版智能电视游戏的专业游戏平台，用户可以用过爱游戏TV游戏中心下载到精品大作、遥控器游戏、体感游戏等电视游戏。</div></td>
+					<td>
+						游戏
+					</td>
+					<td>
+						游戏
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 14:09:21
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1147" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1147" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+				<tr>
+					<td>1146</td>
+					<td>KO电玩城</td>
+					<td>2.1.0.9</td>
+					<td>27.9M</td>
+					<td>2014-09-19 00:00:00</td>
+					<td>
+						
+							
+							已发布
+							
+						
+					</td>
+					<td><div style="text-overflow:true;" title="KO电玩城是安卓TV上的电玩游戏中心，将传统的主机游戏完美移植到TV平台，既有近期耳熟能详的大作：真三国无双、怪物猎人、实况足球、极品飞车，也有玩不厌的80后怀旧经典：拳皇、街霸、合金弹头、超级玛丽、魂斗罗、口袋妖怪…。">KO电玩城是安卓TV上的电玩游戏中心，将传统的主机游戏完美移植到TV平台，既有近期耳熟能详的大作：真三国无双、怪物猎人、实况足球、极品飞车，也有玩不厌的80后怀旧经典：拳皇、街霸、合金弹头、超级玛丽、魂斗罗、口袋妖怪…。</div></td>
+					<td>
+						游戏
+					</td>
+					<td>
+						游戏
+					</td>
+					
+						
+							<td>郝宁</td>
+						
+						
+					
+					<td>
+						2014-10-09 14:08:28
+					</td>
+					<td>
+						
+							
+								<a class="btnEdit" href="app/update/1146" target="navtab" title="编辑">编辑</a>
+								<a class="btnDel" href="app/unpublish/1146" target="ajaxTodo" title="下架应用">下架</a>
+							
+							
+						
+					</td>
+				</tr> 
+			
+		</tbody>
+	</table>
+</div>
+
+<div class="panelBar">
+    <div class="pages">
+        <span>显示</span> 
+            <select class="select" name="numPerPage"
+                onchange="navTabPageBreak({numPerPage:this.value})">
+                <option value="20"  >20</option>
+                <option value="50"  selected  >50</option>
+                <option value="100"  >100</option>
+                <option value="500"  >500</option>
+            </select> 
+        <span>条，共 66 条，共 2 页</span>
+    </div>
+
+    <div class="pagination" targetType="navTab"
+        totalCount="66"
+        numPerPage="50"
+        pageNumShown="5"
+        currentPage="1">
+    </div>
+</div>

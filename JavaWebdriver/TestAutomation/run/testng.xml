@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" verbose="1" parallel="false" thread-count="1">
+    <test name="Test" preserve-order="true">
+        <classes>
+        <!--  
+            <class name="com.test.testcases.Login" />
+            <class name="com.test.testcases.Shopping" />-->
+            <class name="com.test.testcases.Test1" />
+        </classes>
+    </test>
+</suite>

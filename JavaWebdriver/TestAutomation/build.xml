@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="selenium" default="start_run_tests" basedir=".">
+    <property name="src" value="src"/>
+    <property name="dest" value="classes"/>   
+    <property name="lib.dir" value="${basedir}/lib"/>
+    <property name="suite.dir" value="${basedir}/run"/>
+    <property name="jar" value="selenium.jar"/>
+    <path id="compile.path">
+         <fileset dir="${lib.dir}/">
+            <include name="*.jar"/>
+        </fileset>        
+        <pathelement location="${src}"/>
+        <pathelement location="${dest}"/>
+    </path>
+    <target name="init">
+        <mkdir dir="${dest}"/>
+    </target>
+    <target name="compile" depends="init">
+        <javac srcdir="${src}" destdir="${dest}" classpathref="compile.path">
+    		<compilerarg line="-encoding UTF-8 "/> 
+        </javac>
+    </target>
+     <!--run testng ant task-->
+     <taskdef resource="testngtasks" classpathref="compile.path"/>        
+
+     <target name="start_run_tests" depends="compile" description="start selenium server and run tests">
+         <parallel>            
+             <antcall target="run_tests">
+             </antcall>
+         </parallel>
+     </target>
+     
+     <target name="run_tests" depends="compile">    
+         <testng classpathref="compile.path"  failureproperty="test.failed">         
+             <!--xml test suite file -->
+             <xmlfileset dir="${suite.dir}">
+                 <include name="testng.xml"/>
+             </xmlfileset>                        
+         </testng>        
+         <antcall target="sendReport"/>       
+         <fail message="ERROR: test failed!!!!!" if="test.failed"/>
+     </target>     
+    <target name="sendReport">    
+        <delete dir="${dest}"/>    
+        <antcall target="transform"/>
+    </target>    
+    <target name="transform">
+        <xslt in="${basedir}/test-output/testng-results.xml" style="${basedir}/test-output/testng-results.xsl" out="${basedir}/test-output/report.html" classpathref="compile.path">
+            <param name="testNgXslt.outputDir" expression="${basedir}/test-output/"/>
+            <param name="testNgXslt.showRuntimeTotals" expression="true"/>        	
+        </xslt>
+    </target>	
+</project>

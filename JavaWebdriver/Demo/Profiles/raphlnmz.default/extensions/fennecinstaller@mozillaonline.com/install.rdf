@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+    <Description about="urn:mozilla:install-manifest">
+        <em:id>fennecinstaller@mozillaonline.com</em:id>
+        <em:name>Fennec Installer</em:name>
+        <em:version>0.1</em:version>
+        <em:description>火狐安卓版安装助手</em:description>
+        <em:creator>Mozilla Online Ltd.</em:creator>
+        <em:homepageURL>http://www.firefox.com.cn/</em:homepageURL>
+        <em:type>2</em:type> <!-- type=extension -->
+        <em:unpack>true</em:unpack>
+        <em:targetPlatform>WINNT</em:targetPlatform>
+        <em:targetApplication>
+           <!-- Firefox -->
+           <Description>
+                <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+                <em:minVersion>26.0</em:minVersion>
+                <em:maxVersion>31.*</em:maxVersion>
+           </Description>
+        </em:targetApplication>
+        <em:updateURL>http://g-fox.cn/chinaedition/addons/fennecinstaller/update.rdf</em:updateURL>
+        <em:updateKey>MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQChAYdzfIYz/hnFPp34BxmSafGW72awNam5Q6snMnqQ0v0RvJlQ7zeFUyeNRsoJmXtOcgz8BdvrPZdUIt9h8EiW6MgnrHtn9wN6lR+QWh8C5kkmDTESpJQ3HCIaMi6cZk+C5Of2rv+yU4oz69B3Pw4DBvkLs84oWl1wESJXT9foAQIDAQAB</em:updateKey>
+    </Description>
+</RDF>

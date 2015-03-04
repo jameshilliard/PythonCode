@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE overlay SYSTEM "chrome://cmimprove/locale/url2qr.dtd">
+
+<overlay
+  id="improve-url2qr-options-prefpane"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+  <prefpane id="url2qrpane">
+    <preferences>
+      <preference id="b-enableurl2qr" name="extensions.cmimprove.url2qr.enabled" type="bool"/>
+    </preferences>
+    <vbox>
+      <checkbox id="c-enableurl2qr" preference="b-enableurl2qr" label="&c-enableurl2qr.label;"/>
+    </vbox>
+  </prefpane>
+</overlay>

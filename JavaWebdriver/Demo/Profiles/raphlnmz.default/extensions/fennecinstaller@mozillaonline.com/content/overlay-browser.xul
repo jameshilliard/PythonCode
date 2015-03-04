@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<overlay id="fennecInstaller" xmlns:html="http://www.w3.org/1999/xhtml"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <script type="application/javascript" src="chrome://fennecinstaller/content/overlay-browser.js" />
+  <vbox id="browser-bottombox">
+    <vbox id="android-device-monitor">
+      <html:object type="application/android-device-monitor" style="width: 0px; height: 0px;"></html:object>
+    </vbox>
+  </vbox>
+</overlay>

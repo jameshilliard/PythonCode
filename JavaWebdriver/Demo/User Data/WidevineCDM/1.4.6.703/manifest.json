@@ -1,0 +1,35 @@
+{
+  "manifest_version": 2,
+  "update_url": "https://clients2.google.com/service/update2/crx",
+  "name": "WidevineCdm",
+  "description": "Widevine Content Decryption Module",
+  "offline_enabled": false,
+  "version": "1.4.6.703",
+  "minimum_chrome_version": "38.0.0.0",
+  "x-cdm-module-versions": "4",
+  "x-cdm-interface-versions": "6",
+  "x-cdm-host-versions": "6",
+  "x-cdm-codecs": "vp8,vp9.0,vorbis,avc1",
+  "platforms": [
+    {
+      "os": "win",
+      "arch": "x86",
+      "sub_package_path": "_platform_specific/win_x86/"
+    },
+    {
+      "os": "win",
+      "arch": "x64",
+      "sub_package_path": "_platform_specific/win_x64/"
+    },
+    {
+      "os": "mac",
+      "arch": "x86",
+      "sub_package_path": "_platform_specific/mac_x86/"
+    },
+    {
+      "os": "mac",
+      "arch": "x64",
+      "sub_package_path": "_platform_specific/mac_x64/"
+    }
+  ]
+}

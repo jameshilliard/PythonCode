@@ -1,0 +1,14 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "manifest_version": 2,
+  "name": "EV Certs CT whitelist",
+  "description": "Whitelist of Extended Validation Certificates logged in a Certificate Transparency log",
+  "minimum_chrome_version": "36",
+  "version": "1",
+  "platforms": [
+    {
+      "sub_package_path": "_platform_specific/all/"
+    }
+  ]
+}

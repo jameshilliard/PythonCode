@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" verbose="1" parallel="false" thread-count="1">
+	<test name="Test1" preserve-order="true">
+		<classes>
+			<class name="com.demo.Test2">
+				<methods>
+					<include name="test2" />
+					<include name="test1" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>

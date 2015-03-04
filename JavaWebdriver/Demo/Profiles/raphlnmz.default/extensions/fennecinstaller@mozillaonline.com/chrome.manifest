@@ -1,0 +1,3 @@
+content  fennecinstaller   content/
+resource fennecinstaller   modules/
+overlay  chrome://browser/content/browser.xul chrome://fennecinstaller/content/overlay-browser.xul os=WINNT

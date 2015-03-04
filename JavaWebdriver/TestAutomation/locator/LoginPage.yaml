@@ -1,0 +1,12 @@
+login_name:
+  type:id
+  value:loginname
+login_pwd:
+  type:id
+  value:nloginpwd
+login_button:
+  type:id
+  value:loginsubmit
+loginpwd_error:
+  type:id
+  value:loginpwd_error

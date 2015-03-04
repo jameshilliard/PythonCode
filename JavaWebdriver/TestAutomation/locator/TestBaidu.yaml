@@ -1,0 +1,9 @@
+百度输入框:
+  type: id
+  value: kw
+百度一下按钮:
+  type: id
+  value: su
+百度搜索结果输入框:
+  type: id
+  value: kw

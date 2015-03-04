@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE overlay SYSTEM "chrome://cmimprove/locale/gesture-options.dtd">
+
+<overlay
+  id="improve-gesture-options-overlay"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+  <prefwindow id="cpmanagerOptions">
+    <prefpane id="gesturepane"
+              label="&gesturepane.label;"
+              image="chrome://cmimprove/skin/gesture-options.png"
+              src="chrome://cmimprove/content/gesture/gesturepane.xul"
+              flex="1"/>
+  </prefwindow>
+
+</overlay>

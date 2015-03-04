@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+
+<SearchPlugin xmlns="http://www.mozilla.org/2006/browser/search/">
+	<ShortName>淘宝购物</ShortName>
+	<Description>淘宝购物搜索 - 只有你想不到，没有你淘不到</Description>
+	<InputEncoding>GB2312</InputEncoding>
+	<Image width="16" height="16">data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAAD///8A////AP///wD///8AL2n//////wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AC9p//8PTOv/////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wCrw///D0zr/w9M6/8vaf//L2n//w9M6/8PTOv/D0zr/w9M6/8PTOv/D0zr/w9M6/8PTOv/q8P//////wCrw///D0zr/y9p//8vaf//L2n//y9p//8vaf//L2n//y9p//8vaf//L2n//y9p//8vaf//L2n//w9M6/+rw///VoX/////////////L2n//y9p//8vaf//L2n//y9p//8vaf//////////////////mLX//y9p//8vaf//D0zr/1aF//////////////////8vaf//mLX//////////////////y9p//8vaf////////////+Ytf//L2n//w9M6/9Whf//L2n/////////////NG3///////80bf///////////////////////zRt/////////////y9p//8PTOv/VoX//y9p//8vaf///////zRt////////NG3/////////////NG3///////80bf////////////8vaf//D0zr/1aF//8vaf//L2n//5i1////////NG3//zRt/////////////zRt//80bf//NG3/////////////L2n//w9M6/9Whf//L2n//y9p//+Ytf///////////////////////////////////////zRt/////////////y9p//8PTOv/VoX//y9p/////////////zRt////////NG3/////////////NG3//zRt//80bf////////////8vaf//D0zr/1aF//8vaf////////////80bf//NG3/////////////////////////////NG3/////////////L2n//w9M6/9Whf//L2n//zRt//80bf///////5i1/////////////zRt//80bf//NG3//zRt////////mLX//y9p//8PTOv/VoX//y9p///+/////////zRt/////////////zRt////////////////////////mLX//zRt//8vaf//D0zr/6vD//9Whf////////////8vaf////////////8vaf//L2n//y9p//8vaf//L2n//y9p//8vaf//D0zr/6vD//////8Aq8P//1aF//9Whf//VoX//1aF//9Whf//VoX//1aF//9Whf//VoX//1aF//9Whf//VoX//6vD//////8A9/8AAPP/AACAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAEAAA==</Image>
+	<Url type="text/html" template="http://s8.taobao.com/search">
+	<Param name="commend" value="all"/>
+	<Param name="style" value="grid"/>
+	<Param name="q" value="{searchTerms}"/>	
+	<Param name="pid" value="mm_28347190_2425761_9494155"/>
+	<Param name="mode" value="66"/>
+	<Param name="rdid" value="1322025965_4t2_3221322"/>
+	</Url>
+	<SearchForm>http://s8.taobao.com/search</SearchForm>
+</SearchPlugin>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<common>				
+	</common>
+	<testLogin>
+		<username>test1</username>
+		<password>123456</password>
+	</testLogin>	
+</data>

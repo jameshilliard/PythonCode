@@ -1,0 +1,12 @@
+商品名称:
+  type:id
+  value:name
+商品价格:
+  type:id
+  value:jd-price
+加入购物车:
+  type:id
+  value:InitCartUrl
+去购物车结算:
+  type:id
+  value:GotoShoppingCart
