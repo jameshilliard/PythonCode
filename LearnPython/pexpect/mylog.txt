@@ -1,0 +1,10 @@
+root@192.168.8.2's password: 123qaz
+
+Last login: Fri Mar  6 19:29:47 2015 from 192.168.8.3
+]0;root@new-host:~[?1034h[at_Roy_LAN:root:~:[0;33m[0m]# tar -czf /root/nginx_access.tar.gz /root/log.html
+tar -czf /root/nginx_access.tar.gz /root/log.html
+tar: Removing leading `/' from member names
+]0;root@new-host:~[at_Roy_LAN:root:~:[0;33m[0m]# exit
+root@192.168.8.2's password: 123qaz
+
+nginx_access.tar.gz                             0%    0     0.0KB/s   --:-- ETAnginx_access.tar.gz                           100% 1944KB   1.9MB/s   00:01    
